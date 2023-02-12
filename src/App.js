@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer'
 
 import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
+import CardAbout from './components/Catalog/Cards/Card/CardAbout'
 
 
 const AppContainer = styled.div`
@@ -21,7 +22,6 @@ const AppContainer = styled.div`
 const MainContainer = styled.div`
   max-width: 33rem;
   margin: 0 auto;
-  padding: 0 2.5rem;
   z-index: 1;
 `
 
@@ -34,7 +34,10 @@ function App() {
         <main>
           <Routes>
             <Route path='/' element={ <Home /> } />
-            <Route path='/catalog' element={ <Catalog /> } />
+            <Route path='/catalog'>
+              <Route path='' element={ <Catalog /> } />
+              <Route path=':id' element={ <CardAbout /> } />
+            </Route>
             <Route path='/contact' element={ <Contact /> } />
           </Routes>
         </main>

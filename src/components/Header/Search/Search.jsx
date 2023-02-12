@@ -25,6 +25,7 @@ const SearchWrapper = styled.div`
     background-color: #eee2dc;
     animation-duration: .3s;
     animation-name: ${showSearch};
+    z-index: 11;
 `
 
 export default ({ isOpen, setIsOpen }) => {
@@ -33,7 +34,7 @@ export default ({ isOpen, setIsOpen }) => {
     return (
         <>
         <SearchWrapper isOpen={isOpen}>
-            <Input  placeholder='Search' value={searchVl} onChange={(ev) => {setSearchVl(ev.target.value)}}/>
+            <Input id='header-search' placeholder='Search' value={searchVl} onChange={(ev) => {setSearchVl(ev.target.value)}}/>
             <Icon.Search size={'2.5rem'} cursor='pointer' />
             <Icon.XLg onClick={(ev) => {setIsOpen(false)}} size={'2.5rem'} cursor='pointer' />
         </SearchWrapper>

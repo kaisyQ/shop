@@ -66,7 +66,7 @@ export default ({ placeholder, id, type, value, onChange }) => {
                         <InputWrapper value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
                         <TextareaWrapper value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
                 }
-            </Wrapper>
+            </Wrapper>  
         </>
     )
 }
