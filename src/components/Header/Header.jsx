@@ -83,6 +83,7 @@ const MenuLine = styled.div`
 export default () => {
 
     const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
+    const [isSearchOpen, setIsSearchOpen] = React.useState(false)
 
     const onMenu = (ev) => {
         setIsOpenSidebar((prev) => !prev)
@@ -91,12 +92,10 @@ export default () => {
     return (
         <>
             <HeaderWrapper>
-                <Sidebar setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} />
-                <Search />
-                <NavLink to={'#'}>
-                    <Icon.Search size={'2rem'}/>
-                </NavLink>
-                <NavLink to={'#'}>
+                { isOpenSidebar && <Sidebar setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
+                { isSearchOpen && <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} /> }
+                <Icon.Search size={'2rem'} onClick={(ev) => { setIsSearchOpen(true) }} />
+                <NavLink to={'/'}>
                     <Logo src={logo} alt="logo" />
                 </NavLink>
                 <LinksContainer>

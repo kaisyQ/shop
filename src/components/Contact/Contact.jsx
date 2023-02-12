@@ -33,7 +33,6 @@ const ButtonWrapper = styled.div`
 const FormControl = styled.button`
     
 `
-
 export default () => {
 
     const [name, setName] =  React.useState('')
@@ -41,26 +40,16 @@ export default () => {
     const [phoneNumber, setPhoneNumber] =  React.useState('')
     const [comment, setComment] =  React.useState('')
 
-    
-    const Name = Input({ placeholder:'Name', value:name, onChange:(ev) => {
-         setName(ev.target.value)
-         debugger
-    }}) 
-
-    const Email = Input({ placeholder:'Email', value:email, onChange:(ev) => { setEmail(ev.target.value) }}) 
-    const PhoneNumber = Input({ placeholder:'Phone number', value:phoneNumber, onChange:(ev) => { setPhoneNumber(ev.target.value) }}) 
-    const Comment = Input({ placeholder:'Comment', type:'textarea', value:comment, onChange:(ev) => { setComment(ev.target.value) }})
-
     return (
         <>
             <ContactWrapper>
                 <Title>Contact</Title>
                 <Subtitle>Please let us know how we can assist you.</Subtitle>
                 <FormWrapper>
-                    <Name />
-                    <Email />
-                    <PhoneNumber />
-                    <Comment />
+                    <Input id='contact-name' placeholder='Name' value={name} onChange={(ev) => {setName(ev.target.value)}} />
+                    <Input id='contact-email' placeholder='Email' value={email} onChange={(ev) => {setEmail(ev.target.value)}} />
+                    <Input id='contact-phoneNumber' placeholder='Phone number' value={phoneNumber} onChange={(ev) => {setPhoneNumber(ev.target.value)}} />
+                    <Input id='contact-comment'placeholder='Comment' type='textarea' value={comment} onChange={(ev) => {setComment(ev.target.value)}} />
                     <ButtonWrapper>
                         <Button>Send</Button>
                     </ButtonWrapper>

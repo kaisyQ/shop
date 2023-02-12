@@ -33,7 +33,7 @@ const SidebarWrapper = styled.div`
     width: ${props => props.isOpen ? '70%' : '0'};
     background-color: #eee2dc;
     animation-duration: 0.3s;
-    animation-name: ${props => props.isOpen ? openSidebar : closeSidebar};
+    animation-name: ${openSidebar};
     z-index: 10;
 `
 

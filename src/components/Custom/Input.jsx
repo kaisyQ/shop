@@ -22,7 +22,7 @@ const InputWrapper =  styled.input`
     width: 100%;
     border: 0.1rem solid #afa7aa;
     border-radius: .5rem;
-
+    color: inherit;
 
     :focus, :hover {
         outline: 0.2rem #ac3b61 solid;
@@ -46,10 +46,9 @@ const TextareaWrapper = styled.textarea`
 
 
 
-const Input = ({ placeholder, id, type, value, onChange }) => {
+export default ({ placeholder, id, type, value, onChange }) => {
 
     const [focused, setFocused] = React.useState(false)
-
     const onFocus = (ev) => {
         setFocused(true)
     } 
@@ -71,17 +70,3 @@ const Input = ({ placeholder, id, type, value, onChange }) => {
         </>
     )
 }
-
-const InputGenerator = (props) => {
-    let id = 1
-    return () => {
-        id += 3
-        return (
-            <>
-                <Input id={ id } { ...props } />
-            </>
-        )
-    } 
-}
-
-export default InputGenerator
