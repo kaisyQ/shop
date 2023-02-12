@@ -1,6 +1,7 @@
 {
   "name": "shop-app",
   "version": "0.1.0",
+  "homepage": "http://kaisyQ.github.io/shop",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
