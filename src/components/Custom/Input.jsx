@@ -25,7 +25,8 @@ const InputWrapper =  styled.input`
     color: inherit;
 
     :focus, :hover {
-        outline: 0.2rem #ac3b61 solid;
+        outline: 0.1rem #ac3b61 solid;
+        border-color: #ac3b61;
     }
 `
 
@@ -39,7 +40,8 @@ const TextareaWrapper = styled.textarea`
 
 
     :focus, :hover {
-        outline: 0.2rem #ac3b61 solid;
+        outline: 0.1rem #ac3b61 solid;
+        border-color: #ac3b61;
     }
 `
 

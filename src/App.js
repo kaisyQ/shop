@@ -1,14 +1,15 @@
-import logo from './logo.svg'
 
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
 import Catalog from './components/Catalog/Catalog'
 import Contact from './components/Contact/Contact'
 import Footer from './components/Footer/Footer'
+import CardAbout from './components/Catalog/Cards/Card/CardAbout'
+
+import AdminRouterContainer from './components/AdminRouter/AdminRouterContainer'
 
 import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
-import CardAbout from './components/Catalog/Cards/Card/CardAbout'
 
 
 const AppContainer = styled.div`
@@ -29,20 +30,31 @@ const MainContainer = styled.div`
 function App() {
   return (
     <AppContainer>
-      <Header />
-      <MainContainer>
-        <main>
-          <Routes>
-            <Route path='/' element={ <Home /> } />
-            <Route path='/catalog'>
-              <Route path='' element={ <Catalog /> } />
-              <Route path=':id' element={ <CardAbout /> } />
-            </Route>
-            <Route path='/contact' element={ <Contact /> } />
-          </Routes>
-        </main>
-        <Footer />
-      </MainContainer>
+
+      <Routes>
+        <Route path='/admin/*' element={<AdminRouterContainer />} />
+        <Route path='*' element={ (
+          <>
+            <Header />
+            <MainContainer>
+              <main>
+                <Routes>
+                  {
+                    ['/', '/shop'].map(
+                      (path, index) => <Route key={index} path={path} element={ <Home /> } /> )
+                  }
+                  <Route path='/catalog'>
+                    <Route path='' element={ <Catalog /> } />
+                    <Route path=':id' element={ <CardAbout /> } />
+                  </Route>
+                  <Route path='/contact' element={ <Contact /> } />
+                </Routes>
+              </main>
+              <Footer />
+            </MainContainer>
+          </>)} 
+        />
+      </Routes>
     </AppContainer>
   )
 }
