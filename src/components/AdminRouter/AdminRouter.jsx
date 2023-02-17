@@ -5,8 +5,7 @@ import styled from "styled-components"
 import LoginContainer from "./Login/LoginConteiner"
 import AdminHeaderContainer from "./Admin/AdminHeader/AdminHeaderContainer"
 import UserContainer from "./Admin/Users/UserContainer"
-
-import Users from "./Admin/Users/Users"
+import EditUserContainer from "./Admin/EditUser/EditUserContainer"
 
 import { Routes, Route, useLocation } from "react-router-dom"
 
@@ -33,7 +32,7 @@ export default ({ checkMe }) => {
                 <Routes>
                     <Route path='login' element={<LoginContainer />} />
                     <Route path="users" element={<UserContainer />} />
-                    <Route path="users/:id" element={<></>} />
+                    <Route path="users/:id" element={<EditUserContainer /> } />
                 </Routes>
             </MainContainer>
         </>

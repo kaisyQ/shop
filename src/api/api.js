@@ -5,17 +5,14 @@ const instance = axios.create({
     withCredentials: true
 })
 
-export const signIn = (login, password) => {
-    return instance.post('signin', { login, password })
-}
+export const signIn = (login, password) => instance.post('signin', { login, password })
 
-export const checkMe = () => {
-    return instance.get('me')
-}
+export const checkMe = () => instance.get('me')
 
-export const getUsers = () => {
-    return instance.get('users')
-}
+
+export const getUsers = () => instance.get('users')
+
+export const getUser = (id) => instance.get(`users/${id}`)
 
 export default instance
 

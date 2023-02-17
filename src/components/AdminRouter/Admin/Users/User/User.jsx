@@ -3,35 +3,56 @@ import styled from "styled-components"
 
 import { NavLink } from "react-router-dom"
 
-const UsersContainer = styled.div`
-    
-`
 
 const UserWrapper = styled.div`
     display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
     justify-content: space-between;
+    border: .1rem solid #000;
+    border-radius: .5rem;
+    padding: .5rem;
+    
+    font-size: 1.7rem;
+`
+
+const ItemLine = styled.div`
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1.5rem;
+`
+
+const FieldName = styled.p`
+    font-weight: 500;
+`
+const FieldInfo = styled.p`
+    overflow: hidden;
+    text-overflow: ellipsis;
 `
 
 export default ({ id, login, password, roleId }) => {
     return (
         <>
-            <UsersContainer>
+            <NavLink to={`/admin/users/${id}`}>
                 <UserWrapper>
-                    <span>#</span>
-                    <p>Id</p>
-                    <p>Login</p>
-                    <p>Password</p>
-                    <p>Role</p>
+                    <ItemLine>
+                        <FieldName>Id : </FieldName>
+                        <FieldInfo>{ id }</FieldInfo>
+                    </ItemLine>
+                    <ItemLine>
+                        <FieldName>Login : </FieldName>
+                        <FieldInfo>{ login }</FieldInfo>
+                    </ItemLine>
+                    <ItemLine>
+                        <FieldName>Password : </FieldName>
+                        <FieldInfo>{ password }</FieldInfo>
+                    </ItemLine>
+                    <ItemLine>
+                        <FieldName>Role : </FieldName>
+                        <FieldInfo>{ roleId === 1 ? 'ADMIN' : 'USER'}</FieldInfo>
+                    </ItemLine>
                 </UserWrapper>
-                <UserWrapper>
-                    <input type="checkbox" />
-                    <NavLink to={`/admin/users/${id}`}><p>{ id }</p></NavLink>
-                    <NavLink to={`/admin/users/${id}`}><p>{ login }</p></NavLink>
-                    <NavLink to={`/admin/users/${id}`}><p>{ password }</p></NavLink>
-                    <NavLink to={`/admin/users/${id}`}><p>{ roleId === 1 ? 'ADMIN' : 'USER'}</p></NavLink>
-                </UserWrapper>
-                <hr />
-            </UsersContainer>
+            </NavLink>      
         </>
     )
 }
