@@ -2,10 +2,10 @@ import React from "react"
 import styled from "styled-components"
 
 
-import Input from './../../Custom/Input'
-import Button from './../../Custom/Button'
+import Input from '../Custom/Input'
+import Button from '../Custom/Button'
 
-import api from "../../../api/api"
+import api from "../../api/api"
 import { Navigate } from "react-router-dom"
 
 const LoginWrapper = styled.form`

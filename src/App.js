@@ -1,3 +1,4 @@
+import React from 'react'
 
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
@@ -5,8 +6,9 @@ import Catalog from './components/Catalog/Catalog'
 import Contact from './components/Contact/Contact'
 import Footer from './components/Footer/Footer'
 import CardAbout from './components/Catalog/Cards/Card/CardAbout'
-
-import AdminRouterContainer from './components/AdminRouter/AdminRouterContainer'
+import LoginContainer from './components/Login/LoginContainer'
+import EditUserContainer from './components/EditUser/EditUserContainer'
+import UsersContainer from './components/Users/UsersContainer'
 
 import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
@@ -20,24 +22,32 @@ const AppContainer = styled.div`
   color: #123C69;
 `
 
-const MainContainer = styled.div`
+const MainContainer = styled.main`
   max-width: 33rem;
   margin: 0 auto;
   z-index: 1;
 `
 
 
-function App() {
+function App({ checkMe }) {
+  
+  React.useEffect(() => {
+    checkMe()
+  }, [checkMe])
+  
   return (
     <AppContainer>
-
+      <Header />
       <Routes>
-        <Route path='/admin/*' element={<AdminRouterContainer />} />
+        <Route path='/admin/*'>
+          <Route path='' element={<LoginContainer />} />
+          <Route path='login' element={<LoginContainer />} />
+          <Route path="users" element={<UsersContainer />} />
+          <Route path='users/:id' element={<EditUserContainer />} />
+        </Route>
         <Route path='*' element={ (
           <>
-            <Header />
             <MainContainer>
-              <main>
                 <Routes>
                   {
                     ['/', '/shop'].map(
@@ -49,7 +59,6 @@ function App() {
                   </Route>
                   <Route path='/contact' element={ <Contact /> } />
                 </Routes>
-              </main>
               <Footer />
             </MainContainer>
           </>)} 

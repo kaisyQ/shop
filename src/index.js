@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App from './App'
+import AppContainer from './AppContainer'
+
 import reportWebVitals from './reportWebVitals'
 
 import store from './redux/store'
@@ -14,7 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <AppContainer />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
