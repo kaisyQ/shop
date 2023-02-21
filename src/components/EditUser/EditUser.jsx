@@ -2,7 +2,9 @@ import React from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
 
-import SessionItem from "./SessionItem/SessionItem"
+
+import SessionItemContainer from "./SessionItem/SessionItemContainer"
+
 
 const EditUserWrapper = styled.div`
 `
@@ -67,7 +69,8 @@ const ButtonsWrapper = styled.div`
 const SessionsWrapper = styled.div`
     margin-top: 2rem;
 `
-export default ({ user, getUser }) => {
+export default ({ user, getUser, deleteAllSessions }) => {
+
     
     const { id } = useParams()
 
@@ -80,6 +83,12 @@ export default ({ user, getUser }) => {
         }
 
     }, [id, getUser])
+
+
+    
+    const onDeleteAllSessionsClick = (ev) => {
+        deleteAllSessions(user.id)
+    } 
 
 
     if (!user) {
@@ -126,11 +135,11 @@ export default ({ user, getUser }) => {
                     </Btn>
                 </ButtonsWrapper>
                 <Title>User sessions</Title>
-                <Btn>Delete all sessions</Btn>
+                <Btn onClick={onDeleteAllSessionsClick}>Delete all sessions</Btn>
                 <SessionsWrapper>
                     {
                         user.session.map((session, index) => 
-                            <SessionItem index={index} expiresAt={session.expiresAt} id={session.id} />)
+                            <SessionItemContainer index={index} expiresAt={session.expiresAt} id={session.id} />)
                     }
                 </SessionsWrapper>
             </EditUserWrapper>

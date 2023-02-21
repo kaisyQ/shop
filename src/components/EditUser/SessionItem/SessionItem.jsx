@@ -33,11 +33,16 @@ const Button = styled.button`
 `
 
 
-export default ({ id, index, expiresAt }) => {
+export default ({ id, index, expiresAt, deleteSessionThunk }) => {
+
+    const onDeleteSessionBtnClick = (ev) => {
+        deleteSessionThunk(id)        
+    } 
+
     return (
         <>
             <SwssionItemWrapper>
-                <Button>Delete</Button>
+                <Button onClick={onDeleteSessionBtnClick}>Delete</Button>
                 <div>Session number :  {index}</div>
                 <div>Session id : {id}</div>
                 <div>ExpiresAt : {(new Date(expiresAt)).toUTCString()}</div>

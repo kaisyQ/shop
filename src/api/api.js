@@ -14,6 +14,20 @@ export const getUsers = () => instance.get('users')
 
 export const getUser = (id) => instance.get(`users/${id}`)
 
+export const createUser = (login, password) => instance.post(`user`, { login, password })
+
+
+export const deleteSessionById = (id) => instance.delete(`session/${id}`)
+
+export const deleteUserSessions = (userId) => instance.delete(`sessions/${userId}`)
+
+
+
+
+
+
+
+
 export default instance
 
 

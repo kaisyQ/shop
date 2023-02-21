@@ -34,7 +34,6 @@ export const { setAuthData } = actions
 export const signInThunk = (login, password) => async (dispatch) => {
     const response = await signIn(login, password)
     if (response.status === 200) {
-        console.log('here')
         dispatch(setAuthData({
             id: response.data.id,
             login: response.data.login,

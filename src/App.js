@@ -9,6 +9,7 @@ import CardAbout from './components/Catalog/Cards/Card/CardAbout'
 import LoginContainer from './components/Login/LoginContainer'
 import EditUserContainer from './components/EditUser/EditUserContainer'
 import UsersContainer from './components/Users/UsersContainer'
+import CreateUserContainer from './components/CreateUser/CreateUserContainer'
 
 import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
@@ -43,6 +44,7 @@ function App({ checkMe }) {
           <Route path='' element={<LoginContainer />} />
           <Route path='login' element={<LoginContainer />} />
           <Route path="users" element={<UsersContainer />} />
+          <Route exact path='users/create' element={<CreateUserContainer />} />
           <Route path='users/:id' element={<EditUserContainer />} />
         </Route>
         <Route path='*' element={ (
