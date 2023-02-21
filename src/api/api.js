@@ -7,7 +7,11 @@ const instance = axios.create({
 
 export const signIn = (login, password) => instance.post('signin', { login, password })
 
+export const signOut = () => instance.delete('logout')
+
 export const checkMe = () => instance.get('me')
+
+
 
 
 export const getUsers = () => instance.get('users')

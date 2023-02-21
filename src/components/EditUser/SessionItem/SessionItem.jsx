@@ -33,7 +33,7 @@ const Button = styled.button`
 `
 
 
-export default ({ id, index, expiresAt, deleteSessionThunk }) => {
+export default ({ id, index, expiresAt, roleId,  deleteSessionThunk }) => {
 
     const onDeleteSessionBtnClick = (ev) => {
         deleteSessionThunk(id)        
@@ -42,7 +42,7 @@ export default ({ id, index, expiresAt, deleteSessionThunk }) => {
     return (
         <>
             <SwssionItemWrapper>
-                <Button onClick={onDeleteSessionBtnClick}>Delete</Button>
+                { roleId === 1 ? <></> :<Button onClick={onDeleteSessionBtnClick}>Delete</Button> }
                 <div>Session number :  {index}</div>
                 <div>Session id : {id}</div>
                 <div>ExpiresAt : {(new Date(expiresAt)).toUTCString()}</div>

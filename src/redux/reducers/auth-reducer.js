@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-import { checkMe, signIn } from "../../api/api"
+import { checkMe, signIn, signOut } from "../../api/api"
 
 
 const initialState = {
@@ -44,6 +44,18 @@ export const signInThunk = (login, password) => async (dispatch) => {
 }
 
 
+export const signOutThunk = () => async (dispatch) => {
+    const response = await signOut()
+    if(response.status === 200) {
+        dispatch(setAuthData({
+            id: null,
+            login: null,
+            isAuth: false, 
+            roleId: null
+        }))
+    }
+}
+
 export const checkMeThunk = () => async (dispatch) => {
     const response = await checkMe()
     if(response.status === 200){
@@ -55,6 +67,7 @@ export const checkMeThunk = () => async (dispatch) => {
         }))
     }
 }
+
 
 
 

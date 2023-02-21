@@ -10,6 +10,8 @@ import { NavLink } from "react-router-dom"
 import * as Icon from 'react-bootstrap-icons'
 
 
+
+
 const HeaderWrapper = styled.header`
     padding: 2.5rem;
     display: flex;
@@ -80,13 +82,17 @@ const MenuLine = styled.div`
     }
 `
 
-export default () => {
+export default ({ signOut }) => {
 
     const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
     const [isSearchOpen, setIsSearchOpen] = React.useState(false)
 
     const onMenu = (ev) => {
         setIsOpenSidebar((prev) => !prev)
+    }
+
+    const onSignOutClick = (ev) => {
+        signOut()
     }
 
     return (
@@ -107,6 +113,7 @@ export default () => {
                     <NavLink to={'#'}>
                         <Icon.Bag size={'2rem'}/>
                     </NavLink>
+                        <Icon.BoxArrowRight size={'2rem'} onClick={onSignOutClick}/>
                 </LinksContainer>
             </HeaderWrapper>
         </>

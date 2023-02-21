@@ -126,20 +126,32 @@ export default ({ user, getUser, deleteAllSessions }) => {
                         }
                     </ItemWrapper>
                 </Information>
-                <ButtonsWrapper>
-                    <Btn onClick={(ev) => {setIsEditMode((prev) => !prev)}}>
-                        { !isEditMode ? 'Edit User Informatiion' : 'Cancel Editing'}
-                    </Btn>
-                    <Btn isEditMode={isEditMode} disabled={!isEditMode} onClick={() => {console.log('click')}}>
-                        Submit
-                    </Btn>
-                </ButtonsWrapper>
+
+
+                {
+                    user.roleId === 1 ? <></> : <>
+                        <ButtonsWrapper>
+                            <Btn onClick={(ev) => {setIsEditMode((prev) => !prev)}}>
+                                { !isEditMode ? 'Edit User Informatiion' : 'Cancel Editing'}
+                            </Btn>
+                            <Btn isEditMode={isEditMode} disabled={!isEditMode} onClick={() => {console.log('click')}}>
+                                Submit
+                            </Btn>
+                        </ButtonsWrapper>
+                    </>
+                }
+
+
                 <Title>User sessions</Title>
-                <Btn onClick={onDeleteAllSessionsClick}>Delete all sessions</Btn>
+                {
+                    user.roleId === 1 ? <></> : <>
+                        <Btn onClick={onDeleteAllSessionsClick}>Delete all sessions</Btn>
+                    </>
+                }
                 <SessionsWrapper>
                     {
                         user.session.map((session, index) => 
-                            <SessionItemContainer index={index} expiresAt={session.expiresAt} id={session.id} />)
+                            <SessionItemContainer roleId={user.roleId} index={index} expiresAt={session.expiresAt} id={session.id} />)
                     }
                 </SessionsWrapper>
             </EditUserWrapper>
