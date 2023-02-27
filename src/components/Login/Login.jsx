@@ -5,7 +5,6 @@ import styled from "styled-components"
 import Input from '../Custom/Input'
 import Button from '../Custom/Button'
 
-import api from "../../api/api"
 import { Navigate } from "react-router-dom"
 
 const LoginWrapper = styled.form`
@@ -46,21 +45,6 @@ export default ({ isAuth, signIn }) => {
                 <Input id='login-password' placeholder='Password' value={password} onChange={(ev) => { setPassword(ev.target.value) }}/>
                 <Button>Sign in</Button>
             </LoginWrapper>
-
-            <button onClick={
-                async (ev) => {
-                    ev.preventDefault()
-                    const response = await api.get('me')
-                    console.log(response)
-                }
-            }>GET</button>
-            <button onClick={
-                async (ev) => {
-                    ev.preventDefault()
-                    const response = await api.delete('logout')
-                    console.log(response)
-                }
-            }>DELETE</button>
         </>
     )
 } 

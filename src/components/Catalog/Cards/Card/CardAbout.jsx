@@ -21,6 +21,11 @@ const Title = styled.h3`
 `
 
 
+const Prise = styled.div`
+    font-size: 3rem;
+
+`
+
 
 export default () => {
     return (
@@ -32,7 +37,7 @@ export default () => {
                     <img src="https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9551_360x.heic?v=1675042214" />
                 </Carousel>
                 <Title>Blue Structube Erin Sectional Sof</Title>
-                <Counter />
+                <Prise>890$</Prise>
                 <Button width='100%'>Add to cart</Button>
                 <Button width='100%'>Buy it now</Button>
             </CardAboutWrapper>

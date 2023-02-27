@@ -74,6 +74,9 @@ export default ({ user, getUser, deleteAllSessions }) => {
     
     const { id } = useParams()
 
+    const [login, setLogin] = React.useState('')
+    const [password, setPassword] = React.useState('')
+
     const [isEditMode, setIsEditMode] = React.useState(false)
 
     React.useEffect(() => {
@@ -84,6 +87,15 @@ export default ({ user, getUser, deleteAllSessions }) => {
 
     }, [id, getUser])
 
+
+    React.useEffect(() => {
+
+        if (user) {
+            setLogin(user.login)
+            setPassword(user.password)
+        }
+
+    }, [user])
 
     
     const onDeleteAllSessionsClick = (ev) => {
@@ -107,15 +119,15 @@ export default ({ user, getUser, deleteAllSessions }) => {
                     <ItemWrapper>
                         <FieldName>Login : </FieldName>
                         {
-                            !isEditMode ? <FieldInfo>{ user.login }</FieldInfo> : 
-                                <Input onChange={() => {}} type="text" value={user.login}/>
+                            !isEditMode ? <FieldInfo>{ login }</FieldInfo> : 
+                                <Input onChange={(ev) => { setLogin(ev.target.value) }} type="text" value={login}/>
                         }
                     </ItemWrapper>
                     <ItemWrapper>
                         <FieldName>Password : </FieldName>
                         {
-                            !isEditMode ? <FieldInfo>{ user.password }</FieldInfo> : 
-                                <Input onChange={() => {}} type="text" value={user.password}/>
+                            !isEditMode ? <FieldInfo>{ password }</FieldInfo> : 
+                                <Input onChange={(ev) => { setPassword(ev.target.value) }} type="text" value={password}/>
                         }
                     </ItemWrapper>
                     <ItemWrapper>
