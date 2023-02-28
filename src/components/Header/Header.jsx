@@ -2,7 +2,7 @@ import React from "react"
 import styled from 'styled-components'
 import logo from  './../../images/logo.svg'
 
-import Sidebar from "./Sidebar/Sidebar"
+import SidebarContainer from "./Sidebar/SidebarContainer"
 import Search from "./Search/Search"
 
 import { NavLink } from "react-router-dom"
@@ -28,13 +28,15 @@ const LinksContainer = styled.div`
     display: flex;
     align-items: center;
     position: relative;
+    column-gap: 1rem;
 `
+
 
 const MenuWrapper = styled.div`
     position: absolute;
     width: 2rem;
     height: 2rem;
-    top: 50%;
+    top: 40%;
     right: calc(100% + 1rem);
     transform: translateY(-50%);
 `
@@ -42,8 +44,10 @@ const MenuWrapper = styled.div`
 const Menu = styled.div`
     position: relative;
     width: 2rem;
-    height: 2rem;
+    top: 50%;
+    height: 0rem;
     background-color: inherit;
+    transform: translateY(-50%);
 `
 const MenuLine = styled.div`
     position: absolute;
@@ -82,7 +86,8 @@ const MenuLine = styled.div`
     }
 `
 
-export default ({ signOut }) => {
+
+export default ({ signOut, isAuth }) => {
 
     const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
     const [isSearchOpen, setIsSearchOpen] = React.useState(false)
@@ -98,22 +103,28 @@ export default ({ signOut }) => {
     return (
         <>
             <HeaderWrapper>
-                { isOpenSidebar && <Sidebar setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
+                { isOpenSidebar && <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
                 { isSearchOpen && <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} /> }
-                <Icon.Search size={'2rem'} onClick={(ev) => { setIsSearchOpen(true) }} />
+                <Icon.Search display={'block'} size={'2rem'} onClick={(ev) => { setIsSearchOpen(true) }} />
                 <NavLink to={'/'}>
                     <Logo src={logo} alt="logo" />
                 </NavLink>
                 <LinksContainer>
-                    <MenuWrapper>
-                        <Menu onClick={onMenu}>
+                    <MenuWrapper onClick={onMenu}>
+                        <Menu>
                             <MenuLine isOpen={isOpenSidebar} />
                         </Menu>
                     </MenuWrapper>
                     <NavLink to={'#'}>
                         <Icon.Bag size={'2rem'}/>
                     </NavLink>
-                        <Icon.BoxArrowRight size={'2rem'} onClick={onSignOutClick}/>
+                    {
+                        isAuth ? <>
+                            <NavLink to={'/'}>
+                                <Icon.BoxArrowRight size={'2.5rem'} onClick={onSignOutClick}/>
+                            </NavLink>
+                        </> : <></>
+                    }
                 </LinksContainer>
             </HeaderWrapper>
         </>

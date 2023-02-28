@@ -10,11 +10,6 @@ const openSidebar = keyframes`
     to { width: 70% }
 `
 
-const closeSidebar = keyframes`
-    from { width: 70% }
-    to { width: 0 }
-`
-
 const hideItems = keyframes`
     from {  opacity: 1 }
     to {  opacity: 0 }
@@ -57,7 +52,7 @@ const Item = styled.li`
     }
 `
 
-export default ({ isOpen, setIsOpen }) => {
+export default ({ isOpen, setIsOpen, isAuth }) => {
     
     const hideSidebar = (ev) => {
         setIsOpen(false)
@@ -70,6 +65,12 @@ export default ({ isOpen, setIsOpen }) => {
                     <Item onClick={hideSidebar}><NavLink to={'/'}>Home</NavLink></Item>
                     <Item onClick={hideSidebar}><NavLink to={'/catalog'}>Catalog</NavLink></Item>
                     <Item onClick={hideSidebar}><NavLink to={'/contact'}>Contact</NavLink></Item>
+                    <Item onClick={hideSidebar}><NavLink to={'/blogs'}>Blog</NavLink></Item>
+                    {
+                        isAuth ? <>
+                                <Item onClick={hideSidebar}><NavLink to={'/admin/users'}>Users</NavLink></Item>
+                            </> : <></>
+                    }
                 </ListWrapper>
             </SidebarWrapper>
         </>

@@ -20,7 +20,9 @@ export default React.memo(({ getAllUsers, users }) => {
     return (
         <>
             <UsersWrapper>
-            <Button><NavLink to={'/admin/users/create'}>Create user</NavLink></Button>
+            <NavLink to={'/admin/users/create'}>
+                <Button>Create user</Button>
+            </NavLink>
             {
                 users.map(user => <User key={user.id} 
                     id={user.id} 

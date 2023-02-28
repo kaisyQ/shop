@@ -10,6 +10,7 @@ import LoginContainer from './components/Login/LoginContainer'
 import EditUserContainer from './components/EditUser/EditUserContainer'
 import UsersContainer from './components/Users/UsersContainer'
 import CreateUserContainer from './components/CreateUser/CreateUserContainer'
+import BlogsContainer from './components/Blogs/BlogsContainer'
 
 import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
@@ -39,33 +40,34 @@ function App({ checkMe }) {
   return (
     <AppContainer>
       <HeaderContainer />
-      <Routes>
-        <Route path='/admin/*'>
-          <Route path='' element={<LoginContainer />} />
-          <Route path='login' element={<LoginContainer />} />
-          <Route path="users" element={<UsersContainer />} />
-          <Route exact path='users/create' element={<CreateUserContainer />} />
-          <Route path='users/:id' element={<EditUserContainer />} />
-        </Route>
-        <Route path='*' element={ (
-          <>
-            <MainContainer>
-                <Routes>
-                  {
-                    ['/', '/shop'].map(
-                      (path, index) => <Route key={index} path={path} element={ <Home /> } /> )
-                  }
-                  <Route path='/catalog'>
-                    <Route path='' element={ <Catalog /> } />
-                    <Route path=':id' element={ <CardAbout /> } />
-                  </Route>
-                  <Route path='/contact' element={ <Contact /> } />
-                </Routes>
-              <Footer />
-            </MainContainer>
-          </>)} 
-        />
-      </Routes>
+      <MainContainer>
+        <Routes>
+          <Route path='/admin/*'>
+            <Route path='' element={<LoginContainer />} />
+            <Route path='login' element={<LoginContainer />} />
+            <Route path="users" element={<UsersContainer />} />
+            <Route exact path='users/create' element={<CreateUserContainer />} />
+            <Route path='users/:id' element={<EditUserContainer />} />
+          </Route>
+          <Route path='*' element={(
+            <>
+              <Routes>
+                {
+                  ['/', '/shop'].map(
+                    (path, index) => <Route key={index} path={path} element={ <Home /> } /> )
+                }
+                <Route path='/catalog'>
+                  <Route path='' element={ <Catalog /> } />
+                  <Route path=':id' element={ <CardAbout /> } />
+                </Route>
+                <Route path='/contact' element={ <Contact /> } />
+                <Route path='/blogs/:id?' element={ <BlogsContainer />} />
+              </Routes>
+            </>
+          )} />
+        </Routes>
+        <Footer />
+      </MainContainer>
     </AppContainer>
   )
 }

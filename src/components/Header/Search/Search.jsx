@@ -33,11 +33,11 @@ export default ({ isOpen, setIsOpen }) => {
 
     return (
         <>
-        <SearchWrapper isOpen={isOpen}>
-            <Input id='header-search' placeholder='Search' value={searchVl} onChange={(ev) => {setSearchVl(ev.target.value)}}/>
-            <Icon.Search size={'2.5rem'} cursor='pointer' />
-            <Icon.XLg onClick={(ev) => {setIsOpen(false)}} size={'2.5rem'} cursor='pointer' />
-        </SearchWrapper>
+            <SearchWrapper isOpen={isOpen}>
+                <Input id='header-search' placeholder='Search' value={searchVl} onChange={(ev) => {setSearchVl(ev.target.value)}}/>
+                <Icon.Search size={'2.5rem'} cursor='pointer' />
+                <Icon.XLg onClick={(ev) => {setIsOpen(false)}} size={'2.5rem'} cursor='pointer' />
+            </SearchWrapper>
         </>
     )
 }
