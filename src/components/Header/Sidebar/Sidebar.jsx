@@ -52,10 +52,11 @@ const Item = styled.li`
     }
 `
 
-export default ({ isOpen, setIsOpen, isAuth }) => {
+export default ({ isOpen, setIsOpen, isAuth, setIsDark }) => {
     
     const hideSidebar = (ev) => {
         setIsOpen(false)
+        setIsDark(false)
     }
 
     return (

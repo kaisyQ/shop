@@ -28,15 +28,20 @@ const SearchWrapper = styled.div`
     z-index: 11;
 `
 
-export default ({ isOpen, setIsOpen }) => {
+export default ({ isOpen, setIsOpen, setIsDark }) => {
     const [searchVl, setSearchVl] = React.useState('')
+
+    const exitClick = (ev) => {
+        setIsOpen(false)
+        setIsDark(false)
+    }
 
     return (
         <>
             <SearchWrapper isOpen={isOpen}>
                 <Input id='header-search' placeholder='Search' value={searchVl} onChange={(ev) => {setSearchVl(ev.target.value)}}/>
                 <Icon.Search size={'2.5rem'} cursor='pointer' />
-                <Icon.XLg onClick={(ev) => {setIsOpen(false)}} size={'2.5rem'} cursor='pointer' />
+                <Icon.XLg onClick={exitClick} size={'2.5rem'} cursor='pointer' />
             </SearchWrapper>
         </>
     )

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import logo from  './../../images/logo.svg'
 
 import SidebarContainer from "./Sidebar/SidebarContainer"
-import Search from "./Search/Search"
+import SearchContainer from "./Search/SearchContainer"
 
 import { NavLink } from "react-router-dom"
 
@@ -18,6 +18,7 @@ const HeaderWrapper = styled.header`
     justify-content: space-between;
     align-items: center;
     position: relative;
+    z-index: 5;
 `
 
 const Logo = styled.img`
@@ -39,6 +40,7 @@ const MenuWrapper = styled.div`
     top: 40%;
     right: calc(100% + 1rem);
     transform: translateY(-50%);
+    cursor: pointer;
 `
 
 const Menu = styled.div`
@@ -87,30 +89,36 @@ const MenuLine = styled.div`
 `
 
 
-export default ({ signOut, isAuth }) => {
+export default ({ signOut, isAuth, setIsDark }) => {
 
     const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
     const [isSearchOpen, setIsSearchOpen] = React.useState(false)
 
-    const onMenu = (ev) => {
+    const onMenuClick = (ev) => {
         setIsOpenSidebar((prev) => !prev)
+        setIsDark(true)
     }
 
     const onSignOutClick = (ev) => {
         signOut()
     }
 
+    const onSearchClick = (ev) => {
+        setIsSearchOpen(true)
+        setIsDark(true)
+    }
+
     return (
         <>
             <HeaderWrapper>
                 { isOpenSidebar && <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
-                { isSearchOpen && <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} /> }
-                <Icon.Search display={'block'} size={'2rem'} onClick={(ev) => { setIsSearchOpen(true) }} />
+                { isSearchOpen && <SearchContainer isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} /> }
+                <Icon.Search cursor={'pointer'} display={'block'} size={'2rem'} onClick={onSearchClick} />
                 <NavLink to={'/'}>
                     <Logo src={logo} alt="logo" />
                 </NavLink>
                 <LinksContainer>
-                    <MenuWrapper onClick={onMenu}>
+                    <MenuWrapper onClick={onMenuClick}>
                         <Menu>
                             <MenuLine isOpen={isOpenSidebar} />
                         </Menu>

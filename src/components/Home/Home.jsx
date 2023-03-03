@@ -8,6 +8,7 @@ const HomeWrapper = styled.div`
     text-align: left;
     gap: 1rem;
 `
+
 const Title = styled.h1`
     margin-left: 2rem;
 `

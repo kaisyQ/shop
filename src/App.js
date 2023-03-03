@@ -12,6 +12,8 @@ import UsersContainer from './components/Users/UsersContainer'
 import CreateUserContainer from './components/CreateUser/CreateUserContainer'
 import BlogsContainer from './components/Blogs/BlogsContainer'
 
+import DarkOpacity from './components/Custom/DarkOpacity'
+
 import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -27,11 +29,11 @@ const AppContainer = styled.div`
 const MainContainer = styled.main`
   max-width: 33rem;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 3;
 `
 
 
-function App({ checkMe }) {
+function App({ checkMe, isDark }) {
   
   React.useEffect(() => {
     checkMe()
@@ -40,6 +42,7 @@ function App({ checkMe }) {
   return (
     <AppContainer>
       <HeaderContainer />
+      { isDark ? <DarkOpacity /> : <></> } 
       <MainContainer>
         <Routes>
           <Route path='/admin/*'>
