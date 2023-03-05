@@ -2,10 +2,13 @@ import React from "react"
 import styled from 'styled-components'
 import logo from  './../../images/logo.svg'
 
+
+
 import SidebarContainer from "./Sidebar/SidebarContainer"
 import SearchContainer from "./Search/SearchContainer"
 
 import { NavLink } from "react-router-dom"
+import { useClickOutside } from 'react-click-outside-hook'
 
 import * as Icon from 'react-bootstrap-icons'
 
@@ -89,10 +92,18 @@ const MenuLine = styled.div`
 `
 
 
-export default ({ signOut, isAuth, setIsDark }) => {
+export default ({ signOut, isAuth, setIsDark, isDark }) => {
 
     const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
     const [isSearchOpen, setIsSearchOpen] = React.useState(false)
+    
+
+    React.useEffect(() => {
+        if(!isDark) {
+            setIsOpenSidebar(false)
+            setIsSearchOpen(false)
+        } 
+    }, [isDark])
 
     const onMenuClick = (ev) => {
         setIsOpenSidebar((prev) => !prev)

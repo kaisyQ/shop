@@ -6,21 +6,22 @@ import Input from "../../Custom/Input"
 import * as Icon from 'react-bootstrap-icons'
 
 
+
 const showSearch = keyframes`
-    from { transform: translateY(-100%) }
-    to { transform: translateY(0); }
+    from { min-height: 0 }
+    to { min-height: 22rem }
 `
 
 const SearchWrapper = styled.div`
     position: fixed;
     left: 0;
     top: 0;
-    transform: translateY(${props => props.isOpen ? '0' : '-100%'});
+    min-height: (${props => props.isOpen ? '22rem' : '0'});
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2rem;  
-    min-height: 22rem;
+    min-height: 20rem;
     width: 100vw;
     background-color: #eee2dc;
     animation-duration: .3s;
@@ -35,6 +36,8 @@ export default ({ isOpen, setIsOpen, setIsDark }) => {
         setIsOpen(false)
         setIsDark(false)
     }
+
+
 
     return (
         <>

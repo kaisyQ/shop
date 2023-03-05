@@ -33,16 +33,20 @@ const MainContainer = styled.main`
 `
 
 
-function App({ checkMe, isDark }) {
+function App({ checkMe, isDark, setIsDark }) {
   
   React.useEffect(() => {
     checkMe()
   }, [checkMe])
   
+  const darkOpacityClick = (ev) => {
+    setIsDark(false)
+  }
+
   return (
     <AppContainer>
       <HeaderContainer />
-      { isDark ? <DarkOpacity /> : <></> } 
+      { isDark ? <DarkOpacity onClick={darkOpacityClick}/> : <></> } 
       <MainContainer>
         <Routes>
           <Route path='/admin/*'>

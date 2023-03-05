@@ -1,9 +1,7 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
 
-
 import { NavLink } from "react-router-dom"
-
 
 const openSidebar = keyframes`
     from { width: 0 }
@@ -11,8 +9,8 @@ const openSidebar = keyframes`
 `
 
 const hideItems = keyframes`
-    from {  opacity: 1 }
-    to {  opacity: 0 }
+    from { opacity: 1 }
+    to { opacity: 0 }
 `
 
 const showItems = keyframes`
@@ -53,11 +51,14 @@ const Item = styled.li`
 `
 
 export default ({ isOpen, setIsOpen, isAuth, setIsDark }) => {
-    
+
+
     const hideSidebar = (ev) => {
         setIsOpen(false)
         setIsDark(false)
     }
+
+    
 
     return (
         <>
