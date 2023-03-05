@@ -8,7 +8,6 @@ import SidebarContainer from "./Sidebar/SidebarContainer"
 import SearchContainer from "./Search/SearchContainer"
 
 import { NavLink } from "react-router-dom"
-import { useClickOutside } from 'react-click-outside-hook'
 
 import * as Icon from 'react-bootstrap-icons'
 
@@ -102,12 +101,12 @@ export default ({ signOut, isAuth, setIsDark, isDark }) => {
         if(!isDark) {
             setIsOpenSidebar(false)
             setIsSearchOpen(false)
-        } 
+        }
     }, [isDark])
 
     const onMenuClick = (ev) => {
         setIsOpenSidebar((prev) => !prev)
-        setIsDark(true)
+        setIsDark(!isDark)
     }
 
     const onSignOutClick = (ev) => {
@@ -116,7 +115,7 @@ export default ({ signOut, isAuth, setIsDark, isDark }) => {
 
     const onSearchClick = (ev) => {
         setIsSearchOpen(true)
-        setIsDark(true)
+        setIsDark(!isDark)
     }
 
     return (

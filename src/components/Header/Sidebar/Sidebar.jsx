@@ -47,6 +47,7 @@ const Item = styled.li`
 
     :hover{
         color: #993255;
+        text-decoration: underline;
     }
 `
 
@@ -64,13 +65,13 @@ export default ({ isOpen, setIsOpen, isAuth, setIsDark }) => {
         <>
             <SidebarWrapper isOpen={isOpen}>
                 <ListWrapper isOpen={isOpen}>
-                    <Item onClick={hideSidebar}><NavLink to={'/'}>Home</NavLink></Item>
-                    <Item onClick={hideSidebar}><NavLink to={'/catalog'}>Catalog</NavLink></Item>
-                    <Item onClick={hideSidebar}><NavLink to={'/contact'}>Contact</NavLink></Item>
-                    <Item onClick={hideSidebar}><NavLink to={'/blogs'}>Blog</NavLink></Item>
+                <NavLink to={'/'}><Item onClick={hideSidebar}>Home</Item></NavLink>
+                <NavLink to={'/catalog'}><Item onClick={hideSidebar}>Catalog</Item></NavLink>
+                <NavLink to={'/contact'}><Item onClick={hideSidebar}>Contact</Item></NavLink>
+                <NavLink to={'/blogs'}><Item onClick={hideSidebar}>Blog</Item></NavLink>
                     {
                         isAuth ? <>
-                                <Item onClick={hideSidebar}><NavLink to={'/admin/users'}>Users</NavLink></Item>
+                                <NavLink to={'/admin/users'}><Item onClick={hideSidebar}>Users</Item></NavLink>
                             </> : <></>
                     }
                 </ListWrapper>
