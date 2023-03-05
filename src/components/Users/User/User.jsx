@@ -11,16 +11,17 @@ const UserWrapper = styled.div`
     row-gap: .5rem;
     justify-content: space-between;
     width: 100%;
-    border: .1rem solid #000;
     padding: .5rem;
     color: #123C69;
     font-size: 1.7rem;
+    box-shadow: 0.1rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 
     :hover {
         transform: scale(110%);
         background-color: #fff;
         color: #ac3b61;
         transition: .4s ease-in-out;
+        box-shadow: 0.2rem 0.4rem 2rem 0 rgba(0, 0, 0, 0.3);
     }
 `
 

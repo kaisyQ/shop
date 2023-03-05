@@ -12,13 +12,13 @@ const CardWrapper = styled.div`
     text-align: left;
     max-width: 16rem;
     max-height: 26.3rem;
-    border: .1rem solid #123C69;
     cursor: pointer;
     :hover{
         border-color: #ac3b61;
-        background: #fff;
         transition: .4s ease-in-out;
     }
+    background: #fff;
+    box-shadow: 0.1rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 `
 
 const CardImageWrapper = styled.div`

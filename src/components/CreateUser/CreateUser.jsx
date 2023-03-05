@@ -7,11 +7,16 @@ import Button from "../Custom/Button"
 import { NavLink } from "react-router-dom"
 
 const CreateUserWrapper = styled.div`
-    
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    text-align: left;
 `
 
 const CreateUserForm = styled.form`
-    
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
 `
 
 export default ({ createUserThunk }) => {
@@ -27,13 +32,13 @@ export default ({ createUserThunk }) => {
         <>
             <CreateUserWrapper>
                 <CreateUserForm onSubmit={formSubmit}>
-                    <Input placeholder='Login' value={login} onChange={(ev) => {setLogin(ev.target.value)}}/>
-                    <Input placeholder='Password' value={password} onChange={(ev) => {setPassword(ev.target.value)}} />
+                    <Input id={'create-login'} placeholder='Login' value={login} onChange={(ev) => {setLogin(ev.target.value)}}/>
+                    <Input id={'create-password'} placeholder='Password' value={password} onChange={(ev) => {setPassword(ev.target.value)}} />
                     <Button>Create</Button>
                 </CreateUserForm>
-                <Button>
-                    <NavLink to={'/admin/users'}>All users</NavLink>
-                </Button>
+                <NavLink to={'/admin/users'}>
+                    <Button>All users</Button>
+                </NavLink>
             </CreateUserWrapper>
         </>
     )

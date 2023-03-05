@@ -28,6 +28,7 @@ const Information = styled.div`
     background: #123C69;
     color: #fff;
     padding:  1rem;
+    box-shadow: 0.3rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 
 `
 
@@ -74,6 +75,7 @@ const Btn = styled.button`
         background-color: #123C69;
         color: brown;
     }
+    box-shadow: 0.1rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 `
 
 const ButtonsWrapper = styled.div`

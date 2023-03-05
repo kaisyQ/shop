@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 
-const SwssionItemWrapper = styled.div`
+const SessionItemWrapper = styled.div`
     position: relative;
     font-size: 1.3rem;
     padding: 1.5rem;
@@ -14,6 +14,8 @@ const SwssionItemWrapper = styled.div`
         transition: all .3s;
         transform: scale(1.1);
     }
+    box-shadow: 0.3rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+
 `
 
 const Button = styled.button`
@@ -40,12 +42,12 @@ export default ({ id, index, expiresAt, roleId,  deleteSessionThunk }) => {
 
     return (
         <>
-            <SwssionItemWrapper>
+            <SessionItemWrapper>
                 { roleId === 1 ? <></> :<Button onClick={onDeleteSessionBtnClick}>Delete</Button> }
                 <div>Session number :  {index}</div>
                 <div>Session id : {id}</div>
                 <div>ExpiresAt : {(new Date(expiresAt)).toUTCString()}</div>
-            </SwssionItemWrapper>
+            </SessionItemWrapper>
         </>
     )
 }
