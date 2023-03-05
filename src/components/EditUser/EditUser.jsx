@@ -5,13 +5,16 @@ import styled from "styled-components"
 
 import SessionItemContainer from "./SessionItem/SessionItemContainer"
 
+import Input from "../Custom/Input"
+
 
 const EditUserWrapper = styled.div`
+    padding: .7rem;
 `
 
 const Title = styled.h2`
     text-align: left;
-    letter-spacing: .3rem;
+    letter-spacing: .2rem;
     margin-bottom: 2rem;
     font-size: 2rem;
 `
@@ -22,6 +25,10 @@ const Information = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    background: #123C69;
+    color: #fff;
+    padding:  1rem;
+
 `
 
 const ItemWrapper = styled.div`
@@ -29,33 +36,44 @@ const ItemWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: .1rem solid #b9b4b4;
+    column-gap: 2rem;
 `
 
 const FieldName = styled.p`
     font-weight: 500;
-    line-height: 3rem;
+    line-height: 4rem;
+    position: relative;
+
+    ::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 1px;
+        width: 100%;
+        background: #fff;
+    }
 `
 const FieldInfo = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
 `
 
-const Input = styled.input`
-    border: 0;
-    padding: .8rem;
-    font-size: 1.2rem;
-    font-weight: 500;
-    background: #fff;
-`
 
 const Btn = styled.button`
     width: 100%;
     padding: 1.5rem 3rem;
     background: brown;
+
+    
     color: #FFF;
     opacity: ${props => !props.isEditMode && props.isEditMode !== undefined ? '50%' : '1'};
-    border-radius: .7rem;
+
+    :not(:disabled):hover {
+        transition: .3s ease-in-out;
+        background-color: #123C69;
+        color: brown;
+    }
 `
 
 const ButtonsWrapper = styled.div`
@@ -69,6 +87,7 @@ const ButtonsWrapper = styled.div`
 const SessionsWrapper = styled.div`
     margin-top: 2rem;
 `
+
 export default ({ user, getUser, deleteAllSessions }) => {
 
     
@@ -113,28 +132,28 @@ export default ({ user, getUser, deleteAllSessions }) => {
                 <Title>User information</Title>
                 <Information>
                     <ItemWrapper>
-                        <FieldName>Id : </FieldName>
+                        <FieldName>Id</FieldName>
                         <FieldInfo>{ user.id }</FieldInfo>
                     </ItemWrapper>
                     <ItemWrapper>
-                        <FieldName>Login : </FieldName>
+                        <FieldName>Login</FieldName>
                         {
                             !isEditMode ? <FieldInfo>{ login }</FieldInfo> : 
-                                <Input onChange={(ev) => { setLogin(ev.target.value) }} type="text" value={login}/>
+                                <Input id={'edit-login'} padding={'.8rem'} onChange={(ev) => { setLogin(ev.target.value) }} type="text" value={login}/>
                         }
                     </ItemWrapper>
                     <ItemWrapper>
-                        <FieldName>Password : </FieldName>
+                        <FieldName>Password</FieldName>
                         {
                             !isEditMode ? <FieldInfo>{ password }</FieldInfo> : 
-                                <Input onChange={(ev) => { setPassword(ev.target.value) }} type="text" value={password}/>
+                                <Input id={'edit-password'} padding={'.8rem'} onChange={(ev) => { setPassword(ev.target.value) }} type="text" value={password}/>
                         }
                     </ItemWrapper>
                     <ItemWrapper>
-                        <FieldName>Role : </FieldName>
+                        <FieldName>Role</FieldName>
                         {
                             !isEditMode ? <FieldInfo>{ user.roleId === 1 ? 'ADMIN' : 'USER' }</FieldInfo> : 
-                                <Input onChange={() => {}} type="text" value={ user.roleId === 1 ? 'ADMIN' : 'USER' }/>
+                                <Input padding={'.8rem'} onChange={() => {}} type="text" value={ user.roleId === 1 ? 'ADMIN' : 'USER' }/>
                         }
                     </ItemWrapper>
                 </Information>

@@ -3,17 +3,25 @@ import styled from "styled-components"
 
 import { NavLink } from "react-router-dom"
 
+import * as Icon from 'react-bootstrap-icons'
 
 const UserWrapper = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: .5rem;
     justify-content: space-between;
+    width: 100%;
     border: .1rem solid #000;
-    border-radius: .5rem;
     padding: .5rem;
-    
+    color: #123C69;
     font-size: 1.7rem;
+
+    :hover {
+        transform: scale(110%);
+        background-color: #fff;
+        color: #ac3b61;
+        transition: .4s ease-in-out;
+    }
 `
 
 const ItemLine = styled.div`
@@ -24,10 +32,26 @@ const ItemLine = styled.div`
 
 const FieldName = styled.p`
     font-weight: 500;
+    letter-spacing: .2rem;
+    position: relative;
+    
+    ::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 1px;
+        width: 100%;
+        background: #000;
+    }
 `
 const FieldInfo = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 `
 
 export default ({ id, login, password, roleId }) => {
@@ -49,7 +73,10 @@ export default ({ id, login, password, roleId }) => {
                     </ItemLine>
                     <ItemLine>
                         <FieldName>Role : </FieldName>
-                        <FieldInfo>{ roleId === 1 ? 'ADMIN' : 'USER'}</FieldInfo>
+                        <FieldInfo>
+                        { roleId === 1 ? <Icon.HexagonFill /> : <Icon.Hexagon />}
+                            <span>{ roleId === 1 ? 'ADMIN' : 'USER'}</span>
+                        </FieldInfo>
                     </ItemLine>
                 </UserWrapper>
             </NavLink>      

@@ -10,7 +10,6 @@ const SwssionItemWrapper = styled.div`
     margin-bottom: 2rem;
     background: brown;
     color: #fff;
-    border-radius: 1rem;
     :hover {
         transition: all .3s;
         transform: scale(1.1);

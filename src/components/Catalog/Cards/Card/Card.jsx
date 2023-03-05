@@ -13,10 +13,11 @@ const CardWrapper = styled.div`
     max-width: 16rem;
     max-height: 26.3rem;
     border: .1rem solid #123C69;
-    border-radius: .5rem;
     cursor: pointer;
     :hover{
         border-color: #ac3b61;
+        background: #fff;
+        transition: .4s ease-in-out;
     }
 `
 
@@ -28,6 +29,7 @@ const CardImageWrapper = styled.div`
     transition: all .3s;
 `
 const CardImage = styled.img`
+    z-index: 1;
     width: 100%;
     height: 100%;
     transform: ${props => props.isHovered ? 'scale(1.2)' : '0'};

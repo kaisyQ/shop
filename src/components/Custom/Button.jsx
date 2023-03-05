@@ -7,5 +7,6 @@ export default styled.button`
     width: ${props => props.width ? props.width : null};
     :hover{
         color: #ac3b61;
+        transition: .2s ease-in-out;
     }
 `

@@ -16,17 +16,19 @@ const LabelWrapper = styled.label`
 `
 
 const InputWrapper =  styled.input`
-    padding: 1.8rem 2.4rem;
+    padding: ${props => props.padding ? props.padding : '1.8rem 2.4rem'};
     font: inherit;
     font-size: 1.4rem;
     width: 100%;
     border: 0.1rem solid #afa7aa;
-    border-radius: .5rem;
     color: inherit;
 
     :focus, :hover {
         outline: 0.1rem #ac3b61 solid;
         border-color: #ac3b61;
+        background-color: #fff;
+        transition: .2s ease-in-out;
+        color: #000;
     }
 `
 
@@ -36,19 +38,20 @@ const TextareaWrapper = styled.textarea`
     font-size: 1.4rem;
     width: 100%;
     border: 0.1rem solid #afa7aa;
-    border-radius: .5rem;
 
 
     :focus, :hover {
         outline: 0.1rem #ac3b61 solid;
         border-color: #ac3b61;
+        background-color: #fff;
+        transition: .4s ease-in-out;
     }
 `
 
 
 
 
-export default ({ placeholder, id, type, value, onChange }) => {
+export default ({ placeholder, id, type, value, onChange, padding }) => {
 
     const [focused, setFocused] = React.useState(false)
     const onFocus = (ev) => {
@@ -65,8 +68,8 @@ export default ({ placeholder, id, type, value, onChange }) => {
                 <LabelWrapper value={value} htmlFor={id} focused={focused}>{ placeholder }</LabelWrapper>
                 {
                     type !== 'textarea' ?
-                        <InputWrapper value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
-                        <TextareaWrapper value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
+                        <InputWrapper padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
+                        <TextareaWrapper padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
                 }
             </Wrapper>  
         </>
