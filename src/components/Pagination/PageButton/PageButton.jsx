@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     height: 4rem;
     line-height: 4rem;
     width: 4rem;
-    background-color: ${props => props.isCurrent ? '#ac3b61' : '#123C69'};
+    background-color: ${props => props.isCurrent ? '#ac3b61' : 'black'};
     color: #fff;
 `
 

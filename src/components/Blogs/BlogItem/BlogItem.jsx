@@ -10,12 +10,11 @@ const BlogItemWrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
-    row-gap: 1.2rem;
+    row-gap: .5rem;
     width: 100%;
     height: 30rem;
     color: inherit;
     overflow: hidden;
-    background-color: #e1ce7e;
 `
 
 const ItemImage = styled.img`
@@ -40,16 +39,6 @@ const ItemTitle = styled.h3`
     position: relative;
     padding: 1rem 1rem;
     font-weight: 500;
-    ::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 0;
-        width: 90%;
-        height: 1px;
-        background: #000;
-    }
 `
 
 const ButtonWrapper = styled.div`

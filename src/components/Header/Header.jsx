@@ -59,7 +59,7 @@ const MenuLine = styled.div`
     top: 40%;
     height: 0.1rem;
     width: 2rem;
-    background-color: ${props => !props.isOpen ? '#123C69' : 'inherit'};
+    background-color: ${props => !props.isOpen ? 'black' : 'inherit'};
     transform: translateY(-50%);
     transition: all .4s;
 
@@ -71,7 +71,7 @@ const MenuLine = styled.div`
         top: ${props => !props.isOpen ? '0.6rem' : '0'};
         height: 0.1rem;
         width: 2rem;
-        background-color: #123C69;
+        background-color: black;
         transform: rotate(${props => !props.isOpen ? '0' : '45deg'});
         transition: all .4s;
     }
@@ -84,7 +84,7 @@ const MenuLine = styled.div`
         top: ${props => !props.isOpen ? '-0.6rem' : '0'};
         height: 0.1rem;
         width: 2rem;
-        background-color: #123C69;
+        background-color: black;
         transform: rotate(${props => !props.isOpen ? '0' : '-45deg'});
         transition: all .4s;
     }

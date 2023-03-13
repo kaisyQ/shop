@@ -23,7 +23,7 @@ import styled from 'styled-components'
 const AppContainer = styled.div`
   text-align: center;
   margin: 0 auto;
-  color: #123C69;
+  color: black;
 `
 
 const MainContainer = styled.main`
