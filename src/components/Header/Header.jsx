@@ -133,7 +133,7 @@ export default ({ signOut, isAuth, setIsDark, isDark }) => {
                             <MenuLine isOpen={isOpenSidebar} />
                         </Menu>
                     </MenuWrapper>
-                    <NavLink to={'#'}>
+                    <NavLink to={'/cart'}>
                         <Icon.Bag size={'2rem'}/>
                     </NavLink>
                     {

@@ -15,7 +15,7 @@ const BlogWrapper = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 2.5rem;
 `
 
 
@@ -33,7 +33,7 @@ export default ({ blogs }) => {
                     blogs.filter((blog, index) => (index+1) > (pageId-1)*5 && (index+1) <= 5*pageId).map(blogItem => <BlogItem {...blogItem} />) 
                 }
                 </BlogWrapper>
-                <Pagination pageId={pageId} count={Math.ceil(blogs.length / 5)}/>
+                <Pagination pageId={pageId} count={Math.ceil(blogs.length/5)}/>
             </Wrapper>
         </>
     )

@@ -11,6 +11,8 @@ import EditUserContainer from './components/EditUser/EditUserContainer'
 import UsersContainer from './components/Users/UsersContainer'
 import CreateUserContainer from './components/CreateUser/CreateUserContainer'
 import BlogsContainer from './components/Blogs/BlogsContainer'
+import Cart from './components/Cart/Cart'
+
 
 import DarkOpacity from './components/Custom/DarkOpacity'
 
@@ -20,8 +22,6 @@ import styled from 'styled-components'
 
 const AppContainer = styled.div`
   text-align: center;
-  font-size: 1.4rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0 auto;
   color: #123C69;
 `
@@ -69,6 +69,7 @@ function App({ checkMe, isDark, setIsDark }) {
                 </Route>
                 <Route path='/contact' element={ <Contact /> } />
                 <Route path='/blogs/:id?' element={ <BlogsContainer />} />
+                <Route path='/cart' element={ <Cart />} />
               </Routes>
             </>
           )} />
