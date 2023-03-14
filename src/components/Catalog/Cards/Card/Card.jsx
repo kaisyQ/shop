@@ -52,6 +52,7 @@ const AdditionalCircle = styled.div`
 const CardTitle = styled.h3`
     font-size: 1.4rem;
     font-weight: 500;
+    
     :hover{
         transition: .3s ease-in-out;
         color: #ac3b61;
@@ -62,25 +63,24 @@ const CardTitle = styled.h3`
         color: inherit;
     }
 `
-export default ({ title, price, count, salePrice}) => {
-
-    const [ isHovered, setIsHovered ] = React.useState(false)
+export default ({ count, name, imageSrc, id }) => {
 
     return (
         <>
-            <NavLink to='/catalog/1'>
+            <NavLink to={`/catalog/${id}`}>
                 <CardWrapper> 
-                    <CardImageWrapper
-                            onMouseOver={(ev) => { setIsHovered(true) }} 
-                            onMouseOut={(ev) => { setIsHovered(false) }} 
-                            isHovered={isHovered} >
+                    <CardImageWrapper>
                         <CardImage 
-                            src="https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9551_360x.heic?v=1675042214" 
-                            alt="card-image" 
+                            src={imageSrc}
+                            alt="Card image" 
                         />
-                        <AdditionalCircle>Sold out</AdditionalCircle>
+                        <AdditionalCircle count={count}>
+                        {
+                            !count ? 'sold out' : 'sale'
+                        }
+                        </AdditionalCircle>
                     </CardImageWrapper>
-                    <CardTitle>Blue Structube Erin Sectional Sofa</CardTitle>
+                    <CardTitle>{ name }</CardTitle>
                 </CardWrapper>
             </NavLink>
         </>

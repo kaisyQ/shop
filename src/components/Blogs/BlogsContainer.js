@@ -2,7 +2,7 @@ import Blog from "./Blog"
 
 import { connect } from "react-redux"
 
-import { getBlogItems } from "../../redux/reducers/blog-selector"
+import { getBlogItems } from './../../redux/reducers/blog/selector'
 
 const mapStateToProps = (state) => ({
     blogs: getBlogItems(state)

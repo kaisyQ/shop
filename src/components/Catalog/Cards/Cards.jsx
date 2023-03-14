@@ -10,16 +10,13 @@ const CardsWrapper = styled.div`
     gap: 1rem;
 `
 
-export default () => {
+export default ({ items }) => {
     return (
         <>
             <CardsWrapper>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+            {
+                items.map(item => <Card key={item.id} id={item.id} count={item.count} name={item.name} imageSrc={item.imagesSrc[0]} />)
+            }
             </CardsWrapper>
         </>
     )

@@ -2,7 +2,7 @@ import SessionItem from "./SessionItem"
 
 import { connect } from "react-redux"
 
-import { deleteSessionThunk } from "../../../redux/reducers/users-reducer"
+import { deleteSessionThunk } from "../../../redux/reducers/users/reducer"
 
 const mapStateToProps = (state) => ({})
 

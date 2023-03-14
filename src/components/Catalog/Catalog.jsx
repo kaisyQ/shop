@@ -2,13 +2,13 @@ import React from "react"
 import styled from "styled-components"
 
 import Filter from "./Filter/Filter"
-import Cards from "./Cards/Cards"
+import CardsContainer from "./Cards/CardsContainer"
 
 export default () => {
     return (
         <>
             <Filter />
-            <Cards />
+            <CardsContainer />
         </>
     )
 }

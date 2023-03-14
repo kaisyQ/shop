@@ -5,14 +5,13 @@ import Home from './components/Home/Home'
 import Catalog from './components/Catalog/Catalog'
 import Contact from './components/Contact/Contact'
 import Footer from './components/Footer/Footer'
-import CardAbout from './components/Catalog/Cards/Card/CardAbout'
 import LoginContainer from './components/Login/LoginContainer'
 import EditUserContainer from './components/EditUser/EditUserContainer'
 import UsersContainer from './components/Users/UsersContainer'
 import CreateUserContainer from './components/CreateUser/CreateUserContainer'
 import BlogsContainer from './components/Blogs/BlogsContainer'
-import Cart from './components/Cart/Cart'
-
+import CartContainer from './components/Cart/CartContainer'
+import CardAboutContainer from './components/Catalog/Cards/Card/CartAbout/CardAboutContainer'
 
 import DarkOpacity from './components/Custom/DarkOpacity'
 
@@ -65,11 +64,11 @@ function App({ checkMe, isDark, setIsDark }) {
                 }
                 <Route path='/catalog'>
                   <Route path='' element={ <Catalog /> } />
-                  <Route path=':id' element={ <CardAbout /> } />
+                  <Route path=':id' element={ <CardAboutContainer /> } />
                 </Route>
                 <Route path='/contact' element={ <Contact /> } />
                 <Route path='/blogs/:id?' element={ <BlogsContainer />} />
-                <Route path='/cart' element={ <Cart />} />
+                <Route path='/cart' element={ <CartContainer />} />
               </Routes>
             </>
           )} />

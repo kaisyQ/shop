@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { getUsers, getUser, createUser, deleteSessionById, deleteUserSessions } from "../../api/api"
+import { getUsers, getUser, createUser, deleteSessionById, deleteUserSessions } from "../../../api/api"
 
 
 const initialState = {

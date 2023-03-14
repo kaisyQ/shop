@@ -1,7 +1,7 @@
 import CreateUser from "./CreateUser"
 import { connect } from "react-redux"
 
-import { createUserThunk } from "../../redux/reducers/users-reducer"
+import { createUserThunk } from "../../redux/reducers/users/reducer"
 
 const mapStateToProps = (state) => ({})
 

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-import { checkMe, signIn, signOut } from "../../api/api"
+import { checkMe, signIn, signOut } from "../../../api/api"
 
 
 const initialState = {

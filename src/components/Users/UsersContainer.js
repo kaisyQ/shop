@@ -1,9 +1,9 @@
 import Users from "./Users"
 
 import { connect } from "react-redux"
-import { getIsAuth } from "../../redux/reducers/auth-selector"
-import { getUsers } from "../../redux/reducers/users-selector"
-import { getUsersThunk  as getAllUsers} from "../../redux/reducers/users-reducer"
+import { getIsAuth } from "../../redux/reducers/auth/selector"
+import { getUsers } from "../../redux/reducers/users/selector"
+import { getUsersThunk  as getAllUsers} from "../../redux/reducers/users/reducer"
 
 const mapStateToProps = (state) => ({
     isAuth: getIsAuth(state),
