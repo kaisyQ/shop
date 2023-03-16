@@ -14,7 +14,6 @@ import { useParams } from "react-router-dom"
 const CardAboutWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
     text-align: left;
     gap: 1.5rem;
     z-index: 1;
@@ -28,6 +27,7 @@ const PriseWrapper = styled.div`
     display: flex;
     column-gap: 1rem;
     align-items: center;
+    justify-content: flex-start;
 `
 
 const Prise = styled.div`
@@ -38,12 +38,6 @@ const Prise = styled.div`
 
 const DiscountPrice = styled.div`
     font-size: 3rem;
-`
-
-const Wrapper = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
 `
 
 
@@ -60,38 +54,49 @@ const Text = styled.p`
 `
 
 const SliderWrapper = styled.div`
-    max-width: 35rem;
+    max-width:100%;
 `
 
 export default ({ item }) => {
 
+    const ref = React.useRef(null)
+    const [ refWidth, setRefWidth ] = React.useState(0)
+
     const { id } = useParams()
 
     React.useEffect(() => {
-        //get product data from server
-    }, [id])
+        setRefWidth(ref.current.offsetWidth/10)
+    }, [])
 
     return (
         <>
-            <CardAboutWrapper>
+            <CardAboutWrapper ref={ref}>
+
                 <SliderWrapper>
-                    <Slider images={item.imagesSrc}/>
+                    <Slider width={refWidth} images={item.imagesSrc}/>
                 </SliderWrapper>
+
                 <Title>{ item.name }</Title>
+
                 <PriseWrapper>
                     <Prise crossedOut={ item.discountPrice && true }>{item.price+'$'}</Prise>
                     { item.discountPrice ? <DiscountPrice>{item.discountPrice+'$'}</DiscountPrice> : <></> }
                 </PriseWrapper>
+
                 <Button width='100%'>Add to cart</Button>
+
                 <Button width='100%'>Buy it now</Button>
+
                 <ProductSection>
                     <Title>About Product</Title>
                     <Text>{ item.description }</Text>
                 </ProductSection>
+
                 <ProductSection>
                     <Title>About Delivery</Title>
                     <Text>{ item.delivery }</Text>
                 </ProductSection>
+
             </CardAboutWrapper>
         </>
     )
