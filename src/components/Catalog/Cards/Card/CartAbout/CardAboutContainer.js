@@ -1,9 +1,10 @@
 import CardAbout from "./CardAbout"
 import { connect } from "react-redux"
 
+import { getCurrentProduct } from "../../../../../redux/reducers/product/selector"
 
 const mapStateToProps = (state) => ({
-    item: state.product.current
+    item: getCurrentProduct(state)
 })
 
 const mapDispatchToProps = {}
