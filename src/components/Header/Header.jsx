@@ -2,11 +2,6 @@ import React from "react"
 import styled from 'styled-components'
 import logo from  './../../images/logo.svg'
 
-
-
-import SidebarContainer from "./Sidebar/SidebarContainer"
-import SearchContainer from "./Search/SearchContainer"
-
 import { NavLink } from "react-router-dom"
 
 import * as Icon from 'react-bootstrap-icons'
@@ -91,11 +86,9 @@ const MenuLine = styled.div`
 `
 
 
-export default ({ signOut, isAuth, setIsDark, isDark }) => {
-
-    const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
-    const [isSearchOpen, setIsSearchOpen] = React.useState(false)
-    
+export default ({ 
+    signOut, isAuth, setIsDark, isDark, 
+    setIsOpenSidebar, isOpenSidebar, isSearchOpen, setIsSearchOpen }) => {
 
     React.useEffect(() => {
         if(!isDark) {
@@ -121,8 +114,6 @@ export default ({ signOut, isAuth, setIsDark, isDark }) => {
     return (
         <>
             <HeaderWrapper>
-                { isOpenSidebar && <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
-                { isSearchOpen && <SearchContainer isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} /> }
                 <Icon.Search cursor={'pointer'} display={'block'} size={'2rem'} onClick={onSearchClick} />
                 <NavLink to={'/'}>
                     <Logo src={logo} alt="logo" />
@@ -133,7 +124,7 @@ export default ({ signOut, isAuth, setIsDark, isDark }) => {
                             <MenuLine isOpen={isOpenSidebar} />
                         </Menu>
                     </MenuWrapper>
-                    <NavLink to={'/cart'}>
+                    <NavLink to={'/cart'} >
                         <Icon.Bag size={'2rem'}/>
                     </NavLink>
                     {

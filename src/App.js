@@ -12,6 +12,8 @@ import CreateUserContainer from './components/CreateUser/CreateUserContainer'
 import BlogsContainer from './components/Blogs/BlogsContainer'
 import CartContainer from './components/Cart/CartContainer'
 import CardAboutContainer from './components/Catalog/Cards/Card/CartAbout/CardAboutContainer'
+import SidebarContainer from './components/Sidebar/SidebarContainer'
+import SearchContainer from './components/Search/SearchContainer'
 
 import DarkOpacity from './components/Custom/DarkOpacity'
 
@@ -34,6 +36,10 @@ const MainContainer = styled.main`
 
 function App({ checkMe, isDark, setIsDark }) {
   
+  const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false)
+    
+
   React.useEffect(() => {
     checkMe()
   }, [checkMe])
@@ -44,8 +50,19 @@ function App({ checkMe, isDark, setIsDark }) {
 
   return (
     <AppContainer>
-      <HeaderContainer />
+      { isOpenSidebar && <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
+      { isSearchOpen && <SearchContainer isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} /> }
+
+      <HeaderContainer 
+        isOpenSidebar={isOpenSidebar} 
+        setIsOpenSidebar={setIsOpenSidebar}
+        
+        isSearchOpen={isSearchOpen}
+        setIsSearchOpen={setIsSearchOpen}
+      />
+
       { isDark ? <DarkOpacity onClick={darkOpacityClick}/> : <></> } 
+      
       <MainContainer>
         <Routes>
           <Route path='/admin/*'>
