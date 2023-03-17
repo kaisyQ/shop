@@ -54,7 +54,7 @@ const Text = styled.p`
 `
 
 const SliderWrapper = styled.div`
-    max-width:100%;
+    max-width: 100%;
     padding: 1rem 1rem 0 1rem;
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(118,75,75,1) 50%, rgba(0,0,0,1) 100%);
 `

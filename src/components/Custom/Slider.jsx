@@ -31,7 +31,7 @@ const SliderItem = styled.img`
     transition: .6s ease-in-out;
     visibility: ${props => props.current ? 'visible' : 'hidden'};
     opacity: ${props => props.current ? '1' : '0'};
-    transform: scale(${props => props.current ? '100%' : '0'}) skew(${props => props.current ? 'none': '20deg, 10deg' }) ;
+    transform: scale(${props => props.current ? '100%' : '0'}) skew(${props => props.current ? 'none': !props.isRightClick ? '-40deg, -20deg' : '40deg, 20deg' }) ;
 `
 
 const Controller = styled.div`
@@ -85,6 +85,7 @@ const CircleBtn = styled.button`
 export default ({ images, width }) => {
 
     const [clickCount, setClickCount] = React.useState(0)
+    const [isRightClick, setIsRightClick] = React.useState(false)
 
     React.useEffect(() => {
         if (clickCount<0) {
@@ -101,12 +102,18 @@ export default ({ images, width }) => {
                 <Slider height={width}>
                     <Block width={width*images.length} itemWidth={width+1} clickCount={clickCount}>
                     {
-                        images.map((image, index) => <SliderItem current={index === clickCount} width={width} key={index} src={image} alt={"slider-image"} />)
+                        images.map((image, index) => <SliderItem 
+                            current={index === clickCount} 
+                            width={width} key={index} src={image} 
+                            alt={"slider-image"} isRightClick={isRightClick} />)
                     }
                     </Block>
                 </Slider>
                 <Controller>
-                    <ControllerBtn onClick={() => {setClickCount(count => count-1)}}>
+                    <ControllerBtn onClick={() => {
+                        setClickCount(count => count-1)
+                        setIsRightClick(false)
+                    }}>
                         <BtnText isRight={false}>Prev</BtnText>
                     </ControllerBtn>
                     <CircleBtns>
@@ -114,7 +121,10 @@ export default ({ images, width }) => {
                         images.map((image, index) =>  <CircleBtn key={index} onClick={() => {setClickCount(index)}} />)
                     }
                     </CircleBtns>
-                    <ControllerBtn onClick={() => {setClickCount(count => count+1)}}>
+                    <ControllerBtn onClick={() => {
+                        setClickCount(count => count+1)
+                        setIsRightClick(true)
+                    }}>
                             <BtnText isRight={true}>Next</BtnText>
                     </ControllerBtn>
                 </Controller>
