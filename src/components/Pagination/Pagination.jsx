@@ -24,7 +24,7 @@ export default ({ count, pageId }) => {
         <>
             <Wrapper>
             {
-                pageNumbers.map(number => <PageButton isCurrent={pageId === number}number={number} />)
+                pageNumbers.map((number, index) => <PageButton key={index} isCurrent={pageId === number} number={number} />)
             }
             </Wrapper>
         </>

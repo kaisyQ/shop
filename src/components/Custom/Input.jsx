@@ -7,11 +7,13 @@ const Wrapper = styled.div`
 `
 const LabelWrapper = styled.label`
     position: absolute;
-    left: 2.4rem;
-    top: ${props => props.focused || props.value ? '0.6rem' : '50%'};
+    padding: 0 1rem;
+    left: 1.4rem;
+    top: ${props => props.focused || props.value ? '0' : '50%'};
     font-size: ${props => props.focused || props.value ? '1rem' : '1.4rem'};
-    transform:  ${props => props.focused || props.value ? '' : 'translateY(-50%)'};
-    color: ${props => props.focused || props.value ? '#ac3b61' : 'inherit'};
+    transform:  ${props => props.focused || props.value ? 'translateY(-50%)' : 'translateY(-50%)'};
+    color: ${props => props.focused || props.value ? '#fc8507' : 'inherit'};
+    background-color: white;
     transition: all .1s;
 `
 
@@ -19,13 +21,13 @@ const InputWrapper =  styled.input`
     padding: ${props => props.padding ? props.padding : '1.8rem 2.4rem'};
     font: inherit;
     font-size: 1.4rem;
-    width: 100%;
+    width: ${props => props.width ? props.width : "100%"};
     border: 0.1rem solid #afa7aa;
     color: inherit;
 
     :focus, :hover {
-        outline: 0.1rem #ac3b61 solid;
-        border-color: #ac3b61;
+        outline: 0.1rem #fc8507 solid;
+        border-color: #fc8507;
         background-color: #fff;
         transition: .2s ease-in-out;
         color: #000;
@@ -41,8 +43,8 @@ const TextareaWrapper = styled.textarea`
 
 
     :focus, :hover {
-        outline: 0.1rem #ac3b61 solid;
-        border-color: #ac3b61;
+        outline: 0.1rem #fc8507 solid;
+        border-color: #fc8507;
         background-color: #fff;
         transition: .4s ease-in-out;
     }
@@ -51,7 +53,7 @@ const TextareaWrapper = styled.textarea`
 
 
 
-export default ({ placeholder, id, type, value, onChange, padding }) => {
+export default ({ placeholder, id, type, value, onChange, padding, width }) => {
 
     const [focused, setFocused] = React.useState(false)
     const onFocus = (ev) => {
@@ -68,7 +70,7 @@ export default ({ placeholder, id, type, value, onChange, padding }) => {
                 <LabelWrapper value={value} htmlFor={id} focused={focused}>{ placeholder }</LabelWrapper>
                 {
                     type !== 'textarea' ?
-                        <InputWrapper padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
+                        <InputWrapper width={width} padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
                         <TextareaWrapper padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
                 }
             </Wrapper>  

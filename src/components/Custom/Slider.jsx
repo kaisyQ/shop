@@ -15,12 +15,13 @@ const Slider = styled.div`
 
 const Block = styled.div`
     width: ${props => props.width+'rem'};
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(182,70,70,1) 50%, rgba(0,0,0,1) 100%);
+    background: rgb(252,133,7);
+    background: linear-gradient(90deg, rgba(252,133,7,1) 16%, rgba(255,255,255,1) 49%, rgba(252,133,7,1) 83%);
     height: 100%;
     display: flex;
     column-gap: 1rem;
     z-index: 1;
-    transition: .5s ease-in-out;
+    transition: .2s ease-in-out;
     transform: translateX(${props => props.clickCount && props.itemWidth ? -props.clickCount*props.itemWidth+'rem' : 'none'});
 `
 
@@ -35,51 +36,27 @@ const SliderItem = styled.img`
 `
 
 const Controller = styled.div`
-    background-color: black;
+    padding-top: 1.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    column-gap: 2rem;
 `
 
 const ControllerBtn = styled.button`
-    position: relative;
-    padding: 1.5rem 3.5rem;
-    color: white;
-    background-color: black;
-    font: inherit;
-    transition: .3s ease-in-out;
+    padding: .8rem;
+    border-bottom: .3rem solid black;
+    border-left: .3rem solid black;
+    transform:${props => props.isRight ?  "rotate(225deg)" : 'rotate(45deg)'};
+
     :hover {
-        color: #ac3b61;
-        transition: .3s ease-in-out;
+    }
+    :not(:hover) {
+        transform: ${props => props.isRight ?  "rotate(-135deg)" : 'rotate(405deg)'};
+        transition: .6s ease-in-out;
     }
 `
 
-const BtnText = styled.span`
-    position: relative;
-    ::before {
-        content: '';
-        position: absolute;
-        left: ${props => !props.isRight ? '-1rem' : 'none'};
-        right: ${props => props.isRight ? '-2rem' : 'none'};
-        top: 50%;
-        transform: translate(-50%, -50%)  ${props => !props.isRight ? 'rotate(45deg)' :  'rotate(-135deg)'};
-        width: 1.2rem;  
-        height: 1.2rem;
-        border-left: .1rem solid #fff;
-        border-bottom: .1rem solid #fff;
-    }
-`
 
-const CircleBtns = styled.div`
-    display: flex;
-    align-items: center;
-    column-gap: 1rem;
-`
-
-const CircleBtn = styled.button`
-    padding: .5rem;
-    border-radius: 50%;
-    background-color: #fff;
-`
 
 
 export default ({ images, width }) => {
@@ -114,18 +91,11 @@ export default ({ images, width }) => {
                         setClickCount(count => count-1)
                         setIsRightClick(false)
                     }}>
-                        <BtnText isRight={false}>Prev</BtnText>
                     </ControllerBtn>
-                    <CircleBtns>
-                    {
-                        images.map((image, index) =>  <CircleBtn key={index} onClick={() => {setClickCount(index)}} />)
-                    }
-                    </CircleBtns>
-                    <ControllerBtn onClick={() => {
+                    <ControllerBtn isRight={true} onClick={() => {
                         setClickCount(count => count+1)
                         setIsRightClick(true)
                     }}>
-                            <BtnText isRight={true}>Next</BtnText>
                     </ControllerBtn>
                 </Controller>
             </SliderWrapper>

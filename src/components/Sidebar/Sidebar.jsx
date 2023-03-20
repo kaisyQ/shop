@@ -24,7 +24,7 @@ const SidebarWrapper = styled.div`
     top: 0;
     min-height: 100vh;
     width: ${props => props.isOpen ? '70%' : '0'};
-    background-color: #eee2dc;
+    background-color: white;
     animation-duration: 0.3s;
     animation-name: ${openSidebar};
     z-index: 10;
@@ -53,13 +53,10 @@ const Item = styled.li`
 
 export default ({ isOpen, setIsOpen, isAuth, setIsDark }) => {
 
-
     const hideSidebar = (ev) => {
         setIsOpen(false)
         setIsDark(false)
     }
-
-    
 
     return (
         <>

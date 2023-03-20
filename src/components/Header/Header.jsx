@@ -2,6 +2,8 @@ import React from "react"
 import styled from 'styled-components'
 import logo from  './../../images/logo.svg'
 
+import Button from "../Custom/Button"
+
 import { NavLink } from "react-router-dom"
 
 import * as Icon from 'react-bootstrap-icons'
@@ -33,8 +35,8 @@ const LinksContainer = styled.div`
 const MenuWrapper = styled.div`
     position: absolute;
     width: 2rem;
-    height: 2rem;
-    top: 40%;
+    height: 100%;
+    top: 50%;
     right: calc(100% + 1rem);
     transform: translateY(-50%);
     cursor: pointer;
@@ -84,7 +86,10 @@ const MenuLine = styled.div`
         transition: all .4s;
     }
 `
-
+const LinkWrapper = styled.div`
+    height: 100%;
+    line-height: 100%;
+`
 
 export default ({ 
     signOut, isAuth, setIsDark, isDark, 
@@ -124,13 +129,18 @@ export default ({
                             <MenuLine isOpen={isOpenSidebar} />
                         </Menu>
                     </MenuWrapper>
-                    <NavLink to={'/cart'} >
-                        <Icon.Bag size={'2rem'}/>
+                    <NavLink to={'/cart'}>
+                        <LinkWrapper>
+                            <Icon.Bag size={'2rem'} />
+                        </LinkWrapper>
                     </NavLink>
+                    
                     {
                         isAuth ? <>
                             <NavLink to={'/'}>
-                                <Icon.BoxArrowRight size={'2.5rem'} onClick={onSignOutClick}/>
+                                <LinkWrapper>
+                                    <Icon.BoxArrowRight size={'2.2rem'} onClick={onSignOutClick}/>
+                                </LinkWrapper>
                             </NavLink>
                         </> : <></>
                     }

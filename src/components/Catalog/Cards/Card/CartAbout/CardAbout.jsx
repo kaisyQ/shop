@@ -8,6 +8,8 @@ import styled from "styled-components"
 
 import Button from "../../../../Custom/Button"
 import Slider from "../../../../Custom/Slider"
+import CardAboutSection from "./CardAboutSection/CardAboutSection"
+
 import { useParams } from "react-router-dom"
 
 
@@ -19,8 +21,19 @@ const CardAboutWrapper = styled.div`
     z-index: 1;
 `
 const Title = styled.h3`
-    text-align: left;
-    font-size: 2.4rem;
+    position: relative;
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: .1rem;
+
+    ::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border-bottom: .1rem solid #000;
+    }
 `
 
 const PriseWrapper = styled.div`
@@ -41,22 +54,9 @@ const DiscountPrice = styled.div`
 `
 
 
-const ProductSection = styled.section`
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-`
-
-const Text = styled.p`
-    font-size: 1.6rem;
-    text-indent: 2.5rem;    
-    text-align: justify;
-`
-
 const SliderWrapper = styled.div`
     max-width: 100%;
-    padding: 1rem 1rem 0 1rem;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(118,75,75,1) 50%, rgba(0,0,0,1) 100%);
+    margin-bottom: 1rem;
 `
 
 export default ({ item }) => {
@@ -75,7 +75,7 @@ export default ({ item }) => {
             <CardAboutWrapper ref={ref}>
 
                 <SliderWrapper>
-                    <Slider width={refWidth-2} images={item.imagesSrc}/>
+                    <Slider width={refWidth} images={item.imagesSrc}/>
                 </SliderWrapper>
 
                 <Title>{ item.name }</Title>
@@ -89,15 +89,11 @@ export default ({ item }) => {
 
                 <Button width='100%'>Buy it now</Button>
 
-                <ProductSection>
-                    <Title>About Product</Title>
-                    <Text>{ item.description }</Text>
-                </ProductSection>
+                <CardAboutSection imageIndex={0} title={'About Product'} text={item.description} />
 
-                <ProductSection>
-                    <Title>About Delivery</Title>
-                    <Text>{ item.delivery }</Text>
-                </ProductSection>
+                <CardAboutSection imageIndex={1} title={'Dimensions'} params={item.params} />
+
+                <CardAboutSection imageIndex={2} title={'About Delivery'} text={item.delivery} />
 
             </CardAboutWrapper>
         </>

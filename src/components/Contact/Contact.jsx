@@ -23,7 +23,7 @@ const FormWrapper = styled.form`
     margin-top: 3.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.3rem;
 `
 
 const ButtonWrapper = styled.div`

@@ -1,4 +1,4 @@
-import Login from "./Login"
+import Auth from "./Auth"
 
 import { connect } from "react-redux"
 import { signInThunk as signIn } from "../../redux/reducers/auth/reducer"
@@ -16,4 +16,4 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

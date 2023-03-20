@@ -31,7 +31,7 @@ const SearchWrapper = styled.div`
     gap: 2rem;  
     min-height: 20rem;
     width: 100vw;
-    background-color: #eee2dc;
+    background-color: white;
     animation-duration: .2s;
     animation-name: ${showSearch};
     animation-timing-function: ease-in-out;

@@ -30,7 +30,7 @@ export default ({ blogs }) => {
             <Wrapper>
                 <BlogWrapper>
                 {
-                    blogs.filter((blog, index) => (index+1) > (pageId-1)*5 && (index+1) <= 5*pageId).map(blogItem => <BlogItem {...blogItem} />) 
+                    blogs.filter((blog, index) => (index+1) > (pageId-1)*5 && (index+1) <= 5*pageId).map(blogItem => <BlogItem key={blogItem.id}{...blogItem} />) 
                 }
                 </BlogWrapper>
                 <Pagination pageId={pageId} count={Math.ceil(blogs.length/5)}/>
