@@ -109,35 +109,43 @@ const CardTitle = styled.h3`
 
 
 
-export default ({ count, name, imageSrc, id }) => {
+export default ({ count, name, imageSrc, id, addCartItem }) => {
+
+    const addToCart = (ev) => {
+        addCartItem(id)
+    }
 
     return (
         <>
-            <NavLink to={`/catalog/${id}`}>
-                <CardWrapper> 
+            <CardWrapper>
+                <NavLink to={`/catalog/${id}`}>
                     <CardImageWrapper>
                         <CardImage 
                             src={imageSrc}
                             alt="Card image" 
                         />
                     </CardImageWrapper>
-                    <CardInfoWrapper>
-                        <CardInfoContainer>
-                            <CardInfo>
+                </NavLink>
+                <CardInfoWrapper>
+                    <CardInfoContainer>
+                        <CardInfo>
+                            <NavLink to={`/catalog/${id}`}>
                                 <CardInfoItem>
                                     <CardTitle size={"2.4rem"}>{ name }</CardTitle>
                                 </CardInfoItem>
+                            </NavLink>
+                            <NavLink to={`/catalog/${id}`}>
                                 <CardInfoItem>
                                     <CardTitle border={true} size={"2rem"}>{ count === 0 ? 'Sold out' : 'Sale'}</CardTitle>
                                 </CardInfoItem>
-                                <CardInfoItem>
-                                    <Button isReverse={true}>Add to cart</Button>
-                                </CardInfoItem>
-                            </CardInfo>
-                        </CardInfoContainer>
-                    </CardInfoWrapper>
-                </CardWrapper>
-            </NavLink>
+                            </NavLink>
+                            <CardInfoItem>
+                                <Button onClick={addToCart} isReverse={true}>Add to cart</Button>
+                            </CardInfoItem>
+                        </CardInfo>
+                    </CardInfoContainer>
+                </CardInfoWrapper>
+            </CardWrapper>
         </>
     )
 }

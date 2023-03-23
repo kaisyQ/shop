@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import Card from "./Card/Card"
+import CardContainer from "./Card/CardContainer"
 
 const CardsWrapper = styled.div`
     display: flex;
@@ -15,7 +15,7 @@ export default ({ items }) => {
         <>
             <CardsWrapper>
             {
-                items.map(item => <Card key={item.id} id={item.id} count={item.count} name={item.name} imageSrc={item.imagesSrc[0]} />)
+                items.map(item => <CardContainer key={item.id} id={item.id} count={item.count} name={item.name} imageSrc={item.imagesSrc[0]} />)
             }
             </CardsWrapper>
         </>

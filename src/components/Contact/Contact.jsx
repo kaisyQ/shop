@@ -51,7 +51,7 @@ export default () => {
                     <Input id='contact-phoneNumber' placeholder='Phone number' value={phoneNumber} onChange={(ev) => {setPhoneNumber(ev.target.value)}} />
                     <Input id='contact-comment'placeholder='Comment' type='textarea' value={comment} onChange={(ev) => {setComment(ev.target.value)}} />
                     <ButtonWrapper>
-                        <Button>Send</Button>
+                        <Button isReverse={true}>Send</Button>
                     </ButtonWrapper>
                 </FormWrapper>
             </ContactWrapper>

@@ -2,12 +2,6 @@ import React from "react"
 
 import styled from "styled-components"
 
-import Car from './../../../../../../images/car.png'
-import About from './../../../../../../images/about.png'
-import Dimensions from './../../../../../../images/dimensions.png'
-
-
-
 const Wrapper = styled.div`
     
 `
@@ -33,6 +27,7 @@ const Title = styled.h3`
     font-size: 2rem;
     line-height: 4rem;
     font-weight: 500;
+    cursor: pointer;
     ::after {
         content: '';
         position: absolute;
@@ -42,10 +37,6 @@ const Title = styled.h3`
         border-bottom: .1rem solid #000;
     }
 
-`
-const TitleImage = styled.img`
-    object-fit: cover;
-    max-height: 3rem;
 `
 
 const Arrow = styled.div`
@@ -57,11 +48,9 @@ const Arrow = styled.div`
     border-bottom: .1rem solid #000;
     transition: .2s ease-in-out;
     transform: ${props => props.visible ? "rotate(135deg) translate(-50%, 50%)" : 'rotate(-45deg) translate(50%, -50%)'};
-    cursor: pointer;
 `
 
 const Span = styled.span`
-    cursor: pointer;
 `
 
 const ParamsList = styled.ul`
@@ -99,32 +88,50 @@ const ParamName = styled.span`
     }
 `
 
+const Block = styled.div`
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: #fc8507;
+    position: relative;
+
+    z-index: -1;
+    ::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 1rem;
+        width: 1rem;
+        background-color: #fff;
+        transform: translate(-50%, -50%);
+    }
+
+`
+
 export default ({text, title, params, imageIndex}) => {
     
     const [visibleText, setVisibleText] = React.useState(false)
-
-    const arr = [Car, Dimensions, About]
     
     return (
         <>
             <Wrapper>
                 <Section>
-                    <Title>
-                        <TitleImage src={arr[imageIndex] }/>
-                        <Span onClick={(ev) => { setVisibleText(prev => !prev) }} >{ title }</Span>
-                        <Arrow visible={visibleText} onClick={(ev) => { setVisibleText(prev => !prev) }} />
+                    <Title onClick={(ev) => { setVisibleText(prev => !prev) }}>
+                        <Block />
+                        <Span>{ title }</Span>
+                        <Arrow visible={visibleText} />
                     </Title>
 
                     { visibleText ?
                         params ? <>
                         <ParamsList>
-                            {Object.keys(params).map((param, index) => 
-                                <ParamsListItem key={param}>
-                                    <ParamName>
-                                        { param }
-                                    </ParamName>
-                                    <span>{ params[param] }</span>
-                                </ParamsListItem>)}
+                        { Object.keys(params).map((param, index) => 
+                            <ParamsListItem key={param}>
+                                <ParamName>
+                                    { param }
+                                </ParamName>
+                                <span>{ params[param] }</span>
+                            </ParamsListItem>)}
                         </ParamsList> 
                     </> : <Text visible={visibleText}>{ text }</Text> : <></> }
                 </Section>                

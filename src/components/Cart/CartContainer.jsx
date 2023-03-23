@@ -3,7 +3,11 @@ import Cart from "./Cart"
 import { connect } from "react-redux"
 
 
-const mapStateToProps = (state) => ({})
+import { getCartItems } from "../../redux/reducers/product/selector"
+
+const mapStateToProps = (state) => ({
+    items: getCartItems(state)
+})
 
 const mapDispatchToProps = ({})
 

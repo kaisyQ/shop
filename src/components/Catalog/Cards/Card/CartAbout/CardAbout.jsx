@@ -59,9 +59,10 @@ const SliderWrapper = styled.div`
     margin-bottom: 1rem;
 `
 
-export default ({ item }) => {
+export default ({ item, addCartItem }) => {
 
     const ref = React.useRef(null)
+
     const [ refWidth, setRefWidth ] = React.useState(0)
 
     const { id } = useParams()
@@ -69,6 +70,10 @@ export default ({ item }) => {
     React.useEffect(() => {
         setRefWidth(ref.current.offsetWidth/10)
     }, [])
+
+    const addToCart = (ev) => {
+        addCartItem(item.id)
+    }
 
     return (
         <>
@@ -85,7 +90,7 @@ export default ({ item }) => {
                     { item.discountPrice ? <DiscountPrice>{item.discountPrice+'$'}</DiscountPrice> : <></> }
                 </PriseWrapper>
 
-                <Button width='100%'>Add to cart</Button>
+                <Button onClick={addToCart} width='100%'>Add to cart</Button>
 
                 <Button width='100%'>Buy it now</Button>
 

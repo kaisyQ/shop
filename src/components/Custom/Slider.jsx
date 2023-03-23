@@ -9,7 +9,6 @@ const SliderWrapper = styled.div`
 
 const Slider = styled.div`
     height: ${props => props.height+'rem'};
-    background-color: black;
     overflow: hidden;
 `
 
@@ -19,7 +18,6 @@ const Block = styled.div`
     background: linear-gradient(90deg, rgba(252,133,7,1) 16%, rgba(255,255,255,1) 49%, rgba(252,133,7,1) 83%);
     height: 100%;
     display: flex;
-    column-gap: 1rem;
     z-index: 1;
     transition: .2s ease-in-out;
     transform: translateX(${props => props.clickCount && props.itemWidth ? -props.clickCount*props.itemWidth+'rem' : 'none'});
@@ -56,7 +54,18 @@ const ControllerBtn = styled.button`
     }
 `
 
+const CircleBtns = styled.div`
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+`
 
+const CircleBtn = styled.div`
+    height: ${props => 1.1+0.2*props.size+'rem'};
+    width: ${props => 1.1+0.2*props.size+'rem'};
+    border-radius: 50%;
+    background: #000;
+`
 
 
 export default ({ images, width }) => {
@@ -77,7 +86,7 @@ export default ({ images, width }) => {
         <>
             <SliderWrapper>
                 <Slider height={width}>
-                    <Block width={width*images.length} itemWidth={width+1} clickCount={clickCount}>
+                    <Block width={width*images.length} itemWidth={width} clickCount={clickCount}>
                     {
                         images.map((image, index) => <SliderItem 
                             current={index === clickCount} 
@@ -92,6 +101,11 @@ export default ({ images, width }) => {
                         setIsRightClick(false)
                     }}>
                     </ControllerBtn>
+                    <CircleBtns>
+                    {
+                        images.map((img, index) => <CircleBtn key={index} size={index>=(images.length)/2?(images.length/2-1)-Math.abs(images.length/2-index):index} />)
+                    }
+                    </CircleBtns>
                     <ControllerBtn isRight={true} onClick={() => {
                         setClickCount(count => count+1)
                         setIsRightClick(true)
