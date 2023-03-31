@@ -11,8 +11,9 @@ import UsersContainer from './components/Users/UsersContainer'
 import CreateUserContainer from './components/CreateUser/CreateUserContainer'
 import BlogsContainer from './components/Blogs/BlogsContainer'
 import CartContainer from './components/Cart/CartContainer'
-import CardAboutContainer from './components/Catalog/Cards/Card/CartAbout/CardAboutContainer'
+import CardAboutContainer from './components/Catalog/Cards/Card/CardAbout/CardAboutContainer'
 import SidebarContainer from './components/Sidebar/SidebarContainer'
+import Navbar from './components/Navbar/Navbar'
 import SearchContainer from './components/Search/SearchContainer'
 
 import DarkOpacity from './components/Custom/DarkOpacity'
@@ -23,22 +24,35 @@ import styled from 'styled-components'
 
 const AppContainer = styled.div`
   text-align: center;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
   color: black;
+  min-width: 250px;
+  max-width: 1200px;
+  min-height: 100vh;
+
+  @media only screen and (max-width: 768px){
+    max-width: 768px;
+  }
+
+  @media only screen and (max-width: 330px){
+    max-width: 330px;
+  }
 `
 
 const MainContainer = styled.main`
-  max-width: 33rem;
-  margin: 0 auto;
   z-index: 3;
+  padding: 0 1rem;
+  flex-grow: 1;
+  position: relative;
 `
 
 
 function App({ checkMe, isDark, setIsDark }) {
   
   const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
-  const [isSearchOpen, setIsSearchOpen] = React.useState(false)
-    
 
   React.useEffect(() => {
     checkMe()
@@ -51,18 +65,17 @@ function App({ checkMe, isDark, setIsDark }) {
   return (
     <AppContainer>
       { isOpenSidebar && <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
-      { isSearchOpen && <SearchContainer isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} /> }
 
       <HeaderContainer 
         isOpenSidebar={isOpenSidebar} 
         setIsOpenSidebar={setIsOpenSidebar}
         
-        isSearchOpen={isSearchOpen}
-        setIsSearchOpen={setIsSearchOpen}
       />
 
       { isDark ? <DarkOpacity onClick={darkOpacityClick}/> : <></> } 
       
+      <Navbar />
+
       <MainContainer>
         <>
             <Routes>
@@ -82,6 +95,7 @@ function App({ checkMe, isDark, setIsDark }) {
               <Route path="users" element={<UsersContainer />} />
               <Route exact path='users/create' element={<CreateUserContainer />} />
               <Route path='users/:id' element={<EditUserContainer />} />
+              <Route path='search' element={<SearchContainer />} />
             </Routes>
           </>
       </MainContainer>

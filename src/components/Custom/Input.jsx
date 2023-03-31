@@ -4,13 +4,14 @@ import styled from "styled-components"
 
 const Wrapper = styled.div`
     position: relative;
+    width: 100%;
 `
 const LabelWrapper = styled.label`
     position: absolute;
     padding: 0 1rem;
     left: 1.4rem;
     top: ${props => props.focused || props.value ? '0' : '50%'};
-    font-size: ${props => props.focused || props.value ? '1rem' : '1.4rem'};
+    font-size: ${props => props.focused || props.value ? props.fontSize ?  props.fontSize : '1rem' : '1.4rem'};
     transform:  ${props => props.focused || props.value ? 'translateY(-50%)' : 'translateY(-50%)'};
     color: ${props => props.focused || props.value ? '#fc8507' : 'inherit'};
     background-color: white;
@@ -20,7 +21,7 @@ const LabelWrapper = styled.label`
 const InputWrapper =  styled.input`
     padding: ${props => props.padding ? props.padding : '1.8rem 2.4rem'};
     font: inherit;
-    font-size: 1.4rem;
+    font-size: ${props => props.fontSize ? props.fontSize : '1.4rem'};
     width: ${props => props.width ? props.width : "100%"};
     border: 0.1rem solid #afa7aa;
     color: inherit;
@@ -53,9 +54,10 @@ const TextareaWrapper = styled.textarea`
 
 
 
-export default ({ placeholder, id, type, value, onChange, padding, width }) => {
+export default ({ placeholder, id, type, value, onChange, padding, width, fontSize }) => {
 
     const [focused, setFocused] = React.useState(false)
+    
     const onFocus = (ev) => {
         setFocused(true)
     } 
@@ -67,10 +69,10 @@ export default ({ placeholder, id, type, value, onChange, padding, width }) => {
     return (
         <>
             <Wrapper>
-                <LabelWrapper value={value} htmlFor={id} focused={focused}>{ placeholder }</LabelWrapper>
+                <LabelWrapper fontSize={fontSize&&parseFloat(fontSize.split('rem')[0])+0.4+'rem'} value={value} htmlFor={id} focused={focused}>{ placeholder }</LabelWrapper>
                 {
                     type !== 'textarea' ?
-                        <InputWrapper width={width} padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
+                        <InputWrapper fontSize={fontSize} width={width} padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
                         <TextareaWrapper padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
                 }
             </Wrapper>  

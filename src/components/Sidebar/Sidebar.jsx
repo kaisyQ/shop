@@ -5,7 +5,20 @@ import { NavLink } from "react-router-dom"
 
 const openSidebar = keyframes`
     from { width: 0 }
-    to { width: 70% }
+    to { 
+        @media only screen and (max-width: 120rem){
+            width: ${props => props.isOpen ? '40rem' : '0'};
+        }
+
+        @media only screen and (max-width: 76.8rem){
+            width: ${props => props.isOpen ? '40rem' : '0'};
+        }
+        
+        @media only screen and (max-width: 33rem){
+            width: ${props => props.isOpen ? '30rem' : '0'};
+        }
+    }
+    
 `
 
 const hideItems = keyframes`
@@ -16,6 +29,7 @@ const hideItems = keyframes`
 const showItems = keyframes`
     from { opacity: 0 }
     to { opacity: 1 }
+
 `
 
 const SidebarWrapper = styled.div`
@@ -23,11 +37,22 @@ const SidebarWrapper = styled.div`
     left: 0;
     top: 0;
     min-height: 100vh;
-    width: ${props => props.isOpen ? '70%' : '0'};
     background-color: white;
     animation-duration: 0.3s;
     animation-name: ${openSidebar};
     z-index: 10;
+
+    @media only screen and (max-width: 120rem){
+        width: ${props => props.isOpen ? '40rem' : '0'};
+    }
+
+    @media only screen and (max-width: 76.8rem){
+        width: ${props => props.isOpen ? '40rem' : '0'};
+    }
+    
+    @media only screen and (max-width: 33rem){
+        width: ${props => props.isOpen ? '30rem' : '0'};
+    }
 `
 
 
@@ -62,15 +87,15 @@ export default ({ isOpen, setIsOpen, isAuth, setIsDark }) => {
         <>
             <SidebarWrapper isOpen={isOpen}>
                 <ListWrapper isOpen={isOpen}>
-                <NavLink to={'/'}><Item onClick={hideSidebar}>Home</Item></NavLink>
-                <NavLink to={'/catalog'}><Item onClick={hideSidebar}>Catalog</Item></NavLink>
-                <NavLink to={'/contact'}><Item onClick={hideSidebar}>Contact</Item></NavLink>
-                <NavLink to={'/blogs'}><Item onClick={hideSidebar}>Blog</Item></NavLink>
-                    {
-                        isAuth ? <>
-                                <NavLink to={'/admin/users'}><Item onClick={hideSidebar}>Users</Item></NavLink>
-                            </> : <></>
-                    }
+                    <NavLink to={'/'}><Item onClick={hideSidebar}>Home</Item></NavLink>
+                    <NavLink to={'/catalog'}><Item onClick={hideSidebar}>Catalog</Item></NavLink>
+                    <NavLink to={'/contact'}><Item onClick={hideSidebar}>Contact</Item></NavLink>
+                    <NavLink to={'/blogs'}><Item onClick={hideSidebar}>Blog</Item></NavLink>
+                        {
+                            isAuth ? <>
+                                    <NavLink to={'/admin/users'}><Item onClick={hideSidebar}>Users</Item></NavLink>
+                                </> : <></>
+                        }
                 </ListWrapper>
             </SidebarWrapper>
         </>

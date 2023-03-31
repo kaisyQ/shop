@@ -6,6 +6,7 @@ export default styled.button`
     background-color: ${props => props.isReverse ? 'white' :  '#fc8507'};
     width: ${props => props.width ? props.width : null};
     border: .1rem solid #fc8507;
+    
     :hover {
         transform: scale(105%);
         color: ${props => props.isReverse ? '#fc8507' :  'white'};
@@ -21,4 +22,26 @@ export default styled.button`
         background-color: ${props => props.isReverse ? '#fc8507' :  'white'};
         transition: .2s ease-in-out;
     }
+
+    @media only screen and (max-width: 850px){
+        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem 3rem' : '1.3rem 4rem'};
+    }
+
+    @media only screen and (max-width: 520px){
+        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem 1.5rem' : '1.3rem 4rem'};
+    }
+
+    @media only screen and (max-width: 390px){
+        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem .3rem' : '1.3rem 4rem'};
+    }
+
+    @media only screen and (max-width: 330px){
+        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem 4rem' : '1.3rem 4rem'};
+    }
+
+    @media only screen and (max-width: 270px){
+        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem 2rem' : '1.3rem 4rem'};
+    }
+
+
 `

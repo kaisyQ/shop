@@ -1,6 +1,7 @@
 import React from "react"
 
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
+
 
 const Wrapper = styled.div`
     
@@ -36,7 +37,6 @@ const Title = styled.h3`
         width: 100%;
         border-bottom: .1rem solid #000;
     }
-
 `
 
 const Arrow = styled.div`

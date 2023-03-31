@@ -2,7 +2,7 @@ import React from "react"
 
 import styled from "styled-components"
 
-import CartItem from "./CartItem"
+import CartItemContainer from "./CartItem/CartItemContainer"
 import Button from "../Custom/Button"
 import { NavLink } from "react-router-dom"
 
@@ -16,17 +16,12 @@ const Title = styled.h3`
 `
 
 const EmptyMessage = styled.h2`
-    font-size: 3.5rem;
-    display: inline-block;
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
     position: relative;
-    ::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        border: .1rem solid #000;
-    }
+    color: #b71616;
+    text-decoration: underline;
 `
 
 const ItemWrapper = styled.div`
@@ -34,16 +29,39 @@ const ItemWrapper = styled.div`
     flex-direction: column;
     row-gap: 1.9rem;
 `
-export default ({ items }) => {
+
+const TotalPriceWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    font-weight: 500;
+`
+
+const CheckOutBtnWrapper = styled.div`
+    text-align: left;
+`
+
+export default ({ items, totalPrice }) => {
     return (
         <>
             <Wrapper>
                 <Title>Shopping cart</Title>
                 <ItemWrapper>
                 {
-                    items.map((item, index) => <CartItem isLast={index===items.length-1} key={item.id} {...item} />)
+                    items.map((item, index) => <CartItemContainer key={item.id} {...item} />)
                 }
-
+                {
+                    items.length!==0 ? <>
+                    <TotalPriceWrapper>
+                        <span>Total price</span>
+                        <span>{totalPrice+'$'}</span>
+                    </TotalPriceWrapper>
+                    <CheckOutBtnWrapper>
+                        <Button padding={"1.5rem 8rem"}>Check out</Button>
+                    </CheckOutBtnWrapper>
+                    </> : <></>
+                }
                 {
                     items.length===0 ? <>
                         <EmptyMessage>Your cart is empty!</EmptyMessage>

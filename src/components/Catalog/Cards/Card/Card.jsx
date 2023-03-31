@@ -15,11 +15,23 @@ const CardWrapper = styled.div`
     gap: .5rem;
     text-align: left;
     cursor: pointer;
+    z-index: 1;
+    
     :hover{
         border-color: #ac3b61;
         transition: .4s ease-in-out;
     }
-    z-index: 1;
+
+
+    width: 31%;
+
+    @media only screen and (max-width: 768px){
+        width: 45%;
+    }
+
+    @media only screen and (max-width: 330px){
+        width: 100%;
+    }
 `
 
 const CardImageWrapper = styled.div`
@@ -43,41 +55,12 @@ const CardImage = styled.img`
 `
 
 const CardInfoWrapper = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;    
-    height: 100%;
-    background: linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 100%);
-    z-index: 2;
-    
-    opacity: 0;
-
-    :hover {
-        opacity: 1;
-        transition: .4s ease-in-out;
-    }
-
-    :not(:hover) {
-        opacity: 0;
-        transition: .4s ease-in-out;
-    }
-`
-
-const CardInfoContainer = styled.div`
-    position: relative;
-    left: 0;
-    top: 50%;
-    padding: 1rem;
-`
-
-const CardInfo = styled.div`
-
 `
 
 const CardInfoItem = styled.div`
-    margin: 1rem 0;
-    padding-left: 1rem;
+    display: flex;
+    column-gap: 1rem;
 `
 
 const CardTitle = styled.h3`
@@ -85,9 +68,11 @@ const CardTitle = styled.h3`
     display: inline-block;
     font-size: ${props => props.size};
     letter-spacing: .1rem;
+    font-size: 1.8rem;
+    line-height: 2rem;
     font-weight: 500;
-    color: white;
-    
+    color: #c74646;
+    padding: 1rem;
 
     ::after {
         content: '';
@@ -97,17 +82,34 @@ const CardTitle = styled.h3`
         width: 100%;
         border-bottom: .1rem solid white;
     }
+
+
     :hover{
         transition: .3s ease-in-out;
         color: #fc8507;
+        font-size: 2rem;
     }
     :not(:hover){
         transition: .3s ease-in-out;
-        color: white;
+        color: #c74646;
+        font-size: 1.8rem;
     }
 `
 
-
+const CardSaleTitle = styled.h3`
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: inline-block;
+    font-size: ${props => props.size};
+    letter-spacing: .1rem;
+    font-style: italic;
+    padding: .5rem 2rem;
+    font-weight: 500;
+    background: #fff;
+    color: #c74646;
+    z-index: 5;
+`
 
 export default ({ count, name, imageSrc, id, addCartItem }) => {
 
@@ -115,35 +117,32 @@ export default ({ count, name, imageSrc, id, addCartItem }) => {
         addCartItem(id)
     }
 
+
+
     return (
         <>
             <CardWrapper>
-                <NavLink to={`/catalog/${id}`}>
-                    <CardImageWrapper>
-                        <CardImage 
-                            src={imageSrc}
-                            alt="Card image" 
-                        />
-                    </CardImageWrapper>
-                </NavLink>
+                <CardSaleTitle border={true} >
+                    {count===0?'Sold out':'Sale'}
+                </CardSaleTitle>
+                <CardImageWrapper>
+                    <CardImage 
+                        src={imageSrc}
+                        alt="Card image" 
+                    />
+                </CardImageWrapper>
                 <CardInfoWrapper>
-                    <CardInfoContainer>
-                        <CardInfo>
-                            <NavLink to={`/catalog/${id}`}>
-                                <CardInfoItem>
-                                    <CardTitle size={"2.4rem"}>{ name }</CardTitle>
-                                </CardInfoItem>
-                            </NavLink>
-                            <NavLink to={`/catalog/${id}`}>
-                                <CardInfoItem>
-                                    <CardTitle border={true} size={"2rem"}>{ count === 0 ? 'Sold out' : 'Sale'}</CardTitle>
-                                </CardInfoItem>
-                            </NavLink>
-                            <CardInfoItem>
-                                <Button onClick={addToCart} isReverse={true}>Add to cart</Button>
-                            </CardInfoItem>
-                        </CardInfo>
-                    </CardInfoContainer>
+                    <NavLink to={`/catalog/${id}`}>
+                        <CardInfoItem>
+                            <CardTitle>{ name }</CardTitle>
+                        </CardInfoItem>
+                    </NavLink>
+                    <CardInfoItem>
+                        <Button withBaseResponse={true} onClick={addToCart} isReverse={true}>Add to cart</Button>
+                        <NavLink to={`/catalog/${id}`}>
+                            <Button withBaseResponse={true}>Show More</Button>
+                        </NavLink>
+                    </CardInfoItem>
                 </CardInfoWrapper>
             </CardWrapper>
         </>

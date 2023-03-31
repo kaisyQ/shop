@@ -9,10 +9,8 @@ import { NavLink } from "react-router-dom"
 import * as Icon from 'react-bootstrap-icons'
 
 
-
-
 const HeaderWrapper = styled.header`
-    padding: 2.5rem;
+    padding: 2.5rem 2.5rem 4rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,12 +32,18 @@ const LinksContainer = styled.div`
 
 const MenuWrapper = styled.div`
     position: absolute;
+    display: none;
     width: 2rem;
     height: 100%;
     top: 50%;
     right: calc(100% + 1rem);
     transform: translateY(-50%);
     cursor: pointer;
+
+
+    @media only screen and (max-width: 768px){
+        display: block;
+    }
 `
 
 const Menu = styled.div`
@@ -89,16 +93,31 @@ const MenuLine = styled.div`
 const LinkWrapper = styled.div`
     height: 100%;
     line-height: 100%;
+    position: relative;
+`
+
+const Counter = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    z-index: 12;
 `
 
 export default ({ 
     signOut, isAuth, setIsDark, isDark, 
-    setIsOpenSidebar, isOpenSidebar, isSearchOpen, setIsSearchOpen }) => {
+    setIsOpenSidebar, isOpenSidebar, cartItemCount }) => {
 
     React.useEffect(() => {
         if(!isDark) {
             setIsOpenSidebar(false)
-            setIsSearchOpen(false)
         }
     }, [isDark])
 
@@ -111,15 +130,12 @@ export default ({
         signOut()
     }
 
-    const onSearchClick = (ev) => {
-        setIsSearchOpen(true)
-        setIsDark(!isDark)
-    }
-
     return (
         <>
             <HeaderWrapper>
-                <Icon.Search cursor={'pointer'} display={'block'} size={'2rem'} onClick={onSearchClick} />
+                <NavLink to={'/search'}>
+                    <Icon.Search cursor={'pointer'} display={'block'} size={'2rem'} />
+                </NavLink>
                 <NavLink to={'/'}>
                     <Logo src={logo} alt="logo" />
                 </NavLink>
@@ -130,8 +146,11 @@ export default ({
                         </Menu>
                     </MenuWrapper>
                     <NavLink to={'/cart'}>
-                        <LinkWrapper>
+                        <LinkWrapper counter={true}>
                             <Icon.Bag size={'2rem'} />
+                            {
+                                cartItemCount?<Counter>{cartItemCount}</Counter>:<></>
+                            }
                         </LinkWrapper>
                     </NavLink>
                     

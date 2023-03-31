@@ -4,13 +4,30 @@ import styled from "styled-components"
 import * as Icon from 'react-bootstrap-icons'
 
 const FooterWrapper = styled.footer`
-    max-width: 33rem;
-    margin: 2rem auto 1rem auto;
     text-align: left;
+    
     display: flex;
-    align-items: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    
     gap: 3rem;
+    
+    padding: 0 2rem ;
+
+
+    @media only screen and (max-width: 768px){
+        max-width: 768px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @media only screen and (max-width: 330px){
+        max-width: 330px;
+        flex-direction: column;
+    }
 `
 
 const LinksContainer = styled.div`

@@ -7,6 +7,14 @@ import Button from "../Custom/Button"
 const ContactWrapper = styled.div`
     text-align: left;
     margin-top: 3rem;
+    padding: 2rem 4rem;
+    max-width: 60rem;
+
+    @media only screen and (max-width: 768px){
+    }
+    
+    @media only screen and (max-width: 330px){
+    }
 `
 const Title = styled.h1`
     font-size: 3rem;
