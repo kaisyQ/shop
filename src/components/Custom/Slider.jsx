@@ -45,7 +45,7 @@ const Btn = styled.div`
     background: #fff;
     color: #000;
 
-    opacity: 0.5;
+    opacity: 0.4;
 
     display: flex;
     align-items: center;

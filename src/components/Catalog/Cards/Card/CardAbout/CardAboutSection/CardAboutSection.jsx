@@ -110,10 +110,16 @@ const Block = styled.div`
 
 `
 
-export default ({text, title, params, imageIndex}) => {
+export default ({ text, title, params, imageIndex }) => {
     
     const [visibleText, setVisibleText] = React.useState(false)
     
+    React.useEffect(() => {
+        if(window.outerWidth >= 768) {
+            setVisibleText(true)
+        }
+    }, [setVisibleText]) 
+
     return (
         <>
             <Wrapper>
