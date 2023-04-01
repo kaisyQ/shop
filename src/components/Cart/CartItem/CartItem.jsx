@@ -10,7 +10,8 @@ import * as Icon from 'react-bootstrap-icons'
 import { NavLink } from "react-router-dom"
 
 const Wrapper = styled.div`
-    width: 100%;
+    width:100%;
+
     column-gap: 1.5rem;
     align-items: flex-start;
     position: relative;
@@ -32,6 +33,10 @@ const ItemImage = styled.img`
     display: block;
     max-width: 10rem;
     object-fit: cover;
+    
+    @media only screen and (max-width: 330px) {
+        max-width: 8rem;
+    }
 `
 
 const ItemAbout = styled.section`
@@ -67,7 +72,18 @@ const ItemAboutName = styled.p`
 
     @media only screen and (max-width: 330px) {
         max-width: 14rem;
-        font-size: 1.2rem;
+        font-size: 1rem;
+        :hover{
+            transition: .3s ease-in-out;
+            color: #fc8507;
+            font-size: 1.4rem;
+        }
+        
+        :not(:hover){
+            transition: .3s ease-in-out;
+            color: #c74646;
+            font-size: 1.4rem;
+        }
     }
 `
 
@@ -75,9 +91,9 @@ const ItemAboutHeader = styled.div`
     display: flex;
     column-gap: 1rem;
     align-items: center;
-    justify-content: space-between;
     flex-direction: row;
     width: 100%;
+    justify-content: space-between;
 
     @media only screen and (max-width: 330px) {
         flex-direction: column;
@@ -104,6 +120,7 @@ const ItemAboutFooter = styled.div`
     @media only screen and (max-width: 330px) {
         flex-direction: column;
         row-gap: 1rem;
+        font-size: 1.4rem;
     }
 `
 
@@ -112,6 +129,15 @@ const CounterContainer = styled.div`
     column-gap: 1rem;
     align-items: center;
 `
+
+const ButtonWrapper = styled.div`
+    font-size: 1.4;
+    
+    @media only screen and (max-width: 330px) {
+        font-size: 1.2rem;
+    }
+`
+
 
 export default (props) => {
     
@@ -135,11 +161,11 @@ export default (props) => {
                             <Counter productCount={count}/>
                             <Icon.Trash3 cursor={'pointer'} size={'2rem'} onClick={removeItem}/>
                         </CounterContainer>
-                        <div>
-                            <Button width={"100%"} padding={".8rem  4rem"}>
+                        <ButtonWrapper>
+                            <Button width={"100%"} padding={'1rem 1rem'} withBaseResponse={true}>
                                 <NavLink to={`catalog/${id}`}>Show in store</NavLink>
                             </Button>
-                        </div>
+                        </ButtonWrapper>
                     </ItemAboutFooter>
                 </ItemAbout>
             </Wrapper>

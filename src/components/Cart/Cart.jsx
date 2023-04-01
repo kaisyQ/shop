@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom"
 
 
 const Wrapper = styled.div`
-    
+    width: 100%;
 `
 const Title = styled.h3`
     margin-bottom: 2rem;
@@ -27,7 +27,7 @@ const EmptyMessage = styled.h2`
 const ItemWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 1.9rem;
+    row-gap: 2rem;
 `
 
 const TotalPriceWrapper = styled.div`

@@ -7,7 +7,6 @@ import Title from "../Custom/Title"
 
 const ContactWrapper = styled.div`
     text-align: left;
-    padding: 0 4rem 2rem 0;
 
     @media only screen and (max-width: 768px){
     }
