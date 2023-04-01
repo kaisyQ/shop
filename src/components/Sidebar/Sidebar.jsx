@@ -60,7 +60,7 @@ const ListWrapper = styled.ul`
     visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
     opacity: ${props => props.isOpen ? '1' : '0'};
     animation-duration: 0.3s;
-    animation-name: ${props => props.isOpen ? showItems : hideItems}; 
+    animation-name: ${props => props.isOpen ? showItems : hideItems};
     padding: 5rem;
     
     @media only screen and (max-width: 330px){

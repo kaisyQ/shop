@@ -16,9 +16,18 @@ import { useParams } from "react-router-dom"
 const CardAboutWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: left;
     gap: 1.5rem;
     z-index: 1;
+`
+
+const InfoWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
 `
 const Title = styled.h3`
     position: relative;
@@ -66,20 +75,18 @@ const DiscountPrice = styled.div`
 
 
 const SliderWrapper = styled.div`
-    max-width: 100%;
     margin-bottom: 1rem;
+    max-width: 32rem;
+`
+
+const ButtonWrapper = styled.div`
+    width: 100%;
+    max-width: 32rem;
 `
 
 export default ({ item, addCartItem }) => {
-    const ref = React.useRef(null)
-
-    const [ refWidth, setRefWidth ] = React.useState(0)
 
     const { id } = useParams()
-
-    React.useEffect(() => {
-        setRefWidth(ref.current.offsetWidth/10)
-    }, [])
 
     const addToCart = (ev) => {
         addCartItem(item.id)
@@ -87,32 +94,38 @@ export default ({ item, addCartItem }) => {
 
     return (
         <>
-            <CardAboutWrapper ref={ref}>
+            <CardAboutWrapper>
 
                 <SliderWrapper>
-                    <Slider width={refWidth} images={item.imagesSrc}/>
+                    <Slider images={item.imagesSrc}/>
                 </SliderWrapper>
 
-                <Title>{ item.name }</Title>
+                <InfoWrapper>
 
-                <PriseWrapper>
-                    <Prise crossedOut={ item.discountPrice && true }>{item.price+'$'}</Prise>
-                    { item.discountPrice ? <DiscountPrice>{item.discountPrice+'$'}</DiscountPrice> : <></> }
-                    {
-                        !item.count ? <ZeroCountMessage>Out of stock</ZeroCountMessage> : <></>
-                    }
-                </PriseWrapper>
+                    <Title>{ item.name }</Title>
 
-                <Button disabled={item.count===0} onClick={addToCart} width='100%'>Add to cart</Button>
+                    <PriseWrapper>
+                        <Prise crossedOut={ item.discountPrice && true }>{item.price+'$'}</Prise>
+                        { item.discountPrice ? <DiscountPrice>{item.discountPrice+'$'}</DiscountPrice> : <></> }
+                        {
+                            !item.count ? <ZeroCountMessage>Out of stock</ZeroCountMessage> : <></>
+                        }
+                    </PriseWrapper>
+                    
+                    <ButtonWrapper>
+                        <Button disabled={item.count===0} onClick={addToCart} width='100%'>Add to cart</Button>
+                    </ButtonWrapper>
+                    
+                    <ButtonWrapper>
+                        <Button disabled={item.count===0} width='100%'>Buy it now</Button>
+                    </ButtonWrapper>
+                    <CardAboutSection title={'About Product'} text={item.description} />
 
-                <Button disabled={item.count===0} width='100%'>Buy it now</Button>
+                    <CardAboutSection title={'Dimensions'} params={item.params} />
 
-                <CardAboutSection title={'About Product'} text={item.description} />
+                    <CardAboutSection title={'About Delivery'} text={item.delivery} />
 
-                <CardAboutSection title={'Dimensions'} params={item.params} />
-
-                <CardAboutSection title={'About Delivery'} text={item.delivery} />
-
+                </InfoWrapper>
             </CardAboutWrapper>
         </>
     )
