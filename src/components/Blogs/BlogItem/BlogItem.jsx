@@ -13,7 +13,8 @@ const CardWrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: .5rem;
-    height: 33rem;
+    width: 47%;
+    height: 40rem;
     text-align: left;
     cursor: pointer;
     :hover{
@@ -21,6 +22,18 @@ const CardWrapper = styled.div`
         transition: .4s ease-in-out;
     }
     z-index: 1;
+
+    @media only screen and (max-width: 1200px) {
+        width: 47%;
+    }
+
+    @media only screen and (max-width: 768px) {
+        width: 48%
+    }
+
+    @media only screen and (max-width: 330px) {
+        width: 100%
+    }
 `
 
 const CardImageWrapper = styled.div`
@@ -45,6 +58,7 @@ const CardImage = styled.img`
 `
 
 const CardInfoWrapper = styled.div`
+    display: block;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -64,12 +78,24 @@ const CardInfoWrapper = styled.div`
         opacity: 0;
         transition: .4s ease-in-out;
     }
+
+    @media only screen and (max-width: 1200px) {
+        display: block;
+    }
+
+    @media only screen and (max-width: 768px) {
+        display: none;
+    }
+
+    @media only screen and (max-width: 330px) {
+        display: none;
+    }
 `
 
 const CardInfoContainer = styled.div`
     position: relative;
     left: 0;
-    top: 50%;
+    top: 60%;
     padding: 1rem;
 `
 
@@ -80,6 +106,8 @@ const CardInfo = styled.div`
 const CardInfoItem = styled.div`
     margin: 1rem 0;
     padding-left: 1rem;
+    max-width: 40rem;
+
 `
 
 const CardTitle = styled.h3`
@@ -88,7 +116,28 @@ const CardTitle = styled.h3`
     font-size: ${props => props.size};
     letter-spacing: .1rem;
     font-weight: 500;
-    color: white;
+    color: #fff;
+    
+    @media only screen and (max-width: 1200px) {
+        :not(:hover){
+            transition: .3s ease-in-out;
+            color: #fff;
+        }
+    }
+    
+    @media only screen and (max-width: 768px) {
+        :not(:hover){
+            transition: .3s ease-in-out;
+            color: #000;
+        }
+    }
+    
+    @media only screen and (max-width: 330px) {
+        :not(:hover){
+            transition: .3s ease-in-out;
+            color: #000;
+        }
+    }
 
     ::after {
         content: '';
@@ -98,13 +147,25 @@ const CardTitle = styled.h3`
         width: 100%;
         border-bottom: .1rem solid white;
     }
+    
     :hover{
         transition: .3s ease-in-out;
         color: #fc8507;
     }
-    :not(:hover){
-        transition: .3s ease-in-out;
-        color: white;
+`
+
+const CardAbout = styled.div`
+    display: none;
+    @media only screen and (max-width: 1200px) {
+        display: none;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        display: block;
+    }
+    
+    @media only screen and (max-width: 330px) {
+        display: block;
     }
 `
 
@@ -120,6 +181,7 @@ export default ({ id, title, imageSrc }) => {
                             alt="Card image" 
                         />
                     </CardImageWrapper>
+                    
                     <CardInfoWrapper>
                         <CardInfoContainer>
                             <CardInfo>
@@ -132,6 +194,15 @@ export default ({ id, title, imageSrc }) => {
                             </CardInfo>
                         </CardInfoContainer>
                     </CardInfoWrapper>
+
+                    <CardAbout>
+                        <CardInfoItem>
+                            <CardTitle size={"2rem"}>{ title }</CardTitle>
+                        </CardInfoItem>
+                        <CardInfoItem>
+                            <Button isReverse={true}>Show More</Button>
+                        </CardInfoItem>
+                    </CardAbout>
                 </CardWrapper>
         </>
     )

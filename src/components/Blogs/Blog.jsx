@@ -13,9 +13,9 @@ const Wrapper = styled.div`
 `
 const BlogWrapper = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 2.5rem;
+    gap: 1rem;
 `
 
 
