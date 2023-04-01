@@ -21,7 +21,7 @@ const LabelWrapper = styled.label`
 const InputWrapper =  styled.input`
     padding: ${props => props.padding ? props.padding : '1.8rem 2.4rem'};
     font: inherit;
-    font-size: ${props => props.fontSize ? props.fontSize : '1.4rem'};
+    font-size: ${props => props.fontSize ? props.fontSize : '1.8rem'};
     width: ${props => props.width ? props.width : "100%"};
     border: 0.1rem solid #afa7aa;
     color: inherit;
@@ -36,9 +36,9 @@ const InputWrapper =  styled.input`
 `
 
 const TextareaWrapper = styled.textarea`
-    padding: 1.8rem 2.4rem;
+    padding: ${props => props.padding ? props.padding : '1.8rem 2.4rem'};
     font: inherit;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     width: 100%;
     border: 0.1rem solid #afa7aa;
 

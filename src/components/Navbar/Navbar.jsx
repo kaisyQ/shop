@@ -6,12 +6,15 @@ import styled from "styled-components"
 
 const Wrapper = styled.nav`
     position: relative;
-    width: 100%;
+
+    padding: 1.5rem;
     column-gap: 2rem;
     margin-bottom: 3rem;
+
+    border-radius: 1.5rem;
     display: flex;
     justify-content: center;
-
+    color: #fff;
     ::after {
         content: '';
         position: absolute;
@@ -27,14 +30,24 @@ const Wrapper = styled.nav`
     }
 `
 const Item =  styled.div`
-    padding: 1rem 1.5rem;
+    padding: 1rem 2rem;
     font-size: 1.6rem;
     text-transform: capitalize;
     text-align: left;
 
+
+    :not(:hover){
+        background: #fff;
+        color: #fc8507;
+        border-radius: 4rem;
+        transition: .2s ease-in-out;
+    }
+
     :hover{
-        color: #993255;
-        text-decoration: underline;
+        background: #fc8507;
+        color: #fff;
+        border-radius: 0;
+        transition: .3s ease-in-out;
     }
 `
 
