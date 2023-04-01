@@ -4,6 +4,7 @@ import styled from "styled-components"
 import * as Icon from 'react-bootstrap-icons'
 
 const FooterWrapper = styled.footer`
+    margin-top: 2rem;
     text-align: left;
     
     display: flex;
