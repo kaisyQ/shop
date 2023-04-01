@@ -5,12 +5,21 @@ import styled from "styled-components"
 import BlogItem from "./BlogItem/BlogItem"
 import Pagination from "../Pagination/Pagination"
 
+import Title from "../Custom/Title"
+
 import { useParams } from "react-router-dom"
 
 
 const Wrapper = styled.div`
     
 `
+
+const TitleWrapper = styled.div`
+    text-align: left;
+    margin-bottom: 2rem;
+`
+
+
 const BlogWrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -28,6 +37,9 @@ export default ({ blogs }) => {
     return (
         <>
             <Wrapper>
+                <TitleWrapper>
+                    <Title>Blog</Title>
+                </TitleWrapper>
                 <BlogWrapper>
                 {
                     blogs.filter((blog, index) => (index+1) > (pageId-1)*5 && (index+1) <= 5*pageId).map(blogItem => <BlogItem key={blogItem.id}{...blogItem} />) 

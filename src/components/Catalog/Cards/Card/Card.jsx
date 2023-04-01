@@ -125,12 +125,14 @@ export default ({ count, name, imageSrc, id, addCartItem }) => {
                 <CardSaleTitle border={true} >
                     {count===0?'Sold out':'Sale'}
                 </CardSaleTitle>
-                <CardImageWrapper>
-                    <CardImage 
-                        src={imageSrc}
-                        alt="Card image" 
-                    />
-                </CardImageWrapper>
+                <NavLink to={`/catalog/${id}`}>
+                    <CardImageWrapper>
+                        <CardImage 
+                            src={imageSrc}
+                            alt="Card image" 
+                        />
+                    </CardImageWrapper>
+                </NavLink>
                 <CardInfoWrapper>
                     <NavLink to={`/catalog/${id}`}>
                         <CardInfoItem>

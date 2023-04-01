@@ -3,33 +3,15 @@ import styled from "styled-components"
 
 import Input from "../Custom/Input"
 import Button from "../Custom/Button"
+import Title from "../Custom/Title"
 
 const ContactWrapper = styled.div`
     text-align: left;
-    margin-top: 3rem;
-    padding: 2rem 4rem;
+    padding: 0 4rem 2rem 0;
 
     @media only screen and (max-width: 768px){
     }
     
-`
-const Title = styled.h1`
-    font-size: 4.5rem;
-    letter-spacing: 0.3rem;
-    font-weight: 500;
-    position: relative;
-    display: inline-flex;
-    color: #b42525;
-    font-style: italic;
-    
-    ::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        border: .1rem solid #000;
-    }
 `
 
 const Subtitle =  styled.h3`
