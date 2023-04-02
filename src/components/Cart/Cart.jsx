@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 `
 const Title = styled.h3`
     margin-bottom: 2rem;
+    margin-top: 2rem;
     font-size: 3rem;
 `
 

@@ -1,8 +1,10 @@
 import React from "react"
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import logo from  './../../images/logo.svg'
 
 import Button from "../Custom/Button"
+
+import UserMenu from "./UserMenu/UserMenu"
 
 import { NavLink } from "react-router-dom"
 
@@ -115,6 +117,8 @@ export default ({
     signOut, isAuth, setIsDark, isDark, 
     setIsOpenSidebar, isOpenSidebar, cartItemCount }) => {
 
+    const [userIconClicked, setUserIconClicked] = React.useState(false)
+
     React.useEffect(() => {
         if(!isDark) {
             setIsOpenSidebar(false)
@@ -124,10 +128,15 @@ export default ({
     const onMenuClick = (ev) => {
         setIsOpenSidebar((prev) => !prev)
         setIsDark(!isDark)
+        setUserIconClicked(false)
     }
 
     const onSignOutClick = (ev) => {
         signOut()
+    }
+
+    const onUserIconClick = (ev) => {
+        setUserIconClicked(prev => !prev)
     }
 
     return (
@@ -145,6 +154,10 @@ export default ({
                             <MenuLine isOpen={isOpenSidebar} />
                         </Menu>
                     </MenuWrapper>
+                    <LinkWrapper counter={true}>
+                        <Icon.Person size={'2.2rem'} cursor={'pointer'} onClick={onUserIconClick} />
+                        <UserMenu clicked={userIconClicked} setClicked={setUserIconClicked}/>
+                    </LinkWrapper>
                     <NavLink to={'/cart'}>
                         <LinkWrapper counter={true}>
                             <Icon.Bag size={'2rem'} />
@@ -153,7 +166,6 @@ export default ({
                             }
                         </LinkWrapper>
                     </NavLink>
-                    
                     {
                         isAuth ? <>
                             <NavLink to={'/'}>

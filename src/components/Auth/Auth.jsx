@@ -5,17 +5,34 @@ import styled from "styled-components"
 import Input from '../Custom/Input'
 import Button from '../Custom/Button'
 
+
 import { Navigate } from "react-router-dom"
 
 const LoginWrapper = styled.form`
-    margin: 0 auto;
     padding: 2rem;
     gap: 3rem;
     text-align: left;
+    max-width: 40rem;
 `
 
 const Title = styled.h2`
-    font-size: 2.4rem;
+    font-size: 2.5rem;
+    letter-spacing: 0.3rem;
+    font-weight: 500;
+    display: inline-flex;
+    color: #b42525;
+    font-style: italic;
+
+    position:relative;
+    
+    ::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border: .1rem solid #000;
+    }
 `
 const InputWrapper = styled.div`
     margin: 3rem 0;
@@ -41,10 +58,11 @@ const FooterTextWrapper = styled.div`
 `
 
 const FooterText = styled.p`
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     letter-spacing: .1rem;
     text-align: center;
     background: white;
+    font-style: italic;
 
 `
 

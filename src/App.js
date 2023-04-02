@@ -17,6 +17,7 @@ import Navbar from './components/Navbar/Navbar'
 import SearchContainer from './components/Search/SearchContainer'
 
 import DarkOpacity from './components/Custom/DarkOpacity'
+import BigImage from './components/Custom/BigImage'
 
 import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
@@ -64,6 +65,7 @@ function App({ checkMe, isDark, setIsDark }) {
 
   return (
     <AppContainer>
+      <BigImage />
       { isOpenSidebar && <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
 
       <HeaderContainer 
