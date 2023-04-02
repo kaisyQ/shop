@@ -24,23 +24,23 @@ export default styled.button`
     }
 
     @media only screen and (max-width: 850px){
-        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem 3rem' : '1.3rem 4rem'};
+        padding: ${props => props.withBaseResponse ? '1.3rem 3rem' : props.padding ? props.padding : '1.3rem 4rem'};
     }
 
     @media only screen and (max-width: 520px){
-        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem 1.5rem' : '1.3rem 4rem'};
+        padding: ${props => props.withBaseResponse ? '1.3rem 1.5rem' : props.padding ? props.padding : '1.3rem 4rem'};
     }
 
     @media only screen and (max-width: 390px){
-        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem .3rem' : '1.3rem 4rem'};
+        padding: ${props => props.withBaseResponse ? '1.3rem .3rem' : props.padding ? props.padding : '1.3rem 4rem'};
     }
 
     @media only screen and (max-width: 330px){
-        padding: ${props => props.withBaseResponse ? (props.padding ? props.padding : '1.3rem 4rem') : '1.3rem 4rem'};
+        padding: ${props => props.withBaseResponse ? '1.3rem 4rem' : props.padding ? props.padding : '1.3rem 4rem'};
     }
 
     @media only screen and (max-width: 270px){
-        padding: ${props => props.withBaseResponse ? props.padding ? props.padding : '1.3rem 2rem' : '1.3rem 4rem'};
+        padding: ${props => props.withBaseResponse ? '1.3rem 2rem' : props.padding ? props.padding : '1.3rem 4rem'};
     }
 
 
