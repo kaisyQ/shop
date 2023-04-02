@@ -19,16 +19,7 @@ const openSidebar = keyframes`
     
 `
 
-const hideItems = keyframes`
-    from { opacity: 1 }
-    to { opacity: 0 }
-`
 
-const showItems = keyframes`
-    from { opacity: 0 }
-    to { opacity: 1 }
-
-`
 
 const SidebarWrapper = styled.div`
     position: fixed;
@@ -57,10 +48,6 @@ const SidebarWrapper = styled.div`
 
 
 const ListWrapper = styled.ul`
-    visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-    opacity: ${props => props.isOpen ? '1' : '0'};
-    animation-duration: 0.3s;
-    animation-name: ${props => props.isOpen ? showItems : hideItems};
     padding: 5rem;
     
     @media only screen and (max-width: 330px){
