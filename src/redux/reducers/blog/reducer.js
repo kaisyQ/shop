@@ -93,7 +93,23 @@ const initialState = {
                 10 of which are similar to Earth’s size and may be habitable by other life forms.`,
             imageSrc: 'https://homecollection.com.ru/upload/resize_cache/iblock/a82/800_400_1/2-min.jpg'
         }
-    ]
+    ],
+    current: {
+        id: 6,
+        previewTitle: 'NASA Has Found Hundreds Of Potential New Planets',
+        struct: [
+            { type: 'title', text: 'NASA Has Found Hundreds Of Potential New Planets' },
+            { type: 'text', text: `loremNASA released a list of 219 new 
+                “planet candidates” discovered by the Kepler space telescope, 
+                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
+                “planet candidates” discovered by the Kepler space telescope, 
+                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
+                “planet candidates” discovered by the Kepler space telescope, 
+                10 of which are similar to Earth’s size and may be habitable by other life forms.`
+            },
+            { type: 'image', imageSrc: 'https://homecollection.com.ru/upload/resize_cache/iblock/a82/800_400_1/2-min.jpg'}
+        ]
+    }
 }
 
 const blogSlice = createSlice({

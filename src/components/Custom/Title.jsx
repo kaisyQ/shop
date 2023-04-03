@@ -3,7 +3,7 @@ import React from "react"
 import styled from "styled-components"
 
 export default styled.h1`
-    font-size: 4.5rem;
+    font-size: ${props => props.fontSize || '4.5rem'};
     letter-spacing: 0.3rem;
     font-weight: 500;
     position: relative;

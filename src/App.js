@@ -15,6 +15,9 @@ import CardAboutContainer from './components/Catalog/Cards/Card/CardAbout/CardAb
 import SidebarContainer from './components/Sidebar/SidebarContainer'
 import Navbar from './components/Navbar/Navbar'
 import SearchContainer from './components/Search/SearchContainer'
+import BlogAboutContainer from './components/Blogs/BlogAbout/BlogAboutContainer'
+
+
 
 import DarkOpacity from './components/Custom/DarkOpacity'
 import BigImage from './components/Custom/BigImage'
@@ -81,23 +84,37 @@ function App({ checkMe, isDark, setIsDark }) {
       <MainContainer>
         <>
             <Routes>
+
               {
                 ['/', '/shop'].map(
                   (path, index) => <Route key={index} path={path} element={ <Home /> } /> )
               }
+
               <Route path='/catalog'>
                 <Route path='' element={ <Catalog /> } />
                 <Route path=':id' element={ <CardAboutContainer /> } />
               </Route>
+              
               <Route path='/contact' element={ <Contact /> } />
-              <Route path='/blogs/:id?' element={ <BlogsContainer />} />
+
+              <Route path='/blogs'>
+                <Route path='' element={ <BlogsContainer /> } />
+                <Route path=':id' element={ <BlogAboutContainer /> } />
+                <Route path='create' element={ <BlogAboutContainer /> } />
+              </Route>
+              
               <Route path='/cart' element={ <CartContainer />} />
-              <Route path='' element={<LoginContainer />} />
+
               <Route path='login' element={<LoginContainer />} />
+
               <Route path="users" element={<UsersContainer />} />
+
               <Route exact path='users/create' element={<CreateUserContainer />} />
+
               <Route path='users/:id' element={<EditUserContainer />} />
+
               <Route path='search' element={<SearchContainer />} />
+
             </Routes>
           </>
       </MainContainer>

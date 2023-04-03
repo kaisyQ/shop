@@ -71,12 +71,12 @@ const CardInfoWrapper = styled.div`
 
     :hover {
         opacity: 1;
-        transition: .4s ease-in-out;
+        transition: .3s ease-in-out;
     }
 
     :not(:hover) {
         opacity: 0;
-        transition: .4s ease-in-out;
+        transition: .3s ease-in-out;
     }
 
     @media only screen and (max-width: 1200px) {
@@ -189,7 +189,9 @@ export default ({ id, title, imageSrc }) => {
                                     <CardTitle size={"2rem"}>{ title }</CardTitle>
                                 </CardInfoItem>
                                 <CardInfoItem>
-                                    <Button isReverse={true}>Show More</Button>
+                                    <NavLink to={'/blogs/1'}>
+                                        <Button isReverse={true}>Show More</Button>
+                                    </NavLink>
                                 </CardInfoItem>
                             </CardInfo>
                         </CardInfoContainer>
@@ -200,7 +202,9 @@ export default ({ id, title, imageSrc }) => {
                             <CardTitle size={"2rem"}>{ title }</CardTitle>
                         </CardInfoItem>
                         <CardInfoItem>
-                            <Button isReverse={true}>Show More</Button>
+                            <NavLink>
+                                <Button isReverse={true}>Show More</Button>
+                            </NavLink>
                         </CardInfoItem>
                     </CardAbout>
                 </CardWrapper>
