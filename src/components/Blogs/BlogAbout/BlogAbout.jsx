@@ -2,80 +2,84 @@ import React from "react"
 
 import styled from "styled-components"
 
+import TextWithEdit from "./TextWithEdit/TextWithEdit"
+import NoImage from "../../Custom/NoImage"
 import Button from "../../Custom/Button"
-
-import BlogAboutTitle from "./BlogAboutTitle/BlogAboutTitle"
-import BlogAboutText from "./BlogAboutText/BlogAboutText"
-import BlogAboutImage from "./BlogAboutImage/BlogAboutImage"
 
 import { useParams } from "react-router-dom"
 
 
+
+
 const Wrapper = styled.section`
-    padding: 0 2rem;
-`
-
-const BtnsWrapper = styled.div`
+    color: #000;
+    padding: 2rem 4rem;
+    background: #fff;
     display: flex;
-    justify-content: center;
-    column-gap: 1rem;
+    flex-direction: column;
+    row-gap: 2rem;
+
+    text-align: left;
 `
 
-export default ({ current }) => {
-    
+const Image = styled.img`
+    display: block;
+    width: 100%;
+    object-fit: cover;
+
+`
+
+export default ({ current, setCurrentBlogItem }) => {
+
     const { id } = useParams()
 
     const [isEditMode, setIsEditMode] = React.useState(false)
     
-    const [arrOfBlogStruct, setArrOfBlogStruct] = React.useState([])
-    
-    
+    const [blogItem, setBlogItem] = React.useState(null)
+
     React.useEffect(() => {
         // get blog data from server
         if (!id) {
             setIsEditMode(true)
+            setBlogItem({
+                title: '',
+                text: '',
+                imageSrc: ''
+            })
+            return
         }
+        setBlogItem({...current})
 
-    },[id, setIsEditMode])
+    },[id, setIsEditMode, setCurrentBlogItem])
 
-
-
-    const addTitle = (ev) => {
-        setArrOfBlogStruct([...arrOfBlogStruct, { type: 'title', text: '' }])
-    }
-
-    const addText = (ev) => {
-        setArrOfBlogStruct([...arrOfBlogStruct, { type: 'text', text: '' }])
-    }
-
-    const addImage = (ev) => {
-        setArrOfBlogStruct([...arrOfBlogStruct, { type: 'image', imageSrc: '' }])
+    const noImageClick = (ev) => {
+        console.log('click')
     }
 
     return (
         <>
             <Wrapper>
-            <Button onClick={() => {console.log(arrOfBlogStruct)}}>Show</Button>
-            {
-                isEditMode? <>
-                    {
-                        arrOfBlogStruct.map((item, index) => {
-                            if (item.type === 'title') return <BlogAboutTitle type={item.type} id={index} setArrOfBlogStruct={setArrOfBlogStruct} key={index} text={item.text}/>
-                            if (item.type === 'text') return <BlogAboutTitle type={item.type} id={index} setArrOfBlogStruct={setArrOfBlogStruct} key={index} text={item.text}/>
-                            if (item.type === 'image') return <BlogAboutImage type={item.type} id={index} setArrOfBlogStruct={setArrOfBlogStruct} key={index} src={item.imageSrc}/>
-                        })
-                    }
-                    <BtnsWrapper>
-                        <Button onClick={addTitle}>Add Title</Button>
-                        <Button onClick={addText}>Add Text</Button>
-                        <Button onClick={addImage}>Add Image</Button>
-                    </BtnsWrapper>
-                </> : current.struct.map((item, index) => {
-                        if (item.type === 'title') return <BlogAboutTitle key={index} text={item.text}/>
-                        if (item.type === 'text') return <BlogAboutText key={index} text={item.text}/>
-                        if (item.type === 'image') return <BlogAboutImage key={index} src={item.imageSrc}/>
-                    })
-            }
+                {
+                    blogItem ? <>
+                        <TextWithEdit text={blogItem.title} type={'title'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
+                        <TextWithEdit text={blogItem.text} type={'text'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
+                        {
+                            blogItem.imageSrc ? <>
+                                <Image src={blogItem.imageSrc} /> 
+                            </> : <>
+                                <NoImage noImageClick={noImageClick}/>
+                            </>
+                        }
+                        <TextWithEdit text={'01.02.2023'} type={'date'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
+                        {
+                            isEditMode ? <>
+                                <div>
+                                    <Button>Create Post</Button>
+                                </div>
+                            </> : <></>
+                        }
+                    </> : <></>
+                }
             </Wrapper>
         </>
     )
