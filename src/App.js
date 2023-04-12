@@ -97,12 +97,13 @@ function App({ checkMe, isDark, setIsDark }) {
               
               <Route path='/contact' element={ <Contact /> } />
 
-              <Route path='/blogs'>
-                <Route path='' element={ <BlogsContainer /> } />
+              <Route path='/blogs/:id?' element={ <BlogsContainer /> } />
+              
+              <Route path='/blog'>
                 <Route path=':id' element={ <BlogAboutContainer /> } />
                 <Route path='create' element={ <BlogAboutContainer /> } />
               </Route>
-              
+
               <Route path='/cart' element={ <CartContainer />} />
 
               <Route path='login' element={<LoginContainer />} />

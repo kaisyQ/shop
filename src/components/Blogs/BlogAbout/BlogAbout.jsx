@@ -9,8 +9,6 @@ import Button from "../../Custom/Button"
 import { useParams } from "react-router-dom"
 
 
-
-
 const Wrapper = styled.section`
     color: #000;
     padding: 2rem 4rem;
@@ -29,7 +27,7 @@ const Image = styled.img`
 
 `
 
-export default ({ current, setCurrentBlogItem }) => {
+export default ({ current, setCurrentBlogItem, createBlogItem }) => {
 
     const { id } = useParams()
 
@@ -37,23 +35,49 @@ export default ({ current, setCurrentBlogItem }) => {
     
     const [blogItem, setBlogItem] = React.useState(null)
 
+    const [uploadFile, setUploadFile] = React.useState(null)
+
+    const [src, setSrc] = React.useState(null)
+
+
     React.useEffect(() => {
         // get blog data from server
+        setCurrentBlogItem(parseInt(id))
+        
         if (!id) {
             setIsEditMode(true)
             setBlogItem({
                 title: '',
                 text: '',
-                imageSrc: ''
+                date: '',
             })
             return
         }
         setBlogItem({...current})
 
-    },[id, setIsEditMode, setCurrentBlogItem])
+    },[id, current, setIsEditMode, setCurrentBlogItem])
 
-    const noImageClick = (ev) => {
-        console.log('click')
+    const uploadImage = (ev) => {
+        
+        const reader = new FileReader()
+
+        reader.onload = (ev) => {
+            setSrc(ev.target.result)
+        }
+        
+        reader.readAsDataURL(ev.target.files[0]);
+
+        setUploadFile(ev.target.files[0])
+    }
+
+    const createPost = (ev) => {
+
+        if (blogItem.title&&blogItem.text&&blogItem.date&&src) {
+            createBlogItem({
+                ...blogItem,
+                imageSrc: src
+            })
+        }
     }
 
     return (
@@ -64,17 +88,25 @@ export default ({ current, setCurrentBlogItem }) => {
                         <TextWithEdit text={blogItem.title} type={'title'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
                         <TextWithEdit text={blogItem.text} type={'text'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
                         {
-                            blogItem.imageSrc ? <>
-                                <Image src={blogItem.imageSrc} /> 
+                            blogItem.imageSrc || src ? <>
+                                <Image src={blogItem.imageSrc || src} /> 
                             </> : <>
-                                <NoImage noImageClick={noImageClick}/>
+                                <input onChange={uploadImage} style={{display: 'none'}} type="file" id="upload-blog-image-input"/>
+                                <label htmlFor="upload-blog-image-input">
+                                    <NoImage />
+                                </label>
+
                             </>
                         }
-                        <TextWithEdit text={'01.02.2023'} type={'date'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
+                        <TextWithEdit text={blogItem.date} type={'date'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
                         {
                             isEditMode ? <>
                                 <div>
-                                    <Button>Create Post</Button>
+                                    <Button 
+                                        disabled={!blogItem.title&&!blogItem.text&&!blogItem.date&&!src} 
+                                        onClick={createPost}>
+                                            Create Post
+                                    </Button>
                                 </div>
                             </> : <></>
                         }

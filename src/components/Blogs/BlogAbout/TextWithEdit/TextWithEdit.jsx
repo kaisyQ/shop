@@ -10,12 +10,14 @@ const Container = styled.div`
     display: flex;
     column-gap: 1.5rem;
     align-items: center;
+    
 `
 
 const Title = styled.div`
     font-size: 3rem;
     position: relative;
     text-decoration: underline;
+    white-space: normal;
 `
 
 const Date = styled.p`
@@ -30,6 +32,7 @@ const Text = styled.p`
     word-spacing: .5rem;
     line-height: 3rem;
     text-align: justify;
+    white-space: normal;
 `
 
 const Btn = styled.button`
@@ -105,7 +108,7 @@ export default ({ text, type, setBlogItem }) => {
                     { type === 'date' ? <Date>{ text }</Date> : null }
                 </> : <>
                     <Container>
-                        <Input value={inptText} onChange={onTextChange} />
+                        <Input placeholder={type[0].toUpperCase()+type.slice(1)} value={inptText} onChange={onTextChange} />
                         <Btn onClick={onSaveBtnClick}>
                             <Icon.Check2 fill="currentColor" size={'2.5rem'} />
                         </Btn>

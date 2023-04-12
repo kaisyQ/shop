@@ -189,7 +189,7 @@ export default ({ id, title, imageSrc }) => {
                                     <CardTitle size={"2rem"}>{ title }</CardTitle>
                                 </CardInfoItem>
                                 <CardInfoItem>
-                                    <NavLink to={'/blogs/1'}>
+                                    <NavLink to={`/blog/${id}`}>
                                         <Button isReverse={true}>Show More</Button>
                                     </NavLink>
                                 </CardInfoItem>
@@ -203,7 +203,7 @@ export default ({ id, title, imageSrc }) => {
                         </CardInfoItem>
                         <CardInfoItem>
                             <NavLink>
-                                <Button isReverse={true}>Show More</Button>
+                                <Button to={`/blog/${id}`} isReverse={true}>Show More</Button>
                             </NavLink>
                         </CardInfoItem>
                     </CardAbout>

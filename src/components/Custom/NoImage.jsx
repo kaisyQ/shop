@@ -17,15 +17,11 @@ const Title = styled.h2`
     text-decoration: underline;
 `
 
-export default ({ noImageClick }) => {
-    
-    const wrapperClick = (ev) => {
-        noImageClick()
-    }
+export default () => {
 
     return (
         <>
-            <Wrapper onClick={wrapperClick}>
+            <Wrapper>
                 <Title>No image</Title>
             </Wrapper>
         </>
