@@ -20,11 +20,6 @@ const Title = styled.div`
     white-space: normal;
 `
 
-const Date = styled.p`
-    text-align: right;
-    font-size: 1.6rem;
-    text-decoration: underline;
-`
 
 const Text = styled.p`
     font-size: 2rem;
@@ -54,64 +49,47 @@ const Btn = styled.button`
     }
 `
 
-export default ({ text, type, setBlogItem }) => {
+export default ({ text, type, dispatch, action, isEditMode }) => {
     
-    const [inptText, setText] = React.useState("")
-
     const [editMode, setEditMode] = React.useState(false)
-
-    React.useEffect(() => {
-        
-        setText(text)
-
-        if (!text) setEditMode(true)
     
-    }, [text, setText])
+    React.useEffect(() => {
 
-    const onTextChange = (ev) => { setText(ev.target.value) }
-
-    const onSaveBtnClick = (ev) => {
-        if (inptText) {
-            setBlogItem(prev => {
-                if (type === 'title') {
-                    if (prev.title === inptText) return prev
-                    return {
-                        ...prev,
-                        title: inptText
-                    }
-                }
-                if (type === 'text') {
-                    if (prev.text === inptText) return prev
-                    return {
-                        ...prev,
-                        text: inptText
-                    }
-                }
-                if (type === 'date') {
-                    if (prev.date === inptText) return prev
-                    return {
-                        ...prev,
-                        date: inptText
-                    }
-                }
-            })
-            setEditMode(false)
+        if (isEditMode) {
+            setEditMode(true)
+            return
         }
-    }
+
+        setEditMode(false)
+
+    }, [isEditMode, setEditMode])
+
+    const onTextChange = (ev) => { dispatch({ type: action, payload: ev.target.value }) }
+
+    const onSaveBtnClick = (ev) => { setEditMode(false) }
 
     return (
         <>
             {
                 !editMode ? <>
+                    
                     { type === 'title' ? <Title>{ text }</Title> : null }
+                    
                     { type === 'text' ? <Text>{ text }</Text> : null }
-                    { type === 'date' ? <Date>{ text }</Date> : null }
+                    
                 </> : <>
                     <Container>
-                        <Input placeholder={type[0].toUpperCase()+type.slice(1)} value={inptText} onChange={onTextChange} />
+                        
+                        <Input 
+                            placeholder={type[0].toUpperCase()+type.slice(1)} 
+                            value={text} 
+                            onChange={onTextChange} 
+                        />
+                        
                         <Btn onClick={onSaveBtnClick}>
                             <Icon.Check2 fill="currentColor" size={'2.5rem'} />
                         </Btn>
+                    
                     </Container>
                 </>
             }

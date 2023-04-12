@@ -8,6 +8,15 @@ import Button from "../../Custom/Button"
 
 import { useParams } from "react-router-dom"
 
+import reducer, { 
+    
+    initialState, 
+
+    SET_TEXT, SET_TITLE, SET_IMAGE_SRC, SET_IMAGE_FILE 
+
+} from "./BlogAboutReducer"
+
+
 
 const Wrapper = styled.section`
     color: #000;
@@ -27,89 +36,101 @@ const Image = styled.img`
 
 `
 
+const Date = styled.p`
+    text-align: right;
+    font-size: 1.6rem;
+    text-decoration: underline;
+`
+
 export default ({ current, setCurrentBlogItem, createBlogItem }) => {
 
     const { id } = useParams()
 
-    const [isEditMode, setIsEditMode] = React.useState(false)
-    
-    const [blogItem, setBlogItem] = React.useState(null)
-
-    const [uploadFile, setUploadFile] = React.useState(null)
-
-    const [src, setSrc] = React.useState(null)
-
+    const [state, dispatch] = React.useReducer(reducer, initialState)
 
     React.useEffect(() => {
         // get blog data from server
         setCurrentBlogItem(parseInt(id))
-        
-        if (!id) {
-            setIsEditMode(true)
-            setBlogItem({
-                title: '',
-                text: '',
-                date: '',
-            })
-            return
-        }
-        setBlogItem({...current})
 
-    },[id, current, setIsEditMode, setCurrentBlogItem])
+        if (!current) return
+
+        dispatch({ type: SET_TITLE, payload: current.title })
+        
+        dispatch({ type: SET_TEXT, payload: current.text })
+        
+        dispatch({ type: SET_IMAGE_SRC, payload: current.imageSrc })
+
+
+    },[id, current, setCurrentBlogItem, dispatch])
 
     const uploadImage = (ev) => {
         
         const reader = new FileReader()
 
         reader.onload = (ev) => {
-            setSrc(ev.target.result)
+            dispatch({ type: SET_IMAGE_SRC, payload: ev.target.result })
         }
         
-        reader.readAsDataURL(ev.target.files[0]);
+        reader.readAsDataURL(ev.target.files[0])
 
-        setUploadFile(ev.target.files[0])
+        dispatch({ type: SET_IMAGE_FILE, payload: ev.target.files[0] })
     }
 
     const createPost = (ev) => {
 
-        if (blogItem.title&&blogItem.text&&blogItem.date&&src) {
-            createBlogItem({
-                ...blogItem,
-                imageSrc: src
-            })
+        if (state.title&&state.text&&state.imageSrc) {
+            createBlogItem({ ...state })
         }
     }
 
     return (
         <>
             <Wrapper>
-                {
-                    blogItem ? <>
-                        <TextWithEdit text={blogItem.title} type={'title'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
-                        <TextWithEdit text={blogItem.text} type={'text'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
-                        {
-                            blogItem.imageSrc || src ? <>
-                                <Image src={blogItem.imageSrc || src} /> 
-                            </> : <>
-                                <input onChange={uploadImage} style={{display: 'none'}} type="file" id="upload-blog-image-input"/>
-                                <label htmlFor="upload-blog-image-input">
-                                    <NoImage />
-                                </label>
+                <TextWithEdit 
+                    text={state.title} 
+                    type={'title'} 
+                    dispatch={dispatch} 
+                    action={SET_TITLE}
+                    isEditMode={!id}
+                />
+                        
+                <TextWithEdit 
+                    text={state.text} 
+                    type={'text'} 
+                    dispatch={dispatch} 
+                    action={SET_TEXT}
+                    isEditMode={!id}                      
+                />
 
-                            </>
-                        }
-                        <TextWithEdit text={blogItem.date} type={'date'} isEditMode={isEditMode} setBlogItem={setBlogItem}/>
-                        {
-                            isEditMode ? <>
-                                <div>
-                                    <Button 
-                                        disabled={!blogItem.title&&!blogItem.text&&!blogItem.date&&!src} 
-                                        onClick={createPost}>
-                                            Create Post
-                                    </Button>
-                                </div>
-                            </> : <></>
-                        }
+                {
+                    state.imageSrc ? <>
+                        <Image src={state.imageSrc} /> 
+                    </> : <>
+                        
+                        <input 
+                            onChange={uploadImage} 
+                            style={{display: 'none'}} 
+                            type="file" 
+                            id="upload-blog-image-input"
+                        />
+                        
+                        <label htmlFor="upload-blog-image-input">
+                            <NoImage />
+                        </label>
+
+                    </>
+                }
+                        
+                { current ? <Date>{ current.date }</Date> : null }
+                {
+                    !id ? <>
+                        <div>
+                            <Button 
+                                disabled={!state.title&&!state.text&&!state.imageSrc} 
+                                onClick={createPost}>
+                                    Create Post
+                            </Button>
+                        </div>
                     </> : <></>
                 }
             </Wrapper>
