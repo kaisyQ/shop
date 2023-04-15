@@ -5,14 +5,16 @@ import styled from "styled-components"
 import TextWithEdit from "./TextWithEdit/TextWithEdit"
 import NoImage from "../../Custom/NoImage"
 import Button from "../../Custom/Button"
+import EditButton from "../../Custom/EditButton"
 
-import { useParams } from "react-router-dom"
+
+import { useParams, NavLink } from "react-router-dom"
 
 import reducer, { 
     
     initialState, 
 
-    SET_TEXT, SET_TITLE, SET_IMAGE_SRC, SET_IMAGE_FILE 
+    SET_TEXT, SET_TITLE, SET_IMAGE_SRC, SET_IMAGE_FILE, SET_IMAGE_EDIT, SET_TEXT_EDIT, SET_TITLE_EDIT 
 
 } from "./BlogAboutReducer"
 
@@ -24,7 +26,7 @@ const Wrapper = styled.section`
     background: #fff;
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 4rem;
 
     text-align: left;
 `
@@ -42,24 +44,39 @@ const Date = styled.p`
     text-decoration: underline;
 `
 
-export default ({ current, setCurrentBlogItem, createBlogItem }) => {
+const BtnsWrapper = styled.div`
+    display: flex;
+    column-gap: 2rem;
+`
+
+export default ({ current, setCurrentBlogItem, createBlogItem, updateBlogItem, removeBlogItem }) => {
 
     const { id } = useParams()
-
+    
     const [state, dispatch] = React.useReducer(reducer, initialState)
 
     React.useEffect(() => {
         // get blog data from server
         setCurrentBlogItem(parseInt(id))
 
-        if (!current) return
+        if (!current) {
+            
+            dispatch({ type: SET_TITLE_EDIT, payload: true })
+            
+            dispatch({ type: SET_TEXT_EDIT, payload: true })
+            
+            return
+        }
 
         dispatch({ type: SET_TITLE, payload: current.title })
         
         dispatch({ type: SET_TEXT, payload: current.text })
         
         dispatch({ type: SET_IMAGE_SRC, payload: current.imageSrc })
-
+        
+        dispatch({ type: SET_TITLE_EDIT, payload: false })
+            
+        dispatch({ type: SET_TEXT_EDIT, payload: false })
 
     },[id, current, setCurrentBlogItem, dispatch])
 
@@ -76,11 +93,25 @@ export default ({ current, setCurrentBlogItem, createBlogItem }) => {
         dispatch({ type: SET_IMAGE_FILE, payload: ev.target.files[0] })
     }
 
+
+    
     const createPost = (ev) => {
 
         if (state.title&&state.text&&state.imageSrc) {
             createBlogItem({ ...state })
         }
+    }
+
+
+    const saveChanges = (ev) => {
+        updateBlogItem({
+            ...state,
+            id: parseInt(id)
+        })
+    }
+
+    const deletePost = (ev) => {
+        removeBlogItem(parseInt(id))
     }
 
     return (
@@ -91,7 +122,8 @@ export default ({ current, setCurrentBlogItem, createBlogItem }) => {
                     type={'title'} 
                     dispatch={dispatch} 
                     action={SET_TITLE}
-                    isEditMode={!id}
+                    isEditMode={state.titleEdit}
+                    editAction={SET_TITLE_EDIT}
                 />
                         
                 <TextWithEdit 
@@ -99,20 +131,29 @@ export default ({ current, setCurrentBlogItem, createBlogItem }) => {
                     type={'text'} 
                     dispatch={dispatch} 
                     action={SET_TEXT}
-                    isEditMode={!id}                      
+                    isEditMode={state.textEdit}
+                    editAction={SET_TEXT_EDIT}         
+                />
+                
+                <input 
+                    onChange={uploadImage} 
+                    style={{display: 'none'}} 
+                    type="file" 
+                    id="upload-blog-image-input"
                 />
 
                 {
                     state.imageSrc ? <>
-                        <Image src={state.imageSrc} /> 
+
+                        <div style={{position:'relative'}}>
+                
+                            <label htmlFor="upload-blog-image-input">
+                                <EditButton />
+                            </label>
+                
+                            <Image src={state.imageSrc} /> 
+                        </div>
                     </> : <>
-                        
-                        <input 
-                            onChange={uploadImage} 
-                            style={{display: 'none'}} 
-                            type="file" 
-                            id="upload-blog-image-input"
-                        />
                         
                         <label htmlFor="upload-blog-image-input">
                             <NoImage />
@@ -127,11 +168,20 @@ export default ({ current, setCurrentBlogItem, createBlogItem }) => {
                         <div>
                             <Button 
                                 disabled={!state.title&&!state.text&&!state.imageSrc} 
-                                onClick={createPost}>
-                                    Create Post
+                                onClick={createPost}
+                            >
+                                Create Post
                             </Button>
                         </div>
                     </> : <></>
+                }
+                {
+                    <BtnsWrapper>
+                        <Button onClick={saveChanges}>Save Changes</Button>
+                        <NavLink to={'/blogs'}>
+                            <Button onClick={deletePost}>Delete Post</Button>
+                        </NavLink>
+                    </BtnsWrapper>
                 }
             </Wrapper>
         </>

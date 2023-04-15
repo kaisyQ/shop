@@ -2,7 +2,12 @@ import BlogAbout from "./BlogAbout"
 
 import { connect } from "react-redux"
 
-import { setCurrent as setCurrentBlogItem, createBlogItem } from "../../../redux/reducers/blog/reducer"
+import { 
+    setCurrent as setCurrentBlogItem, 
+    createBlogItem,
+    updateBlogItem,
+    removeBlogItem,
+} from "../../../redux/reducers/blog/reducer"
 import { getCurrentBlogItem } from "../../../redux/reducers/blog/selector"
 
 
@@ -11,7 +16,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    setCurrentBlogItem, createBlogItem
+    setCurrentBlogItem, createBlogItem, updateBlogItem, removeBlogItem
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogAbout)

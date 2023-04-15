@@ -3,12 +3,13 @@ import React from "react"
 import styled from "styled-components"
 
 import Input from './../../../Custom/Input'
+import EditButton from "../../../Custom/EditButton"
 
 import * as Icon from 'react-bootstrap-icons'
 
 const Container = styled.div`
     display: flex;
-    column-gap: 1.5rem;
+    column-gap: 3rem;
     align-items: center;
     
 `
@@ -22,6 +23,8 @@ const Title = styled.div`
 
 
 const Text = styled.p`
+    position: relative;
+    
     font-size: 2rem;
     text-indent: 5rem;
     word-spacing: .5rem;
@@ -32,10 +35,14 @@ const Text = styled.p`
 
 const Btn = styled.button`
     display: flex;
-    width: 5rem;
-    height: 5rem;
     align-items: center;
     justify-content: center;
+    
+    position: relative;
+    
+    width: 5rem;
+    height: 5rem;
+
     :hover {
         background: #b42525;
         color: #fff;
@@ -49,33 +56,37 @@ const Btn = styled.button`
     }
 `
 
-export default ({ text, type, dispatch, action, isEditMode }) => {
-    
-    const [editMode, setEditMode] = React.useState(false)
-    
-    React.useEffect(() => {
-
-        if (isEditMode) {
-            setEditMode(true)
-            return
-        }
-
-        setEditMode(false)
-
-    }, [isEditMode, setEditMode])
-
+export default ({ text, type, dispatch, action, isEditMode, editAction }) => {
     const onTextChange = (ev) => { dispatch({ type: action, payload: ev.target.value }) }
 
-    const onSaveBtnClick = (ev) => { setEditMode(false) }
+    const onSaveBtnClick = (ev) => { dispatch({ type: editAction, payload: false }) }
 
+    const editModeOn = (ev) => {
+        dispatch({ type: editAction, payload: true })
+    }
     return (
         <>
             {
-                !editMode ? <>
+                !isEditMode ? <>
                     
-                    { type === 'title' ? <Title>{ text }</Title> : null }
+                    { 
+                        type === 'title' ? <>
+                            <Title>
+                                <EditButton onClick={editModeOn} />
+                                { text }
+                            </Title> 
+                        </> : null 
+                    }
                     
-                    { type === 'text' ? <Text>{ text }</Text> : null }
+                    { type === 'text' ? <>
+                            <div style={{position: 'relative'}}>
+                                <EditButton onClick={editModeOn} />
+                                <Text>
+                                    { text }
+                                </Text> 
+                            </div>
+                        </> : null 
+                    }
                     
                 </> : <>
                     <Container>

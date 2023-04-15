@@ -102,10 +102,17 @@ const blogSlice = createSlice({
             })
         },
         removeBlogItem: (state, action) => {
-
+            state.items = state.items.filter(item => item.id !== action.payload)
         },
         updateBlogItem: (state, action) => {
-
+            state.items = state.items.map(item => {
+                if (item.id !== action.payload.id) return item
+                
+                return {
+                    ...item, 
+                    ...action.payload
+                }
+            })
         },
     }
 })
