@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import User from "./User/User"
 
-import Button from "../Custom/Button"
+import Button from "../Custom/Button/Button"
 
 import { NavLink } from "react-router-dom"
 

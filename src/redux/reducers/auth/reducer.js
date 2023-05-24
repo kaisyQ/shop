@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { checkMe, signIn, signOut } from "../../../api/api"
 
 
+
 const initialState = {
     id: null,
     isAuth: false,

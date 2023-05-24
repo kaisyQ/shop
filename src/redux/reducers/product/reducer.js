@@ -23,10 +23,12 @@ const initialState = {
                 We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
             `,
             imagesSrc: [
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9603_750x.heic?v=1675043718',
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9604_750x.heic?v=1675043719',
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9607_750x.heic?v=1675043718',
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9610_750x.heic?v=1675043720'
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
             ]
         },
         {
@@ -49,9 +51,12 @@ const initialState = {
                 We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
             `,
             imagesSrc: [
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9607_750x.heic?v=1675043718',
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9610_750x.heic?v=1675043720',
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9603_750x.heic?v=1675043718',
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
             ]
         },
         {
@@ -74,7 +79,12 @@ const initialState = {
                 We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
             `,
             imagesSrc: [
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9610_750x.heic?v=1675043720'
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
             ]
         },
         {
@@ -97,7 +107,12 @@ const initialState = {
                 We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
             `,
             imagesSrc: [
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9610_750x.heic?v=1675043720'
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
             ]
         },
         {
@@ -120,7 +135,12 @@ const initialState = {
                 We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
             `,
             imagesSrc: [
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9610_750x.heic?v=1675043720'
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
             ]
         },
         {
@@ -143,7 +163,12 @@ const initialState = {
                 We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
             `,
             imagesSrc: [
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9610_750x.heic?v=1675043720'
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
             ]
         },
         {
@@ -166,7 +191,12 @@ const initialState = {
                 We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
             `,
             imagesSrc: [
-                'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9610_750x.heic?v=1675043720'
+                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
             ]
         },
     ],
@@ -190,12 +220,12 @@ const initialState = {
             We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
         `,
         imagesSrc: [
-            'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9603_750x.heic?v=1675043718',
-            'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9604_750x.heic?v=1675043719',
-            'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9607_750x.heic?v=1675043718',
-            'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9610_750x.heic?v=1675043720',
-            'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9792_750x.heic?v=1675043117',
-            'https://cdn.shopify.com/s/files/1/0554/3644/3786/products/IMG_9792_750x.heic?v=1675043117'
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
+            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
         ]
     },
     cartItems: [], 

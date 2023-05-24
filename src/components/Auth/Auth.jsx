@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 
-import Input from '../Custom/Input'
-import Button from '../Custom/Button'
+import Input from '../Custom/Input/Input';
+import Button from "components/Custom/Button/Button";
 
 
 import { Navigate } from "react-router-dom"

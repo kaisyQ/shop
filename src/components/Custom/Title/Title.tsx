@@ -1,9 +1,12 @@
-import React from "react"
-
 import styled from "styled-components"
 
-export default styled.h1`
-    font-size: ${props => props.fontSize || '4.5rem'};
+
+interface ITitleProps {
+    fontSize?: string
+}
+
+export default styled.h2<ITitleProps>`
+    font-size: ${props => props.fontSize ? props.fontSize : '4.5rem'};
     letter-spacing: 0.3rem;
     font-weight: 500;
     position: relative;

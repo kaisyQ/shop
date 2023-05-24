@@ -6,8 +6,9 @@ import React from "react"
 import styled from "styled-components"
 
 
-import Button from "../../../../Custom/Button"
-import Slider from "../../../../Custom/Slider"
+import Button from "components/Custom/Button/Button"
+import Slider from "components/Slider/Slider"
+
 import CardAboutSection from "./CardAboutSection/CardAboutSection"
 
 import { useParams } from "react-router-dom"
@@ -145,8 +146,9 @@ const ImageWrapper = styled.div`
     overflow: hidden;
     max-width: ${props => props.width || '48%'};
 `
+
 const Image = styled.img`
-    width: 100%
+    width: 100%;
     object-fit: cover;
     
     :hover {

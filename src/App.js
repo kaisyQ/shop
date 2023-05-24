@@ -1,29 +1,29 @@
-import React from 'react'
-
-import HeaderContainer from './components/Header/HeaderContainer'
-import Home from './components/Home/Home'
-import Catalog from './components/Catalog/Catalog'
-import Contact from './components/Contact/Contact'
-import Footer from './components/Footer/Footer'
-import LoginContainer from './components/Auth/AuthContainer'
-import EditUserContainer from './components/EditUser/EditUserContainer'
-import UsersContainer from './components/Users/UsersContainer'
-import CreateUserContainer from './components/CreateUser/CreateUserContainer'
-import BlogsContainer from './components/Blogs/BlogsContainer'
-import CartContainer from './components/Cart/CartContainer'
-import CardAboutContainer from './components/Catalog/Cards/Card/CardAbout/CardAboutContainer'
-import SidebarContainer from './components/Sidebar/SidebarContainer'
-import Navbar from './components/Navbar/Navbar'
-import SearchContainer from './components/Search/SearchContainer'
-import BlogAboutContainer from './components/Blogs/BlogAbout/BlogAboutContainer'
+import React from 'react';
 
 
+import HomeView from 'views/HomeView/HomeView';
+import CatalogView from 'views/CatalogView/CatalogView';
+import ContactView from 'views/ContactView/ContactView';
 
-import DarkOpacity from './components/Custom/DarkOpacity'
-import BigImage from './components/Custom/BigImage'
+import HeaderContainer from './components/Header/HeaderContainer';
+import Footer from './components/Footer/Footer';
+import LoginContainer from './components/Auth/AuthContainer';
+import EditUserContainer from './components/EditUser/EditUserContainer';
+import UsersContainer from './components/Users/UsersContainer';
+import CreateUserContainer from './components/CreateUser/CreateUserContainer';
+import BlogsContainer from './components/Blogs/BlogsContainer';
+import CardAboutContainer from './components/Catalog/Cards/Card/CardAbout/CardAboutContainer';
+import SidebarContainer from './components/Sidebar/SidebarContainer';
+import Navbar from './components/Navbar/Navbar';
+import SearchContainer from './components/Search/SearchContainer';
+import BlogAboutContainer from './components/Blogs/BlogAbout/BlogAboutContainer';
 
-import { Routes, Route } from 'react-router-dom'
-import styled from 'styled-components'
+
+
+import ShadingBlock from './components/Custom/ShadingBlock/ShadingBlock';
+
+import { Routes, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
 
 const AppContainer = styled.div`
@@ -68,7 +68,6 @@ function App({ checkMe, isDark, setIsDark }) {
 
   return (
     <AppContainer>
-      <BigImage />
       { isOpenSidebar && <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
 
       <HeaderContainer 
@@ -77,7 +76,7 @@ function App({ checkMe, isDark, setIsDark }) {
         
       />
 
-      { isDark ? <DarkOpacity onClick={darkOpacityClick}/> : <></> } 
+      { isDark ? <ShadingBlock onClick={darkOpacityClick}/> : <></> } 
       
       <Navbar />
 
@@ -87,15 +86,15 @@ function App({ checkMe, isDark, setIsDark }) {
 
               {
                 ['/', '/shop'].map(
-                  (path, index) => <Route key={index} path={path} element={ <Home /> } /> )
+                  (path, index) => <Route key={index} path={path} element={ <HomeView /> } /> )
               }
 
               <Route path='/catalog'>
-                <Route path='' element={ <Catalog /> } />
+                <Route path='' element={ <CatalogView /> } />
                 <Route path=':id' element={ <CardAboutContainer /> } />
               </Route>
               
-              <Route path='/contact' element={ <Contact /> } />
+              <Route path='/contact' element={ <ContactView /> } />
 
               <Route path='/blogs/:id?' element={ <BlogsContainer /> } />
               
@@ -103,8 +102,6 @@ function App({ checkMe, isDark, setIsDark }) {
                 <Route path=':id' element={ <BlogAboutContainer /> } />
                 <Route path='create' element={ <BlogAboutContainer /> } />
               </Route>
-
-              <Route path='/cart' element={ <CartContainer />} />
 
               <Route path='login' element={<LoginContainer />} />
 

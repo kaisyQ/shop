@@ -5,7 +5,7 @@ import styled from "styled-components"
 import BlogItem from "./BlogItem/BlogItem"
 import Pagination from "../Pagination/Pagination"
 
-import Title from "../Custom/Title"
+import Title from "../Custom/Title/Title"
 
 import { useParams } from "react-router-dom"
 

@@ -1,7 +1,7 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
 
-import Input from "../Custom/Input"
+import Input from "../Custom/Input/Input"
 
 import * as Icon from 'react-bootstrap-icons'
 

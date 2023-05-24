@@ -5,7 +5,7 @@ import styled from "styled-components"
 
 import SessionItemContainer from "./SessionItem/SessionItemContainer"
 
-import Input from "../Custom/Input"
+import Input from "../Custom/Input/Input"
 
 
 const EditUserWrapper = styled.div`

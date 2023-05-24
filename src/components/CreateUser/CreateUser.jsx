@@ -2,8 +2,8 @@ import React from "react"
 
 import styled from "styled-components"
 
-import Input from "../Custom/Input"
-import Button from "../Custom/Button"
+import Input from "../Custom/Input/Input"
+import Button from "../Custom/Button/Button"
 import { NavLink } from "react-router-dom"
 
 const CreateUserWrapper = styled.div`

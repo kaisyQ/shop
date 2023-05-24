@@ -3,9 +3,9 @@ import React from "react"
 import styled from "styled-components"
 
 import TextWithEdit from "./TextWithEdit/TextWithEdit"
-import NoImage from "../../Custom/NoImage"
-import Button from "../../Custom/Button"
-import EditButton from "../../Custom/EditButton"
+import NoImage from "../../Custom/NoImage/NoImage"
+import Button from "components/Custom/Button/Button"
+import EditButton from "../../Custom/EditButton/EditButton"
 
 
 import { useParams, NavLink } from "react-router-dom"
@@ -14,7 +14,7 @@ import reducer, {
     
     initialState, 
 
-    SET_TEXT, SET_TITLE, SET_IMAGE_SRC, SET_IMAGE_FILE, SET_IMAGE_EDIT, SET_TEXT_EDIT, SET_TITLE_EDIT 
+    SET_TEXT, SET_TITLE, SET_IMAGE_SRC, SET_IMAGE_FILE, SET_TEXT_EDIT, SET_TITLE_EDIT 
 
 } from "./BlogAboutReducer"
 

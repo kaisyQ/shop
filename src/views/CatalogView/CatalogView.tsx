@@ -1,10 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 
-import Filter from "./Filter/Filter"
-import CardsContainer from "./Cards/CardsContainer"
+import Filter from "components/Catalog/Filter/Filter"
+import CardsContainer from "components/Catalog/Cards/CardsContainer"
 
-import Title from "../Custom/Title"
+import Title from "components/Custom/Title/Title"
+
 
 const Wrapper = styled.div`
     

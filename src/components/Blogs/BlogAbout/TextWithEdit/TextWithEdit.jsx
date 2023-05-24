@@ -2,8 +2,8 @@ import React from "react"
 
 import styled from "styled-components"
 
-import Input from './../../../Custom/Input'
-import EditButton from "../../../Custom/EditButton"
+import Input from '../../../Custom/Input/Input'
+import EditButton from "../../../Custom/EditButton/EditButton"
 
 import * as Icon from 'react-bootstrap-icons'
 
