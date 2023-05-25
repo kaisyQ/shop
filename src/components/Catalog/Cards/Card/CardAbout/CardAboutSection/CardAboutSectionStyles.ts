@@ -1,27 +1,29 @@
-import React from "react"
-
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components";
 
 
-const Wrapper = styled.div`
+interface IArrowProps {
+    visible: boolean
+}
+
+export const Wrapper = styled.div`
     width: 100%;
     max-width: 33rem;
     
-`
+`;
 
-const Section = styled.section`
+export const Section = styled.section`
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-`
+`;
 
-const Text = styled.p`
+export const Text = styled.p`
     font-size: 1.6rem;
     text-indent: 2.5rem;    
     text-align: justify;
-`
+`;
 
-const Title = styled.h3`
+export const Title = styled.h3`
     position: relative;
     display: flex;
     align-items: center;
@@ -39,9 +41,9 @@ const Title = styled.h3`
         width: 100%;
         border-bottom: .1rem solid #000;
     }
-`
+`;
 
-const Arrow = styled.div`
+export const Arrow = styled.div<IArrowProps>`
     position: absolute;
     right: 1rem;
     top: 50%;
@@ -50,20 +52,22 @@ const Arrow = styled.div`
     border-bottom: .1rem solid #000;
     transition: .2s ease-in-out;
     transform: ${props => props.visible ? "rotate(135deg) translate(-50%, 50%)" : 'rotate(-45deg) translate(50%, -50%)'};
-`
+`;
 
-const Span = styled.span`
-`
+export const Span = styled.span`
+`;
 
-const ParamsList = styled.ul`
+export const ParamsList = styled.ul`
     font-size: 1.6rem;
-`
-const ParamsListItem = styled.li`
+`;
+
+export const ParamsListItem = styled.li`
     padding: 1rem 1rem .5rem 3rem;
     display: flex;
     justify-content: space-between;
-`
-const ParamName = styled.span`
+`;
+
+export const ParamName = styled.span`
     position: relative;
     ::before {
         content: '';
@@ -90,7 +94,7 @@ const ParamName = styled.span`
     }
 `
 
-const Block = styled.div`
+export const Block = styled.div`
     height: 2.5rem;
     width: 2.5rem;
     background-color: #fc8507;
@@ -108,42 +112,4 @@ const Block = styled.div`
         transform: translate(-50%, -50%);
     }
 
-`
-
-export default ({ text, title, params, imageIndex }) => {
-    
-    const [visibleText, setVisibleText] = React.useState(false)
-    
-    React.useEffect(() => {
-        if(window.outerWidth >= 768) {
-            setVisibleText(true)
-        }
-    }, [setVisibleText]) 
-
-    return (
-        <>
-            <Wrapper>
-                <Section>
-                    <Title onClick={(ev) => { setVisibleText(prev => !prev) }}>
-                        <Block />
-                        <Span>{ title }</Span>
-                        <Arrow visible={visibleText} />
-                    </Title>
-
-                    { visibleText ?
-                        params ? <>
-                        <ParamsList>
-                        { Object.keys(params).map((param, index) => 
-                            <ParamsListItem key={param}>
-                                <ParamName>
-                                    { param }
-                                </ParamName>
-                                <span>{ params[param] }</span>
-                            </ParamsListItem>)}
-                        </ParamsList> 
-                    </> : <Text visible={visibleText}>{ text }</Text> : <></> }
-                </Section>                
-            </Wrapper>
-        </>
-    )
-}
+`;

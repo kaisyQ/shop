@@ -6,7 +6,7 @@ import authReducer from './reducers/auth/reducer';
 import usersReducer from './reducers/users/reducer';
 import blogReducer from './reducers/blog/reducer';
 import stylesReducer from './reducers/styles/reducer';
-import productReducer from './reducers/product/reducer';
+import productReducer from './reducers/product/productSlice';
 
 
 const rootReducer = combineReducers({
@@ -24,6 +24,6 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 
-export type AppDispatch = typeof store.dispatch;
+export type RootDispatch = typeof store.dispatch;
 
 export default store;

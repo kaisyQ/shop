@@ -1,7 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
+
+import { PayloadAction } from "@reduxjs/toolkit";
+
+import { IProduct } from "types/types";
 
 
-const initialState = {
+interface IProductsInitialState {
+    items: IProduct[],
+    current: IProduct,
+}
+
+
+const initialState : IProductsInitialState = {
     items: [
         {
             id: 1,
@@ -227,49 +237,21 @@ const initialState = {
             'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
             'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
         ]
-    },
-    cartItems: [], 
-    totalPrice: 0
+    }
 }
 
 const productSlice = createSlice({
-    name: 'cartSlice',
+    name: 'productSlice',
     initialState, 
     reducers: {
-        setCurrent: () => {
-        },
-        addCartItem: (state, action) => {
+        setCurrent: (state, action: PayloadAction<number>) => {
             
-            const cartItem = state.cartItems.find(cartItem => cartItem.id === action.payload)
-
-            if (cartItem) return
-
-            const item = state.items.find(item => item.id === action.payload)
-
-            state.cartItems.push({
-                id: item.id, 
-                name: item.name,
-                count: item.count,
-                price: item.price,
-                discountPrice: item.discountPrice,
-                image: item.imagesSrc[0]
-            })
-
-            state.totalPrice += item.discountPrice?item.discountPrice:item.price
         },
-        removeCartItem: (state, action) => {
-            
-            state.cartItems = state.cartItems.filter(item => {
-                if(item.id !== action.payload) return item
-                
-                state.totalPrice -= item.discountPrice?item.discountPrice:item.price
-            })
-        }
     }
 })
 
-const { actions, reducer } = productSlice
+const { actions, reducer } = productSlice;
 
-export const { setCurrent, addCartItem, removeCartItem } = actions
+export const { setCurrent } = actions;
 
-export default reducer
+export default reducer;

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 
 interface IButtonProps {
-    padding: string,
-    isReverse: boolean,
+    padding?: string,
+    isReverse?: boolean,
     width?: string
 }
 
