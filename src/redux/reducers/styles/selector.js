@@ -1,1 +1,0 @@
-export const getIsDark = (state) => state.styles.isDark

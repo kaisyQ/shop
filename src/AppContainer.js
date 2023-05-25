@@ -3,10 +3,10 @@ import App from "./App"
 import { connect } from "react-redux"
 
 
-import { checkMeThunk as checkMe } from "./redux/reducers/auth/reducer"
+import { checkMeThunk as checkMe } from "./redux/reducers/auth/authSlice"
 
 import { getIsDark } from "./redux/reducers/styles/selector"
-import { setIsDark } from "./redux/reducers/styles/reducer"
+import { setIsDark } from "./redux/reducers/styles/stylesSlice.ts"
 
 
 

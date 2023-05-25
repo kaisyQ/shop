@@ -26,5 +26,6 @@
     "exclude": [
       "**/*.test.ts",
       "**/*.test.tsx"
-    ]
+    ],
+    "files": ["custom.d.ts"]
 }

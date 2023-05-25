@@ -8,14 +8,12 @@ import ContactView from 'views/ContactView/ContactView';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Footer from './components/Footer/Footer';
 import LoginContainer from './components/Auth/AuthContainer';
-import EditUserContainer from './components/EditUser/EditUserContainer';
-import UsersContainer from './components/Users/UsersContainer';
-import CreateUserContainer from './components/CreateUser/CreateUserContainer';
 import BlogsContainer from './components/Blogs/BlogsContainer';
 import CardAboutContainer from './components/Catalog/Cards/Card/CardAbout/CardAboutContainer';
 import SidebarContainer from './components/Sidebar/SidebarContainer';
 import Navbar from './components/Navbar/Navbar';
-import SearchContainer from './components/Search/SearchContainer';
+import Search from 'components/Search/Search';
+
 import BlogAboutContainer from './components/Blogs/BlogAbout/BlogAboutContainer';
 
 
@@ -76,7 +74,7 @@ function App({ checkMe, isDark, setIsDark }) {
         
       />
 
-      { isDark ? <ShadingBlock onClick={darkOpacityClick}/> : <></> } 
+      { isDark ? <ShadingBlock onClick={darkOpacityClick}/> : null } 
       
       <Navbar />
 
@@ -105,13 +103,7 @@ function App({ checkMe, isDark, setIsDark }) {
 
               <Route path='login' element={<LoginContainer />} />
 
-              <Route path="users" element={<UsersContainer />} />
-
-              <Route exact path='users/create' element={<CreateUserContainer />} />
-
-              <Route path='users/:id' element={<EditUserContainer />} />
-
-              <Route path='search' element={<SearchContainer />} />
+              <Route path='search' element={<Search />} />
 
             </Routes>
           </>
