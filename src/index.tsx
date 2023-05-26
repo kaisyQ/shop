@@ -1,16 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import AppContainer from './AppContainer'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import AppContainer from './AppContainer';
 
-import reportWebVitals from './reportWebVitals'
+import reportWebVitals from './reportWebVitals';
 
-import store from './redux/store'
+import store from './redux/store';
 
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root') as Element)
 root.render(
   <React.StrictMode>
     <Provider store={store}>

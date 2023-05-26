@@ -1,140 +1,120 @@
 import React from "react"
 
-import styled from "styled-components"
-
-import TextWithEdit from "./TextWithEdit/TextWithEdit"
-import NoImage from "../../Custom/NoImage/NoImage"
-import Button from "components/Custom/Button/Button"
-import EditButton from "../../Custom/EditButton/EditButton"
+import TextWithEdit from "./TextWithEdit/TextWithEdit";
+import NoImage from "../../Custom/NoImage/NoImage";
+import Button from "components/Custom/Button/Button";
+import EditButton from "../../Custom/EditButton/EditButton";
 
 
-import { useParams, NavLink } from "react-router-dom"
+import { useParams, NavLink } from "react-router-dom";
 
 import reducer, { 
+    initialState, setImageFileAC, setImageSrcAC, setTextAC, setTextEditAC, setTitleAC, setTitleEditAC
+} from "./../../../react-reducers/BlogAboutReducer";
+
+import { 
+    Wrapper, Image, Date, BtnsWrapper
+} from "./BlogAboutStyles";
+
+import { TITLE_TYPE, TEXT_TYPE } from "./TextWithEdit/TextWithEditTypes";
+
+import { BlogAboutConnectedProps } from "./BlogAboutContainer";
+
+
+
+const BlogAbout: React.FC<BlogAboutConnectedProps> = (props) => {
+
+    const { current, setCurrentBlogItem, createBlogItem, updateBlogItem, removeBlogItem } = props;
+
+    const { id } = useParams();
     
-    initialState, 
-
-    SET_TEXT, SET_TITLE, SET_IMAGE_SRC, SET_IMAGE_FILE, SET_TEXT_EDIT, SET_TITLE_EDIT 
-
-} from "./BlogAboutReducer"
-
-
-
-const Wrapper = styled.section`
-    color: #000;
-    padding: 2rem 4rem;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    row-gap: 4rem;
-
-    text-align: left;
-`
-
-const Image = styled.img`
-    display: block;
-    width: 100%;
-    object-fit: cover;
-
-`
-
-const Date = styled.p`
-    text-align: right;
-    font-size: 1.6rem;
-    text-decoration: underline;
-`
-
-const BtnsWrapper = styled.div`
-    display: flex;
-    column-gap: 2rem;
-`
-
-export default ({ current, setCurrentBlogItem, createBlogItem, updateBlogItem, removeBlogItem }) => {
-
-    const { id } = useParams()
-    
-    const [state, dispatch] = React.useReducer(reducer, initialState)
+    const [state, dispatch] = React.useReducer(reducer, initialState);
 
     React.useEffect(() => {
         // get blog data from server
-        setCurrentBlogItem(parseInt(id))
 
-        if (!current) {
-            
-            dispatch({ type: SET_TITLE_EDIT, payload: true })
-            
-            dispatch({ type: SET_TEXT_EDIT, payload: true })
-            
-            return
+        if (id) {
+            setCurrentBlogItem(parseInt(id));
         }
 
-        dispatch({ type: SET_TITLE, payload: current.title })
-        
-        dispatch({ type: SET_TEXT, payload: current.text })
-        
-        dispatch({ type: SET_IMAGE_SRC, payload: current.imageSrc })
-        
-        dispatch({ type: SET_TITLE_EDIT, payload: false })
-            
-        dispatch({ type: SET_TEXT_EDIT, payload: false })
+        if (!current) {
+            dispatch(setTitleEditAC(true));
+            dispatch(setTextEditAC(true));
+            return;
+        }
+
+        dispatch(setTitleAC(current.title));
+        dispatch(setTextAC(current.text));
+        dispatch(setImageSrcAC(current.imageSrc));
+        dispatch(setTitleEditAC(false));
+        dispatch(setTextEditAC(false));
 
     },[id, current, setCurrentBlogItem, dispatch])
 
-    const uploadImage = (ev) => {
+    const uploadImage = (ev: React.ChangeEvent<HTMLInputElement>) => {
         
-        const reader = new FileReader()
+        const reader = new FileReader();
 
         reader.onload = (ev) => {
-            dispatch({ type: SET_IMAGE_SRC, payload: ev.target.result })
+            if (!ev.target) {
+                return;
+            }
+            dispatch(setImageSrcAC(ev.target.result as string));
         }
         
-        reader.readAsDataURL(ev.target.files[0])
+        if (!ev.target.files) {
+            return;
+        }
+        
+        reader.readAsDataURL(ev.target.files[0]);
 
-        dispatch({ type: SET_IMAGE_FILE, payload: ev.target.files[0] })
+        dispatch(setImageFileAC(ev.target.files[0]));
     }
 
 
     
-    const createPost = (ev) => {
+    const createPost = (ev: React.MouseEvent<HTMLButtonElement>) => {
 
         if (state.title&&state.text&&state.imageSrc) {
             createBlogItem({ ...state })
         }
     }
 
-
-    const saveChanges = (ev) => {
+    const saveChanges = (ev: React.MouseEvent<HTMLButtonElement>) => {
+        if (!id) return;
         updateBlogItem({
             ...state,
             id: parseInt(id)
         })
     }
 
-    const deletePost = (ev) => {
+    const deletePost = (ev: React.MouseEvent<HTMLButtonElement>) => {
+        if (!id) return;
         removeBlogItem(parseInt(id))
     }
 
     return (
         <>
             <Wrapper>
-                <TextWithEdit 
+                <TextWithEdit
+                    inputId={"blog-title-input"}
                     text={state.title} 
-                    type={'title'} 
+                    type={TITLE_TYPE} 
                     dispatch={dispatch} 
-                    action={SET_TITLE}
                     isEditMode={state.titleEdit}
-                    editAction={SET_TITLE_EDIT}
+                    editActionCreator={setTitleEditAC}
+                    textChangeActionCreator={setTitleAC}
                 />
                         
-                <TextWithEdit 
+                <TextWithEdit
+                    inputId={"blog-text-input"}
                     text={state.text} 
-                    type={'text'} 
+                    type={TEXT_TYPE} 
                     dispatch={dispatch} 
-                    action={SET_TEXT}
                     isEditMode={state.textEdit}
-                    editAction={SET_TEXT_EDIT}         
+                    editActionCreator={setTextEditAC}
+                    textChangeActionCreator={setTextAC}        
                 />
-                
                 <input 
                     onChange={uploadImage} 
                     style={{display: 'none'}} 
@@ -185,6 +165,8 @@ export default ({ current, setCurrentBlogItem, createBlogItem, updateBlogItem, r
                 }
             </Wrapper>
         </>
-    )
-   
+    );
 }
+
+   
+export default BlogAbout;

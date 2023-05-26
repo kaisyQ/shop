@@ -1,3 +1,5 @@
-export const getBlogItems = (state) => state.blog.items
+import { RootState } from "redux/store"
 
-export const getCurrentBlogItem = (state) => state.blog.current
+export const getBlogItems = (state: RootState) => state.blog.items;
+
+export const getCurrentBlogItem = (state: RootState) => state.blog.current;

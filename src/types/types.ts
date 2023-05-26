@@ -14,3 +14,12 @@ export interface IProduct {
     delivery: string,
     imagesSrc: string[]
 }
+
+
+export interface IBlogType {
+    id: number,
+    title: string,
+    text: string,
+    imageSrc: string,
+    date: string
+}

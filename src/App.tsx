@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import HomeView from 'views/HomeView/HomeView';
 import CatalogView from 'views/CatalogView/CatalogView';
 import ContactView from 'views/ContactView/ContactView';
@@ -15,66 +14,31 @@ import Navbar from './components/Navbar/Navbar';
 import Search from 'components/Search/Search';
 
 import BlogAboutContainer from './components/Blogs/BlogAbout/BlogAboutContainer';
-
-
-
 import ShadingBlock from './components/Custom/ShadingBlock/ShadingBlock';
-
 import { Routes, Route } from 'react-router-dom';
-import styled from 'styled-components';
+import { AppWrapper, MainContainer } from 'AppStyles';
+
+import { AppConnectedProps } from 'AppContainer';
 
 
-const AppContainer = styled.div`
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-  color: black;
-  min-width: 250px;
-  max-width: 1200px;
-  min-height: 100vh;
-
-  @media only screen and (max-width: 768px){
-    max-width: 768px;
-  }
-
-  @media only screen and (max-width: 330px){
-    max-width: 330px;
-  }
-`
-
-const MainContainer = styled.main`
-  z-index: 3;
-  padding: 0 1rem;
-  flex-grow: 1;
-  position: relative;
-`
-
-
-function App({ checkMe, isDark, setIsDark }) {
+const App: React.FC<AppConnectedProps> = ({ isDark, setIsDark }) => {
   
-  const [isOpenSidebar, setIsOpenSidebar] = React.useState(false)
+  const [isOpenSidebar, setIsOpenSidebar] = React.useState(false);
 
-  React.useEffect(() => {
-    checkMe()
-  }, [checkMe])
-  
-  const darkOpacityClick = (ev) => {
-    setIsDark(false)
+  const darkOpacityClick = (ev: React.MouseEvent<HTMLDivElement>) => {
+    setIsDark(false);
   }
 
   return (
-    <AppContainer>
+    <AppWrapper>
       { isOpenSidebar && <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> }
 
       <HeaderContainer 
         isOpenSidebar={isOpenSidebar} 
         setIsOpenSidebar={setIsOpenSidebar}
-        
       />
 
-      { isDark ? <ShadingBlock onClick={darkOpacityClick}/> : null } 
+      { isDark ? <ShadingBlock onClick={darkOpacityClick} /> : null } 
       
       <Navbar />
 
@@ -109,7 +73,7 @@ function App({ checkMe, isDark, setIsDark }) {
           </>
       </MainContainer>
       <Footer />
-    </AppContainer>
+    </AppWrapper>
   )
 }
 

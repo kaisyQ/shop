@@ -1,12 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface IBlogType {
-    id: number,
-    title: string,
-    text: string,
-    imageSrc: string,
-    date: string
-}
+import { IBlogType } from "types/types";
 
 interface IBlogsInitialState {
     items: IBlogType[],
@@ -90,12 +84,14 @@ const initialState: IBlogsInitialState = {
                 10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
                 “planet candidates” discovered by the Kepler space telescope, 
                 10 of which are similar to Earth’s size and may be habitable by other life forms.`,
-            imageSrc: 'https://homecollection.com.ru/upload/resize_cache/iblock/a82/800_400_1/2-min.jpg',date: '21'
-            ,date: '21'
+            imageSrc: 'https://homecollection.com.ru/upload/resize_cache/iblock/a82/800_400_1/2-min.jpg',
+            date: '21'
         }
     ],
     current: null
 }
+
+
 
 const blogSlice = createSlice({
     name: 'blogSlice',
@@ -113,7 +109,7 @@ const blogSlice = createSlice({
                 ...action.payload
             })
         },
-        removeBlogItem: (state, action) => {
+        removeBlogItem: (state, action: PayloadAction<number>) => {
             state.items = state.items.filter(item => item.id !== action.payload)
         },
         updateBlogItem: (state, action) => {

@@ -1,12 +1,12 @@
-import React from "react"
-
-import styled from "styled-components"
-
-import { NavLink } from "react-router-dom"
-import Button from "components/Custom/Button/Button"
+import styled from "styled-components";
 
 
-const CardWrapper = styled.div`
+interface ICardTitleProps {
+    size?: string
+}
+
+
+export const CardWrapper = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -33,15 +33,16 @@ const CardWrapper = styled.div`
     @media only screen and (max-width: 330px) {
         width: 100%
     }
-`
+`;
 
-const CardImageWrapper = styled.div`
+export const CardImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     overflow: hidden;
     z-index: 1;
-`
-const CardImage = styled.img`
+`;
+
+export const CardImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -54,9 +55,9 @@ const CardImage = styled.img`
         transition: .3s ease-in-out;
         transform: scale(1);
     }
-`
+`;
 
-const CardInfoWrapper = styled.div`
+export const CardInfoWrapper = styled.div`
     display: block;
     position: absolute;
     bottom: 0;
@@ -89,27 +90,27 @@ const CardInfoWrapper = styled.div`
     @media only screen and (max-width: 330px) {
         display: none;
     }
-`
+`;
 
-const CardInfoContainer = styled.div`
+export const CardInfoContainer = styled.div`
     position: relative;
     left: 0;
     top: 60%;
     padding: 1rem;
-`
+`;
 
-const CardInfo = styled.div`
+export const CardInfo = styled.div`
 
-`
+`;
 
-const CardInfoItem = styled.div`
+export const CardInfoItem = styled.div`
     margin: 1rem 0;
     padding-left: 1rem;
     max-width: 40rem;
 
 `
 
-const CardTitle = styled.h3`
+export const CardTitle = styled.h3<ICardTitleProps>`
     position: relative;
     display: inline-block;
     font-size: ${props => props.size};
@@ -151,9 +152,9 @@ const CardTitle = styled.h3`
         transition: .3s ease-in-out;
         color: #fc8507;
     }
-`
+`;
 
-const CardAbout = styled.div`
+export const CardAbout = styled.div`
     display: none;
     @media only screen and (max-width: 1200px) {
         display: none;
@@ -166,47 +167,4 @@ const CardAbout = styled.div`
     @media only screen and (max-width: 330px) {
         display: block;
     }
-`
-
-
-export default ({ id, title, imageSrc }) => {
-
-    return (
-        <>
-           <CardWrapper> 
-                    <CardImageWrapper>
-                        <CardImage 
-                            src={imageSrc}
-                            alt="Card image" 
-                        />
-                    </CardImageWrapper>
-                    
-                    <CardInfoWrapper>
-                        <CardInfoContainer>
-                            <CardInfo>
-                                <CardInfoItem>
-                                    <CardTitle size={"2rem"}>{ title }</CardTitle>
-                                </CardInfoItem>
-                                <CardInfoItem>
-                                    <NavLink to={`/blog/${id}`}>
-                                        <Button isReverse={true}>Show More</Button>
-                                    </NavLink>
-                                </CardInfoItem>
-                            </CardInfo>
-                        </CardInfoContainer>
-                    </CardInfoWrapper>
-
-                    <CardAbout>
-                        <CardInfoItem>
-                            <CardTitle size={"2rem"}>{ title }</CardTitle>
-                        </CardInfoItem>
-                        <CardInfoItem>
-                            <NavLink>
-                                <Button to={`/blog/${id}`} isReverse={true}>Show More</Button>
-                            </NavLink>
-                        </CardInfoItem>
-                    </CardAbout>
-                </CardWrapper>
-        </>
-    )
-}
+`;
