@@ -4,8 +4,8 @@ import HomeView from 'views/HomeView/HomeView';
 import CatalogView from 'views/CatalogView/CatalogView';
 import ContactView from 'views/ContactView/ContactView';
 import CardAboutContainer from 'components/Catalog/Cards/Card/CardAbout/CardAboutContainer';
-import BlogsContainer from 'components/Blogs/BlogsContainer';
-import BlogAboutContainer from 'components/Blogs/BlogAbout/BlogAboutContainer';
+import PostsContainer from 'components/Posts/PostsContainer';
+import PostAboutContainer from 'components/Posts/PostAbout/PostAboutContainer';
 import AuthContainer from './../Auth/AuthContainer';
 import Search from 'components/Search/Search';
 
@@ -33,12 +33,9 @@ const MainRouter: React.FC = () => {
 
             <Route path='/contact' element={ <ContactView /> } />
 
-            <Route path='/blogs/:id?' element={ <BlogsContainer /> } />
+            <Route path='/posts' element={ <PostsContainer /> } />
 
-            <Route path='/blog'>
-                <Route path=':id' element={ <BlogAboutContainer /> } />
-                <Route path='create' element={ <BlogAboutContainer /> } />
-            </Route>
+            <Route path='/posts/:id'element={ <PostAboutContainer /> } />
 
             <Route path='auth' element={<AuthContainer />} />
 

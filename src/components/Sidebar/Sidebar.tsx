@@ -45,10 +45,10 @@ const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
                             <span>Contact</span>
                         </Item>
                     </NavLink>
-                    <NavLink to={'/blogs'}>
+                    <NavLink to={'/posts'}>
                         <Item onClick={hideSidebar}>
                             <Icon.Newspaper size={'2rem'}/>
-                            <span>Blog</span>
+                            <span>Posts</span>
                         </Item>
                     </NavLink>
                 </ListWrapper>

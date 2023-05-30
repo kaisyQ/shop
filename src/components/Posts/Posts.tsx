@@ -1,14 +1,14 @@
 import React from "react";
 
-import BlogItem from "./BlogItem/BlogItem";
+import BlogItem from "./Post/Post";
 import Pagination from "../Pagination/Pagination";
 import Title from "../Custom/Title/Title";
 
 import { useParams } from "react-router-dom";
 
-import { BlogsWrapper, TitleWrapper, BlogWrapper } from "./BlogsStyles";
+import { BlogsWrapper, TitleWrapper, BlogWrapper } from "./PostsStyles";
 
-import { BlogsConnectedProps } from "./BlogsContainer";
+import { BlogsConnectedProps } from "./PostsContainer";
 
 
 const Blogs: React.FC<BlogsConnectedProps> = ({ blogs }) => {

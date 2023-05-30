@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
                 <NavLink to={'/'}><Item>Home</Item></NavLink>
                 <NavLink to={'/catalog'}><Item>Catalog</Item></NavLink>
                 <NavLink to={'/contact'}><Item>Contact</Item></NavLink>
-                <NavLink to={'/blogs'}><Item>Blog</Item></NavLink>
+                <NavLink to={'/posts'}><Item>Posts</Item></NavLink>
             </Wrapper>
         </>
     );

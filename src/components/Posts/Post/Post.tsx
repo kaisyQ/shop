@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import { 
     CardWrapper, CardImageWrapper, CardImage, CardInfoWrapper, CardInfoContainer, CardInfo, CardInfoItem,
     CardTitle, CardAbout
-} from "./BlogsItemStyles";
+} from "./PostStyles";
 
 
 interface IBlogItemProps {
@@ -36,7 +36,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imageSrc }) => {
                                     <CardTitle size={"2rem"}>{ title }</CardTitle>
                                 </CardInfoItem>
                                 <CardInfoItem>
-                                    <NavLink to={`/blog/${id}`}>
+                                    <NavLink to={`/posts/${id}`}>
                                         <Button isReverse={true}>Show More</Button>
                                     </NavLink>
                                 </CardInfoItem>
@@ -49,7 +49,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imageSrc }) => {
                             <CardTitle size={"2rem"}>{ title }</CardTitle>
                         </CardInfoItem>
                         <CardInfoItem>
-                            <NavLink to={`/blog/${id}`}>
+                            <NavLink to={`/posts/${id}`}>
                                 <Button isReverse={true}>Show More</Button>
                             </NavLink>
                         </CardInfoItem>

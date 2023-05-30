@@ -1,4 +1,4 @@
-import Blogs from "./Blogs";
+import Posts from "./Posts";
 
 import { connect, ConnectedProps } from "react-redux";
 
@@ -21,4 +21,4 @@ const connector = connect(mapStateToProps, null);
 
 export type BlogsConnectedProps = ConnectedProps<typeof connector>;
 
-export default connector(Blogs);
+export default connector(Posts);
