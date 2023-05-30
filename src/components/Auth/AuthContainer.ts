@@ -1,30 +1,28 @@
-import Auth from "./Auth"
+import Auth from "./Auth";
 
-import { ConnectedProps, connect } from "react-redux"
-import { signInThunk as signIn } from "../../redux/reducers/auth/authSlice"
-import { getIsAuth } from "../../redux/reducers/auth/selector"
+import { ConnectedProps, connect } from "react-redux";
+import { getIsAuth } from "../../redux/reducers/auth/selector";
+import { setAuthData } from "redux/reducers/auth/authSlice";
 
-import { RootState } from "redux/store"
+import { RootState } from "redux/store";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
+import { IAuthState } from "redux/reducers/auth/authSlice";
 
 interface IMapStateToPropsType  {
-    isAuth: boolean
+    isAuth: boolean,
 }
 
-/*
-            исправить dispatch тип any
-*/
-
 interface IMapDispatchToPropsType {
-    signIn: (login: string, password: string) => (dispatch: any) => Promise<void>
+    setAuthData: ActionCreatorWithPayload<IAuthState>
 }
 
 const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state),
 });
 
 const mapDispatchToProps: IMapDispatchToPropsType = {
-    signIn
+    setAuthData
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

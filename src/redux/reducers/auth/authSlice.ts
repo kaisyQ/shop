@@ -1,16 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { checkMe, signIn, signOut } from "../../../api/api";
+import { RootDispatch } from "redux/store";
 
 
-interface IInitialAuthState {
+export interface IAuthState {
     id: number | null,
     isAuth: boolean,
     login: string | null,
 }
 
 
-const initialState: IInitialAuthState = {
+const initialState: IAuthState = {
     id: null,
     isAuth: false,
     login: null,
@@ -21,7 +22,7 @@ const authSlice = createSlice({
     name: 'authSlice',
     initialState,
     reducers: {
-        setAuthData: (state, action: PayloadAction<IInitialAuthState>) => {
+        setAuthData: (state, action: PayloadAction<IAuthState>) => {
             state.id = action.payload.id
             state.isAuth = action.payload.isAuth
             state.login = action.payload.login
@@ -35,12 +36,8 @@ const { actions, reducer } = authSlice;
 
 export const { setAuthData } = actions;
 
-/*
-    ИСПРАВИТЬ ТИП ANY у dispatch!!!!
-*/
 
-
-export const signInThunk = (login: string, password: string) => async (dispatch: any) => {
+export const signInThunk = (login: string, password: string) => async (dispatch: RootDispatch) => {
     const response = await signIn(login, password);
     if (response.status === 200) {
         dispatch(setAuthData({
@@ -52,7 +49,7 @@ export const signInThunk = (login: string, password: string) => async (dispatch:
 }
 
 
-export const signOutThunk = () => async (dispatch: any) => {
+export const signOutThunk = () => async (dispatch: RootDispatch) => {
     const response = await signOut();
     if(response.status === 200) {
         dispatch(setAuthData({
@@ -63,7 +60,7 @@ export const signOutThunk = () => async (dispatch: any) => {
     }
 }
 
-export const checkMeThunk = () => async (dispatch: any) => {
+export const checkMeThunk = () => async (dispatch: RootDispatch) => {
     const response = await checkMe();
     if(response.status === 200){
         dispatch(setAuthData({

@@ -97,8 +97,8 @@ const blogSlice = createSlice({
     name: 'blogSlice',
     initialState,
     reducers: {
-        setBlogs: () => {
-
+        setBlogs: (state, action: PayloadAction<IBlogType[]>) => {
+            state.items = action.payload;
         },
         setCurrent: (state, action: PayloadAction<number>) => {
             state.current = state.items.filter(item => item.id === action.payload)[0]

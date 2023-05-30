@@ -3,10 +3,11 @@ import * as Icon from 'react-bootstrap-icons';
 import { Wrapper } from "./EditButtonStyles";
 
 interface IEditButtonProps {
-    onClick?: (ev: React.MouseEvent<HTMLButtonElement>) => void
+    onClick?: (ev: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
-export default ({ onClick }: IEditButtonProps) => {
+
+const EditButton: React.FC<IEditButtonProps> = ({ onClick }) => {
     return (
         <>
             <Wrapper onClick={onClick}>
@@ -15,3 +16,5 @@ export default ({ onClick }: IEditButtonProps) => {
         </>
     );
 }
+
+export default EditButton;

@@ -31,6 +31,12 @@ export const FooterWrapper = styled.footer`
 
 export const LinksContainer = styled.div`
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
+`;
+
+export const Links = styled.div`
+    display: flex;
     gap: 2rem;
 `;
 
@@ -46,4 +52,21 @@ export const Information = styled.p`
     margin-top: .5rem;
     padding-left: 1rem;
     text-decoration: underline;
+`;
+
+export const SignInButton = styled.button`
+    display: block;
+    font-size: 1rem;
+    text-decoration: underline;
+    
+    transition: .2s ease-in-out;
+    :hover {
+        color: #c74646;
+        transform: scale(1.05);
+    }   
+
+    :not(:hover){
+        color: #000;
+        transform: scale(1);
+    }
 `;

@@ -1,9 +1,12 @@
-
-export interface IProduct {
+export interface IShortProduct {
     id: number,
     name: string,
     count: number,
-    price: number,
+    price: number
+}
+
+
+export interface IProduct extends IShortProduct {
     discountPrice: number,
     description: string,
     params: {
@@ -16,10 +19,23 @@ export interface IProduct {
 }
 
 
+
 export interface IBlogType {
     id: number,
     title: string,
     text: string,
     imageSrc: string,
     date: string
+}
+
+
+export enum Roles {
+    ADMIN,
+    EMPLOYEE
+}
+
+export interface IUser {
+    id: number,
+    login: string
+    role: Roles
 }

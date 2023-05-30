@@ -66,6 +66,7 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ item }) => {
                 
                 <InfoWrapper>
 
+
                     <Title>{ item.name }</Title>
 
                     <PriseWrapper>

@@ -14,8 +14,7 @@ interface IInputProps {
 }
 
 
-export default (props: IInputProps) => {
-
+const Input: React.FC<IInputProps> = (props) => {
 
     const { placeholder, id, type, value, onChange, padding, width, fontSize } = props;
     
@@ -46,5 +45,7 @@ export default (props: IInputProps) => {
                 }
             </Wrapper>  
         </>
-    )
+    );
 }
+
+export default Input

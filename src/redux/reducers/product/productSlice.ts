@@ -247,11 +247,17 @@ const productSlice = createSlice({
         setCurrent: (state, action: PayloadAction<number>) => {
             
         },
+        addProduct: (state, action: PayloadAction<IProduct>) => {
+            state.items.push(action.payload);
+        },
+        removeProduct:(state, action: PayloadAction<number>) => {
+            state.items = state.items.filter(product => product.id !== action.payload);
+        }
     }
 })
 
 const { actions, reducer } = productSlice;
 
-export const { setCurrent } = actions;
+export const { setCurrent, addProduct, removeProduct } = actions;
 
 export default reducer;

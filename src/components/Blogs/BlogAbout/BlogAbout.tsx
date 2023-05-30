@@ -5,7 +5,6 @@ import NoImage from "../../Custom/NoImage/NoImage";
 import Button from "components/Custom/Button/Button";
 import EditButton from "../../Custom/EditButton/EditButton";
 
-
 import { useParams, NavLink } from "react-router-dom";
 
 import reducer, { 
@@ -52,7 +51,7 @@ const BlogAbout: React.FC<BlogAboutConnectedProps> = (props) => {
     },[id, current, setCurrentBlogItem, dispatch])
 
     const uploadImage = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        
+
         const reader = new FileReader();
 
         reader.onload = (ev) => {
@@ -128,11 +127,12 @@ const BlogAbout: React.FC<BlogAboutConnectedProps> = (props) => {
                         <div style={{position:'relative'}}>
                 
                             <label htmlFor="upload-blog-image-input">
-                                <EditButton />
+                                <EditButton onClick={(ev) => ev.preventDefault()}/>
                             </label>
                 
                             <Image src={state.imageSrc} /> 
                         </div>
+                    
                     </> : <>
                         
                         <label htmlFor="upload-blog-image-input">
