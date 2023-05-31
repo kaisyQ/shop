@@ -1,11 +1,8 @@
 import React from "react"
 
-import { useParams, NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { 
-    Wrapper, Image, Date, BtnsWrapper, Title, Text, Btn
-} from "./PostAboutStyles";
-
+import { Wrapper, Image, Date, Title, Text } from "./PostAboutStyles";
 
 import { PostAboutConnectedProps } from "./PostAboutContainer";
 
@@ -23,6 +20,7 @@ const PostAbout: React.FC<IPostAboutProps> = ({ current, setCurrentPost }) => {
         }
         setCurrentPost(parseInt(id));
     }, [id])
+
     return (
         <>
             <Wrapper>
@@ -30,7 +28,7 @@ const PostAbout: React.FC<IPostAboutProps> = ({ current, setCurrentPost }) => {
 
                 { current ? <Text>{ current.text }</Text> : null }
 
-                { current ? <Image src={current.imageSrc[0]}/> : null }
+                { current ? <Image src={current.imageSrc}/> : null }
 
                 { current ? <Date>{ current.date }</Date> : null }
             </Wrapper>
