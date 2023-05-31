@@ -4,8 +4,6 @@ import Title from "components/Custom/Title/Title";
 import UsersTableContainer from "./UsersTable/UsersTableContainer";
 import ProductsTableContainer from "./ProductsTable/ProductsTableContainer";
 
-import { Routes, Route } from "react-router-dom";
-
 import { 
     AdminWrapper
 } from "./AdminStyles";
@@ -15,7 +13,7 @@ import { AdminConnectedProps } from "./AdminContainer";
 import { Navigate } from "react-router-dom";
 import BlogsTableContainer from "./BlogsTable/BlogsTableContainer";
 
-const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login, users }) => {
+const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login }) => {
     
     if (!isAuth) {
         return <Navigate  to={"/auth"} />

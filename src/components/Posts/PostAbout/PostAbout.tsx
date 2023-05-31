@@ -12,6 +12,7 @@ interface IPostAboutProps extends PostAboutConnectedProps {
 }
 
 const PostAbout: React.FC<IPostAboutProps> = ({ current, setCurrentPost }) => {
+    
     const { id } = useParams();
 
     React.useEffect(() => {

@@ -3,7 +3,8 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUser, Roles } from "types/types";
 
 interface IUserInitialState {
-    items: IUser[]
+    items: IUser[],
+    current: IUser | null
 }
 
 const initialState: IUserInitialState = {
@@ -23,7 +24,8 @@ const initialState: IUserInitialState = {
             login: 'user2',
             role: Roles.EMPLOYEE
         }
-    ]
+    ],
+    current: null
 }
 
 const usersSlice = createSlice({
@@ -34,13 +36,20 @@ const usersSlice = createSlice({
             state.items.push(action.payload)
         },
         removeUser: (state, action: PayloadAction<number>) => {
-           state.items = state.items.filter(user => user.id != action.payload)
+           state.items = state.items.filter(user => user.id != action.payload);
+        },
+        setCurrentUser: (state, action: PayloadAction<number>) => {
+            const user = state.items.find(item => item.id === action.payload);
+            state.current = null;
+            if (user) {
+                state.current = user;
+            }
         }
     }
 })
 
 const { actions, reducer } = usersSlice;
 
-export const { addUser, removeUser } = actions;
+export const { addUser, removeUser, setCurrentUser } = actions;
 
 export default reducer;

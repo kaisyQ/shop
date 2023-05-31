@@ -41,7 +41,12 @@ const MainRouter: React.FC = () => {
 
             <Route path='search' element={<Search />} />
 
-            <Route path='admin' element={<AdminContainer />} />
+            <Route path='/admin'>
+                <Route path='' element={<AdminContainer />} />
+                <Route path='user' element={<h1>user edit</h1>} />
+                <Route path='product' element={<h1>product edit</h1>} />
+                <Route path='post' element={<h1>posts edit</h1>} />
+            </Route>
 
             </Routes>
         </>

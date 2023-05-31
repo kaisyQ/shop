@@ -1,18 +1,22 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd,  } from './../AdminStyles';
+import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd,   } from './../AdminStyles';
 
 import * as Icon from 'react-bootstrap-icons';
 
-import { IUser } from "types/types";
-
 import { UserTableConnectedProps } from "./UsersTableContainer";
+
+import { NavLink } from "react-router-dom";
 
 interface IUserTableProps extends UserTableConnectedProps {
 }
 
-const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, addUser }) => {
+const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUser }) => {
     
+    const onEditClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
+
+    }
+
     return (
         <>
             <TableWrapper>
@@ -38,7 +42,13 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, addUser }) =
                                         <Icon.XLg size={'2rem'} />
                                     </TableTd>
                                     <TableTd>
-                                        <Icon.Pencil size={'2rem'} />
+                                        <NavLink to={'/admin/user'}>
+                                            <button onClick={() => {
+                                                setCurrentUser(user.id);
+                                            }}>
+                                                <Icon.Pencil size={'2rem'} />
+                                            </button>
+                                        </NavLink>
                                     </TableTd>
                                 </TableTr>
                             </>

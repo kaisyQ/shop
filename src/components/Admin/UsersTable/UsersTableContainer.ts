@@ -6,7 +6,7 @@ import { ConnectedProps, connect } from "react-redux";
 import { IUser } from "types/types";
 import { getUsers } from "redux/reducers/users/selector";
 
-import { addUser, removeUser } from "redux/reducers/users/usersSlice";
+import { addUser, removeUser, setCurrentUser } from "redux/reducers/users/usersSlice";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 interface IMapStateToPropsType {
@@ -16,6 +16,7 @@ interface IMapStateToPropsType {
 interface IMapDispatchToPropsType {
     addUser: ActionCreatorWithPayload<IUser>,
     removeUser: ActionCreatorWithPayload<number>
+    setCurrentUser: ActionCreatorWithPayload<number>
 }
 
 const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
@@ -23,7 +24,7 @@ const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
 });
 
 const mapDispatchToProps: IMapDispatchToPropsType = {
-    addUser, removeUser
+    addUser, removeUser, setCurrentUser
 };
 
 
