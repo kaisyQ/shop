@@ -1,6 +1,6 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd,  } from './../AdminStyles';
+import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn } from './../AdminStyles';
 
 import * as Icon from 'react-bootstrap-icons';
 
@@ -27,18 +27,27 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
                 <TableTbody>
                     {
                         posts.map(post => <>
-                                <TableTr key={ post.id }>
+                                <TableTr 
+                                    key={ post.id }  
+
+                                    defaultRowBgColor="#ff840080" 
+                                    defaultRowTextColor="#000000cf"
+                                >
                                     <TableTd>{ post.id }</TableTd>
                                     <TableTd>{ post.title }</TableTd>
                                     <TableTd>{ post.date }</TableTd>
                                     <TableTd>{ post.text }</TableTd>
-                                    <TableTd onClick={(ev) => {
-                                        removePost(post.id)
-                                    }}>
-                                        <Icon.XLg size={'2rem'} />
+                                    <TableTd>
+                                        <RemoveBtn onClick={(ev) => {
+                                            removePost(post.id)
+                                        }}>
+                                            <Icon.XLg size={'2rem'} />
+                                        </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
-                                        <Icon.Pencil size={'2rem'} />
+                                        <EditBtn>
+                                            <Icon.Pencil size={'2rem'} />
+                                        </EditBtn>
                                     </TableTd>
                                 </TableTr>
                             </>
