@@ -2,18 +2,18 @@ import Posts from "./Posts";
 
 import { connect, ConnectedProps } from "react-redux";
 
-import { getBlogItems } from "../../redux/reducers/blog/selector";
+import { getPosts } from "../../redux/reducers/posts/selector";
 
 import { RootState } from "redux/store";
-import { IBlogType } from "types/types";
+import { IPostWithDate } from "types/types";
 
 interface IMapStateToPropsType {
-    blogs: IBlogType[]
+    blogs: IPostWithDate[]
 }
 
 
 const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
-    blogs: getBlogItems(state)
+    blogs: getPosts(state)
 })
 
 

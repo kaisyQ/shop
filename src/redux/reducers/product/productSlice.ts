@@ -250,6 +250,17 @@ const productSlice = createSlice({
         addProduct: (state, action: PayloadAction<IProduct>) => {
             state.items.push(action.payload);
         },
+        updateProduct:(state, action: PayloadAction<IProduct>) => {
+            state.items = state.items.filter(product => {
+                if (product.id !== action.payload.id) {
+                    return product;
+                }
+                return {
+                    ...product,
+                    ...action.payload
+                }
+            })
+        },
         removeProduct:(state, action: PayloadAction<number>) => {
             state.items = state.items.filter(product => product.id !== action.payload);
         }
@@ -258,6 +269,6 @@ const productSlice = createSlice({
 
 const { actions, reducer } = productSlice;
 
-export const { setCurrent, addProduct, removeProduct } = actions;
+export const { setCurrent, addProduct, removeProduct, updateProduct } = actions;
 
 export default reducer;

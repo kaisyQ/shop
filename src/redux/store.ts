@@ -3,14 +3,14 @@ import thunk from 'redux-thunk';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import authReducer from './reducers/auth/authSlice';
-import blogReducer from './reducers/blog/reducer';
+import postsReducer from './reducers/posts/reducer';
 import stylesReducer from './reducers/styles/stylesSlice';
 import productReducer from './reducers/product/productSlice';
 import usersReducer from './reducers/users/usersSlice';
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    blog: blogReducer,
+    posts: postsReducer,
     styles: stylesReducer,
     product: productReducer,
     users: usersReducer

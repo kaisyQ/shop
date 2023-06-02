@@ -1,18 +1,18 @@
-import PostAbout from "./PostAbout"
+import PostAbout from "./PostAbout";
 
-import { ConnectedProps, connect } from "react-redux"
+import { ConnectedProps, connect } from "react-redux";
 
 import { 
     setCurrent as setCurrentPost, 
-} from "../../../redux/reducers/blog/reducer"
+} from "../../../redux/reducers/posts/reducer";
 
-import { getCurrentBlogItem } from "../../../redux/reducers/blog/selector"
+import { getCurrentPost } from "../../../redux/reducers/posts/selector";
 
-import { RootState } from "redux/store"
+import { RootState } from "redux/store";
 
 
 const mapStateToProps = (state: RootState) => ({
-    current: getCurrentBlogItem(state)
+    current: getCurrentPost(state)
 });
 
 const mapDispatchToProps = {
@@ -25,7 +25,7 @@ type mapDispatchToPropsType = typeof mapDispatchToProps;
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export type PostAboutConnectedProps = ConnectedProps<typeof connector>
+export type PostAboutConnectedProps = ConnectedProps<typeof connector>;
 
 
 export default connector(PostAbout);

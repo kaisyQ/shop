@@ -1,3 +1,4 @@
+
 export interface IShortProduct {
     id: number,
     name: string,
@@ -19,8 +20,14 @@ export interface IProduct extends IShortProduct {
 }
 
 
+export interface IPost {
+    id?: number,
+    title: string,
+    text: string,
+    imageSrc: string,
+}
 
-export interface IBlogType {
+export interface IPostWithDate {
     id: number,
     title: string,
     text: string,
@@ -36,6 +43,6 @@ export enum Roles {
 
 export interface IUser {
     id: number,
-    login: string
+    login: string,
     role: Roles
 }

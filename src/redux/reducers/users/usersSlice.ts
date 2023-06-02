@@ -25,7 +25,11 @@ const initialState: IUserInitialState = {
             role: Roles.EMPLOYEE
         }
     ],
-    current: null
+    current: {
+        id: 3,
+        login: 'user2',
+        role: Roles.EMPLOYEE
+    }
 }
 
 const usersSlice = createSlice({
@@ -36,7 +40,18 @@ const usersSlice = createSlice({
             state.items.push(action.payload)
         },
         removeUser: (state, action: PayloadAction<number>) => {
-           state.items = state.items.filter(user => user.id != action.payload);
+           state.items = state.items.filter(user => user.id !== action.payload);
+        },
+        updateUser: (state, action: PayloadAction<IUser>) => {
+            state.items = state.items.filter(user => {
+                if (action.payload.id !== user.id) {
+                    return user;
+                }
+                return {
+                    ...user,
+                    login: action.payload.login
+                }
+            })
         },
         setCurrentUser: (state, action: PayloadAction<number>) => {
             const user = state.items.find(item => item.id === action.payload);
@@ -50,6 +65,6 @@ const usersSlice = createSlice({
 
 const { actions, reducer } = usersSlice;
 
-export const { addUser, removeUser, setCurrentUser } = actions;
+export const { addUser, removeUser, setCurrentUser, updateUser } = actions;
 
 export default reducer;

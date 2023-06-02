@@ -1,19 +1,20 @@
-import BlogsTable from "./BlogsTable";
+import PostEdit from "./PostEdit";
 
 import { connect, ConnectedProps } from "react-redux";
 
 import { RootState } from "redux/store";
 
-import { getPosts } from "redux/reducers/posts/selector";
-import { removePost } from "redux/reducers/posts/reducer";
+import { getCurrentPost } from "redux/reducers/posts/selector";
+
+import { createPost, updatePost } from "redux/reducers/posts/reducer";
 
 const mapStateToProps = (state: RootState) => ({
-    posts: getPosts(state)
-})
+    post: getCurrentPost(state)
+});
 
 const mapDispatchToProps = {
-    removePost
-}
+    createPost, updatePost
+};
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>;
 
@@ -21,6 +22,6 @@ type MapDispatchToPropsType = typeof mapDispatchToProps;
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export type IBlogsTableConnectedProps = ConnectedProps<typeof connector>;
+export type IPostEditConnectedProps = ConnectedProps<typeof connector>;
 
-export default connector(BlogsTable);
+export default connector(PostEdit);

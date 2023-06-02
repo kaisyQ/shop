@@ -8,9 +8,13 @@ import PostsContainer from 'components/Posts/PostsContainer';
 import PostAboutContainer from 'components/Posts/PostAbout/PostAboutContainer';
 import AuthContainer from './../Auth/AuthContainer';
 import Search from 'components/Search/Search';
+import AdminContainer from 'components/Admin/AdminContainer';
+import UserEditContainer from 'components/Admin/UserEdit/UserEditContainer';
+import ProductEditContainer from 'components/Admin/ProductEdit/ProductEditContainer';
+import PostEditContainer from 'components/Admin/PostEdit/PostEditContainer';
+
 
 import { Routes, Route } from 'react-router-dom';
-import AdminContainer from 'components/Admin/AdminContainer';
 
 const MainRouter: React.FC = () => {
     return (
@@ -43,9 +47,9 @@ const MainRouter: React.FC = () => {
 
             <Route path='/admin'>
                 <Route path='' element={<AdminContainer />} />
-                <Route path='user' element={<h1>user edit</h1>} />
-                <Route path='product' element={<h1>product edit</h1>} />
-                <Route path='post' element={<h1>posts edit</h1>} />
+                <Route path='user/:id?' element={<UserEditContainer />} />
+                <Route path='product/:id?' element={<ProductEditContainer />} />
+                <Route path='post/:id?' element={<PostEditContainer />} />
             </Route>
 
             </Routes>

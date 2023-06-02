@@ -45,7 +45,6 @@ input, textarea {
 }
 
 textarea {
-  resize: none;
   background: inherit;
 }
 
