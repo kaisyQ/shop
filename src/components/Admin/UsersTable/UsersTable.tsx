@@ -1,6 +1,6 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd,   } from './../AdminStyles';
+import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn } from './../AdminStyles';
 
 import * as Icon from 'react-bootstrap-icons';
 
@@ -36,18 +36,20 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
                                     <TableTd>{ user.id }</TableTd>
                                     <TableTd>{ user.login }</TableTd>
                                     <TableTd>{ user.role }</TableTd>
-                                    <TableTd onClick={(ev) => {
-                                        removeUser(user.id)
-                                    }}>
-                                        <Icon.XLg size={'2rem'} />
+                                    <TableTd>
+                                        <RemoveBtn onClick={() => {
+                                            removeUser(user.id)
+                                        }}>
+                                            <Icon.XLg size={'2rem'} />
+                                        </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
                                         <NavLink to={'/admin/user'}>
-                                            <button onClick={() => {
+                                            <EditBtn onClick={() => {
                                                 setCurrentUser(user.id);
                                             }}>
                                                 <Icon.Pencil size={'2rem'} />
-                                            </button>
+                                            </EditBtn>
                                         </NavLink>
                                     </TableTd>
                                 </TableTr>
