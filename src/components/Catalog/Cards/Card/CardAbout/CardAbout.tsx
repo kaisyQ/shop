@@ -2,6 +2,10 @@ import React from "react";
 
 import Slider from "components/Slider/Slider";
 
+import DimIcon from './../../../../Custom/Icons/DimIcon';
+import SofaIcon from './../../../../Custom/Icons/SofaIcon';
+import TruckIcon from './../../../../Custom/Icons/DeliveryIcon';
+
 import CardAboutSection from "./CardAboutSection/CardAboutSection";
 
 import { useParams } from "react-router-dom";
@@ -77,11 +81,17 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ item }) => {
                         }
                     </PriseWrapper>
 
-                    <CardAboutSection title={'About Product'} text={item.description} />
+                    <CardAboutSection title={'About Product'} text={item.description}>
+                        <SofaIcon width="64" height="64" />
+                    </CardAboutSection>
 
-                    <CardAboutSection title={'Dimensions'} params={item.params} />
+                    <CardAboutSection title={'Dimensions'} params={item.params}>
+                        <DimIcon width="64" height="64" />
+                    </CardAboutSection>
 
-                    <CardAboutSection title={'About Delivery'} text={item.delivery} />
+                    <CardAboutSection title={'About Delivery'} text={item.delivery} >
+                        <TruckIcon width="64" height="64" />
+                    </CardAboutSection>
 
                 </InfoWrapper>
             </Wrapper>

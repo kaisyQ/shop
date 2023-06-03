@@ -21,7 +21,7 @@ const Blogs: React.FC<BlogsConnectedProps> = ({ blogs }) => {
         <>
             <BlogsWrapper>
                 <TitleWrapper>
-                    <Title>Blog</Title>
+                    <Title>Posts</Title>
                 </TitleWrapper>
                 <BlogWrapper>
                 {

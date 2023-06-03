@@ -16,7 +16,7 @@ interface ICardAboutSectionProps {
 }
 
 
-const CardAboutSection: React.FC<ICardAboutSectionProps> = ({ text, title, params }) => {
+const CardAboutSection: React.FC<React.PropsWithChildren<ICardAboutSectionProps>> = (props) => {
     
     const [visibleText, setVisibleText] = React.useState(false);
     
@@ -31,12 +31,14 @@ const CardAboutSection: React.FC<ICardAboutSectionProps> = ({ text, title, param
         setVisibleText(prev => !prev);
     } 
 
+    const { text, title, params, children } = props;
+
     return (
         <>
             <Wrapper>
                 <Section>
                     <Title onClick={onTitleClick}>
-                        <Block />
+                        {children}
                         <Span>{ title }</Span>
                         <Arrow visible={visibleText} />
                     </Title>

@@ -6,6 +6,8 @@ import * as Icon from 'react-bootstrap-icons';
 
 import { IProductConnectedProps } from "./ProductsTableContainer";
 
+import { NavLink } from "react-router-dom";
+
 interface IProductsTableProps extends IProductConnectedProps{
 }
 
@@ -52,9 +54,11 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct,
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
-                                        <EditBtn>
-                                            <Icon.Pencil size={'2rem'} />
-                                        </EditBtn>
+                                        <NavLink to="/admin/product">
+                                            <EditBtn>
+                                                <Icon.Pencil size={'2rem'} />
+                                            </EditBtn>
+                                        </NavLink>
                                     </TableTd>
                                 </TableTr>
                             </>

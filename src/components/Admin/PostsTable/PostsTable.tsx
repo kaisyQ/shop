@@ -1,10 +1,12 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn } from './../AdminStyles';
+import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn } from '../AdminStyles';
 
 import * as Icon from 'react-bootstrap-icons';
 
-import { IBlogsTableConnectedProps } from "./BlogsTableContainer";
+import { IBlogsTableConnectedProps } from "./PostsTableContainer";
+
+import { NavLink } from "react-router-dom";
 
 interface IBlogsTableProps extends IBlogsTableConnectedProps {
 }
@@ -45,9 +47,11 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
-                                        <EditBtn>
-                                            <Icon.Pencil size={'2rem'} />
-                                        </EditBtn>
+                                        <NavLink to="/admin/post">
+                                            <EditBtn>
+                                                <Icon.Pencil size={'2rem'} />
+                                            </EditBtn>
+                                        </NavLink>
                                     </TableTd>
                                 </TableTr>
                             </>

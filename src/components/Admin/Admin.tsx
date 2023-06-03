@@ -11,7 +11,7 @@ import {
 import { AdminConnectedProps } from "./AdminContainer";
 
 import { Navigate } from "react-router-dom";
-import BlogsTableContainer from "./BlogsTable/BlogsTableContainer";
+import BlogsTableContainer from "./PostsTable/PostsTableContainer";
 
 const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login }) => {
     

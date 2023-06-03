@@ -77,7 +77,7 @@ export const ParamName = styled.span`
         width: 1rem;
         height: 1rem;
         padding: 1rem;
-        background: #fc8507;
+        background: #000;
         transform: translate(-130%, -50%);
     }
 

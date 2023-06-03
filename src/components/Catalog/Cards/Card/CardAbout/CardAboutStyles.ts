@@ -48,8 +48,7 @@ export const Title = styled.h3`
     text-align: center;
     font-size: 3rem;
     letter-spacing: .1rem;
-    color: #c74646;
-    font-style: italic;
+    color: #000;
     font-weight: 500;
     
     ::after {

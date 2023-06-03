@@ -3,7 +3,10 @@ import React from "react";
 import Button from "components/Custom/Button/Button";
 import Input from "components/Custom/Input/Input";
 
-import { ProductEditWrapper, FormControl, InputWrapper, EditForm, InputsWrapper } from "./ProductEditStyles";
+import { 
+    ProductEditWrapper, FormControl, InputWrapper, EditForm, InputsWrapper, BlockWrapper,
+    ImagesWrapper, Image, ImageBlock, BtnWrapper
+ } from "./ProductEditStyles";
 
 import { IProductEditConnectedProps } from "./ProductEditContainer";
 import { useParams } from "react-router-dom";
@@ -87,6 +90,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
         <>
             <ProductEditWrapper>
                 <EditForm onSubmit={onEditFormSubmit}>
+                    <BlockWrapper>
                     <InputWrapper>
                         <Input 
                             placeholder="Name" 
@@ -102,6 +106,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                             placeholder="About product" 
                             id="user-edit-about" 
                             type="textarea" 
+                            minHeight="30rem"
                             onChange={onAboutProductChange}
                             value={aboutProduct}
                         />
@@ -162,21 +167,25 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                         <Input 
                             placeholder="About delivery" 
                             id="user-edit-about-delivery" 
-                            type="textarea" 
+                            type="textarea"
+                            minHeight="30rem"
                             onChange={onDeliveryAboutChange}
                             value={aboutDelivery}
                         />
                     </InputWrapper>
+                    </BlockWrapper>
+                    <BlockWrapper>
                     {
-                        images ? <div>
+                        images ? <ImagesWrapper>
                             {
-                                images.map((src, mainIndex) => <>
-                                        <img  src={src} alt="" />
+                                images.map((src, mainIndex) => <ImageBlock>
+                                        <Image  src={src} alt="" />
                                         <label key={mainIndex}>
+                                            <span>Choose image</span>
                                             <input
                                                 type="file" 
                                                 accept="image.png, image.jpg"
-                                                style={{display: 'block'}}
+                                                style={{display: 'none'}}
                                                 onChange={(ev) => {
                                                     if (!ev.target.files) {
                                                         return;
@@ -192,14 +201,15 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                                                 }}
                                             />
                                         </label>
-                                    </>
+                                    </ImageBlock>
                                 )
                             }
-                        </div> : null
+                        </ImagesWrapper> : null
                     }
-                    <FormControl>
+                    <BtnWrapper>
                         <Button>Save</Button>
-                    </FormControl>
+                    </BtnWrapper>
+                    </BlockWrapper>
                 </EditForm>
             </ProductEditWrapper>
         </>

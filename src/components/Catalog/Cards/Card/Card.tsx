@@ -47,7 +47,7 @@ const Card: React.FC<ICardProps> = ({ count, name, imageSrc, id }) => {
                     </NavLink>
                     <CardInfoItem>
                         <NavLink to={`/catalog/${id}`}>
-                            <Button>Show More</Button>
+                            <Button isReverse={true}>Show More</Button>
                         </NavLink>
                     </CardInfoItem>
                 </CardInfoWrapper>

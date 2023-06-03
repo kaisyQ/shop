@@ -2,11 +2,14 @@ import React from "react";
 
 import Button from "components/Custom/Button/Button";
 import Input from "components/Custom/Input/Input";
+import Title from "components/Custom/Title/Title";
 
-import { EditForm, UserEditWrapper, EditFormControl, InputWrapper } from "./PostEditStyles";
+import { 
+    EditForm, UserEditWrapper, EditFormControl, InputWrapper, LabelWrapper, LabelSpan
+} from "./PostEditStyles";
 
 import { IPostEditConnectedProps } from "./PostEditContainer";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 
 interface IPostEditProps extends IPostEditConnectedProps {
 
@@ -16,6 +19,7 @@ interface IPostEditProps extends IPostEditConnectedProps {
 const PostEdit: React.FC<IPostEditProps> = ({ post, createPost, updatePost }) => {
     
     const { id } = useParams();
+
 
     const [title, setTitle] = React.useState('');
     const [text, setText] = React.useState('');
@@ -37,9 +41,7 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, createPost, updatePost }) =>
     }, [post])
 
 
-    const onEditFormSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
-        ev.preventDefault();
-
+    const onSaveClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
         if(!postImage) {
             return;
         }
@@ -77,7 +79,8 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, createPost, updatePost }) =>
     return (
         <>
             <UserEditWrapper>
-                <EditForm onSubmit={onEditFormSubmit}>
+                <Title>Post Edit</Title>
+                <EditForm>
                     <InputWrapper>
                         <Input 
                             placeholder="Title" 
@@ -95,11 +98,14 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, createPost, updatePost }) =>
                             type="textarea" 
                             onChange={onTextChange}
                             value={text}
+                            minHeight="30rem"
                         />
                     </InputWrapper>
                     <InputWrapper>
-                        <label>
-                            <span>Choose a post image</span>
+                        <LabelWrapper>
+                            <div>
+                            <LabelSpan>Choose a post image</LabelSpan>
+                            </div>
                             <input
                                 id="post-edit-image"
                                 type="file" 
@@ -107,14 +113,18 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, createPost, updatePost }) =>
                                 style={{display: 'none'}}
                                 onChange={onImageChange}
                             />
-                        </label>
+                        </LabelWrapper>
+                        <div>
                         {
-                            postImage ? <img src={postImage} alt="" /> : null
+                            postImage ? <img src={postImage} alt="post image" /> : null
                         }
+                        </div>
                     </InputWrapper>
 
                     <EditFormControl>
-                        <Button>Save</Button>
+                        <NavLink to={"/admin"}>
+                            <Button onClick={onSaveClick}>Save</Button>
+                        </NavLink>
                     </EditFormControl>
                 </EditForm>
             </UserEditWrapper>

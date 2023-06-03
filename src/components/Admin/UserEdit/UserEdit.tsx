@@ -2,6 +2,7 @@ import React from "react";
 
 import Button from "components/Custom/Button/Button";
 import Input from "components/Custom/Input/Input";
+import Title from "components/Custom/Title/Title";
 
 import { EditForm, UserEditWrapper, EditFormControl, InputWrapper } from "./UserEditStyles";
 
@@ -10,6 +11,8 @@ import { IUserEditConnectedProps } from "./UserEditContainer";
 import { useParams } from "react-router-dom";
 
 import { Roles } from "types/types";
+
+import { NavLink } from "react-router-dom";
 
 interface IUserEditProps extends IUserEditConnectedProps {
 
@@ -64,6 +67,7 @@ const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
     return (
         <>
             <UserEditWrapper>
+                    <Title>Edit user</Title>
                 <EditForm onSubmit={onEditFormSubmit}>
                     <InputWrapper>
                         <Input 
@@ -77,7 +81,7 @@ const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
 
                     <InputWrapper>
                         <Input 
-                            placeholder="Password" 
+                            placeholder="New user password" 
                             id="user-edit-password" 
                             type="input" 
                             onChange={onPasswordChange}
@@ -86,7 +90,9 @@ const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
                     </InputWrapper>
 
                     <EditFormControl>
-                        <Button>Save</Button>
+                        <NavLink to="/admin">
+                            <Button>Save</Button>
+                        </NavLink>
                     </EditFormControl>
                 </EditForm>
             </UserEditWrapper>

@@ -15,6 +15,7 @@ import PostEditContainer from 'components/Admin/PostEdit/PostEditContainer';
 
 
 import { Routes, Route } from 'react-router-dom';
+import SellYourSofaView from 'views/SellSofaView/SellSofaView';
 
 const MainRouter: React.FC = () => {
     return (
@@ -36,6 +37,8 @@ const MainRouter: React.FC = () => {
             </Route>
 
             <Route path='/contact' element={ <ContactView /> } />
+
+            <Route path='/sell' element={<SellYourSofaView />} />
 
             <Route path='/posts' element={ <PostsContainer /> } />
 

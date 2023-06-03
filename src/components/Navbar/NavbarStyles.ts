@@ -35,15 +35,16 @@ export const Item =  styled.div`
 
     :not(:hover){
         background: #fff;
-        color: #fc8507;
-        border-radius: 4rem;
-        transition: .2s ease-in-out;
+        color: #000;
+        border-radius: 30%;
+        border: .1rem solid #fff;
+        transition: .3s ease-in-out;
     }
 
     :hover{
-        background: #fc8507;
-        color: #fff;
+        color: #000;
         border-radius: 0;
-        transition: .3s ease-in-out;
+        border: .1rem solid #000;
+        transition: .6s ease-in-out;
     }
 `;

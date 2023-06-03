@@ -6,13 +6,12 @@ interface ITitleProps {
 }
 
 export default styled.h2<ITitleProps>`
-    font-size: ${props => props.fontSize ? props.fontSize : '4.5rem'};
-    letter-spacing: 0.3rem;
+    font-size: ${props => props.fontSize ? props.fontSize : '4rem'};
     font-weight: 500;
     position: relative;
     display: inline-flex;
-    color: #b42525;
-    font-style: italic;
+    color: #000;
+    text-align: left;
 
     ::after {
         content: '';

@@ -1,17 +1,19 @@
-import React from 'react';
-
 import styled from "styled-components"
+
+type InputType = "TEXTAREA" | "INPUT";
 
 interface ILabelProps {
     value: string,
     focused: boolean,
     fontSize?: string
+    type?: InputType
 }
 
 interface IInputProps {
     fontSize?: string,
     padding?: string,
-    width?: string
+    width?: string,
+    minHeight?: string
 } 
 
 export const Wrapper = styled.div`
@@ -21,12 +23,12 @@ export const Wrapper = styled.div`
 
 export const LabelWrapper = styled.label<ILabelProps>`
     position: absolute;
-    padding: 0 1rem;
+    padding: 0 2rem;
     left: 1.4rem;
-    top: ${props => (props.focused||props.value) ? '0' : '50%'};
+    top: ${props => (props.focused||props.value) ? '0' : props.type==='INPUT'? '50%':'30%'};
     font-size: ${props => (props.focused||props.value)?props.fontSize?props.fontSize:'1rem':'1.4rem'};
     transform: translateY(-50%);
-    color: ${props => (props.focused||props.value) ? '#fc8507' : 'inherit'};
+    color: ${props => (props.focused||props.value) ? '#000' : 'inherit'};
     background-color: white;
     transition: .1s ease-in-out;
 `
@@ -36,14 +38,13 @@ export const InputWrapper = styled.input<IInputProps>`
     font: inherit;
     font-size: ${props => props.fontSize ? props.fontSize : '1.8rem'};
     width: ${props => props.width ? props.width : "100%"};
-    border: 0.1rem solid #afa7aa;
     color: inherit;
+    border: 0.1rem solid #000;
 
     :focus, :hover {
-        outline: 0.1rem #fc8507 solid;
-        border-color: #fc8507;
+        outline: 0.1rem #000 solid;
+        border-color: #000;
         background-color: #fff;
-        transition: .2s ease-in-out;
         color: #000;
     }
 `;
@@ -53,13 +54,13 @@ export const TextareaWrapper = styled.textarea<IInputProps>`
     font: inherit;
     font-size: 1.8rem;
     width: 100%;
-    border: 0.1rem solid #afa7aa;
+    border: 0.1rem solid #000;
 
+    min-height: ${props =>props.minHeight};
 
     :focus, :hover {
-        outline: 0.1rem #fc8507 solid;
-        border-color: #fc8507;
+        outline: 0.1rem #000 solid;
+        border-color: #000;
         background-color: #fff;
-        transition: .4s ease-in-out;
     }
 `;

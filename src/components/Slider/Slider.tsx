@@ -14,7 +14,7 @@ export default ({ images }: ISliderProps) => {
         <>
             <Wrapper>
                 <Slider ref={sliderRef} >
-                    <Block width={33*images.length+'rem'}>
+                    <Block width={30*images.length+'rem'}>
                     {
                         images.map((image: string, index) => <SliderItem 
                             key={index} src={image} 

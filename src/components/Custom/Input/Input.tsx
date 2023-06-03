@@ -10,13 +10,14 @@ interface IInputProps {
     onChange: (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
     padding?: string,
     width?: string, 
-    fontSize?: string
+    fontSize?: string,
+    minHeight?: string
 }
 
 
 const Input: React.FC<IInputProps> = (props) => {
 
-    const { placeholder, id, type, value, onChange, padding, width, fontSize } = props;
+    const { placeholder, id, type, value, onChange, padding, width, fontSize, minHeight } = props;
     
     const [focused, setFocused] = React.useState(false);
     
@@ -35,13 +36,15 @@ const Input: React.FC<IInputProps> = (props) => {
                     fontSize={fontSize&&parseFloat(fontSize.split('rem')[0])+0.4+'rem'} 
                     value={value} 
                     htmlFor={id} 
-                    focused={focused}>
+                    focused={focused}
+                    type={type ? type === 'input' ? "INPUT" : "TEXTAREA" : "INPUT"}
+                >
                     { placeholder }
                 </LabelWrapper>
                 {
                     type !== 'textarea' ?
                         <InputWrapper fontSize={fontSize} width={width} padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
-                        <TextareaWrapper padding={padding} value={value} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
+                        <TextareaWrapper minHeight={minHeight} padding={padding} value={value} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
                 }
             </Wrapper>  
         </>

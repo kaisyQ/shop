@@ -1,4 +1,4 @@
-import BlogsTable from "./BlogsTable";
+import BlogsTable from "./PostsTable";
 
 import { connect, ConnectedProps } from "react-redux";
 

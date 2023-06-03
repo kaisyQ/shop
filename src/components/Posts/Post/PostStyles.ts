@@ -6,6 +6,10 @@ interface ICardTitleProps {
 }
 
 
+interface ICardHoveredProps {
+    isHovered: boolean
+}
+
 export const CardWrapper = styled.div`
     position: relative;
     display: flex;
@@ -42,22 +46,16 @@ export const CardImageWrapper = styled.div`
     z-index: 1;
 `;
 
-export const CardImage = styled.img`
+export const CardImage = styled.img<ICardHoveredProps>`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    :hover {
-        transition: .3s ease-in-out;
-        transform: scale(120%);
-    }
 
-    :not(:hover) {
-        transition: .3s ease-in-out;
-        transform: scale(1);
-    }
+    transform: ${props => props.isHovered ? 'scale(110%)' : 'scale(1)'};
+    transition: .4s ease-in-out;
 `;
 
-export const CardInfoWrapper = styled.div`
+export const CardInfoWrapper = styled.div<ICardHoveredProps>`
     display: block;
     position: absolute;
     bottom: 0;
@@ -67,17 +65,11 @@ export const CardInfoWrapper = styled.div`
     background: linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 100%);
     z-index: 2;
     
-    opacity: 0;
 
-    :hover {
-        opacity: 1;
-        transition: .3s ease-in-out;
-    }
+    transform: ${props => props.isHovered ? 'scale(1)' : 'scale(0)'};
+    opacity: ${props => props.isHovered ? '1' : '0'};;
+    transition: .4s ease-in-out;
 
-    :not(:hover) {
-        opacity: 0;
-        transition: .3s ease-in-out;
-    }
 
     @media only screen and (max-width: 1200px) {
         display: block;
@@ -118,44 +110,22 @@ export const CardTitle = styled.h3<ICardTitleProps>`
     font-weight: 500;
     color: #fff;
     
-    @media only screen and (max-width: 1200px) {
-        :not(:hover){
-            transition: .3s ease-in-out;
-            color: #fff;
-        }
-    }
-    
-    @media only screen and (max-width: 768px) {
-        :not(:hover){
-            transition: .3s ease-in-out;
-            color: #000;
-        }
-    }
-    
-    @media only screen and (max-width: 330px) {
-        :not(:hover){
-            transition: .3s ease-in-out;
-            color: #000;
-        }
-    }
-
-    ::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        border-bottom: .1rem solid white;
+    :not(:hover){
+        transition: .3s ease-in-out;
+        transform: scale(1);
+        color: #fff;
     }
     
     :hover{
         transition: .3s ease-in-out;
-        color: #fc8507;
+        transform: scale(103%);
+        color: #c2c1c1
     }
 `;
 
 export const CardAbout = styled.div`
     display: none;
+    
     @media only screen and (max-width: 1200px) {
         display: none;
     }

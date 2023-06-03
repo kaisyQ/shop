@@ -12,7 +12,7 @@ interface IPageButtonProps {
 const PageButton: React.FC<IPageButtonProps> = ({ number, isCurrent }) => {
     return (
         <>
-            <NavLink to={`/blogs/${number}`}>
+            <NavLink to={`/posts/${number}`}>
                 <Wrapper isCurrent={isCurrent}>{ number }</Wrapper>
             </NavLink>
         </>

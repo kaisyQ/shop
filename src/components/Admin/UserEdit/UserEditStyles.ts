@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const UserEditWrapper = styled.div`
     max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4rem;
 `;
 
 export const EditForm = styled.form`

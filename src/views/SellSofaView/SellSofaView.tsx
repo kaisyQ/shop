@@ -3,14 +3,16 @@ import React from "react";
 import Input from "components/Custom/Input/Input";
 import Button from "components/Custom/Button/Button";
 
-import MailICon from './../../components/Custom/Icons/MailICon';
-import { Wrapper, Subtitle, FormWrapper, InputsWrapper, ButtonWrapper, IconWrapper } from "./ContactViewStyles";
+import SellingIcon from './../../components/Custom/Icons/SellingIcon';
 
-const ContactView: React.FC = () => {
+import { Wrapper, Subtitle, FormWrapper, InputsWrapper, ButtonWrapper, IconWrapper } from "./SellSofaStyles";
+
+const SellSofaView: React.FC = () => {
 
     const [name, setName] =  React.useState('');
     const [email, setEmail] =  React.useState('');
     const [phoneNumber, setPhoneNumber] =  React.useState('');
+    const [brand, setBrand] = React.useState('');
     const [comment, setComment] =  React.useState('');
 
 
@@ -26,6 +28,10 @@ const ContactView: React.FC = () => {
         setPhoneNumber(ev.target.value);
     }
 
+    const onBrandChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setBrand(ev.target.value);
+    }
+
     const onCommentChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setComment(ev.target.value);
     }
@@ -36,10 +42,10 @@ const ContactView: React.FC = () => {
                 
                 <Subtitle>
                     <IconWrapper>
-                        <MailICon width="64" height="64"/>
+                        <SellingIcon width="64" height="64" />
                     </IconWrapper>
                     <span>
-                        Please let us know how we can assist you.
+                        Sell your sofa.
                     </span>
                 </Subtitle>
                 
@@ -47,7 +53,7 @@ const ContactView: React.FC = () => {
                     <InputsWrapper>
                         <Input 
                             padding={'2.4rem 3rem'}
-                            id='contact-name' 
+                            id='sell-name' 
                             placeholder='Name *' 
                             value={name}
                             onChange={onNameChange} 
@@ -55,7 +61,7 @@ const ContactView: React.FC = () => {
 
                         <Input
                             padding={'2.4rem 3rem'}
-                            id='contact-email' 
+                            id='sell-email' 
                             placeholder='Email *' 
                             value={email} 
                             onChange={onEmailChange} 
@@ -64,15 +70,23 @@ const ContactView: React.FC = () => {
 
                     <Input 
                         padding={'2.4rem 3rem'} 
-                        id='contact-phoneNumber' 
+                        id='sell-phoneNumber' 
                         placeholder='Phone number *' 
                         value={phoneNumber} 
                         onChange={onPhoneNumberChange} 
                     />
 
                     <Input 
+                        padding={'2.4rem 3rem'} 
+                        id='sell-brand' 
+                        placeholder='Brand of sofa *' 
+                        value={brand} 
+                        onChange={onBrandChange} 
+                    />
+
+                    <Input 
                         padding={'4rem 3rem'} 
-                        id='contact-comment'
+                        id='sell-comment'
                         placeholder='Message *' 
                         type='textarea' 
                         value={comment} 
@@ -88,4 +102,4 @@ const ContactView: React.FC = () => {
     );
 }
 
-export default ContactView;
+export default SellSofaView;
