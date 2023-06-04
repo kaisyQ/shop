@@ -1,9 +1,35 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-
-interface IArrowProps {
+interface IShowProps {
     visible: boolean
 }
+
+const Hide = keyframes`
+    0% {
+        opacity: 1;
+        transform: translateY(-0);
+        max-height: 1000px;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+        max-height: 0;
+    }
+`;
+
+const Show = keyframes`
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+        max-height: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 1000px;
+    }
+`;
+
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -17,10 +43,17 @@ export const Section = styled.section`
     row-gap: 1rem;
 `;
 
-export const Text = styled.p`
+export const InfoWrapper = styled.div`
+    overflow: hidden;
+    
+`;
+
+export const Text = styled.p<IShowProps>`
     font-size: 1.6rem;
     text-indent: 2.5rem;    
     text-align: justify;
+    transform: translateY(-100%);
+    animation: ${props => props.visible ? Show : Hide} .8s ease-in-out forwards;
 `;
 
 export const Title = styled.h3`
@@ -43,7 +76,7 @@ export const Title = styled.h3`
     }
 `;
 
-export const Arrow = styled.div<IArrowProps>`
+export const Arrow = styled.div<IShowProps>`
     position: absolute;
     right: 1rem;
     top: 50%;
@@ -57,8 +90,10 @@ export const Arrow = styled.div<IArrowProps>`
 export const Span = styled.span`
 `;
 
-export const ParamsList = styled.ul`
+export const ParamsList = styled.ul<IShowProps>`
     font-size: 1.6rem;
+    transform: translateY(-100%);
+    animation: ${props => props.visible ? Show : Hide} .8s ease-in-out forwards;
 `;
 
 export const ParamsListItem = styled.li`

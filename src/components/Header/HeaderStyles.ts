@@ -16,7 +16,7 @@ export const HeaderWrapper = styled.header`
 
 export const Logo = styled.img`
     display: block;
-    width: 6rem;
+    width: 16rem;
 `;
 
 export const LinksContainer = styled.div`

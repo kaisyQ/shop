@@ -2,7 +2,7 @@ import React from "react";
 
 import { 
     Wrapper, Section, Title, Block, Span, 
-    Arrow, ParamsList, ParamsListItem, ParamName, Text
+    Arrow, ParamsList, ParamsListItem, ParamName, Text, InfoWrapper
 } from "./CardAboutSectionStyles";
 
 interface ICardAboutSectionProps {
@@ -44,19 +44,19 @@ const CardAboutSection: React.FC<React.PropsWithChildren<ICardAboutSectionProps>
                     </Title>
 
                     { 
-                        visibleText ?
-                            params ? <>
-                                <ParamsList>
-                                { Object.keys(params).map((param) => 
-                                    <ParamsListItem key={param}>
-                                        <ParamName>
-                                            { param }
-                                        </ParamName>
-                                        <span>{ params[param as keyof typeof params] }</span>
-                                    </ParamsListItem>)}
-                                </ParamsList> 
-                            </> : <Text>{ text }</Text> 
-                        : null
+                        params ? <InfoWrapper>
+                            <ParamsList visible={visibleText}>
+                            { Object.keys(params).map((param) => 
+                                <ParamsListItem key={param}>
+                                    <ParamName>
+                                        { param }
+                                    </ParamName>
+                                    <span>{ params[param as keyof typeof params] }</span>
+                                </ParamsListItem>)}
+                            </ParamsList> 
+                        </InfoWrapper> : <InfoWrapper>
+                            <Text visible={visibleText}>{ text }</Text> 
+                        </InfoWrapper>
                     }
                 </Section>                
             </Wrapper>

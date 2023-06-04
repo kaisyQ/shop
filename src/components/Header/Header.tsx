@@ -1,6 +1,6 @@
 import React from "react";
 
-import logo from  './../../images/logo.svg';
+import logo from  './../../images/logo1.jpg';
 
 import { NavLink } from "react-router-dom";
 import * as Icon from 'react-bootstrap-icons';
