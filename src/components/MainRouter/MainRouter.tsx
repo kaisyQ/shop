@@ -1,10 +1,7 @@
 import React from 'react';
 
-import HomeView from 'views/HomeView/HomeView';
-import CatalogView from 'views/CatalogView/CatalogView';
 import ContactView from 'views/ContactView/ContactView';
 import CardAboutContainer from 'components/Catalog/Cards/Card/CardAbout/CardAboutContainer';
-import PostsContainer from 'components/Posts/PostsContainer';
 import PostAboutContainer from 'components/Posts/PostAbout/PostAboutContainer';
 import AuthContainer from './../Auth/AuthContainer';
 import Search from 'components/Search/Search';
@@ -14,8 +11,15 @@ import ProductEditContainer from 'components/Admin/ProductEdit/ProductEditContai
 import PostEditContainer from 'components/Admin/PostEdit/PostEditContainer';
 
 
+
+
 import { Routes, Route } from 'react-router-dom';
 import SellYourSofaView from 'views/SellSofaView/SellSofaView';
+
+
+const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
+const Posts = React.lazy(() => import('components/Posts/PostsContainer'));
+const HomeView = React.lazy(() => import ('views/HomeView/HomeView'));
 
 const MainRouter: React.FC = () => {
     return (
@@ -27,12 +31,25 @@ const MainRouter: React.FC = () => {
                     <Route 
                         key={index}
                         path={path}
-                        element={ <HomeView /> } />
+                        element={ <>
+                                <React.Suspense fallback={<h2>Loading...</h2>}>
+                                    <HomeView />    
+                                </React.Suspense>
+                            </>
+                        } 
+                    />
                 </>)
             }
 
             <Route path='/catalog'>
-                <Route path='' element={ <CatalogView /> } />
+                <Route 
+                    path='' 
+                    element={ <>
+                        <React.Suspense fallback={<h2>Loading...</h2>}>
+                            <CatalogView /> 
+                        </React.Suspense>
+                    </>}
+                />
                 <Route path=':id' element={ <CardAboutContainer /> } />
             </Route>
 
@@ -40,7 +57,15 @@ const MainRouter: React.FC = () => {
 
             <Route path='/sell' element={<SellYourSofaView />} />
 
-            <Route path='/posts' element={ <PostsContainer /> } />
+            <Route 
+                path='/posts' 
+                element={ <>    
+                        <React.Suspense fallback={<h2>Loading...</h2>}>
+                            <Posts /> 
+                        </React.Suspense>
+                    </>
+                } 
+            />
 
             <Route path='/posts/:id'element={ <PostAboutContainer /> } />
 

@@ -68,9 +68,8 @@ export const CardTitle = styled.h3<ITitleProps>`
     font-size: ${props => props.size};
     letter-spacing: .1rem;
     font-size: 1.8rem;
-    line-height: 2rem;
     font-weight: 500;
-    color: #c74646;
+    color: #000;
     padding: 1rem;
 
     ::after {
@@ -85,13 +84,12 @@ export const CardTitle = styled.h3<ITitleProps>`
 
     :hover{
         transition: .3s ease-in-out;
-        color: #fc8507;
-        font-size: 2rem;
+        transform: scale(1.1);
+        text-decoration: underline;
     }
     :not(:hover){
         transition: .3s ease-in-out;
-        color: #c74646;
-        font-size: 1.8rem;
+        transform: scale(1);
     }
 `;
 
@@ -99,13 +97,11 @@ export const CardSaleTitle = styled.h3<ITitleProps>`
     position: absolute;
     top: 1rem;
     left: 1rem;
-    display: inline-block;
     font-size: ${props => props.size};
-    letter-spacing: .1rem;
-    font-style: italic;
     padding: .5rem 2rem;
     font-weight: 500;
     background: #fff;
-    color: #c74646;
+    border-radius: .5rem;
+    color: #000;
     z-index: 5;
 `;

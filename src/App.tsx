@@ -25,8 +25,9 @@ const App: React.FC<AppConnectedProps> = ({ isDark, setIsDark }) => {
       { isOpenSidebar ? <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> : null }
 
       <HeaderContainer isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
-
+      
       { isDark ? <ShadingBlock onClick={darkOpacityClick} /> : null } 
+      
       <Navbar />
 
       <MainContainer>

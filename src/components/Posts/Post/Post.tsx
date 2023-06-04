@@ -31,33 +31,41 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imageSrc }) => {
 
     return (
         <>
-           <CardWrapper> 
-                    <CardImageWrapper onMouseOut={onImageMouseOut} onMouseOver={onImageMouseOver}>
+            <CardWrapper>
+                <CardImageWrapper 
+                    onMouseOut={onImageMouseOut} 
+                    onMouseOver={onImageMouseOver}
+                >
+                    <NavLink to={`/posts/${id}`}>
                         <CardImage 
                             isHovered={isHovered}
                             src={imageSrc}
                             alt="Card image" 
                         />
-                    </CardImageWrapper>
-                    
-                    <CardInfoWrapper onMouseOut={onImageMouseOut} onMouseOver={onImageMouseOver} isHovered={isHovered}>
-                        <CardInfoContainer>
-                            <CardInfo>
-                                <CardInfoItem>
-                                    <CardTitle size={"2rem"}>{ title }</CardTitle>
-                                </CardInfoItem>
-                                <CardInfoItem>
-                                    <NavLink to={`/posts/${id}`}>
+                    </NavLink>
+                </CardImageWrapper>
+                    <NavLink to={`/posts/${id}`}>
+                        <CardInfoWrapper 
+                            onMouseOut={onImageMouseOut} 
+                            onMouseOver={onImageMouseOver} 
+                            isHovered={isHovered}
+                        >
+                            <CardInfoContainer>
+                                <CardInfo>
+                                    <CardInfoItem>
+                                        <CardTitle color={'#fff'} size={"2rem"}>{ title }</CardTitle>
+                                    </CardInfoItem>
+                                    <CardInfoItem>
                                         <Button isReverse={false}>Show More</Button>
-                                    </NavLink>
-                                </CardInfoItem>
-                            </CardInfo>
-                        </CardInfoContainer>
-                    </CardInfoWrapper>
+                                    </CardInfoItem>
+                                </CardInfo>
+                            </CardInfoContainer>
+                        </CardInfoWrapper>
+                    </NavLink>
 
                     <CardAbout>
                         <CardInfoItem>
-                            <CardTitle size={"2rem"}>{ title }</CardTitle>
+                            <CardTitle color={'#000'} size={"2rem"}>{ title }</CardTitle>
                         </CardInfoItem>
                         <CardInfoItem>
                             <NavLink to={`/posts/${id}`}>

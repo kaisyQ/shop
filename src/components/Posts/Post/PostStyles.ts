@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 
 interface ICardTitleProps {
-    size?: string
+    size?: string,
+    color: string
 }
 
 
@@ -108,12 +109,11 @@ export const CardTitle = styled.h3<ICardTitleProps>`
     font-size: ${props => props.size};
     letter-spacing: .1rem;
     font-weight: 500;
-    color: #fff;
     
     :not(:hover){
         transition: .3s ease-in-out;
         transform: scale(1);
-        color: #fff;
+        color: ${props => props.color};
     }
     
     :hover{
