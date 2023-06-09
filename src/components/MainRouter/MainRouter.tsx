@@ -10,6 +10,9 @@ import UserEditContainer from 'components/Admin/UserEdit/UserEditContainer';
 import ProductEditContainer from 'components/Admin/ProductEdit/ProductEditContainer';
 import PostEditContainer from 'components/Admin/PostEdit/PostEditContainer';
 
+import UsersTableContainer from 'components/Admin/UsersTable/UsersTableContainer';
+import ProductsTableContainer from 'components/Admin/ProductsTable/ProductsTableContainer';
+import PostsTableContainer from 'components/Admin/PostsTable/PostsTableContainer';
 
 
 
@@ -78,6 +81,9 @@ const MainRouter: React.FC = () => {
                 <Route path='user/:id?' element={<UserEditContainer />} />
                 <Route path='product/:id?' element={<ProductEditContainer />} />
                 <Route path='post/:id?' element={<PostEditContainer />} />
+                <Route path='usersTable' element={<UsersTableContainer />} />
+                <Route path='productsTable' element={<ProductsTableContainer />} />
+                <Route path='postsTable' element={<PostsTableContainer />} />          
             </Route>
 
             </Routes>

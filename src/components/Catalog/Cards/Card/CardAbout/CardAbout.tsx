@@ -12,13 +12,14 @@ import { useParams } from "react-router-dom";
 
 import { CardAboutConnectedProps } from "./CardAboutContainer";
 
+import { Image } from "components/Custom/Image/Image";
+
 import { 
     Wrapper, 
     SliderWrapper,
     ImagesWrapper,
     ImageRow,
     ImageWrapper,
-    Image,
     InfoWrapper,
     Title,
     PriseWrapper,

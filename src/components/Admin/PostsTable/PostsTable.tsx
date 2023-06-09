@@ -1,8 +1,8 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn } from '../AdminStyles';
+import { AdminPanelContainer } from "../AdminPanel";
 
-import * as Icon from 'react-bootstrap-icons';
+import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from '../AdminStyles';
 
 import { IBlogsTableConnectedProps } from "./PostsTableContainer";
 
@@ -15,6 +15,8 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
     
     return (
         <>
+            <AdminPanelContainer />
+
             <TableWrapper>
                 <TableThead>
                     <TableTr>
@@ -22,19 +24,14 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
                         <TableTd>Title</TableTd>
                         <TableTd>Date</TableTd>
                         <TableTd>Description</TableTd>
-                        <TableTd></TableTd>
-                        <TableTd></TableTd>
+                        <TableTd>Delete</TableTd>
+                        <TableTd>Edit</TableTd>
                     </TableTr>
                 </TableThead>
                 <TableTbody>
                     {
-                        posts.map(post => <>
-                                <TableTr 
-                                    key={ post.id }  
-
-                                    defaultRowBgColor="#ff840080" 
-                                    defaultRowTextColor="#000000cf"
-                                >
+                        posts.map((post, index) => <>
+                                <TableTr key={ post.id }>
                                     <TableTd>{ post.id }</TableTd>
                                     <TableTd>{ post.title }</TableTd>
                                     <TableTd>{ post.date }</TableTd>
@@ -43,13 +40,13 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
                                         <RemoveBtn onClick={(ev) => {
                                             removePost(post.id)
                                         }}>
-                                            <Icon.XLg size={'2rem'} />
+                                            <XLgIcon color={defineIconColor(index)} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
                                         <NavLink to="/admin/post">
                                             <EditBtn>
-                                                <Icon.Pencil size={'2rem'} />
+                                                <PencilIcon color={defineIconColor(index)} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>

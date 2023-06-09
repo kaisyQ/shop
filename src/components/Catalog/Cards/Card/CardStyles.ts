@@ -41,15 +41,12 @@ export const CardImageWrapper = styled.div`
 export const CardImage = styled.img`
     width: 100%;
     height: 100%;
+    transition: .3s ease-in-out;
+    transform: scale(100%);
 
     :hover {
         transition: .3s ease-in-out;
         transform: scale(120%);
-    }
-
-    :not(:hover) {
-        transition: .3s ease-in-out;
-        transform: scale(1);
     }
 `;
 

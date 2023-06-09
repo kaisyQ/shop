@@ -11,7 +11,10 @@ export const HeaderWrapper = styled.header`
     justify-content: space-between;
     align-items: center;
     position: relative;
-    z-index: 5;
+
+    @media only screen and (max-width: 768px){
+        z-index: 5;
+    }
 `;
 
 export const Logo = styled.img`

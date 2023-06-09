@@ -8,11 +8,11 @@ interface ISidebarProps {
 export const openSidebar = (props: ISidebarProps) => keyframes`
     from { width: 0 }
     to { 
-        @media only screen and (max-width: 76.8rem){
+        @media only screen and (max-width: 768px){
             width: ${props.isOpen ? '40rem' : '0'};
         }
         
-        @media only screen and (max-width: 33rem){
+        @media only screen and (max-width: 330px){
             width: ${props.isOpen ? '30rem' : '0'};
         }
     }
@@ -25,7 +25,7 @@ export const SidebarWrapper = styled.div<ISidebarProps>`
     position: fixed;
     left: 0;
     top: 0;
-    min-height: 100vh;
+    min-height: 100%;
     background-color: white;
     animation-duration: 0.3s;
     animation-name: ${openSidebar};

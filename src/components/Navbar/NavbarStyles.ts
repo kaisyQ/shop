@@ -31,20 +31,14 @@ export const Item =  styled.div`
     font-size: 1.6rem;
     text-transform: capitalize;
     text-align: left;
-
-
-    :not(:hover){
-        background: #fff;
-        color: #000;
-        border-radius: 30%;
-        border: .1rem solid #fff;
-        transition: .3s ease-in-out;
-    }
+    background: #fff;
+    color: #000;
+    border: .1rem solid #fff;
+    border-radius: 30%;
 
     :hover{
-        color: #000;
-        border-radius: 0;
         border: .1rem solid #000;
+        border-radius: 0;
         transition: .6s ease-in-out;
     }
 `;
