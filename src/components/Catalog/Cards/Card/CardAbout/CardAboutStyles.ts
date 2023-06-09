@@ -141,21 +141,6 @@ export const ImageWrapper = styled.div<IImage>`
     max-width: ${props => props.width || '48%'};
 `;
 
-export const Image = styled.img`
-    width: 100%;
-    object-fit: cover;
-    
-    :hover {
-        transform: scale(120%);
-        transition: .3s ease-in-out;
-    }
-
-    :not(:hover) {
-        transform: scale(100%);
-        transition: .3s ease-in-out;
-    }
-`;
-
 export const ButtonWrapper = styled.div`
     width: 100%;
     max-width: 32rem;

@@ -1,12 +1,13 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn } from './../AdminStyles';
+import { AdminPanelContainer } from "../AdminPanel";
 
-import * as Icon from 'react-bootstrap-icons';
+import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from './../AdminStyles';
 
 import { UserTableConnectedProps } from "./UsersTableContainer";
 
 import { NavLink } from "react-router-dom";
+
 
 interface IUserTableProps extends UserTableConnectedProps {
 }
@@ -19,19 +20,21 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
 
     return (
         <>
+            <AdminPanelContainer />
+
             <TableWrapper>
                 <TableThead>
                     <TableTr>
                         <TableTd>Id</TableTd>
                         <TableTd>Login</TableTd>
                         <TableTd>Role</TableTd>
-                        <TableTd></TableTd>
-                        <TableTd></TableTd>
+                        <TableTd>Delete</TableTd>
+                        <TableTd>Edit</TableTd>
                     </TableTr>
                 </TableThead>
                 <TableTbody>
                     {
-                        users.map(user => <>
+                        users.map((user, index) => <>
                                 <TableTr key={ user.id }>
                                     <TableTd>{ user.id }</TableTd>
                                     <TableTd>{ user.login }</TableTd>
@@ -40,7 +43,7 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
                                         <RemoveBtn onClick={() => {
                                             removeUser(user.id)
                                         }}>
-                                            <Icon.XLg size={'2rem'} />
+                                            <XLgIcon color={defineIconColor(index)} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
@@ -48,7 +51,7 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
                                             <EditBtn onClick={() => {
                                                 setCurrentUser(user.id);
                                             }}>
-                                                <Icon.Pencil size={'2rem'} />
+                                                <PencilIcon color={defineIconColor(index)} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>

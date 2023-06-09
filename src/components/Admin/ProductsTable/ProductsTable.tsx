@@ -1,12 +1,13 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn } from './../AdminStyles';
+import { AdminPanelContainer } from "../AdminPanel";
 
-import * as Icon from 'react-bootstrap-icons';
+import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from './../AdminStyles';
 
 import { IProductConnectedProps } from "./ProductsTableContainer";
 
 import { NavLink } from "react-router-dom";
+
 
 interface IProductsTableProps extends IProductConnectedProps{
 }
@@ -15,33 +16,23 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct,
     
     return (
         <>
+           <AdminPanelContainer />
+
             <TableWrapper>
                 <TableThead>
-                    <TableTr
-                        oddRowBgColor="#ffbd78d1" 
-                        oddRowTextColor="#000"
-                    >
+                    <TableTr>
                         <TableTd>Id</TableTd>
-
                         <TableTd>Name</TableTd>
                         <TableTd>Price</TableTd>
                         <TableTd>Count</TableTd>
-                        <TableTd></TableTd>
-                        <TableTd></TableTd>
+                        <TableTd>Delete</TableTd>
+                        <TableTd>Edit</TableTd>
                     </TableTr>
                 </TableThead>
                 <TableTbody>
                     {
-                        products.map(product => <>
-                                <TableTr  
-                                    key={ product.id } 
-
-                                    defaultRowBgColor="#fff"
-                                    defaultRowTextColor="#ff6400"
-
-                                    oddRowBgColor="#ffbd78d1" 
-                                    oddRowTextColor="#000"                                                                
-                                >
+                        products.map((product, index) => <>
+                                <TableTr key={ product.id }>
                                     <TableTd>{ product.id }</TableTd>
                                     <TableTd>{ product.name }</TableTd>
                                     <TableTd>{ product.price }</TableTd>
@@ -50,13 +41,13 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct,
                                         <RemoveBtn onClick={(ev) => {
                                             removeProduct(product.id)
                                         }}>
-                                            <Icon.XLg size={'2rem'} />
+                                            <XLgIcon color={defineIconColor(index)} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
                                         <NavLink to="/admin/product">
                                             <EditBtn>
-                                                <Icon.Pencil size={'2rem'} />
+                                                <PencilIcon color={defineIconColor(index)} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>

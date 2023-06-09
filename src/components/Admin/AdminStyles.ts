@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { XLg } from "@styled-icons/bootstrap/XLg";
+import { Pencil } from "@styled-icons/bootstrap/Pencil";
 
 
 interface ITableColorProps {
@@ -8,6 +10,19 @@ interface ITableColorProps {
     defaultRowTextColor?: string,
     oddRowTextColor?: string
 }
+
+interface IStyledIconsProps {
+    color: string
+}
+
+export const defineIconColor = (colorIndex: number) => {
+    if (colorIndex % 2 === 0) {
+        return '#fff'
+    } else {
+        return "#000"
+    }
+} 
+
 
 export const AdminWrapper = styled.div`
     display: flex;
@@ -19,6 +34,8 @@ export const AdminWrapper = styled.div`
 export const TableWrapper = styled.table`
     border-collapse: collapse;
     margin-bottom: 10rem;
+
+    width: 100%;
 `;
 
 export const TableThead = styled.thead`
@@ -31,12 +48,12 @@ export const TableTbody = styled.tbody`
 
 export const TableTr = styled.tr<ITableColorProps>`
     font-size: 1.8rem;
-    color: ${props => props.defaultRowTextColor ? props.defaultRowTextColor : "#c74646"};
+    color: ${props => props.defaultRowTextColor ? props.defaultRowTextColor : "#000"};
     background-color: ${props => props.defaultRowBgColor ? props.defaultRowBgColor : "#fff"};
 
     :nth-child(odd) {
         color: ${props => props.oddRowTextColor ? props.oddRowTextColor : "#fff"};
-        background-color: ${props => props.oddRowBgColor ? props.oddRowBgColor : "#c74646"};
+        background-color: ${props => props.oddRowBgColor ? props.oddRowBgColor : "#000"};
     }
 
     :last-child {
@@ -67,4 +84,16 @@ export const EditBtn = styled.button`
     :hover {
         transform: scale(1.8);
     }
+`;
+
+export const XLgIcon = styled(XLg)<IStyledIconsProps>`
+    color: ${props => props.color};
+    width: 2rem;
+    height: 2rem;
+`;
+
+export const PencilIcon = styled(Pencil)<IStyledIconsProps>`
+    color:  ${props => props.color};
+    width: 2rem;
+    height: 2rem;
 `;
