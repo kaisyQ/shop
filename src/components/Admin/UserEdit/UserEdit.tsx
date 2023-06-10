@@ -93,7 +93,7 @@ const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
                         <NavLink to="/admin">
                             <Button>Save</Button>
                         </NavLink>
-                    </EditFormControl>
+                    </EditFormControl> 
                 </EditForm>
             </UserEditWrapper>
         </>

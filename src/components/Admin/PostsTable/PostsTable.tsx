@@ -1,7 +1,5 @@
 import React from "react";
 
-import { AdminPanelContainer } from "../AdminPanel";
-
 import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from '../AdminStyles';
 
 import { IBlogsTableConnectedProps } from "./PostsTableContainer";
@@ -15,8 +13,6 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
     
     return (
         <>
-            <AdminPanelContainer />
-
             <TableWrapper>
                 <TableThead>
                     <TableTr>

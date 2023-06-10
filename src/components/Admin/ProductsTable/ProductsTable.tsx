@@ -1,7 +1,5 @@
 import React from "react";
 
-import { AdminPanelContainer } from "../AdminPanel";
-
 import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from './../AdminStyles';
 
 import { IProductConnectedProps } from "./ProductsTableContainer";
@@ -16,8 +14,6 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct,
     
     return (
         <>
-           <AdminPanelContainer />
-
             <TableWrapper>
                 <TableThead>
                     <TableTr>

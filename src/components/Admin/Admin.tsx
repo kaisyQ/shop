@@ -1,10 +1,10 @@
 import React from "react";
 
+import TableSelector from "./TableSelector/TableSelector";
+
 import { AdminConnectedProps } from "./AdminContainer";
 
-import { Navigate } from "react-router-dom";
-import UsersTableContainer from "./UsersTable/UsersTableContainer";
-
+import { Navigate, Outlet } from "react-router-dom";
 
 const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login }) => {
     
@@ -13,7 +13,12 @@ const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login }) => {
     }
     
     return (
-        <UsersTableContainer />
+        <>
+            <div>
+                <TableSelector />
+                <Outlet />
+            </div>
+        </>
     );
 }
 

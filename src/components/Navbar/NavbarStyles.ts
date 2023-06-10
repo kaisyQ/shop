@@ -34,11 +34,10 @@ export const Item =  styled.div`
     background: #fff;
     color: #000;
     border: .1rem solid #fff;
-    border-radius: 30%;
 
     :hover{
         border: .1rem solid #000;
-        border-radius: 0;
-        transition: .6s ease-in-out;
+        transition: .4s ease-in-out;
     }
+    transition: .4s ease-in-out;
 `;

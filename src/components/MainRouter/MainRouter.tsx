@@ -15,10 +15,11 @@ import ProductsTableContainer from 'components/Admin/ProductsTable/ProductsTable
 import PostsTableContainer from 'components/Admin/PostsTable/PostsTableContainer';
 
 
-
 import { Routes, Route } from 'react-router-dom';
 import SellYourSofaView from 'views/SellSofaView/SellSofaView';
 
+
+import TableSelector from 'components/Admin/TableSelector/TableSelector';
 
 const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
 const Posts = React.lazy(() => import('components/Posts/PostsContainer'));
@@ -44,48 +45,58 @@ const MainRouter: React.FC = () => {
                 </>)
             }
 
-            <Route path='/catalog'>
+                <Route path='/catalog'>
+                    <Route 
+                        path='' 
+                        element={ <>
+                            <React.Suspense fallback={<h2>Loading...</h2>}>
+                                <CatalogView /> 
+                            </React.Suspense>
+                        </>}
+                    />
+                    <Route path=':id' element={ <CardAboutContainer /> } />
+                </Route>
+
+                <Route path='/contact' element={ <ContactView /> } />
+
+                <Route path='/sell' element={<SellYourSofaView />} />
+
                 <Route 
-                    path='' 
-                    element={ <>
-                        <React.Suspense fallback={<h2>Loading...</h2>}>
-                            <CatalogView /> 
-                        </React.Suspense>
-                    </>}
+                    path='/posts' 
+                    element={ <>    
+                            <React.Suspense fallback={<h2>Loading...</h2>}>
+                                <Posts /> 
+                            </React.Suspense>
+                        </>
+                    } 
                 />
-                <Route path=':id' element={ <CardAboutContainer /> } />
-            </Route>
 
-            <Route path='/contact' element={ <ContactView /> } />
+                <Route path='/posts/:id'element={ <PostAboutContainer /> } />
 
-            <Route path='/sell' element={<SellYourSofaView />} />
+                <Route path='auth' element={<AuthContainer />} />
 
-            <Route 
-                path='/posts' 
-                element={ <>    
-                        <React.Suspense fallback={<h2>Loading...</h2>}>
-                            <Posts /> 
-                        </React.Suspense>
-                    </>
-                } 
-            />
+                <Route path='search' element={<Search />} />
+                <Route path='/admin'>
+                    
+                    <Route path='' element={<AdminContainer />}>
+                       {
+                        ['usersTable', ''].map((path, index) => <>
+                                <Route
+                                    key={index} 
+                                    path={path} element={<UsersTableContainer />} 
+                                />
+                            </>
+                        )
+                       }
+                        <Route path='productsTable' element={<ProductsTableContainer />} />
+                        <Route path='postsTable' element={<PostsTableContainer />} /> 
+                    </Route>
+                    
+                    <Route path='user/:id?' element={<UserEditContainer />} />
+                    <Route path='product/:id?' element={<ProductEditContainer />} />
+                    <Route path='post/:id?' element={<PostEditContainer />} />
 
-            <Route path='/posts/:id'element={ <PostAboutContainer /> } />
-
-            <Route path='auth' element={<AuthContainer />} />
-
-            <Route path='search' element={<Search />} />
-
-            <Route path='/admin'>
-                <Route path='' element={<AdminContainer />} />
-                <Route path='user/:id?' element={<UserEditContainer />} />
-                <Route path='product/:id?' element={<ProductEditContainer />} />
-                <Route path='post/:id?' element={<PostEditContainer />} />
-                <Route path='usersTable' element={<UsersTableContainer />} />
-                <Route path='productsTable' element={<ProductsTableContainer />} />
-                <Route path='postsTable' element={<PostsTableContainer />} />          
-            </Route>
-
+                </Route>
             </Routes>
         </>
     );

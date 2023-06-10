@@ -1,7 +1,5 @@
 import React from "react";
 
-import { AdminPanelContainer } from "../AdminPanel";
-
 import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from './../AdminStyles';
 
 import { UserTableConnectedProps } from "./UsersTableContainer";
@@ -20,8 +18,6 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
 
     return (
         <>
-            <AdminPanelContainer />
-
             <TableWrapper>
                 <TableThead>
                     <TableTr>
