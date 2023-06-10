@@ -2,7 +2,7 @@ import ProductsTable from "./ProductsTable";
 import { ConnectedProps, connect } from "react-redux";
 
 import { getShortProductItems } from "redux/reducers/product/selector";
-import { removeProduct, addProduct } from "redux/reducers/product/productSlice";
+import { removeProduct } from "redux/reducers/product/productSlice";
 import { RootState } from "redux/store";
 
 const mapStateToProps  = (state: RootState) => ({
@@ -10,7 +10,7 @@ const mapStateToProps  = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-    removeProduct, addProduct
+    removeProduct
 };
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>;

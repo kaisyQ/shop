@@ -1,6 +1,10 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from './../AdminStyles';
+import { 
+    TableWrapper, TableThead, TableTbody, 
+    TableTr, TableTd, RemoveBtn, 
+    EditBtn, XLgIcon, PencilIcon 
+} from './../AdminStyles';
 
 import { IProductConnectedProps } from "./ProductsTableContainer";
 
@@ -10,7 +14,7 @@ import { NavLink } from "react-router-dom";
 interface IProductsTableProps extends IProductConnectedProps{
 }
 
-const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct, addProduct }) => {
+const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct }) => {
     
     return (
         <>
@@ -37,13 +41,13 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct,
                                         <RemoveBtn onClick={(ev) => {
                                             removeProduct(product.id)
                                         }}>
-                                            <XLgIcon color={defineIconColor(index)} />
+                                            <XLgIcon colorIndex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
                                         <NavLink to="/admin/product">
                                             <EditBtn>
-                                                <PencilIcon color={defineIconColor(index)} />
+                                                <PencilIcon colorIndex={index} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>

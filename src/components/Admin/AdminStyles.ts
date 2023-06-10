@@ -12,16 +12,8 @@ interface ITableColorProps {
 }
 
 interface IStyledIconsProps {
-    color: string
+    colorIndex: number
 }
-
-export const defineIconColor = (colorIndex: number) => {
-    if (colorIndex % 2 === 0) {
-        return '#fff'
-    } else {
-        return "#000"
-    }
-} 
 
 
 export const AdminWrapper = styled.div`
@@ -73,27 +65,27 @@ export const ProductTh = styled.th`
 
 
 export const RemoveBtn = styled.button`
-    transition: transform .7s cubic-bezier(.22,.81,.68,1.04);
+    transition: transform .5s cubic-bezier(.22,.81,.68,1.04);
     :hover {
         transform: scale(1.8);
     }
 `;
 
 export const EditBtn = styled.button`
-    transition: transform .7s cubic-bezier(.22,.81,.92,.99);
+    transition: transform .5s cubic-bezier(.22,.81,.92,.99);
     :hover {
         transform: scale(1.8);
     }
 `;
 
 export const XLgIcon = styled(XLg)<IStyledIconsProps>`
-    color: ${props => props.color};
+    color: ${props => props.colorIndex%2===0?"#fff":"#000"};
     width: 2rem;
     height: 2rem;
 `;
 
 export const PencilIcon = styled(Pencil)<IStyledIconsProps>`
-    color:  ${props => props.color};
+    color:  ${props => props.colorIndex%2===0?"#fff":"#000"};
     width: 2rem;
     height: 2rem;
 `;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from './../AdminStyles';
+import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon } from './../AdminStyles';
 
 import { UserTableConnectedProps } from "./UsersTableContainer";
 
@@ -39,7 +39,7 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
                                         <RemoveBtn onClick={() => {
                                             removeUser(user.id)
                                         }}>
-                                            <XLgIcon color={defineIconColor(index)} />
+                                            <XLgIcon colorIndex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
@@ -47,7 +47,7 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
                                             <EditBtn onClick={() => {
                                                 setCurrentUser(user.id);
                                             }}>
-                                                <PencilIcon color={defineIconColor(index)} />
+                                                <PencilIcon colorIndex={index} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>

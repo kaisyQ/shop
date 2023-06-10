@@ -1,6 +1,10 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd, RemoveBtn, EditBtn, XLgIcon, PencilIcon, defineIconColor } from '../AdminStyles';
+import {
+    TableWrapper, TableThead, TableTbody, 
+    TableTr, TableTd, RemoveBtn, 
+    EditBtn, XLgIcon, PencilIcon 
+} from '../AdminStyles';
 
 import { IBlogsTableConnectedProps } from "./PostsTableContainer";
 
@@ -36,13 +40,13 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
                                         <RemoveBtn onClick={(ev) => {
                                             removePost(post.id)
                                         }}>
-                                            <XLgIcon color={defineIconColor(index)} />
+                                            <XLgIcon colorIndex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
                                         <NavLink to="/admin/post">
                                             <EditBtn>
-                                                <PencilIcon color={defineIconColor(index)} />
+                                                <PencilIcon colorIndex={index} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>
