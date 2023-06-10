@@ -2,9 +2,7 @@ import PostAbout from "./PostAbout";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { 
-    setCurrent as setCurrentPost, 
-} from "../../../redux/reducers/posts/reducer";
+import { fetchPostById } from "redux/reducers/posts/reducer";
 
 import { getCurrentPost } from "../../../redux/reducers/posts/selector";
 
@@ -16,7 +14,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-    setCurrentPost
+    fetchPostById
 };
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>;

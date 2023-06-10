@@ -1,3 +1,8 @@
+export const LOADING = "LOADING";
+export const IDLE = "IDLE";
+export const FALED = "FALED";
+
+export type LoadingType = typeof LOADING | typeof IDLE | typeof FALED;
 
 export interface IShortProduct {
     id: number,
@@ -21,18 +26,20 @@ export interface IProduct extends IShortProduct {
 
 
 export interface IPost {
-    id?: number,
+    id?: string,
     title: string,
     text: string,
     imageSrc: string,
 }
 
+
+
 export interface IPostWithDate {
-    id: number,
+    id: string,
     title: string,
     text: string,
     imageSrc: string,
-    date: string
+    date: Date
 }
 
 
@@ -42,7 +49,8 @@ export enum Roles {
 }
 
 export interface IUser {
-    id: number,
+    id: string,
     login: string,
+    password: string,
     role: Roles
 }

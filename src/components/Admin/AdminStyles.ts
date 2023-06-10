@@ -12,7 +12,7 @@ interface ITableColorProps {
 }
 
 interface IStyledIconsProps {
-    colorIndex: number
+    colorindex: number
 }
 
 
@@ -79,13 +79,13 @@ export const EditBtn = styled.button`
 `;
 
 export const XLgIcon = styled(XLg)<IStyledIconsProps>`
-    color: ${props => props.colorIndex%2===0?"#fff":"#000"};
+    color: ${props => props.colorindex%2===0?"#fff":"#000"};
     width: 2rem;
     height: 2rem;
 `;
 
 export const PencilIcon = styled(Pencil)<IStyledIconsProps>`
-    color:  ${props => props.colorIndex%2===0?"#fff":"#000"};
+    color:  ${props => props.colorindex%2===0?"#fff":"#000"};
     width: 2rem;
     height: 2rem;
 `;

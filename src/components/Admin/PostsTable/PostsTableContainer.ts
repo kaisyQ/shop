@@ -6,13 +6,15 @@ import { RootState } from "redux/store";
 
 import { getPosts } from "redux/reducers/posts/selector";
 import { removePost } from "redux/reducers/posts/reducer";
+import { fetchPosts } from "redux/reducers/posts/reducer";
+
 
 const mapStateToProps = (state: RootState) => ({
     posts: getPosts(state)
 })
 
 const mapDispatchToProps = {
-    removePost
+    removePost, fetchPosts
 }
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>;

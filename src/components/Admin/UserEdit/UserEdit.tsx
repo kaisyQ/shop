@@ -42,13 +42,15 @@ const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
 
         if (!id) {
             addUser({
-                id: 100,
+                id:" 100",
+                password: '1',
                 login,
                 role: Roles.EMPLOYEE 
             }) 
         } else {
             updateUser({
-                id: parseInt(id),
+                id: id,
+                password: '1',
                 login,
                 role: Roles.EMPLOYEE
             })

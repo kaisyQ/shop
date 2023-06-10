@@ -13,8 +13,12 @@ import { NavLink } from "react-router-dom";
 interface IBlogsTableProps extends IBlogsTableConnectedProps {
 }
 
-const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
+const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost, fetchPosts }) => {
     
+    React.useEffect(() => {
+        fetchPosts();
+    }, [fetchPosts]);
+
     return (
         <>
             <TableWrapper>
@@ -32,21 +36,21 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost }) => {
                     {
                         posts.map((post, index) => <>
                                 <TableTr key={ post.id }>
-                                    <TableTd>{ post.id }</TableTd>
+                                    <TableTd>{ index+1 }</TableTd>
                                     <TableTd>{ post.title }</TableTd>
-                                    <TableTd>{ post.date }</TableTd>
+                                    <TableTd>{ post.date.toISOString() }</TableTd>
                                     <TableTd>{ post.text }</TableTd>
                                     <TableTd>
                                         <RemoveBtn onClick={(ev) => {
                                             removePost(post.id)
                                         }}>
-                                            <XLgIcon colorIndex={index} />
+                                            <XLgIcon colorindex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
                                         <NavLink to="/admin/post">
                                             <EditBtn>
-                                                <PencilIcon colorIndex={index} />
+                                                <PencilIcon colorindex={index} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>

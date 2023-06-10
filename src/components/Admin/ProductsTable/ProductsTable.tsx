@@ -41,13 +41,13 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct 
                                         <RemoveBtn onClick={(ev) => {
                                             removeProduct(product.id)
                                         }}>
-                                            <XLgIcon colorIndex={index} />
+                                            <XLgIcon colorindex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
                                         <NavLink to="/admin/product">
                                             <EditBtn>
-                                                <PencilIcon colorIndex={index} />
+                                                <PencilIcon colorindex={index} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>

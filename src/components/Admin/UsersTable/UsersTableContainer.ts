@@ -9,24 +9,22 @@ import { getUsers } from "redux/reducers/users/selector";
 import { addUser, removeUser, setCurrentUser } from "redux/reducers/users/usersSlice";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
+import { fetchUsers } from "redux/reducers/users/usersSlice";
+
+
 interface IMapStateToPropsType {
     users: IUser[]
-}
-
-interface IMapDispatchToPropsType {
-    addUser: ActionCreatorWithPayload<IUser>,
-    removeUser: ActionCreatorWithPayload<number>
-    setCurrentUser: ActionCreatorWithPayload<number>
 }
 
 const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
     users: getUsers(state)
 });
 
-const mapDispatchToProps: IMapDispatchToPropsType = {
-    addUser, removeUser, setCurrentUser
+const mapDispatchToProps = {
+    addUser, removeUser, setCurrentUser, fetchUsers
 };
 
+export type MapDispatchToProps = typeof mapDispatchToProps;
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 

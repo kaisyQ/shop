@@ -11,7 +11,7 @@ import {
 
 
 interface IBlogItemProps {
-    id: number,
+    id: string,
     title: string,
     imageSrc: string
 }

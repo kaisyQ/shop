@@ -1,129 +1,73 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getPosts, getPost } from "api/api";
 
 import { IPost, IPostWithDate } from "types/types";
 
+import { LOADING, IDLE, FALED } from "types/types";
+import type { LoadingType } from "types/types";
+
 interface IBlogsInitialState {
     items: IPostWithDate[],
-    current: null | IPostWithDate
+    current: null | IPostWithDate,
+    loadingStatus: LoadingType,
+    error: Error | null
 }
 
 const initialState: IBlogsInitialState = {
-    items: [
-        {
-            id: 1,
-            title: '1NASA Has Found Hundreds Of Potential New Planets',
-            text: `loremNASA released a list of 219 new 
-                text candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.`,
-            imageSrc: 'https://www.mebelbspb.ru/images/tovar/cover3671.jpg',
-            date: '21'
-        },
-        {
-            id: 2,
-            title: '2NASA Has Found Hundreds Of Potential New Planets',
-            text: `loremNASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.`,
-            imageSrc: 'https://bestmebelik.ru/UserFiles/Image/Pasha-stati/raskl_meh_var3.jpg',
-            date: '21'
-        },
-        {
-            id: 3,
-            title: '3NASA Has Found Hundreds Of Potential New Planets',
-            text: `loremNASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.`,
-            imageSrc: 'https://www.anderssen.ru/upload/iblock/d1c/d1c3fff1edab2eb988a7841d60814d0d.jpg',
-            date: '21'
-        },
-        {
-            id: 4,
-            title: '4NASA Has Found Hundreds Of Potential New Planets',
-            text: `loremNASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.`,
-            imageSrc: 'https://mebel.ru/upload/iblock/1f2/g6vd0clhvjdwg39o66adv82km3ihxhl5.jpg',
-            date: '21'
-        },
-        {
-            id: 5,
-            title: '5NASA Has Found Hundreds Of Potential New Planets',
-            text: `loremNASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.`,
-            imageSrc: 'https://f-storespb.ru/upload/resize_cache/iblock/063/662_475_1/a4dorynum0sb1rjzxj838mer5qd7696i.jpg',
-            date: '21'
-        },
-        {
-            id: 6,
-            title: '6NASA Has Found Hundreds Of Potential New Planets',
-            text: `loremNASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-                “planet candidates” discovered by the Kepler space telescope, 
-                10 of which are similar to Earth’s size and may be habitable by other life forms.`,
-            imageSrc: 'https://homecollection.com.ru/upload/resize_cache/iblock/a82/800_400_1/2-min.jpg',
-            date: '21'
-        }
-    ],
-    current: {
-        id: 1,
-        title: '1NASA Has Found Hundreds Of Potential New Planets',
-        text: `loremNASA released a list of 219 new 
-            text candidates” discovered by the Kepler space telescope, 
-            10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-            “planet candidates” discovered by the Kepler space telescope, 
-            10 of which are similar to Earth’s size and may be habitable by other life forms.NASA released a list of 219 new 
-            “planet candidates” discovered by the Kepler space telescope, 
-            10 of which are similar to Earth’s size and may be habitable by other life forms.`,
-        imageSrc: 'https://www.mebelbspb.ru/images/tovar/cover3671.jpg',
-        date: '21'
-    }
+    items: [],
+    current: null,
+    loadingStatus: IDLE,
+    error: null
 }
 
+export const fetchPosts = createAsyncThunk(
+    "posts/fetchPosts",
+    async () => {
+        try {
+            const response = await getPosts();
+            return response.data;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+
+    }
+)
 
 
-const blogSlice = createSlice({
+export const fetchPostById = createAsyncThunk(
+    "posts/fetchPostById",
+    async (id: string) => {
+        try {
+            const response = await getPost(id);
+            return response.data;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+
+    }
+)
+
+const postsSlice = createSlice({
     name: 'blogSlice',
     initialState,
     reducers: {
         setPosts: (state, action: PayloadAction<IPostWithDate[]>) => {
             state.items = action.payload;
         },
-        setCurrent: (state, action: PayloadAction<number>) => {
+        setCurrent: (state, action: PayloadAction<string>) => {
             state.current = state.items.filter(item => item.id === action.payload)[0]
         },
         createPost: (state, action: PayloadAction<IPost>) => {
             const date = new Date();
             state.items.push({
-                id: state.items.length+1,
-                date: date.toString(),
+                id: (state.items.length+1).toString(),
+                date: date,
                 ...action.payload
             })
         },
-        removePost: (state, action: PayloadAction<number>) => {
+        removePost: (state, action: PayloadAction<string>) => {
             state.items = state.items.filter(item => item.id !== action.payload)
         },
         updatePost: (state, action: PayloadAction<IPost>) => {
@@ -138,10 +82,45 @@ const blogSlice = createSlice({
                 }
             })
         },
-    }
+    },
+    extraReducers: (builder) => {
+        
+        builder.addCase(fetchPosts.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchPosts.fulfilled, (state, action) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            state.items = action.payload.posts;
+        })
+        builder.addCase(fetchPosts.rejected, (state, action) => {
+            state.loadingStatus = FALED;
+        })
+
+
+        builder.addCase(fetchPostById.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchPostById.fulfilled, (state, action) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            state.current = {
+                id: action.payload.post.id,
+                title: action.payload.post.title,
+                text: action.payload.post.text,
+                imageSrc: action.payload.post.imageSrc,
+                date: new Date(action.payload.post.created_at)
+            } as IPostWithDate;
+        })
+        builder.addCase(fetchPostById.rejected, (state, action) => {
+            state.loadingStatus = FALED;
+        })
+    },
 })
 
-const { actions, reducer } = blogSlice;
+const { actions, reducer } = postsSlice;
 
 export const { setPosts, setCurrent, createPost, removePost, updatePost } = actions;
 

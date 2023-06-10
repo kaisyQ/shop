@@ -10,8 +10,12 @@ import { NavLink } from "react-router-dom";
 interface IUserTableProps extends UserTableConnectedProps {
 }
 
-const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUser }) => {
+const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUser, fetchUsers }) => {
     
+    React.useEffect(() => {
+        fetchUsers();
+    }, [fetchUsers])
+
     const onEditClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
 
     }
@@ -32,14 +36,14 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
                     {
                         users.map((user, index) => <>
                                 <TableTr key={ user.id }>
-                                    <TableTd>{ user.id }</TableTd>
+                                    <TableTd>{ index+1 }</TableTd>
                                     <TableTd>{ user.login }</TableTd>
                                     <TableTd>{ user.role }</TableTd>
                                     <TableTd>
                                         <RemoveBtn onClick={() => {
                                             removeUser(user.id)
                                         }}>
-                                            <XLgIcon colorIndex={index} />
+                                            <XLgIcon colorindex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
@@ -47,7 +51,7 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
                                             <EditBtn onClick={() => {
                                                 setCurrentUser(user.id);
                                             }}>
-                                                <PencilIcon colorIndex={index} />
+                                                <PencilIcon colorindex={index} />
                                             </EditBtn>
                                         </NavLink>
                                     </TableTd>

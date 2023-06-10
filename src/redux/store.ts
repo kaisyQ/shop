@@ -16,9 +16,14 @@ const rootReducer = combineReducers({
     users: usersReducer
 });
 
+
 const store = configureStore({
     reducer: rootReducer,
-    middleware: [thunk]
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        thunk: true,
+        immutableCheck: false,
+        serializableCheck: false,
+    })
 })
 
 export type RootState = ReturnType<typeof store.getState>;

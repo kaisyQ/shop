@@ -6,19 +6,26 @@ import { getPosts } from "../../redux/reducers/posts/selector";
 
 import { RootState } from "redux/store";
 import { IPostWithDate } from "types/types";
+import { fetchPosts } from "redux/reducers/posts/reducer";
 
 interface IMapStateToPropsType {
-    blogs: IPostWithDate[]
+    posts: IPostWithDate[]
 }
 
 
 const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
-    blogs: getPosts(state)
+    posts: getPosts(state)
 })
 
+const mapDispatchToProps = {
+    fetchPosts
+}
 
-const connector = connect(mapStateToProps, null);
+export type MapDispatchToPropsType = typeof mapDispatchToProps;
 
-export type BlogsConnectedProps = ConnectedProps<typeof connector>;
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+export type PostsConnectedProps = ConnectedProps<typeof connector>;
 
 export default connector(Posts);

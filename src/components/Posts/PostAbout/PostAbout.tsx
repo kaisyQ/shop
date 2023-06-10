@@ -11,7 +11,7 @@ interface IPostAboutProps extends PostAboutConnectedProps {
 
 }
 
-const PostAbout: React.FC<IPostAboutProps> = ({ current, setCurrentPost }) => {
+const PostAbout: React.FC<IPostAboutProps> = ({ current, fetchPostById }) => {
     
     const { id } = useParams();
 
@@ -19,8 +19,8 @@ const PostAbout: React.FC<IPostAboutProps> = ({ current, setCurrentPost }) => {
         if(!id) {
             return;
         }
-        setCurrentPost(parseInt(id));
-    }, [id])
+        fetchPostById(id);
+    }, [id, fetchPostById])
 
     return (
         <>
@@ -31,7 +31,7 @@ const PostAbout: React.FC<IPostAboutProps> = ({ current, setCurrentPost }) => {
 
                 { current ? <Image src={current.imageSrc}/> : null }
 
-                { current ? <Date>{ current.date }</Date> : null }
+                { current ? <Date>{ current.date.toISOString() }</Date> : null }
             </Wrapper>
         </>
     );
