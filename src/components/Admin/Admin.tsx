@@ -12,7 +12,7 @@ import { AdminWrapper, AdminHeader, AdminNav, LinksWrapper } from "./AdminStyles
 const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login }) => {
     
     if (!isAuth) {
-        return <Navigate  to={"/auth"} />
+        return <Navigate  to={"/auth"} />;
     }
     
     return (

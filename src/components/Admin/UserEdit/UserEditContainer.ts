@@ -5,14 +5,20 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { getCurrentUser } from "redux/reducers/users/selector";
 
-import { updateUser, addUser } from "redux/reducers/users/usersSlice";
+import { 
+    fetchUserById, fetchToUpdateUser,
+    setCurrentUser, fetchToCreateUser
+} from "redux/reducers/users/usersSlice";
+
+
 
 const mapStateToProps = (state: RootState) => ({
     user: getCurrentUser(state)
 })
 
 const mapDispatchToProps = {
-    updateUser, addUser
+    fetchUserById, fetchToUpdateUser,
+    setCurrentUser, fetchToCreateUser
 }
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>;

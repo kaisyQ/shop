@@ -4,13 +4,16 @@ import Button from "components/Custom/Button/Button";
 import Input from "components/Custom/Input/Input";
 import Title from "components/Custom/Title/Title";
 
-import { EditForm, UserEditWrapper, EditFormControl, InputWrapper } from "./UserEditStyles";
+import { 
+    EditForm, UserEditWrapper, EditFormControl, 
+    InputWrapper, InfoContainer, InfoItem
+} from "./UserEditStyles";
 
 import { IUserEditConnectedProps } from "./UserEditContainer";
 
 import { useParams } from "react-router-dom";
 
-import { Roles } from "types/types";
+import { IShortUser } from "types/types";
 
 import { NavLink } from "react-router-dom";
 
@@ -18,44 +21,45 @@ interface IUserEditProps extends IUserEditConnectedProps {
 
 }
 
-const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
+const UserEdit: React.FC<IUserEditProps> = (props) => {
    
+    const { 
+        fetchToCreateUser, user, fetchToUpdateUser,
+        fetchUserById, setCurrentUser 
+    } = props;
+
     const { id } = useParams();
     
     const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     React.useEffect(() => {
-
-    }, [id])
+        if (!id) {
+            setCurrentUser(null);
+            return;
+        }
+        fetchUserById(id);
+    }, [id, fetchUserById]);
 
     React.useEffect(() => {
         if (!user) {
             return;
         }
-        setLogin(user.login)
-    }, [user])
+        setLogin(user.login);
+    }, [user]);
 
-
-    const onEditFormSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
-        ev.preventDefault();
-
+    
+    const onSumbit = (ev: React.MouseEvent<HTMLButtonElement>) => {
         if (!id) {
-            addUser({
-                id:" 100",
-                password: '1',
-                login,
-                role: Roles.EMPLOYEE 
-            }) 
+            fetchToCreateUser({ login: login, password: password } as IShortUser);
         } else {
-            updateUser({
+            fetchToUpdateUser({
                 id: id,
-                password: '1',
-                login,
-                role: Roles.EMPLOYEE
-            })
+                user: {
+                    login: login, password: password
+                } as IShortUser
+            });
         }
-
     }
 
     const onLoginChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -69,11 +73,19 @@ const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
     return (
         <>
             <UserEditWrapper>
-                    <Title>Edit user</Title>
-                <EditForm onSubmit={onEditFormSubmit}>
+                <Title>Editing user</Title>
+                {
+                    user ? <>
+                        <InfoContainer>
+                            <InfoItem>id: <span>{user.id}</span></InfoItem>
+                            <InfoItem>Role: <span>{user.role}</span></InfoItem>
+                        </InfoContainer>
+                    </> : null
+                }
+                <EditForm>
                     <InputWrapper>
                         <Input 
-                            placeholder="Login" 
+                            placeholder="Enter new login" 
                             id="user-edit-login" 
                             type="input" 
                             onChange={onLoginChange}
@@ -83,7 +95,7 @@ const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
 
                     <InputWrapper>
                         <Input 
-                            placeholder="New user password" 
+                            placeholder="Enter new password" 
                             id="user-edit-password" 
                             type="input" 
                             onChange={onPasswordChange}
@@ -93,7 +105,7 @@ const UserEdit: React.FC<IUserEditProps> = ({ user, updateUser, addUser }) => {
 
                     <EditFormControl>
                         <NavLink to="/admin">
-                            <Button>Save</Button>
+                            <Button onClick={onSumbit} isReverse={true}>Save</Button>
                         </NavLink>
                     </EditFormControl> 
                 </EditForm>

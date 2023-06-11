@@ -1,10 +1,10 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUsers } from "api/api";
+import { getUsers, getUser, createUser, updateUser, deleteUser } from "api/api";
 
-import { IUser, Roles } from "types/types";
+import { IUser } from "types/types";
 
 import { LOADING, IDLE, FALED } from "types/types";
-import type { LoadingType } from "types/types";
+import type { IShortUser, LoadingType } from "types/types";
 
 
 interface IUserInitialState {
@@ -16,12 +16,7 @@ interface IUserInitialState {
 
 const initialState: IUserInitialState = {
     items: [],
-    current: {
-        id: "3",
-        login: 'user2',
-        password: "2",
-        role: Roles.EMPLOYEE
-    },
+    current: null,
     loadingStatus: IDLE,
     error: null
 }
@@ -40,6 +35,59 @@ export const fetchUsers = createAsyncThunk(
     }
 );
 
+export const fetchUserById = createAsyncThunk(
+    "users/fetchUserById",
+    async (id: string) => {
+        try {
+            const response = await getUser(id);
+            return response.data
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    }
+);
+
+export const fetchToCreateUser = createAsyncThunk(
+    "users/fetchToCreateUser",
+    async (user: IShortUser) => {
+        try {
+            const response = await createUser(user);
+            return response.data
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    }
+);
+
+export const fetchToUpdateUser = createAsyncThunk(
+    "users/fetchToUpdateUser",
+    async ({ id, user }: {id: string, user: IShortUser}) => {
+        try {
+            const response = await updateUser(id, user);
+            return response.data
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    }
+);
+
+export const fetchToDeleteUser = createAsyncThunk(
+    "users/fetchToDeleteUser",
+    async (id: string) => {
+        try {
+            const response = await deleteUser(id);
+            return response.data
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    }
+);
+
+
 const usersSlice = createSlice({
     name: 'usersSlice',
     initialState,
@@ -50,23 +98,8 @@ const usersSlice = createSlice({
         removeUser: (state, action: PayloadAction<string>) => {
            state.items = state.items.filter(user => user.id !== action.payload);
         },
-        updateUser: (state, action: PayloadAction<IUser>) => {
-            state.items = state.items.filter(user => {
-                if (action.payload.id !== user.id) {
-                    return user;
-                }
-                return {
-                    ...user,
-                    login: action.payload.login
-                }
-            })
-        },
-        setCurrentUser: (state, action: PayloadAction<string>) => {
-            const user = state.items.find(item => item.id === action.payload);
-            state.current = null;
-            if (user) {
-                state.current = user;
-            }
+        setCurrentUser: (state, action: PayloadAction<null | IUser>) => {
+            state.current = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -82,11 +115,74 @@ const usersSlice = createSlice({
         builder.addCase(fetchUsers.rejected, (state, action) => {
             state.loadingStatus = FALED;
         })
+
+
+
+        builder.addCase(fetchUserById.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchUserById.fulfilled, (state, action: PayloadAction<{user: IUser}>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            state.current = action.payload.user;
+        })
+        builder.addCase(fetchUserById.rejected, (state, action) => {
+            state.loadingStatus = FALED;
+        })
+
+
+
+        builder.addCase(fetchToCreateUser.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToCreateUser.fulfilled, (state, action: PayloadAction<{user: IUser}>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            state.items.push(action.payload.user);
+        })
+        builder.addCase(fetchToCreateUser.rejected, (state, action) => {
+            state.loadingStatus = FALED;
+        })
+
+        
+        
+        
+        builder.addCase(fetchToUpdateUser.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToUpdateUser.fulfilled, (state, action: PayloadAction<{user: IUser}>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+        })
+        builder.addCase(fetchToUpdateUser.rejected, (state, action) => {
+            state.loadingStatus = FALED;
+        })
+
+
+
+
+        builder.addCase(fetchToDeleteUser.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToDeleteUser.fulfilled, (state, action: PayloadAction<{deletedUser: IUser}>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            const id = action.payload.deletedUser.id;
+            
+            state.items = state.items.filter(user => user.id !== id);
+        })
+        builder.addCase(fetchToDeleteUser.rejected, (state, action) => {
+            state.loadingStatus = FALED;
+        })
     },
 })
 
 const { actions, reducer } = usersSlice;
 
-export const { addUser, removeUser, setCurrentUser, updateUser } = actions;
+export const { addUser, removeUser, setCurrentUser } = actions;
 
 export default reducer;

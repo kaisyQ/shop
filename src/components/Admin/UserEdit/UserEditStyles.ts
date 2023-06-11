@@ -7,6 +7,19 @@ export const UserEditWrapper = styled.div`
     row-gap: 4rem;
 `;
 
+export const InfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: left;
+`;
+
+export const InfoItem = styled.div`
+    font-weight: 600;
+    font-size: 2rem;
+`;
+
+
 export const EditForm = styled.form`
     display: flex;
     flex-direction: column;

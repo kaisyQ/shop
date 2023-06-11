@@ -48,6 +48,11 @@ export enum Roles {
     EMPLOYEE
 }
 
+export interface IShortUser {
+    login: string,
+    password: string,
+}
+
 export interface IUser {
     id: string,
     login: string,

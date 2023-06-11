@@ -10,14 +10,14 @@ import { NavLink } from "react-router-dom";
 interface IUserTableProps extends UserTableConnectedProps {
 }
 
-const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUser, fetchUsers }) => {
+const UsersTable: React.FC<IUserTableProps> = ({ users, fetchUsers, fetchToDeleteUser }) => {
     
     React.useEffect(() => {
         fetchUsers();
     }, [fetchUsers])
 
-    const onEditClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-
+    const onDeleteClick = (id: string) => {
+        fetchToDeleteUser(id);
     }
 
     return (
@@ -40,17 +40,13 @@ const UsersTable: React.FC<IUserTableProps> = ({ users, removeUser, setCurrentUs
                                     <TableTd>{ user.login }</TableTd>
                                     <TableTd>{ user.role }</TableTd>
                                     <TableTd>
-                                        <RemoveBtn onClick={() => {
-                                            removeUser(user.id)
-                                        }}>
+                                        <RemoveBtn onClick={(ev) => onDeleteClick(user.id)}>
                                             <XLgIcon colorindex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
-                                        <NavLink to={'/admin/user'}>
-                                            <EditBtn onClick={() => {
-                                                setCurrentUser(user.id);
-                                            }}>
+                                        <NavLink to={`/admin/user/${user.id}`}>
+                                            <EditBtn>
                                                 <PencilIcon colorindex={index} />
                                             </EditBtn>
                                         </NavLink>
