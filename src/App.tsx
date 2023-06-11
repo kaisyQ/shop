@@ -38,7 +38,7 @@ const App: React.FC<AppConnectedProps> = ({ isDark, setIsDark }) => {
       
       <Footer />
     </AppWrapper>
-  )
+  );
 }
 
 export default App;

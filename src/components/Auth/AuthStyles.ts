@@ -11,7 +11,6 @@ export const LoginWrapper = styled.form`
 
 export const Title = styled.h2`
     font-size: 2.5rem;
-    letter-spacing: 0.3rem;
     font-weight: 500;
     color: #b42525;
     font-style: italic;

@@ -62,6 +62,23 @@ export const ProductTh = styled.th`
     border: 1px solid #fff;
 `;
 
+export const AdminHeader = styled.header`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const AdminNav = styled.nav`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+`;
+
+export const LinksWrapper = styled.div`
+    display: flex;
+    gap: 1rem;
+`;
 
 
 export const RemoveBtn = styled.button`

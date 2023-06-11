@@ -31,7 +31,7 @@ const PostAbout: React.FC<IPostAboutProps> = ({ current, fetchPostById }) => {
 
                 { current ? <Image src={current.imageSrc}/> : null }
 
-                { current ? <Date>{ current.date.toISOString() }</Date> : null }
+                { current ? <Date>{ current.date.toLocaleDateString() }</Date> : null }
             </Wrapper>
         </>
     );

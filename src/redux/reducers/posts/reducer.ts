@@ -93,6 +93,7 @@ const postsSlice = createSlice({
             state.loadingStatus = IDLE;
             state.error = null;
             state.items = action.payload.posts;
+            console.log(action.payload.posts)
         })
         builder.addCase(fetchPosts.rejected, (state, action) => {
             state.loadingStatus = FALED;
