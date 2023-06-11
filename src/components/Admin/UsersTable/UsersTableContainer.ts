@@ -6,8 +6,6 @@ import { ConnectedProps, connect } from "react-redux";
 import { IUser } from "types/types";
 import { getUsers } from "redux/reducers/users/selector";
 
-import { addUser, removeUser } from "redux/reducers/users/usersSlice";
-
 import { fetchUsers, fetchToDeleteUser } from "redux/reducers/users/usersSlice";
 
 
@@ -20,7 +18,7 @@ const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
 });
 
 const mapDispatchToProps = {
-    addUser, removeUser, fetchUsers, fetchToDeleteUser
+    fetchUsers, fetchToDeleteUser
 };
 
 export type MapDispatchToProps = typeof mapDispatchToProps;

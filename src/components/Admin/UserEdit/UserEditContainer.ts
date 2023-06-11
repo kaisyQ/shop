@@ -1,5 +1,6 @@
-import { RootState } from "redux/store";
 import UserEdit from "./UserEdit";
+
+import { RootState } from "redux/store";
 
 import { connect, ConnectedProps } from "react-redux";
 
