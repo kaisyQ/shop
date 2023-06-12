@@ -1,10 +1,20 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPosts, getPost } from "api/api";
+import { getPosts, getPost, deletePost, createPost } from "api/api";
 
 import { IPost, IPostWithDate } from "types/types";
 
 import { LOADING, IDLE, FALED } from "types/types";
+
 import type { LoadingType } from "types/types";
+
+interface IServerPost {
+    id: string,
+    updated_at: string,
+    created_at: string,
+    imageSrc: string,
+    text: string,
+    title: string
+}
 
 interface IBlogsInitialState {
     items: IPostWithDate[],
@@ -47,7 +57,63 @@ export const fetchPostById = createAsyncThunk(
         }
 
     }
-)
+);
+
+
+
+export const fetchToDeletePost = createAsyncThunk(
+    "posts/fetchToDeletePost",
+    async (id: string) => {
+        try {
+            const response = await deletePost(id);
+            return response.data;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+
+    }
+);
+
+
+export const fetchToCreatePost = createAsyncThunk(
+    "posts/fetchToCreatePost",
+    async (formData: FormData) => {
+        try {
+            const response = await fetch("http://localhost:8000/posts", {
+                method: "POST",
+                body: formData
+            })
+            console.log(response)
+            return response;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+
+    }
+);
+
+export const fetchToUpdatePost = createAsyncThunk(
+    "posts/fetchToUpdatePost",
+    async (formData: FormData) => {
+        try {
+            const response = await fetch("http://localhost:8000/posts", {
+                method: "PUT",
+                body: formData
+            })
+            console.log(response)
+            return response;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+
+    }
+);
+
+
+
 
 const postsSlice = createSlice({
     name: 'blogSlice',
@@ -56,16 +122,8 @@ const postsSlice = createSlice({
         setPosts: (state, action: PayloadAction<IPostWithDate[]>) => {
             state.items = action.payload;
         },
-        setCurrent: (state, action: PayloadAction<string>) => {
-            state.current = state.items.filter(item => item.id === action.payload)[0]
-        },
-        createPost: (state, action: PayloadAction<IPost>) => {
-            const date = new Date();
-            state.items.push({
-                id: (state.items.length+1).toString(),
-                date: date,
-                ...action.payload
-            })
+        setCurrent: (state, action: PayloadAction<IPostWithDate | null>) => {
+            state.current = action.payload
         },
         removePost: (state, action: PayloadAction<string>) => {
             state.items = state.items.filter(item => item.id !== action.payload)
@@ -89,22 +147,29 @@ const postsSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchPosts.fulfilled, (state, action) => {
+        builder.addCase(fetchPosts.fulfilled, (state, action: PayloadAction<{posts: IServerPost[]}>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            state.items = action.payload.posts;
-            console.log(action.payload.posts)
+            state.items = action.payload.posts.map(post => ({
+                id: post.id,
+                title: post.title,
+                text: post.text,
+                imageSrc: post.imageSrc,
+                date: new Date(post.created_at)
+            }));
         })
         builder.addCase(fetchPosts.rejected, (state, action) => {
             state.loadingStatus = FALED;
         })
 
 
+        
+        
         builder.addCase(fetchPostById.pending, (state) => {
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchPostById.fulfilled, (state, action) => {
+        builder.addCase(fetchPostById.fulfilled, (state, action: PayloadAction<{post: IServerPost}>) => {
             state.loadingStatus = IDLE;
             state.error = null;
             state.current = {
@@ -118,12 +183,40 @@ const postsSlice = createSlice({
         builder.addCase(fetchPostById.rejected, (state, action) => {
             state.loadingStatus = FALED;
         })
+
+
+
+
+        builder.addCase(fetchToDeletePost.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToDeletePost.fulfilled, (state, action: PayloadAction<{ deletedPost: IServerPost}>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            state.items = state.items.filter(post => post.id !== action.payload.deletedPost.id)
+        })
+        builder.addCase(fetchToDeletePost.rejected, (state, action) => {
+            state.loadingStatus = FALED;
+        })
+
+        builder.addCase(fetchToCreatePost.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToCreatePost.fulfilled, (state, action) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+        })
+        builder.addCase(fetchToCreatePost.rejected, (state, action) => {
+            state.loadingStatus = FALED;
+        })
     },
 })
 
 const { actions, reducer } = postsSlice;
 
-export const { setPosts, setCurrent, createPost, removePost, updatePost } = actions;
+export const { setPosts, setCurrent, removePost, updatePost } = actions;
 
 
 export default reducer;

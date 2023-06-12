@@ -5,8 +5,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "redux/store";
 
 import { getPosts } from "redux/reducers/posts/selector";
-import { removePost } from "redux/reducers/posts/reducer";
-import { fetchPosts } from "redux/reducers/posts/reducer";
+import { fetchPosts, fetchToDeletePost } from "redux/reducers/posts/reducer";
 
 
 const mapStateToProps = (state: RootState) => ({
@@ -14,7 +13,7 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = {
-    removePost, fetchPosts
+    fetchPosts, fetchToDeletePost
 }
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>;

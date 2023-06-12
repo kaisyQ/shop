@@ -8,79 +8,104 @@ import {
     EditForm, UserEditWrapper, EditFormControl, InputWrapper, LabelWrapper, LabelSpan
 } from "./PostEditStyles";
 
-import { IPostEditConnectedProps } from "./PostEditContainer";
 import { useParams, NavLink } from "react-router-dom";
 
-interface IPostEditProps extends IPostEditConnectedProps {
+import reducer, 
+{ 
+    initialState, setFullState, setTitle, setText, 
+    selectTitle, selectText, selectImageSrc, selectImageFile, setImageSrc, setFullImage
+} from "reducers/post-edit/reducer";
 
+import { IPostEditApiConnectedProps } from "./PostEditContainer";
+
+interface IPostEditProps extends IPostEditApiConnectedProps{
 }
 
 
-const PostEdit: React.FC<IPostEditProps> = ({ post, createPost, updatePost }) => {
+const PostEdit: React.FC<IPostEditProps> = ({ post, fetchToCreatePost, fetchToUpdatePost }) => {
     
-    const { id } = useParams();
-
-
-    const [title, setTitle] = React.useState('');
-    const [text, setText] = React.useState('');
-    const [postImage, setPostImage] = React.useState<string | null>(null);
-
-
-    React.useEffect(() => {
-
-    }, [id])
-
+    const [state, dispatch] = React.useReducer(reducer, initialState);
 
     React.useEffect(() => {
         if (!post) {
             return;
         }
-        setTitle(post.title);
-        setText(post.text);
-        setPostImage(post.imageSrc);
+        dispatch(setFullState({
+            title: post.title,
+            text: post.text,
+            imageSrc: post.imageSrc
+        }));
     }, [post])
 
 
+    const text = selectText(state);
+    const title = selectTitle(state);
+    const imageSrc = selectImageSrc(state);
+    const imageFile = selectImageFile(state);
+
     const onSaveClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        if(!postImage) {
+        if(!imageSrc) {
             return;
         }
 
-        if (!id) {
-            createPost({
-                title, text, imageSrc: postImage
-            })
+        if (!post) {
+            if (!imageFile || !title || !text) {
+               return;
+            }
+            const formData = new FormData();
+            formData.append("postImage", imageFile);
+            formData.append("data", JSON.stringify({
+                title: title,
+                text: text
+            }));
+            fetchToCreatePost(formData);
         } else {
-            updatePost({
-                id: parseInt(id), 
-                title, 
-                text, 
-                imageSrc: postImage
-            })
+            if (!imageFile && !title && !text) {
+                return;
+            }
+            const formData = new FormData();
+            const data = {
+                id: post.id
+            };
+            if (imageFile) {
+                formData.append("postImage", imageFile);
+            }
+            if(text) {
+                Object.assign(data, { text });
+            }
+            if(title) {
+                Object.assign(data, { title });
+            }
+            formData.append("data", JSON.stringify(data));
+            fetchToUpdatePost(formData);
         }
     }
 
     const onTitleChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setTitle(ev.target.value);
+        dispatch(setTitle(ev.target.value));
     }
     
     const onTextChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setText(ev.target.value);
+        dispatch(setText(ev.target.value));
     }
 
     const onImageChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         if (!ev.target.files) {
             return;
         }
+
         const url = URL.createObjectURL(ev.target.files[0]);
-        setPostImage(url);
+        dispatch(setFullImage({
+            imageSrc: url, 
+            imageFile: ev.target.files[0]
+        }));
     }
 
     return (
         <>
             <UserEditWrapper>
                 <Title>Post Edit</Title>
-                <EditForm>
+                <EditForm onSubmit={(ev) => ev.preventDefault()}>
                     <InputWrapper>
                         <Input 
                             placeholder="Title" 
@@ -103,27 +128,25 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, createPost, updatePost }) =>
                     </InputWrapper>
                     <InputWrapper>
                         <LabelWrapper>
-                            <div>
                             <LabelSpan>Choose a post image</LabelSpan>
-                            </div>
                             <input
                                 id="post-edit-image"
                                 type="file" 
-                                accept="image.png, image/jpeg "
+                                accept="image.png, image/jpeg, image/jpg"
                                 style={{display: 'none'}}
                                 onChange={onImageChange}
                             />
                         </LabelWrapper>
                         <div>
                         {
-                            postImage ? <img src={postImage} alt="post image" /> : null
+                            imageSrc ? <img src={imageSrc} alt="post image" /> : null
                         }
                         </div>
                     </InputWrapper>
 
                     <EditFormControl>
                         <NavLink to={"/admin"}>
-                            <Button onClick={onSaveClick}>Save</Button>
+                            <Button onClick={onSaveClick} isReverse={true}>Save</Button>
                         </NavLink>
                     </EditFormControl>
                 </EditForm>

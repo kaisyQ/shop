@@ -13,11 +13,16 @@ import { NavLink } from "react-router-dom";
 interface IBlogsTableProps extends IBlogsTableConnectedProps {
 }
 
-const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost, fetchPosts }) => {
+const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, fetchToDeletePost, fetchPosts }) => {
     
     React.useEffect(() => {
         fetchPosts();
     }, [fetchPosts]);
+
+
+    const onRemoveClick = (id: string) => {
+        fetchToDeletePost(id)
+    }
 
     return (
         <>
@@ -38,17 +43,15 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, removePost, fetchPosts 
                                 <TableTr key={ post.id }>
                                     <TableTd>{ index+1 }</TableTd>
                                     <TableTd>{ post.title }</TableTd>
-                                    <TableTd>{ post.date.toISOString() }</TableTd>
+                                    <TableTd>{ post.date.toLocaleDateString() }</TableTd>
                                     <TableTd>{ post.text }</TableTd>
                                     <TableTd>
-                                        <RemoveBtn onClick={(ev) => {
-                                            removePost(post.id)
-                                        }}>
+                                        <RemoveBtn onClick={(ev) => onRemoveClick(post.id)}>
                                             <XLgIcon colorindex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
-                                        <NavLink to="/admin/post">
+                                        <NavLink to={`/admin/post/${post.id}`}>
                                             <EditBtn>
                                                 <PencilIcon colorindex={index} />
                                             </EditBtn>
