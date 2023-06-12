@@ -6,18 +6,17 @@ import { RootState } from "redux/store";
 
 import { getCurrentProduct } from "../../../../../redux/reducers/product/selector";
 
-import { IProduct } from "types/types";
+import { fetchProductById } from "redux/reducers/product/productSlice";
 
-
-interface IMapStateToPropsType {
-    item: IProduct
-}
-
-const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
-    item: getCurrentProduct(state)
+const mapStateToProps = (state: RootState) => ({
+    product: getCurrentProduct(state)
 });
 
-const connector = connect(mapStateToProps, null);
+const mapDispatchToProps = {
+    fetchProductById
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type CardAboutConnectedProps = ConnectedProps<typeof connector>;
 

@@ -29,41 +29,55 @@ import {
 } from "./CardAboutStyles"
 
 
-const CardAbout: React.FC<CardAboutConnectedProps> = ({ item }) => {
+const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductById }) => {
 
     const { id } = useParams();
+
+    React.useEffect(() => {
+        if (!id) {
+            return;
+        }
+        fetchProductById(id);
+    }, [id, fetchProductById]);
+
+
+    if (!product) {
+        return <>
+            No product
+        </>
+    }
 
     return (
         <>
             <Wrapper>
 
                 <SliderWrapper>
-                    <Slider images={item.imagesSrc}/>
+                    <Slider images={product.imagesSrc}/>
                 </SliderWrapper>
 
                 
                 <ImagesWrapper>
                     <ImageRow>
                         <ImageWrapper width={'100%'}>
-                            <Image src={item.imagesSrc[0]}/>
+                            <Image src={product.imagesSrc[0]}/>
                         </ImageWrapper>
                     </ImageRow>
                     <ImageRow>
                         <ImageWrapper>
-                            <Image src={item.imagesSrc[1]}/>
+                            <Image src={product.imagesSrc[1]}/>
                         </ImageWrapper>
                         <ImageWrapper>
-                            <Image src={item.imagesSrc[2]}/>
+                            <Image src={product.imagesSrc[2]}/>
                         </ImageWrapper>
                     </ImageRow>
                     <ImageRow>
                         <ImageWrapper width={'100%'}>
-                            <Image src={item.imagesSrc[3]}/>
+                            <Image src={product.imagesSrc[3]}/>
                         </ImageWrapper>
                     </ImageRow>
                     <ImageRow>
                         <ImageWrapper width={'100%'}>
-                                <Image src={item.imagesSrc[4]}/>
+                                <Image src={product.imagesSrc[4]}/>
                             </ImageWrapper>
                     </ImageRow>
                 </ImagesWrapper>
@@ -72,25 +86,25 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ item }) => {
                 <InfoWrapper>
 
 
-                    <Title>{ item.name }</Title>
+                    <Title>{ product.name }</Title>
 
                     <PriseWrapper>
-                        <Prise crossedOut={ item.discountPrice ? true : false }>{item.price+'$'}</Prise>
-                        { item.discountPrice ? <DiscountPrice>{item.discountPrice+'$'}</DiscountPrice> : <></> }
+                        <Prise crossedOut={ product.discountPrice ? true : false }>{product.price+'$'}</Prise>
+                        { product.discountPrice ? <DiscountPrice>{product.discountPrice+'$'}</DiscountPrice> : <></> }
                         {
-                            !item.count ? <ZeroCountMessage>Out of stock</ZeroCountMessage> : <></>
+                            !product.count ? <ZeroCountMessage>Out of stock</ZeroCountMessage> : <></>
                         }
                     </PriseWrapper>
 
-                    <CardAboutSection title={'About Product'} text={item.description}>
+                    <CardAboutSection title={'About Product'} text={product.description}>
                         <SofaIcon width="64" height="64" />
                     </CardAboutSection>
 
-                    <CardAboutSection title={'Dimensions'} params={item.params}>
+                    <CardAboutSection title={'Dimensions'} params={product.params}>
                         <DimIcon width="64" height="64" />
                     </CardAboutSection>
 
-                    <CardAboutSection title={'About Delivery'} text={item.delivery} >
+                    <CardAboutSection title={'About Delivery'} text={product.delivery} >
                         <TruckIcon width="64" height="64" />
                     </CardAboutSection>
 

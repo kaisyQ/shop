@@ -1,243 +1,53 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { IProduct } from "types/types";
+import { getProducts, getProduct } from "api/api";
+
+import { 
+    IProduct, ServerProduct, LoadingType, IDLE, LOADING, FAILED 
+} from "types/types";
+
 
 
 interface IProductsInitialState {
     items: IProduct[],
-    current: IProduct,
+    current: IProduct | null,
+    loadingStatus: LoadingType,
+    error: Error | null
+
 }
 
 
-const initialState : IProductsInitialState = {
-    items: [
-        {
-            id: 1,
-            name: 'Cream 3 Seater Couch',
-            count: 3,
-            price: 1500,
-            discountPrice: 1200,
-            description: `New couch prices got you down? TwoGuys-OneCouch is here to save the day!
-                If you are looking for a great-condition couch at a fraction of retail cost, we are your one-stop shop!
-                Through our extensive cleaning and reconditioning process we can provide our clients with a Near-New couch experience while saving them money as well!
-                Here are the details of this particular couch:
-            `,
-            params: {
-                Width: '283 cm',
-                Height: '84 cm',
-                Depth: '160 cm'
-            },
-            delivery: `Delivery is included for the GTA, further distances will incur a delivery charge.
-                We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
-            `,
-            imagesSrc: [
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            ]
-        },
-        {
-            id: 3,
-            name: 'Cream 3 Seater Couch',
-            count: 2,
-            price: 1300,
-            discountPrice: 1000,
-            description: `New couch prices got you down? TwoGuys-OneCouch is here to save the day!
-                If you are looking for a great-condition couch at a fraction of retail cost, we are your one-stop shop!
-                Through our extensive cleaning and reconditioning process we can provide our clients with a Near-New couch experience while saving them money as well!
-                Here are the details of this particular couch:
-            `,
-            params: {
-                Width: '283 cm',
-                Height: '84 cm',
-                Depth: '160 cm'
-            },
-            delivery: `Delivery is included for the GTA, further distances will incur a delivery charge.
-                We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
-            `,
-            imagesSrc: [
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            ]
-        },
-        {
-            id: 2,
-            name: 'Cream 3 Seater Couch',
-            count: 1,
-            price: 1300,
-            discountPrice: 1000,
-            description: `New couch prices got you down? TwoGuys-OneCouch is here to save the day!
-                If you are looking for a great-condition couch at a fraction of retail cost, we are your one-stop shop!
-                Through our extensive cleaning and reconditioning process we can provide our clients with a Near-New couch experience while saving them money as well!
-                Here are the details of this particular couch:
-            `,
-            params: {
-                Width: '283 cm',
-                Height: '84 cm',
-                Depth: '160 cm'
-            },
-            delivery: `Delivery is included for the GTA, further distances will incur a delivery charge.
-                We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
-            `,
-            imagesSrc: [
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            ]
-        },
-        {
-            id: 2,
-            name: 'Cream 3 Seater Couch',
-            count: 1,
-            price: 1300,
-            discountPrice: 1000,
-            description: `New couch prices got you down? TwoGuys-OneCouch is here to save the day!
-                If you are looking for a great-condition couch at a fraction of retail cost, we are your one-stop shop!
-                Through our extensive cleaning and reconditioning process we can provide our clients with a Near-New couch experience while saving them money as well!
-                Here are the details of this particular couch:
-            `,
-            params: {
-                Width: '283 cm',
-                Height: '84 cm',
-                Depth: '160 cm'
-            },
-            delivery: `Delivery is included for the GTA, further distances will incur a delivery charge.
-                We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
-            `,
-            imagesSrc: [
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            ]
-        },
-        {
-            id: 2,
-            name: 'Cream 3 Seater Couch',
-            count: 1,
-            price: 1300,
-            discountPrice: 1000,
-            description: `New couch prices got you down? TwoGuys-OneCouch is here to save the day!
-                If you are looking for a great-condition couch at a fraction of retail cost, we are your one-stop shop!
-                Through our extensive cleaning and reconditioning process we can provide our clients with a Near-New couch experience while saving them money as well!
-                Here are the details of this particular couch:
-            `,
-            params: {
-                Width: '283 cm',
-                Height: '84 cm',
-                Depth: '160 cm'
-            },
-            delivery: `Delivery is included for the GTA, further distances will incur a delivery charge.
-                We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
-            `,
-            imagesSrc: [
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            ]
-        },
-        {
-            id: 2,
-            name: 'Cream 3 Seater Couch',
-            count: 1,
-            price: 1300,
-            discountPrice: 1000,
-            description: `New couch prices got you down? TwoGuys-OneCouch is here to save the day!
-                If you are looking for a great-condition couch at a fraction of retail cost, we are your one-stop shop!
-                Through our extensive cleaning and reconditioning process we can provide our clients with a Near-New couch experience while saving them money as well!
-                Here are the details of this particular couch:
-            `,
-            params: {
-                Width: '283 cm',
-                Height: '84 cm',
-                Depth: '160 cm'
-            },
-            delivery: `Delivery is included for the GTA, further distances will incur a delivery charge.
-                We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
-            `,
-            imagesSrc: [
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            ]
-        },
-        {
-            id: 2,
-            name: 'Cream 3 Seater Couch',
-            count: 1,
-            price: 1300,
-            discountPrice: 1000,
-            description: `New couch prices got you down? TwoGuys-OneCouch is here to save the day!
-                If you are looking for a great-condition couch at a fraction of retail cost, we are your one-stop shop!
-                Through our extensive cleaning and reconditioning process we can provide our clients with a Near-New couch experience while saving them money as well!
-                Here are the details of this particular couch:
-            `,
-            params: {
-                Width: '283 cm',
-                Height: '84 cm',
-                Depth: '160 cm'
-            },
-            delivery: `Delivery is included for the GTA, further distances will incur a delivery charge.
-                We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
-            `,
-            imagesSrc: [
-                'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            ]
-        },
-    ],
-    current: {
-        id: 2,
-        name: 'Cream 3 Seater Couch',
-        count: 1,
-        price: 1300,
-        discountPrice: 1000,
-        description: `New couch prices got you down? TwoGuys-OneCouch is here to save the day!
-            If you are looking for a great-condition couch at a fraction of retail cost, we are your one-stop shop!
-            Through our extensive cleaning and reconditioning process we can provide our clients with a Near-New couch experience while saving them money as well!
-            Here are the details of this particular couch:
-        `,
-        params: {
-            Width: '283 cm',
-            Height: '84 cm',
-            Depth: '160 cm'
-        },
-        delivery: `Delivery is included for the GTA, further distances will incur a delivery charge.
-            We aim to satisfy every client to the highest of our ability, we hope you enjoy your experience shopping with us
-        `,
-        imagesSrc: [
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-            'https://sun9-52.userapi.com/c844416/v844416994/1e3883/x4ySZTmBMKw.jpg',
-        ]
+export const fetchProducts = createAsyncThunk(
+    "products/fetchProducts", async () => {
+        try {
+            const response = await getProducts();
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
     }
+);
+
+export const fetchProductById = createAsyncThunk(
+    "products/fetchProductById", 
+    async (id: string) => {
+        try {
+            const response = await getProduct(id);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
+
+
+const initialState : IProductsInitialState = {
+    items: [],
+    loadingStatus: IDLE,
+    error: null,
+    current: null
 }
 
 const productSlice = createSlice({
@@ -261,9 +71,74 @@ const productSlice = createSlice({
                 }
             })
         },
-        removeProduct:(state, action: PayloadAction<number>) => {
+        removeProduct:(state, action: PayloadAction<string>) => {
             state.items = state.items.filter(product => product.id !== action.payload);
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchProducts.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<{products: ServerProduct[]}>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            state.items = action.payload.products.map(product => {
+                return {
+                    id: product.id,
+                    name: product.name,
+                    delivery: product.about_delivery,
+                    description: product.about_product,
+                    count: product.count,
+                    price: product.price,
+                    discountPrice: product.discount_price,
+                    params: {
+                        Width: product.width,
+                        Height: product.height,
+                        Depth: product.depth
+                    },
+                    createdAt: new Date(product.created_at),
+                    imagesSrc: product.images.map(img => img.src)
+                };
+            })
+        })
+        builder.addCase(fetchProducts.rejected, (state, action) => {
+            state.loadingStatus = FAILED;
+        })
+
+
+
+
+        builder.addCase(fetchProductById.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchProductById.fulfilled, (state, action: PayloadAction<{product: ServerProduct}>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            const product = action.payload.product;
+
+            console.log(action)
+            state.current = {
+                id: product.id,
+                name: product.name,
+                delivery: product.about_delivery,
+                description: product.about_product,
+                count: product.count,
+                price: product.price,
+                discountPrice: product.discount_price,
+                createdAt: new Date(product.created_at),
+                params: {
+                    Width: product.width,
+                    Height: product.height,
+                    Depth: product.depth
+                },
+                imagesSrc: product.images.map(img => img.src)
+            } as IProduct;
+        })
+        builder.addCase(fetchProductById.rejected, (state, action) => {
+            state.loadingStatus = FAILED;
+        })
     }
 })
 

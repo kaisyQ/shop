@@ -17,7 +17,7 @@ import {
 
 
 interface ICardProps {
-    id: number,
+    id: string,
     count: number,
     name: string,
     imageSrc: string, 

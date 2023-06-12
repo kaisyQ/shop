@@ -1,11 +1,28 @@
 export const LOADING = "LOADING";
 export const IDLE = "IDLE";
-export const FALED = "FALED";
+export const FAILED = "FAILED";
 
-export type LoadingType = typeof LOADING | typeof IDLE | typeof FALED;
+export type LoadingType = typeof LOADING | typeof IDLE | typeof FAILED;
+
+export type ServerProduct = {
+    id: string,
+    name: string,
+    about_delivery: string,
+    about_product: string,
+    count: number,
+    price: number,
+    discount_price: number,
+    depth: string,
+    height: string,
+    width: string,
+    images: {src: string, id: string} [],
+    created_at: string,
+    updated_at: string,
+}
+
 
 export interface IShortProduct {
-    id: number,
+    id: string,
     name: string,
     count: number,
     price: number
@@ -21,7 +38,8 @@ export interface IProduct extends IShortProduct {
         Depth: string
     },
     delivery: string,
-    imagesSrc: string[]
+    imagesSrc: string[],
+    createdAt: Date
 }
 
 
@@ -48,10 +66,13 @@ export enum Roles {
     EMPLOYEE
 }
 
+
 export interface IShortUser {
     login: string,
     password: string,
 }
+
+
 
 export interface IUser {
     id: string,

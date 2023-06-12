@@ -27,10 +27,11 @@ export const deleteUser = (id: string) => instance.delete(`users/${id}`);
 export const getPosts = () => instance.get("posts");
 export const getPost = (id: string) => instance.get(`posts/${id}`);
 export const deletePost = (id: string) => instance.delete(`posts/${id}`);
-export const createPost = (formData: FormData, data: {title: string, text: string}) => instance.post("posts", {
-    file: formData,
-    data: data
-});
+
+
+export const getProducts = () => instance.get("products");
+export const getProduct = (id: string) => instance.get(`products/${id}`); 
+
 
 export default instance;
 

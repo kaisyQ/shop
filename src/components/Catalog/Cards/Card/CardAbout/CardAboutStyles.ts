@@ -11,9 +11,8 @@ interface IImage {
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     text-align: left;
-    gap: 1.5rem;
+    gap: 15rem;
     z-index: 1;
 
     @media only screen and (max-width: 1200px) {
@@ -37,15 +36,15 @@ export const Wrapper = styled.div`
 export const InfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 1.5rem;
-
-
+    width: 100%;
 `;
+
 
 export const Title = styled.h3`
     position: relative;
     text-align: center;
+    text-align: left;
     font-size: 3rem;
     letter-spacing: .1rem;
     color: #000;
@@ -116,6 +115,7 @@ export const ImagesWrapper = styled.div`
     flex-direction: column;
     gap: 2.5rem;
     max-width: 48%;
+    aspect-ratio: 1/1;
     
     @media only screen and (max-width: 1200px) {
         display: flex;

@@ -3,7 +3,7 @@ import { getUsers, getUser, createUser, updateUser, deleteUser } from "api/api";
 
 import { IUser } from "types/types";
 
-import { LOADING, IDLE, FALED } from "types/types";
+import { LOADING, IDLE, FAILED } from "types/types";
 import type { IShortUser, LoadingType } from "types/types";
 
 
@@ -113,7 +113,7 @@ const usersSlice = createSlice({
             state.items = action.payload.users;
         })
         builder.addCase(fetchUsers.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
 
 
@@ -128,7 +128,7 @@ const usersSlice = createSlice({
             state.current = action.payload.user;
         })
         builder.addCase(fetchUserById.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
 
 
@@ -143,7 +143,7 @@ const usersSlice = createSlice({
             state.items.push(action.payload.user);
         })
         builder.addCase(fetchToCreateUser.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
 
         
@@ -158,7 +158,7 @@ const usersSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchToUpdateUser.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
 
 
@@ -176,7 +176,7 @@ const usersSlice = createSlice({
             state.items = state.items.filter(user => user.id !== id);
         })
         builder.addCase(fetchToDeleteUser.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
     },
 })

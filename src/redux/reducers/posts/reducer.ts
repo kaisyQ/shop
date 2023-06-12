@@ -1,9 +1,9 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPosts, getPost, deletePost, createPost } from "api/api";
+import { getPosts, getPost, deletePost } from "api/api";
 
 import { IPost, IPostWithDate } from "types/types";
 
-import { LOADING, IDLE, FALED } from "types/types";
+import { LOADING, IDLE, FAILED } from "types/types";
 
 import type { LoadingType } from "types/types";
 
@@ -159,7 +159,7 @@ const postsSlice = createSlice({
             }));
         })
         builder.addCase(fetchPosts.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
 
 
@@ -181,7 +181,7 @@ const postsSlice = createSlice({
             } as IPostWithDate;
         })
         builder.addCase(fetchPostById.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
 
 
@@ -197,7 +197,7 @@ const postsSlice = createSlice({
             state.items = state.items.filter(post => post.id !== action.payload.deletedPost.id)
         })
         builder.addCase(fetchToDeletePost.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
 
         builder.addCase(fetchToCreatePost.pending, (state) => {
@@ -209,7 +209,7 @@ const postsSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchToCreatePost.rejected, (state, action) => {
-            state.loadingStatus = FALED;
+            state.loadingStatus = FAILED;
         })
     },
 })

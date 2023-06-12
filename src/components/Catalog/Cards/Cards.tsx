@@ -7,7 +7,12 @@ import { Wrapper } from "./CardsStyles";
 import { CardsConnectedPropsType } from "./CardsContainer";
 
 
-const Cards: React.FC<CardsConnectedPropsType> = ({ items }) => {
+const Cards: React.FC<CardsConnectedPropsType> = ({ items, fetchProducts }) => {
+
+    React.useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
+
     return (
         <>
             <Wrapper>

@@ -6,17 +6,17 @@ import { getProductItems as getItems } from "../../../redux/reducers/product/sel
 
 import type { RootState } from "redux/store";
 
-import { IProduct } from "types/types";
+import { fetchProducts } from "redux/reducers/product/productSlice";
 
-interface IMapStateToPropsType {
-    items: IProduct[]
+const mapStateToProps = (state: RootState) => ({
+    items: getItems(state)
+});
+
+const mapDispatchToProps = {
+    fetchProducts
 }
 
-const mapStateToProps = (state: RootState) : IMapStateToPropsType => ({
-    items: getItems(state)
-})
-
-const connector = connect(mapStateToProps, null);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type CardsConnectedPropsType = ConnectedProps<typeof connector>
 
