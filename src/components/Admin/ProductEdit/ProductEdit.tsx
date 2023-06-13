@@ -4,12 +4,14 @@ import Button from "components/Custom/Button/Button";
 import Input from "components/Custom/Input/Input";
 
 import { 
-    ProductEditWrapper, FormControl, InputWrapper, EditForm, InputsWrapper, BlockWrapper,
+    ProductEditWrapper, InputWrapper, EditForm, InputsWrapper, BlockWrapper,
     ImagesWrapper, Image, ImageBlock, BtnWrapper
  } from "./ProductEditStyles";
 
 import { IProductEditConnectedProps } from "./ProductEditContainer";
 import { useParams } from "react-router-dom";
+
+import reducer, { initialState, actions } from "reducers/product-edit/reducer";
 
 interface IProductEditProps extends IProductEditConnectedProps {
 
@@ -18,17 +20,8 @@ interface IProductEditProps extends IProductEditConnectedProps {
 const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateProduct }) => {
 
     const { id } = useParams();
-    
-    const [name, setName] = React.useState('');
-    const [aboutProduct, setAboutProduct] = React.useState('');
-    const [price, setPrice] = React.useState('');
-    const [discount, setDiscount] = React.useState('');
-    const [width, setWidth] = React.useState('');
-    const [height, setHeight] = React.useState('');
-    const [depth, setDepth] = React.useState('');
-    const [aboutDelivery, setAboutDelivery] = React.useState('');
-    const [images, setImages] = React.useState<string[] | null>(null);
 
+    const [state, dispatch] = React.useReducer(reducer, initialState);
 
     React.useEffect(() => {
 
@@ -38,14 +31,14 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
         if (!product) {
             return;
         }
-        setName(product.name);
-        setAboutProduct(product.description);
-        setPrice(product.price.toString());
-        setWidth(product.params.Width);
-        setHeight(product.params.Height);
-        setDepth(product.params.Depth);
-        setAboutDelivery(product.delivery);
-        setImages([...product.imagesSrc]);
+        dispatch(actions.setName(product.name));
+        dispatch(actions.setAboutProduct(product.description));
+        dispatch(actions.setPrice(product.price.toString()));
+        dispatch(actions.setWidth(product.params.Width));
+        dispatch(actions.setHeight(product.params.Height));
+        dispatch(actions.setDepth(product.params.Depth));
+        dispatch(actions.setAboutDelivery(product.delivery));
+        dispatch(actions.setImagesSrc(product.imagesSrc));
     }, [product])
 
 
@@ -54,36 +47,36 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
     }
 
     const onNameChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setName(ev.target.value);
+        dispatch(actions.setName(ev.target.value));
     }
     
     const onAboutProductChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setAboutProduct(ev.target.value);
+        dispatch(actions.setAboutProduct(ev.target.value));
     }
 
     const onPriceChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setPrice(ev.target.value);
+        dispatch(actions.setPrice(ev.target.value));
     }
 
     const onDiscountChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setDiscount(ev.target.value);
+        dispatch(actions.setDiscountPrice(ev.target.value));
     }
 
     const onWidthChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setWidth(ev.target.value);
+        dispatch(actions.setWidth(ev.target.value));
     }
 
     const onHeightChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setHeight(ev.target.value);
+        dispatch(actions.setHeight(ev.target.value));
     }
     
     const onDepthChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setDepth(ev.target.value);
+        dispatch(actions.setDepth(ev.target.value));
     }
 
 
     const onDeliveryAboutChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setAboutDelivery(ev.target.value);
+        dispatch(actions.setAboutDelivery(ev.target.value));
     }
 
     return (
@@ -97,7 +90,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                             id="product-edit-title" 
                             type="input" 
                             onChange={onNameChange}
-                            value={name}
+                            value={state.name}
                         />
                     </InputWrapper>
 
@@ -108,7 +101,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                             type="textarea" 
                             minHeight="30rem"
                             onChange={onAboutProductChange}
-                            value={aboutProduct}
+                            value={state.aboutProduct}
                         />
                     </InputWrapper>
 
@@ -119,7 +112,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                                 id="product-edit-price" 
                                 type="input" 
                                 onChange={onPriceChange}
-                                value={price}
+                                value={state.price}
                             />
                         </InputWrapper>
 
@@ -129,7 +122,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                                 id="product-edit-discount" 
                                 type="input" 
                                 onChange={onDiscountChange}
-                                value={discount}
+                                value={state.discountPrice}
                             />
                         </InputWrapper>
                     </InputsWrapper>
@@ -141,7 +134,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                                 id="product-edit-Width" 
                                 type="input" 
                                 onChange={onWidthChange}
-                                value={width}
+                                value={state.width}
                             />
                         </InputWrapper>
                         <InputWrapper>
@@ -150,7 +143,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                                 id="product-edit-Height" 
                                 type="input" 
                                 onChange={onHeightChange}
-                                value={height}
+                                value={state.height}
                             />
                         </InputWrapper>
                         <InputWrapper>
@@ -159,7 +152,7 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                                 id="product-edit-Depth" 
                                 type="input" 
                                 onChange={onDepthChange}
-                                value={depth}
+                                value={state.depth}
                             />
                         </InputWrapper>
                     </InputsWrapper>
@@ -170,13 +163,13 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                             type="textarea"
                             minHeight="30rem"
                             onChange={onDeliveryAboutChange}
-                            value={aboutDelivery}
+                            value={state.aboutDelivery}
                         />
                     </InputWrapper>
                     </BlockWrapper>
                     <BlockWrapper>
                     {
-                        images ? <ImagesWrapper>
+                        /*state.images ? <ImagesWrapper>
                             {
                                 images.map((src, mainIndex) => <ImageBlock>
                                         <Image  src={src} alt="" />
@@ -204,10 +197,10 @@ const ProductEdit: React.FC<IProductEditProps> = ({ product, addProduct, updateP
                                     </ImageBlock>
                                 )
                             }
-                        </ImagesWrapper> : null
+                        </ImagesWrapper> : null*/
                     }
                     <BtnWrapper>
-                        <Button>Save</Button>
+                        <Button isReverse={true}>Save</Button>
                     </BtnWrapper>
                     </BlockWrapper>
                 </EditForm>

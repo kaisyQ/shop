@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { getProducts, getProduct } from "api/api";
+import { getProducts, getProduct, deleteProduct } from "api/api";
 
 import { 
     IProduct, ServerProduct, LoadingType, IDLE, LOADING, FAILED 
@@ -40,7 +40,20 @@ export const fetchProductById = createAsyncThunk(
             console.log(error);
         }
     }
-)
+);
+
+export const fetchToDeleteProduct = createAsyncThunk(
+    "products/fetchToDeleteProduct", 
+    async (id: string) => {
+        try {
+            const response = await deleteProduct(id);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
+
 
 
 const initialState : IProductsInitialState = {
@@ -117,8 +130,6 @@ const productSlice = createSlice({
             state.loadingStatus = IDLE;
             state.error = null;
             const product = action.payload.product;
-
-            console.log(action)
             state.current = {
                 id: product.id,
                 name: product.name,
@@ -137,6 +148,24 @@ const productSlice = createSlice({
             } as IProduct;
         })
         builder.addCase(fetchProductById.rejected, (state, action) => {
+            state.loadingStatus = FAILED;
+        })
+
+
+
+        builder.addCase(fetchToDeleteProduct.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToDeleteProduct.fulfilled, 
+            (state, action: PayloadAction<{deletedProduct: ServerProduct}>) => {
+                state.loadingStatus = IDLE;
+                state.error = null;
+                console.log(action)
+                state.items = state.items.filter(product => product.id !== action.payload.deletedProduct.id);
+            }
+        )
+        builder.addCase(fetchToDeleteProduct.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
     }

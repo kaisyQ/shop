@@ -15,9 +15,6 @@ const mapDispatchToProps = {
     addProduct, updateProduct 
 };
 
-type MapStateToPropsType = ReturnType<typeof mapStateToProps>;
-
-type MapDispatchToPropsType =  typeof mapDispatchToProps;
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 

@@ -31,7 +31,7 @@ export const deletePost = (id: string) => instance.delete(`posts/${id}`);
 
 export const getProducts = () => instance.get("products");
 export const getProduct = (id: string) => instance.get(`products/${id}`); 
-
+export const deleteProduct = (id: string) => instance.delete(`products/${id}`);
 
 export default instance;
 

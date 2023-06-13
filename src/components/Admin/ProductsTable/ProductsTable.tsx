@@ -14,7 +14,11 @@ import { NavLink } from "react-router-dom";
 interface IProductsTableProps extends IProductConnectedProps{
 }
 
-const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct }) => {
+const ProductsTable: React.FC<IProductsTableProps> = ({ products, fetchToDeleteProduct, fetchProducts }) => {
+
+    React.useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
     
     return (
         <>
@@ -33,19 +37,19 @@ const ProductsTable: React.FC<IProductsTableProps> = ({ products, removeProduct 
                     {
                         products.map((product, index) => <>
                                 <TableTr key={ product.id }>
-                                    <TableTd>{ product.id }</TableTd>
+                                    <TableTd>{ index+1 }</TableTd>
                                     <TableTd>{ product.name }</TableTd>
                                     <TableTd>{ product.price }</TableTd>
                                     <TableTd>{ product.count }</TableTd>
                                     <TableTd>
                                         <RemoveBtn onClick={(ev) => {
-                                            removeProduct(product.id)
+                                            fetchToDeleteProduct(product.id)
                                         }}>
                                             <XLgIcon colorindex={index} />
                                         </RemoveBtn>
                                     </TableTd>
                                     <TableTd>
-                                        <NavLink to="/admin/product">
+                                        <NavLink to={`/admin/product/${product.id}`}>
                                             <EditBtn>
                                                 <PencilIcon colorindex={index} />
                                             </EditBtn>
