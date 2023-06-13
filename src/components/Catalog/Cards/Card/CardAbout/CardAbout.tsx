@@ -55,7 +55,6 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductByI
                     <Slider images={product.imagesSrc}/>
                 </SliderWrapper>
 
-                
                 <ImagesWrapper>
                     <ImageRow>
                         <ImageWrapper width={'100%'}>
@@ -81,11 +80,8 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductByI
                             </ImageWrapper>
                     </ImageRow>
                 </ImagesWrapper>
-
                 
                 <InfoWrapper>
-
-
                     <Title>{ product.name }</Title>
 
                     <PriseWrapper>

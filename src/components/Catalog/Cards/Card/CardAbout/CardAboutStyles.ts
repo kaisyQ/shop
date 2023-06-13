@@ -11,8 +11,9 @@ interface IImage {
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: center;
     text-align: left;
-    gap: 15rem;
+    gap: 3rem;
     z-index: 1;
 
     @media only screen and (max-width: 1200px) {
@@ -23,13 +24,11 @@ export const Wrapper = styled.div`
     @media only screen and (max-width: 768px) {
         flex-direction: column;
         align-items: center;
-        justify-content: center;
     }
 
     @media only screen and (max-width: 330px) {
         flex-direction: column;
         align-items: center;
-        justify-content: center;
     }
 `;
 
@@ -37,7 +36,6 @@ export const InfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    width: 100%;
 `;
 
 
@@ -46,18 +44,9 @@ export const Title = styled.h3`
     text-align: center;
     text-align: left;
     font-size: 3rem;
-    letter-spacing: .1rem;
     color: #000;
-    font-weight: 500;
-    
-    ::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        border-bottom: .1rem solid #000;
-    }
+    font-weight: 600;
+    text-decoration: underline;
 `;
 
 export const ZeroCountMessage = styled.h4`

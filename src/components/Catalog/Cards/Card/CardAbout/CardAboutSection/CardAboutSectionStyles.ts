@@ -54,13 +54,15 @@ export const Text = styled.p<IShowProps>`
     text-align: justify;
     transform: translateY(-100%);
     animation: ${props => props.visible ? Show : Hide} .8s ease-in-out forwards;
+    word-wrap: break-word
 `;
 
 export const Title = styled.h3`
     position: relative;
     display: flex;
     align-items: center;
-    column-gap: 1rem;
+    justify-content: space-between;
+    gap: 3rem;
     text-align: left;
     font-size: 2rem;
     line-height: 4rem;
@@ -77,17 +79,16 @@ export const Title = styled.h3`
 `;
 
 export const Arrow = styled.div<IShowProps>`
-    position: absolute;
-    right: 1rem;
-    top: 50%;
     padding: .5rem;
     border-left: .1rem solid #000;
     border-bottom: .1rem solid #000;
     transition: .2s ease-in-out;
-    transform: ${props => props.visible ? "rotate(135deg) translate(-50%, 50%)" : 'rotate(-45deg) translate(50%, -50%)'};
+    transform: ${props => props.visible ? 
+    "rotate(135deg) translate(-50%, 50%)" : 'rotate(-45deg) translate(50%, -50%)'};
 `;
 
 export const Span = styled.span`
+    overflow: hidden;
 `;
 
 export const ParamsList = styled.ul<IShowProps>`
