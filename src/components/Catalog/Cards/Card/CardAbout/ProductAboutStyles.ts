@@ -4,9 +4,6 @@ interface IPriceProps {
     crossedOut?: boolean
 }
 
-interface IImage {
-    width?: string
-}
 
 export const Wrapper = styled.div`
     display: flex;
@@ -38,6 +35,12 @@ export const InfoWrapper = styled.div`
     gap: 1.5rem;
 `;
 
+export const InfoHeader = styled.header`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+`;
 
 export const Title = styled.h3`
     position: relative;
@@ -47,6 +50,7 @@ export const Title = styled.h3`
     color: #000;
     font-weight: 600;
     text-decoration: underline;
+    word-wrap: break-word;
 `;
 
 export const ZeroCountMessage = styled.h4`
@@ -62,21 +66,21 @@ export const ZeroCountMessage = styled.h4`
 
 export const PriseWrapper = styled.div`
     display: flex;
-    column-gap: 1rem;
+    column-gap: 2rem;
     align-items: center;
     justify-content: flex-start;
 `;
 
 export const Prise = styled.div<IPriceProps>`
-    font-size: ${props => props.crossedOut ? '1.8rem' : '2.5rem'};
+    font-size: ${props => props.crossedOut ? '2.2rem' : '3rem'};
     text-decoration: ${props => props.crossedOut ? 'line-through' : 'none'};
-    opacity: ${props => props.crossedOut ? '50%' : '0'};
+    opacity: ${props => props.crossedOut ? '70%' : '0'};
     font-style: ${props => props.crossedOut ? 'normal' : 'italic'};
     font-weight: ${props => props.crossedOut ? '400' : '500'};
 `;
 
 export const DiscountPrice = styled.div`
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 500;
 `;
 
@@ -99,36 +103,6 @@ export const SliderWrapper = styled.div`
     }
 `;
 
-export const ImagesWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    max-width: 48%;
-    aspect-ratio: 1/1;
-    
-    @media only screen and (max-width: 1200px) {
-        display: flex;
-    }
-
-    @media only screen and (max-width: 768px) {
-        display: none;
-    }
-
-    @media only screen and (max-width: 330px) {
-        display: none;
-    }
-`;
-
-export const ImageRow = styled.div`
-    display: flex;
-    justify-content: space-between;
-    column-gap: 2rem;   
-`
-
-export const ImageWrapper = styled.div<IImage>`
-    overflow: hidden;
-    max-width: ${props => props.width || '48%'};
-`;
 
 export const ButtonWrapper = styled.div`
     width: 100%;

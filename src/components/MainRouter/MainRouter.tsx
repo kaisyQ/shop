@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ContactView from 'views/ContactView/ContactView';
-import CardAboutContainer from 'components/Catalog/Cards/Card/CardAbout/CardAboutContainer';
+import ProductAboutContainer from 'components/Catalog/Cards/Card/CardAbout/ProductAboutContainer';
 import PostAboutContainer from 'components/Posts/PostAbout/PostAboutContainer';
 import AuthContainer from './../Auth/AuthContainer';
 import Search from 'components/Search/Search';
@@ -54,7 +54,7 @@ const MainRouter: React.FC = () => {
                             </React.Suspense>
                         </>}
                     />
-                    <Route path=':id' element={ <CardAboutContainer /> } />
+                    <Route path=':id' element={ <ProductAboutContainer /> } />
                 </Route>
 
                 <Route path='/contact' element={ <ContactView /> } />

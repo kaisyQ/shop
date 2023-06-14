@@ -55,6 +55,20 @@ export const fetchToDeleteProduct = createAsyncThunk(
 );
 
 
+export const fetchToCreateProduct = createAsyncThunk(
+    "products/fetchToCreateProduct", 
+    async (formData: FormData) => {
+        try {
+            const response = fetch("http://localhost:8000/products", {
+                method: "POST", 
+                body: formData
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
+
 
 const initialState : IProductsInitialState = {
     items: [],
@@ -67,8 +81,8 @@ const productSlice = createSlice({
     name: 'productSlice',
     initialState, 
     reducers: {
-        setCurrent: (state, action: PayloadAction<number>) => {
-            
+        setCurrent: (state, action: PayloadAction<IProduct | null>) => {
+            state.current = action.payload;
         },
         addProduct: (state, action: PayloadAction<IProduct>) => {
             state.items.push(action.payload);

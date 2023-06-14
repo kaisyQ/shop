@@ -10,6 +10,7 @@ const SET_DEPTH = "PRODUCT-EDIT/SET_DEPTH";
 const SET_ABOUT_DELIVERY = "PRODUCT-EDIT/SET_ABOUT_DELIVERY";
 const SET_IMAGES_SRC = "PRODUCT-EDIT/SET_IMAGES";
 const SET_IMAGES_FILES = "PRODUCT-EDIT/SET_IMAGES_FILES";
+const ADD_IMAGE = "PRODUCT-EDIT/ADD_IMAGE";
 
 type InitialStateType = {
     name: string,
@@ -90,6 +91,12 @@ const setImagesFiles = (payload: File[] | null) => ({
 });
 
 
+const addImagesWithFile = (payload: { files: File[], images: string[] }) => ({
+    type: ADD_IMAGE as typeof ADD_IMAGE,
+    payload: payload
+});
+
+
 
 type SetNameType = ReturnType<typeof setName>;
 type SetAboutDeliveryType = ReturnType<typeof setAboutDelivery>;
@@ -101,17 +108,20 @@ type SetHeightType = ReturnType<typeof setHeight>;
 type SetDepthType = ReturnType<typeof setDepth>;
 type SetImagesSrcType = ReturnType<typeof setImagesSrc>;
 type SetImagesFilesType = ReturnType<typeof setImagesFiles>;
+type AddImageWithFileType = ReturnType<typeof addImagesWithFile>;
 
 
 export type ActionType = SetNameType | SetAboutDeliveryType | SetAboutProductType |
     SetPriceType | SetPriceType | SetDiscountPriceType | SetWidthType | SetHeightType |
-    SetDepthType | SetImagesSrcType | SetImagesFilesType
+    SetDepthType | SetImagesSrcType | SetImagesFilesType | AddImageWithFileType
 
+
+export type ProductsDispatchType = React.Dispatch<ActionType>;
 
 export const actions = {
     setName, setAboutDelivery, setAboutProduct, 
     setPrice, setDiscountPrice, setWidth, setHeight, 
-    setDepth, setImagesSrc, setImagesFiles
+    setDepth, setImagesSrc, setImagesFiles, addImagesWithFile
 };
 
 
@@ -166,6 +176,18 @@ const reducer = (state: InitialStateType, action: ActionType) => {
             return {
                 ...state,
                 imagesFiles: action.payload
+            }
+        case ADD_IMAGE: 
+            return {
+                ...state,
+                
+                imagesSrc: state.imagesSrc ? 
+                    [...state.imagesSrc, ...action.payload.images] : 
+                    [...action.payload.images],
+
+                imagesFiles: state.imagesFiles ? 
+                    [...state.imagesFiles, ...action.payload.files] : 
+                    [...action.payload.files]
             }
         default: 
             throw new Error("BAD ACTION TYPE!");

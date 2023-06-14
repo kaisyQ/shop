@@ -3,7 +3,7 @@ import React from "react";
 import { 
     Wrapper, Section, Title, Block, Span, 
     Arrow, ParamsList, ParamsListItem, ParamName, Text, InfoWrapper
-} from "./CardAboutSectionStyles";
+} from "./SectionStyles";
 
 interface ICardAboutSectionProps {
     text?: string, 

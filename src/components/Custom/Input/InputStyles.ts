@@ -23,9 +23,9 @@ export const Wrapper = styled.div`
 
 export const LabelWrapper = styled.label<ILabelProps>`
     position: absolute;
-    padding: 0 2rem;
+    padding: ${props => (props.focused||props.value) ? '0 2rem' : "0"};
     left: 1.4rem;
-    top: ${props => (props.focused||props.value) ? '0' : props.type==='INPUT'? '50%':'30%'};
+    top: ${props => (props.focused||props.value) ? '0' : props.type==='INPUT'? '50%':'20%'};
     font-size: ${props => (props.focused||props.value)?props.fontSize?props.fontSize:'1rem':'1.4rem'};
     transform: translateY(-50%);
     color: ${props => (props.focused||props.value) ? '#000' : 'inherit'};

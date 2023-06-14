@@ -4,10 +4,10 @@ import { Modal, ModalContent, ResizedImageContent, CloseBtn, BtnTextSpan } from 
 interface IResizedImageProps {
     active: boolean,
     setActive: React.Dispatch<React.SetStateAction<boolean>>,
-    src: any
+    src: string
 }
 
-export const ResizedImage: React.FC<IResizedImageProps> = ({active, setActive, src}) => {
+export const ResizedImage: React.FC<IResizedImageProps> = ({ active, setActive, src }) => {
 
     const hideModal = () => {
         setActive(false)

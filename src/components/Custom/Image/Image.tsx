@@ -1,17 +1,20 @@
 import React from "react";
-import { ImageStyle } from "./ImageStyles";
+import { ImageWrapper } from "./ImageStyles";
 import { ResizedImage } from "./ResizedImage/ResizedImage";
 
-export const Image = (props: any) => {
+interface IImageProps {
+    src: string
+}
 
-    const [isResizedImg, setResizedImg] = React.useState(false)
+export const Image: React.FC<IImageProps> = ({ src }) => {
+
+    const [isResizedImg, setResizedImg] = React.useState(false);
 
     return (
         <>
-            <ImageStyle src={props.src} alt="" onClick={() => setResizedImg(true)}/>
+            <ImageWrapper src={src} alt="product-image" onClick={(ev) => setResizedImg(true)} />
 
-            <ResizedImage active={ isResizedImg } setActive={ setResizedImg } src={props.src}/>
-
+            <ResizedImage active={isResizedImg} setActive={setResizedImg} src={src} />
         </>
     )
 }

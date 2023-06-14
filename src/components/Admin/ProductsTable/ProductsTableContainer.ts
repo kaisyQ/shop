@@ -10,7 +10,7 @@ const mapStateToProps  = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-    removeProduct, fetchProducts, fetchToDeleteProduct
+    fetchProducts, fetchToDeleteProduct
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

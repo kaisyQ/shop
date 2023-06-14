@@ -1,4 +1,4 @@
-import CardAbout from "./CardAbout";
+import ProductAbout from "./ProductAbout";
 
 import { ConnectedProps, connect } from "react-redux";
 
@@ -20,4 +20,4 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type CardAboutConnectedProps = ConnectedProps<typeof connector>;
 
-export default connector(CardAbout);
+export default connector(ProductAbout);

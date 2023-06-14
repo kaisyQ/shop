@@ -13,7 +13,7 @@ import {
     CardInfoWrapper, 
     CardInfoItem,
 
-} from "./CardStyles";
+} from "./ProductStyles";
 
 
 interface ICardProps {
@@ -29,7 +29,7 @@ const Card: React.FC<ICardProps> = ({ count, name, imageSrc, id }) => {
         <>
             <Wrapper>
                 <CardSaleTitle>
-                    {count===0?'Sold out':'Sale'}
+                    { count === 0 ? 'Sold out' : 'Sale' }
                 </CardSaleTitle>
                 <NavLink to={`/catalog/${id}`}>
                     <CardImageWrapper>

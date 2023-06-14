@@ -1,10 +1,10 @@
 import React from "react";
 
-import Card from "./Card/Card";
+import Product from "./Card/Product";
 
-import { Wrapper } from "./CardsStyles";
+import { Wrapper } from "./ProductsStyles";
 
-import { CardsConnectedPropsType } from "./CardsContainer";
+import { CardsConnectedPropsType } from "./ProductsContainer";
 
 
 const Cards: React.FC<CardsConnectedPropsType> = ({ items, fetchProducts }) => {
@@ -17,7 +17,7 @@ const Cards: React.FC<CardsConnectedPropsType> = ({ items, fetchProducts }) => {
         <>
             <Wrapper>
             {
-                items.map(item => <Card key={item.id} id={item.id} count={item.count} name={item.name} imageSrc={item.imagesSrc[0]} />)
+                items.map(item => <Product key={item.id} id={item.id} count={item.count} name={item.name} imageSrc={item.imagesSrc[0]} />)
             }
             </Wrapper>
         </>

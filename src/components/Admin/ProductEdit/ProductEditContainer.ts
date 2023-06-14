@@ -5,14 +5,14 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { getCurrentProduct } from "redux/reducers/product/selector";
 
-import { addProduct, updateProduct } from "redux/reducers/product/productSlice";
+import { fetchToCreateProduct } from "redux/reducers/product/productSlice";
 
 const mapStateToProps = (state: RootState) => ({
     product: getCurrentProduct(state)
 })
 
 const mapDispatchToProps = {
-    addProduct, updateProduct 
+    fetchToCreateProduct
 };
 
 

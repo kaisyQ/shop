@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import Filter from "components/Catalog/Filter/Filter"
-import CardsContainer from "components/Catalog/Cards/CardsContainer"
+import CardsContainer from "components/Catalog/Cards/ProductsContainer"
 
 import Title from "components/Custom/Title/Title"
 
