@@ -4,6 +4,7 @@ import Slider from "components/Slider/Slider";
 
 import Images from "./Images/Images";
 import Sections from "./Sections/Sections";
+import Path from "components/Custom/Path/Path";
 
 import { useParams } from "react-router-dom";
 
@@ -35,8 +36,18 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductByI
 
     return (
         <>
+            <Path 
+                subPath={{
+                    name: product.name,
+                    url: `/catalog/${product.id}`
+                }}
+                mainPath={{
+                    name: "Catalog",
+                    url: '/catalog'
+                }}
+            />
             <Wrapper>
-
+                
                 <SliderWrapper>
                     <Slider images={product.imagesSrc}/>
                 </SliderWrapper>

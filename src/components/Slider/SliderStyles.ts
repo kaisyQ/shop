@@ -28,5 +28,6 @@ export const SliderItem = styled.img`
     display: block;
     max-width: 30rem;
     min-height: 30rem;
+    object-fit: cover;
     transition: .6s ease-in-out;
 `;
