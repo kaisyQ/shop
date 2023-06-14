@@ -5,6 +5,7 @@ import Slider from "components/Slider/Slider";
 import Images from "./Images/Images";
 import Sections from "./Sections/Sections";
 import Path from "components/Custom/Path/Path";
+import Component404 from "components/Error/404";
 
 import { useParams } from "react-router-dom";
 
@@ -15,23 +16,19 @@ import {
     Prise, DiscountPrice, ZeroCountMessage, InfoHeader
 } from "./ProductAboutStyles"
 
+import useFetchById from "hooks/useFetchById";
+import usePageNotFound from "hooks/usePageNotFound";
 
 const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductById }) => {
 
-    const { id } = useParams();
-
-    React.useEffect(() => {
-        if (!id) {
-            return;
-        }
-        fetchProductById(id);
-    }, [id, fetchProductById]);
-
+    useFetchById(fetchProductById);
 
     if (!product) {
-        return <>
-            No product
-        </>
+        return (
+            <>
+                <Component404 />
+            </>
+        );
     }
 
     return (
