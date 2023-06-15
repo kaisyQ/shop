@@ -29,9 +29,9 @@ const Footer: React.FC = () => {
                 </OurContacts>
                     <LinksContainer>
                         <Links>
-                            <Icon.Instagram size={'2rem'}/>
-                            <Icon.Facebook size={'2rem'}/>
-                            <Icon.Whatsapp size={'2rem'}/>
+                            <NavLink to={"inst-path"}><Icon.Instagram size={'2rem'}/></NavLink>
+                            <NavLink to={"facebook-path"}><Icon.Facebook size={'2rem'}/></NavLink>
+                            <NavLink to={"whatapp-path"}><Icon.Whatsapp size={'2rem'}/></NavLink>
                         </Links>
                         <Copyright>
                         © { new Date().getFullYear() } Company Name. All rights reserved.
