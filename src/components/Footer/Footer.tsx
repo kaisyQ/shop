@@ -1,7 +1,9 @@
 import React from "react";
 
 import { 
-    FooterWrapper, OurContacts, Title, Information, LinksContainer, Links, SignInButton
+    FooterWrapper, OurContacts, Title, Information, 
+    LinksContainer, Links, SignInButton, Copyright,
+    Span
 } from "./FooterStyles";
 
 import { NavLink } from "react-router-dom";
@@ -15,9 +17,15 @@ const Footer: React.FC = () => {
         <>
             <FooterWrapper>
                 <OurContacts>
-                    <Title>Our Contacts</Title>
-                    <Information>contact@gmail.com</Information>
-                    <Information>8(228)(228)</Information>
+                    <Title>Contacts</Title>
+                    <Information>
+                        <Span weight={500}>Our Email:</Span>
+                        <Span>contact@gmail.com</Span>
+                    </Information>
+                    <Information>
+                        <Span weight={500}>Our Phone:</Span>
+                        <Span>8(228)(228)</Span>
+                    </Information>
                 </OurContacts>
                     <LinksContainer>
                         <Links>
@@ -25,6 +33,9 @@ const Footer: React.FC = () => {
                             <Icon.Facebook size={'2rem'}/>
                             <Icon.Whatsapp size={'2rem'}/>
                         </Links>
+                        <Copyright>
+                        © { new Date().getFullYear() } Company Name. All rights reserved.
+                        </Copyright>
                         <NavLink to={'/auth'}>
                             <SignInButton>Sign into your working account</SignInButton>
                         </NavLink>

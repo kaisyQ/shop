@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+interface ISpanProps {
+    weight?: number
+}
 
 export const FooterWrapper = styled.footer`
     margin-top: 2rem;
@@ -13,7 +16,7 @@ export const FooterWrapper = styled.footer`
     
     gap: 3rem;
     
-    padding: 0 2rem ;
+    padding: 2rem ;
 
 
     @media only screen and (max-width: 768px){
@@ -32,6 +35,7 @@ export const FooterWrapper = styled.footer`
 export const LinksContainer = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 2rem;
 `;
 
@@ -51,22 +55,32 @@ export const Title = styled.h3`
 export const Information = styled.p`
     margin-top: .5rem;
     padding-left: 1rem;
-    text-decoration: underline;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
 `;
 
 export const SignInButton = styled.button`
     display: block;
     font-size: 1rem;
     text-decoration: underline;
+    color: #000;
     
     transition: .2s ease-in-out;
     :hover {
-        color: #c74646;
-        transform: scale(1.05);
+        transform: scale(1.1);
     }   
 
     :not(:hover){
-        color: #000;
         transform: scale(1);
     }
+`;
+
+export const Copyright = styled.p`
+  font-size: 1.4rem;
+  color: #000;
+;`
+
+export const Span = styled.span<ISpanProps>`
+    font-weight: ${props => props.weight};
 `;
