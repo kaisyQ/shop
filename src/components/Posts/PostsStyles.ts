@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BlogsWrapper = styled.div`
+export const PostsWrapper = styled.div`
     
 `;
 
@@ -10,7 +10,7 @@ export const TitleWrapper = styled.div`
 `;
 
 
-export const BlogWrapper = styled.div`
+export const PostWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
