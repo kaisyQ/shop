@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ContactView from 'views/ContactView/ContactView';
-import ProductAboutContainer from 'components/Catalog/Cards/Card/CardAbout/ProductAboutContainer';
+import ProductAboutContainer from 'components/Catalog/Products/Product/ProductAbout/ProductAboutContainer';
 import PostAboutContainer from 'components/Posts/PostAbout/PostAboutContainer';
 import AuthContainer from './../Auth/AuthContainer';
 import Search from 'components/Search/Search';
