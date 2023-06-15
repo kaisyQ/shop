@@ -1,7 +1,9 @@
 import Admin from "./Admin";
 
 import { ConnectedProps, connect } from "react-redux";
+
 import { getIsAuth, getId, getLogin } from "redux/reducers/auth/selector";
+
 import { RootState } from "redux/store";
 
 const mapStateToProps = (state: RootState) => ({

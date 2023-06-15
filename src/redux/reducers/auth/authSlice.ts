@@ -3,7 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { LoadingType, FAILED, IDLE, LOADING, Roles } from "types/types";
 
 export interface IAuthState {
-    id: number | null,
+    id: string | null,
     isAuth: boolean,
     login: string | null,
     loadingStatus: LoadingType,
@@ -11,6 +11,15 @@ export interface IAuthState {
     role: Roles | null
 }
 
+
+type AuthPayload = {
+    status: number
+    data : {
+        id: string,
+        role: string, 
+        login: string,
+    }
+}
 
 const initialState: IAuthState = {
     id: null,
@@ -23,21 +32,27 @@ const initialState: IAuthState = {
 
 
 
-
 export const fetchToLogin = createAsyncThunk(
     "auth/fetchToLogin", 
     async ({ login, password }: {login: string, password: string}) => {
-        const response = await fetch("http://localhost:8000/auth", {
-            method: "POST", 
-            headers: {
-                "Content-type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify({ login, password })
-        });
+        try {
+            const response = await fetch("http://localhost:8000/auth", {
+                method: "POST", 
+                headers: {
+                    "Content-type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({ login, password })
+            });
 
-        const data = await response.json();
-        return data
+            const data = await response.json();
+            return {
+                data: data,
+                status: response.status
+            }
+        } catch (err) {
+            throw(err);
+        }
     }
 );
 
@@ -45,13 +60,20 @@ export const fetchToLogin = createAsyncThunk(
 export const fetchToCheckMe = createAsyncThunk(
     "auth/fetchToCheckMe", 
     async () => {
-        const response = await fetch("http://localhost:8000/auth", {
-            method: "GET", 
-            credentials: "include",
-        });
-
-        const data = await response.json();
-        return data
+        try {
+            const response = await fetch("http://localhost:8000/auth", {
+                method: "GET", 
+                credentials: "include",
+            });
+            const data = await response.json();
+            
+            return {
+                data: data,
+                status: response.status
+            }
+        } catch (err) {
+            throw(err);
+        }
     }
 );
 
@@ -70,15 +92,19 @@ const authSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToLogin.fulfilled, (state, action: PayloadAction<{ role: string, login: string}>) => {
+        builder.addCase(fetchToLogin.fulfilled, (state, action: PayloadAction<AuthPayload>) => {
             state.loadingStatus = IDLE;
             state.error = null;
+            if(action.payload.status !== 200) {
+                state.error = new Error("BAD RESPONSE");
+                return;
+            }
             state.isAuth = true;
-            state.login = action.payload.login;
-            if (action.payload.role === "ADMIN") {
+            state.login = action.payload.data.login;
+            if (action.payload.data.role === "ADMIN") {
                 state.role = Roles.ADMIN;
             }
-            if (action.payload.role === "EMPLOYEE") {
+            if (action.payload.data.role === "EMPLOYEE") {
                 state.role = Roles.EMPLOYEE;
             }
         })
@@ -91,15 +117,20 @@ const authSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToCheckMe.fulfilled, (state, action: PayloadAction<{ role: string, login: string}>) => {
+        builder.addCase(fetchToCheckMe.fulfilled, (state, action: PayloadAction<AuthPayload>) => {
             state.loadingStatus = IDLE;
             state.error = null;
+            if(action.payload.status !== 200) {
+                state.error = new Error("BAD RESPONSE");
+                return;
+            }
             state.isAuth = true;
-            state.login = action.payload.login;
-            if (action.payload.role === "ADMIN") {
+        
+            state.login = action.payload.data.login;
+            if (action.payload.data.role === "ADMIN") {
                 state.role = Roles.ADMIN;
             }
-            if (action.payload.role === "EMPLOYEE") {
+            if (action.payload.data.role === "EMPLOYEE") {
                 state.role = Roles.EMPLOYEE;
             }
         })

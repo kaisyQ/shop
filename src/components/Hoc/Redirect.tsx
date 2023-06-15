@@ -3,10 +3,10 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 
-const withAuthRedirect = (Component: any) => {
+const withAuthRedirect = (Component: React.FC<any> | React.ComponentClass) => {
     
     const RedirectComponent = (props: any) => {
-        if (!props.isAuth) return <Navigate to='/admin/login' />;
+        if (!props.isAuth) return <Navigate to='/auth' />;
         
         return <Component {...props} />;
     }

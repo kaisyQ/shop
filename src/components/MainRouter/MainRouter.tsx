@@ -73,7 +73,7 @@ const MainRouter: React.FC = () => {
 
                 <Route path='/posts/:id'element={ <PostAboutContainer /> } />
 
-                <Route path='auth' element={<AuthContainer />} />
+                <Route path='/auth' element={<AuthContainer />} />
 
                 <Route path='search' element={<Search />} />
                 <Route path='/admin'>

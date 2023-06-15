@@ -10,7 +10,6 @@ import { Navigate, Outlet, NavLink } from "react-router-dom";
 import { AdminWrapper, AdminHeader, AdminNav, LinksWrapper } from "./AdminStyles";
 
 const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login }) => {
-    
     if (!isAuth) {
         return <Navigate  to={"/auth"} />;
     }
