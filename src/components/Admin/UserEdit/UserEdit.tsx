@@ -43,6 +43,7 @@ const UserEdit: React.FC<IUserEditProps> = (props) => {
 
     React.useEffect(() => {
         if (!user) {
+            setLogin("");
             return;
         }
         setLogin(user.login);
@@ -53,12 +54,14 @@ const UserEdit: React.FC<IUserEditProps> = (props) => {
         if (!id) {
             fetchToCreateUser({ login: login, password: password } as IShortUser);
         } else {
-            fetchToUpdateUser({
-                id: id,
-                user: {
-                    login: login, password: password
-                } as IShortUser
-            });
+            const user = {};
+            if (login) {
+                Object.assign(user, { login });
+            }
+            if (password) {
+                Object.assign(user, { password });
+            }
+            fetchToUpdateUser({ id, user });
         }
     }
 

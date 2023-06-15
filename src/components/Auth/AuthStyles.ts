@@ -12,20 +12,12 @@ export const LoginWrapper = styled.form`
 export const Title = styled.h2`
     font-size: 2.5rem;
     font-weight: 500;
-    color: #b42525;
+    color: #000;
     font-style: italic;
     width: 100%;
     position: relative;
-    
-    ::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        border: .1rem solid #000;
-    }
 `
+
 export const InputWrapper = styled.div`
 `;
 

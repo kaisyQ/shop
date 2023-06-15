@@ -12,7 +12,7 @@ const instance = axios.create({
 
 export const getUsers = () => instance.get("users");
 export const getUser = (id: string) => instance.get(`users/${id}`);
-export const createUser = (user: IShortUser) => instance.post("users/", {
+export const createUser = (user: IShortUser) => instance.post("users", {
     ...user
 });
 export const updateUser = (id: string, user: IShortUser) => instance.put("users", {

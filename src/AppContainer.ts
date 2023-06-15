@@ -6,21 +6,15 @@ import { getIsDark } from "./redux/reducers/styles/selector";
 import { setIsDark } from "./redux/reducers/styles/stylesSlice";
 
 import { RootState } from "redux/store";
+import { fetchToCheckMe } from "redux/reducers/auth/authSlice";
 
-interface IMapStateToPropsType {
-    isDark: boolean
-}
 
-interface IMapDispatchToPropsType {
-    setIsDark: typeof setIsDark
-}
-
-const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
+const mapStateToProps = (state: RootState) => ({
     isDark: getIsDark(state)
 });
 
-const mapDispatchToProps: IMapDispatchToPropsType = {
-    setIsDark
+const mapDispatchToProps = {
+    setIsDark, fetchToCheckMe
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

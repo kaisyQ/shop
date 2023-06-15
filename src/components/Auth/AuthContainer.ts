@@ -2,7 +2,7 @@ import Auth from "./Auth";
 
 import { ConnectedProps, connect } from "react-redux";
 import { getIsAuth } from "../../redux/reducers/auth/selector";
-import { setAuthData } from "redux/reducers/auth/authSlice";
+import { fetchToLogin } from "redux/reducers/auth/authSlice";
 
 import { RootState } from "redux/store";
 
@@ -11,7 +11,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-    setAuthData
+    fetchToLogin
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

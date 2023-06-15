@@ -1,7 +1,6 @@
 import React from "react";
 
 import Post from "./Post/Post";
-import Pagination from "../Pagination/Pagination";
 import Title from "../Custom/Title/Title";
 import Message from "components/Custom/Message/Message";
 
@@ -39,7 +38,6 @@ const Posts: React.FC<PostsConnectedProps> = ({ posts, fetchPosts }) => {
                     </>
                 }
                 </PostWrapper>
-                <Pagination pageId={pageId} count={Math.ceil(posts.length/6)}/>
             </PostsWrapper>
         </>
     );

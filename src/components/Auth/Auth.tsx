@@ -11,15 +11,15 @@ import { AuthConnectedProps } from "./AuthContainer";
 import { Navigate } from "react-router-dom";
 
 
-const Auth: React.FC<AuthConnectedProps> = ({ isAuth, setAuthData }) => {
+const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin }) => {
 
     const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const submitForm = async (ev: React.FormEvent<HTMLFormElement>) => {
+    const submitForm = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
 
-        setAuthData({ isAuth: true, login: 'admin', id: 1 });
+        fetchToLogin({ login, password });
     }
 
     const onLoginChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

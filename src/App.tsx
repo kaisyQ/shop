@@ -12,10 +12,14 @@ import { AppWrapper, MainContainer } from 'AppStyles';
 import { AppConnectedProps } from 'AppContainer';
 
 
-const App: React.FC<AppConnectedProps> = ({ isDark, setIsDark }) => {
+const App: React.FC<AppConnectedProps> = ({ isDark, setIsDark, fetchToCheckMe }) => {
   
   const [isOpenSidebar, setIsOpenSidebar] = React.useState(false);
 
+  React.useEffect(() => {
+    fetchToCheckMe();
+  }, [])
+  
   const darkOpacityClick = (ev: React.MouseEvent<HTMLDivElement>) => {
     setIsDark(false);
   }

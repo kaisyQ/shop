@@ -51,9 +51,22 @@ export const fetchUserById = createAsyncThunk(
 export const fetchToCreateUser = createAsyncThunk(
     "users/fetchToCreateUser",
     async (user: IShortUser) => {
+        console.log(user);
         try {
-            const response = await createUser(user);
-            return response.data
+
+            //const response = await createUser(user);
+            //return response.data
+
+            const response = await fetch("http://localhost:8000/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify(user)
+            });
+            const res = await response.json();
+            return res;
         } catch (err) {
             console.log(err);
             return err;
@@ -63,10 +76,18 @@ export const fetchToCreateUser = createAsyncThunk(
 
 export const fetchToUpdateUser = createAsyncThunk(
     "users/fetchToUpdateUser",
-    async ({ id, user }: {id: string, user: IShortUser}) => {
+    async ({ id, user }: { id: string, user: { login?: string, password?: string} }) => {
         try {
-            const response = await updateUser(id, user);
-            return response.data
+            const response = await fetch("http://localhost:8000/users", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify({ id, user })
+            });
+            const res = await response.json();
+            return res;
         } catch (err) {
             console.log(err);
             return err;
