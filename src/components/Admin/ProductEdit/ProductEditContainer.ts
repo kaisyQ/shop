@@ -15,7 +15,6 @@ const mapDispatchToProps = {
     fetchToCreateProduct
 };
 
-
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type IProductEditConnectedProps = ConnectedProps<typeof connector>;

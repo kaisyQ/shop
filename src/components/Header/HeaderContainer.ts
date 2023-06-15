@@ -5,22 +5,12 @@ import { getIsDark } from "../../redux/reducers/styles/selector";
 import { setIsDark } from "../../redux/reducers/styles/stylesSlice";
 
 import { RootState } from "redux/store";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
-
-interface IMapStateToPropsType {
-    isDark: boolean
-}
-
-interface IMapDispatchToPropsType {
-    setIsDark: ActionCreatorWithPayload<boolean>
-}
-
-const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
+const mapStateToProps = (state: RootState) => ({
     isDark: getIsDark(state),
 })
 
-const mapDispatchToProps: IMapDispatchToPropsType = {
+const mapDispatchToProps = {
     setIsDark
 }
 

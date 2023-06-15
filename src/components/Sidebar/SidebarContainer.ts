@@ -3,14 +3,8 @@ import { ConnectedProps, connect } from "react-redux"
 
 
 import { setIsDark } from "../../redux/reducers/styles/stylesSlice"
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit"
 
-
-interface IMapDispatchToPropsType {
-    setIsDark: ActionCreatorWithPayload<boolean>
-}
-
-const mapDispatchToProps: IMapDispatchToPropsType = {
+const mapDispatchToProps = {
     setIsDark
 };
 

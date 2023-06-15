@@ -17,10 +17,6 @@ const mapDispatchToProps = {
     fetchPostById
 };
 
-type MapStateToPropsType = ReturnType<typeof mapStateToProps>;
-
-type mapDispatchToPropsType = typeof mapDispatchToProps;
-
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type PostAboutConnectedProps = ConnectedProps<typeof connector>;

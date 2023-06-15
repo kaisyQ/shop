@@ -4,15 +4,7 @@ import { ConnectedProps, connect } from "react-redux";
 import { getIsAuth, getId, getLogin } from "redux/reducers/auth/selector";
 import { RootState } from "redux/store";
 
-
-
-interface IMapStateToPropsType {
-    isAuth: boolean 
-    id: number | null,
-    login: string | null,
-}
-
-const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
+const mapStateToProps = (state: RootState) => ({
     isAuth: getIsAuth(state),
     id: getId(state),
     login: getLogin(state),

@@ -13,7 +13,7 @@ import { PostsWrapper, TitleWrapper, PostWrapper } from "./PostsStyles";
 import { PostsConnectedProps } from "./PostsContainer";
 
 
-const Blogs: React.FC<PostsConnectedProps> = ({ posts, fetchPosts }) => {
+const Posts: React.FC<PostsConnectedProps> = ({ posts, fetchPosts }) => {
     
     const { id } = useParams();
 
@@ -45,4 +45,4 @@ const Blogs: React.FC<PostsConnectedProps> = ({ posts, fetchPosts }) => {
     );
 }
 
-export default Blogs;
+export default Posts;

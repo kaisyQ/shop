@@ -3,17 +3,11 @@ import UsersTable from "./UsersTable";
 import { RootState } from "redux/store";
 
 import { ConnectedProps, connect } from "react-redux";
-import { IUser } from "types/types";
 import { getUsers } from "redux/reducers/users/selector";
 
 import { fetchUsers, fetchToDeleteUser } from "redux/reducers/users/usersSlice";
 
-
-interface IMapStateToPropsType {
-    users: IUser[]
-}
-
-const mapStateToProps = (state: RootState): IMapStateToPropsType => ({
+const mapStateToProps = (state: RootState) => ({
     users: getUsers(state)
 });
 

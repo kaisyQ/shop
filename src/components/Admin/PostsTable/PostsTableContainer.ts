@@ -1,4 +1,4 @@
-import BlogsTable from "./PostsTable";
+import PostsTable from "./PostsTable";
 
 import { connect, ConnectedProps } from "react-redux";
 
@@ -16,12 +16,8 @@ const mapDispatchToProps = {
     fetchPosts, fetchToDeletePost
 }
 
-type MapStateToPropsType = ReturnType<typeof mapStateToProps>;
-
-type MapDispatchToPropsType = typeof mapDispatchToProps;
-
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type IBlogsTableConnectedProps = ConnectedProps<typeof connector>;
 
-export default connector(BlogsTable);
+export default connector(PostsTable);

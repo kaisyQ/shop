@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 interface IBlogsTableProps extends IBlogsTableConnectedProps {
 }
 
-const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, fetchToDeletePost, fetchPosts }) => {
+const PostsTable: React.FC<IBlogsTableProps> = ({ posts, fetchToDeletePost, fetchPosts }) => {
     
     React.useEffect(() => {
         fetchPosts();
@@ -67,4 +67,4 @@ const BlogsTable: React.FC<IBlogsTableProps> = ({ posts, fetchToDeletePost, fetc
     );
 }
 
-export default BlogsTable;
+export default PostsTable;
