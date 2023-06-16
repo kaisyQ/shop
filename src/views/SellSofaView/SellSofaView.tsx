@@ -10,6 +10,7 @@ import {
 } from "./SellSofaStyles";
 
 import { SellSofaViewConnectedProps } from "./SellSofaViewContainer";
+import reducer, { initialState, actions } from "reducers/sell-sofa-view/reducer";
 
 interface ISellSofaViewProps extends SellSofaViewConnectedProps {
 
@@ -17,31 +18,27 @@ interface ISellSofaViewProps extends SellSofaViewConnectedProps {
 
 const SellSofaView: React.FC<ISellSofaViewProps> = ({ setConfirmModalData }) => {
 
-    const [name, setName] =  React.useState('');
-    const [email, setEmail] =  React.useState('');
-    const [phoneNumber, setPhoneNumber] =  React.useState('');
-    const [brand, setBrand] = React.useState('');
-    const [comment, setComment] =  React.useState('');
+    const [state, dispatch] = React.useReducer(reducer, initialState);
 
 
     const onNameChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setName(ev.target.value);
+        dispatch(actions.setName(ev.target.value));
     }
 
     const onEmailChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setEmail(ev.target.value);
+        dispatch(actions.setEmail(ev.target.value));
     }
 
     const onPhoneNumberChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setPhoneNumber(ev.target.value);
+        dispatch(actions.setPhoneNumber(ev.target.value));
     }
 
     const onBrandChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setBrand(ev.target.value);
+        dispatch(actions.setBrandOfSofa(ev.target.value));
     }
 
     const onCommentChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setComment(ev.target.value);
+        dispatch(actions.setComment(ev.target.value));
     }
     
     const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
@@ -64,24 +61,24 @@ const SellSofaView: React.FC<ISellSofaViewProps> = ({ setConfirmModalData }) => 
                 <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
                     <InputsWrapper>
                         <Input padding={'2.4rem 3rem'} id='sell-name' placeholder='Name *' 
-                            value={name} onChange={onNameChange} 
+                            value={state.name} onChange={onNameChange} 
                         />
 
                         <Input padding={'2.4rem 3rem'} id='sell-email' placeholder='Email *' 
-                            value={email} onChange={onEmailChange} 
+                            value={state.email} onChange={onEmailChange} 
                         />
                     </InputsWrapper>   
 
                     <Input padding={'2.4rem 3rem'} id='sell-phoneNumber' placeholder='Phone number *' 
-                        value={phoneNumber} onChange={onPhoneNumberChange} 
+                        value={state.phoneNumber} onChange={onPhoneNumberChange} 
                     />
 
                     <Input padding={'2.4rem 3rem'} id='sell-brand' placeholder='Brand of sofa *' 
-                        value={brand} onChange={onBrandChange} 
+                        value={state.brandOfSofa} onChange={onBrandChange} 
                     />
 
                     <Input padding={'4rem 3rem'} id='sell-comment' placeholder='Message *' 
-                        type='textarea' value={comment} onChange={onCommentChange} 
+                        type='textarea' value={state.comment} onChange={onCommentChange} 
                     />
 
                     <ButtonWrapper>
