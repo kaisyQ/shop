@@ -80,15 +80,15 @@ const MainRouter: React.FC = () => {
                     
                     <Route path='' element={<AdminContainer />}>
                        {
-                        ['usersTable', ''].map((path, index) => <>
+                        ['productsTable', ''].map((path, index) => <>
                                 <Route
                                     key={index} 
-                                    path={path} element={<UsersTableContainer />} 
+                                    path={path} element={<ProductsTableContainer />}
                                 />
                             </>
                         )
                        }
-                        <Route path='productsTable' element={<ProductsTableContainer />} />
+                        <Route path='usersTable' element={<UsersTableContainer />} />
                         <Route path='postsTable' element={<PostsTableContainer />} /> 
                     </Route>
                     

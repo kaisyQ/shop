@@ -1,6 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { LoadingType, FAILED, IDLE, LOADING, Roles } from "types/types";
+import type { LoadingType, Role } from "types/types";
+
+import { FAILED, IDLE, LOADING, ADMIN, EMPLOYEE } from "types/types";
 
 export interface IAuthState {
     id: string | null,
@@ -8,7 +10,7 @@ export interface IAuthState {
     login: string | null,
     loadingStatus: LoadingType,
     error: Error | null,
-    role: Roles | null
+    role: Role | null
 }
 
 
@@ -34,7 +36,7 @@ const initialState: IAuthState = {
 
 export const fetchToLogin = createAsyncThunk(
     "auth/fetchToLogin", 
-    async ({ login, password }: {login: string, password: string}) => {
+    async ({ login, password }: { login: string, password: string }) => {
         try {
             const response = await fetch("http://localhost:8000/auth", {
                 method: "POST", 
@@ -51,7 +53,7 @@ export const fetchToLogin = createAsyncThunk(
                 status: response.status
             }
         } catch (err) {
-            throw(err);
+            throw(err)
         }
     }
 );
@@ -102,10 +104,10 @@ const authSlice = createSlice({
             state.isAuth = true;
             state.login = action.payload.data.login;
             if (action.payload.data.role === "ADMIN") {
-                state.role = Roles.ADMIN;
+                state.role = ADMIN;
             }
             if (action.payload.data.role === "EMPLOYEE") {
-                state.role = Roles.EMPLOYEE;
+                state.role = EMPLOYEE;
             }
         })
         builder.addCase(fetchToLogin.rejected, (state, action) => {
@@ -128,10 +130,10 @@ const authSlice = createSlice({
         
             state.login = action.payload.data.login;
             if (action.payload.data.role === "ADMIN") {
-                state.role = Roles.ADMIN;
+                state.role = ADMIN;
             }
             if (action.payload.data.role === "EMPLOYEE") {
-                state.role = Roles.EMPLOYEE;
+                state.role = EMPLOYEE;
             }
         })
         builder.addCase(fetchToCheckMe.rejected, (state, action) => {

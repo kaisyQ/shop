@@ -3,9 +3,9 @@ import { DropDownItems, DropDownLi } from "./DropDownStyles";
 
 import { NavLink } from "react-router-dom";
 
-import type { DispatchTableSelectorType, IRoute } from "reducers/table-selector.reducer";
+import type { DispatchTableSelectorType, IRoute } from "reducers/table-selector/reducer";
 
-import { swapMainRoute } from "reducers/table-selector.reducer";
+import { swapMainRoute } from "reducers/table-selector/reducer";
 
 interface IDropDownContentProps {
     visibility: boolean,

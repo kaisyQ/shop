@@ -9,7 +9,7 @@ export const DropDownUl = styled.ul`
     display: flex; 
     flex-direction: row-reverse; 
 
-    font-size: 2.8rem;
+    font-size: 2.2rem;
 
     @media only screen and (max-width: 768px){
         display: block;

@@ -1,39 +1,48 @@
 import React from "react";
 
 import TableSelector from "./TableSelector/TableSelector";
+
 import Button from "components/Custom/Button/Button";
 
 import { AdminConnectedProps } from "./AdminContainer";
 
-import { Navigate, Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
-import { AdminWrapper, AdminHeader, AdminNav, LinksWrapper } from "./AdminStyles";
+import { AdminWrapper, AdminHeader, AdminNav, LinksWrapper, UserInfo } from "./AdminStyles";
 
-const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login }) => {
-    if (!isAuth) {
-        return <Navigate  to={"/auth"} />;
-    }
-    
+import { ADMIN } from "types/types";
+
+import * as Icon from "react-bootstrap-icons";
+
+const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login, role }) => {
+
     return (
         <>
             <AdminWrapper>
                 <AdminHeader>
                     <AdminNav>
-                        <h2>Create</h2>
                         <LinksWrapper>
-                            <NavLink to={"/admin/user"}>
-                                <Button isReverse={true}>user</Button>
-                            </NavLink>
+                            {
+                                role === ADMIN ? <>
+                                    <NavLink to={"/admin/user"}>
+                                        <Button isReverse={true}>create user</Button>
+                                    </NavLink> 
+                                </>: null
+                            }   
                             <NavLink to={"/admin/product"}>
-                                <Button isReverse={true}>product</Button>
+                                <Button isReverse={true}>create product</Button>
                             </NavLink>
                             <NavLink to={"/admin/post"}>
-                                <Button isReverse={true}>post</Button>
+                                <Button isReverse={true}>create post</Button>
                             </NavLink>
                         </LinksWrapper>
                     </AdminNav>
-                    <TableSelector />
+                    <UserInfo>
+                        <span>{ login }</span>
+                        <Icon.BoxArrowRight size={"2rem"} cursor={"pointer"} />
+                    </UserInfo>
                 </AdminHeader>
+                <TableSelector role={role}/>
                 <Outlet />
             </AdminWrapper>
         </>

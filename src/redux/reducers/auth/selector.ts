@@ -7,3 +7,4 @@ export const getIsAuth = (state: RootState) => state.auth.isAuth;
 
 export const getLogin = (state: RootState) => state.auth.login;
 
+export const getRole = (state: RootState) => state.auth.role

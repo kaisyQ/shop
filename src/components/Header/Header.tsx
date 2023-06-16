@@ -3,11 +3,13 @@ import React from "react";
 import logo from  './../../images/logo1.jpg';
 
 import { NavLink } from "react-router-dom";
+
 import * as Icon from 'react-bootstrap-icons';
+import Button from "components/Custom/Button/Button";
 
 
 import { 
-    HeaderWrapper, Logo, LinkWrapper, LinksContainer, MenuWrapper, Menu, MenuLine
+    HeaderWrapper, Logo, LinksContainer, MenuWrapper, Menu, MenuLine
 } from "./HeaderStyles";
 
 import type { HeaderConnectedProps } from "./HeaderContainer";

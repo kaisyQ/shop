@@ -2,6 +2,10 @@ export const LOADING = "LOADING";
 export const IDLE = "IDLE";
 export const FAILED = "FAILED";
 
+
+export const ADMIN = "TYPES/ADMIN";
+export const EMPLOYEE = "TYPES/EMPLOYEE";
+
 export type LoadingType = typeof LOADING | typeof IDLE | typeof FAILED;
 
 export type ServerProduct = {
@@ -61,10 +65,7 @@ export interface IPostWithDate {
 }
 
 
-export enum Roles {
-    ADMIN,
-    EMPLOYEE
-}
+export type Role = typeof ADMIN | typeof EMPLOYEE;
 
 export interface IShortUser {
     login: string,
@@ -75,5 +76,5 @@ export interface IUser {
     id: string,
     login: string,
     password: string,
-    role: Roles
+    role: Role
 }

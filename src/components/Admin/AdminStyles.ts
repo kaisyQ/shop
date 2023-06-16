@@ -106,3 +106,10 @@ export const PencilIcon = styled(Pencil)<IStyledIconsProps>`
     width: 2rem;
     height: 2rem;
 `;
+
+export const UserInfo = styled.span`
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+`;

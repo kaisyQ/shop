@@ -1,12 +1,36 @@
 import React from "react";
+
 import { DropDownMenu, DropDownUl, DropDownTriggerLi } from "./SelectorStyles";
+
 import { DropDownContent } from "./DropDown.tsx/DropDown";
+
 import { NavLink } from "react-router-dom";
-import reducer, { initialState } from "reducers/table-selector.reducer";
+
+import reducer, { initialState, actions } from "reducers/table-selector/reducer";
+
+import { ADMIN } from "types/types";
+
+import type { Role } from "types/types";
+
+interface ITableSelectorProps {
+    role: Role | null
+}
 
 
-const TableSelector = () => {
+const TableSelector: React.FC<ITableSelectorProps> = ({ role }) => {
+    
     const [isShown, showContent] = React.useState(false);
+
+    const [state, dispatch] = React.useReducer(reducer, initialState);
+
+    React.useEffect(() => {
+        console.log(role);
+        if (role === ADMIN) {
+            dispatch(actions.setAdminRoutes());
+            return;
+        }
+        dispatch(actions.setEmployeeRoutes());
+    }, [role])
 
     const onUlMouseLeave = (ev: React.MouseEvent<HTMLUListElement>) => {
         showContent(false);
@@ -19,8 +43,6 @@ const TableSelector = () => {
     const onUlMouseOver = (ev: React.MouseEvent<HTMLLIElement>) => {
         showContent(true);
     }
-
-    const [state, dispatch] = React.useReducer(reducer, initialState);
     
     return (
         <DropDownMenu>
