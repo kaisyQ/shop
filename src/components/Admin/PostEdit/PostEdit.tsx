@@ -22,8 +22,10 @@ interface IPostEditProps extends IPostEditApiConnectedProps{
 }
 
 
-const PostEdit: React.FC<IPostEditProps> = ({ post, fetchToCreatePost, fetchToUpdatePost }) => {
+const PostEdit: React.FC<IPostEditProps> = (props) => {
     
+    const { post, fetchToCreatePost, fetchToUpdatePost, setConfirmModalData } = props;
+
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
     React.useEffect(() => {
@@ -43,7 +45,7 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, fetchToCreatePost, fetchToUp
     const imageSrc = selectImageSrc(state);
     const imageFile = selectImageFile(state);
 
-    const onSaveClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    const saveOrCreate = () => {
         if(!imageSrc) {
             return;
         }
@@ -58,7 +60,12 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, fetchToCreatePost, fetchToUp
                 title: title,
                 text: text
             }));
-            fetchToCreatePost(formData);
+
+            setConfirmModalData({
+                callback: () => fetchToCreatePost(formData),
+                isVisible: true,
+                message: "Confirm creating post..."
+            })
         } else {
             if (!imageFile && !title && !text) {
                 return;
@@ -77,9 +84,16 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, fetchToCreatePost, fetchToUp
                 Object.assign(data, { title });
             }
             formData.append("data", JSON.stringify(data));
-            fetchToUpdatePost(formData);
+
+            setConfirmModalData({
+                callback: () => fetchToUpdatePost(formData),
+                isVisible: true,
+                message: "Confirm updating post..."
+            })
         }
     }
+
+    
 
     const onTitleChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         dispatch(setTitle(ev.target.value));
@@ -107,34 +121,21 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, fetchToCreatePost, fetchToUp
                 <Title>Post Edit</Title>
                 <EditForm onSubmit={(ev) => ev.preventDefault()}>
                     <InputWrapper>
-                        <Input 
-                            placeholder="Title" 
-                            id="post-edit-title" 
-                            type="input" 
-                            onChange={onTitleChange}
-                            value={title}
+                        <Input placeholder="Title" id="post-edit-title"  type="input" 
+                            onChange={onTitleChange} value={title}
                         />
                     </InputWrapper>
 
                     <InputWrapper>
-                        <Input 
-                            placeholder="Text" 
-                            id="post-edit-text" 
-                            type="textarea" 
-                            onChange={onTextChange}
-                            value={text}
-                            minHeight="30rem"
+                        <Input placeholder="Text" id="post-edit-text" type="textarea" 
+                            onChange={onTextChange} value={text} minHeight="30rem"
                         />
                     </InputWrapper>
                     <InputWrapper>
                         <LabelWrapper>
                             <LabelSpan>Choose a post image</LabelSpan>
-                            <input
-                                id="post-edit-image"
-                                type="file" 
-                                accept="image.png, image/jpeg, image/jpg"
-                                style={{display: 'none'}}
-                                onChange={onImageChange}
+                            <input id="post-edit-image" type="file" style={{display: 'none'}}
+                                accept="image/png, image/jpeg, image/jpg" onChange={onImageChange}
                             />
                         </LabelWrapper>
                         <div>
@@ -146,7 +147,7 @@ const PostEdit: React.FC<IPostEditProps> = ({ post, fetchToCreatePost, fetchToUp
 
                     <EditFormControl>
                         <NavLink to={"/admin"}>
-                            <Button onClick={onSaveClick} isReverse={true}>Save</Button>
+                            <Button onClick={saveOrCreate} isReverse={true}>Save</Button>
                         </NavLink>
                     </EditFormControl>
                 </EditForm>

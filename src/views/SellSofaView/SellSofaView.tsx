@@ -2,12 +2,20 @@ import React from "react";
 
 import Input from "components/Custom/Input/Input";
 import Button from "components/Custom/Button/Button";
-
 import SellingIcon from './../../components/Custom/Icons/SellingIcon';
 
-import { Wrapper, Subtitle, FormWrapper, InputsWrapper, ButtonWrapper, IconWrapper } from "./SellSofaStyles";
+import { 
+    Wrapper, Subtitle, FormWrapper, 
+    InputsWrapper, ButtonWrapper, IconWrapper 
+} from "./SellSofaStyles";
 
-const SellSofaView: React.FC = () => {
+import { SellSofaViewConnectedProps } from "./SellSofaViewContainer";
+
+interface ISellSofaViewProps extends SellSofaViewConnectedProps {
+
+}
+
+const SellSofaView: React.FC<ISellSofaViewProps> = ({ setConfirmModalData }) => {
 
     const [name, setName] =  React.useState('');
     const [email, setEmail] =  React.useState('');
@@ -36,65 +44,50 @@ const SellSofaView: React.FC = () => {
         setComment(ev.target.value);
     }
     
+    const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
+        setConfirmModalData({
+            callback: () => {},
+            isVisible: true,
+            message: "Confirm your action..."
+        });
+    }
+
     return (
         <>
             <Wrapper>
-                
                 <Subtitle>
                     <IconWrapper>
                         <SellingIcon width="64" height="64" />
                     </IconWrapper>
-                    <span>
-                        Sell your sofa.
-                    </span>
+                    <span>Sell your sofa.</span>
                 </Subtitle>
-                
-                <FormWrapper>
+                <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
                     <InputsWrapper>
-                        <Input 
-                            padding={'2.4rem 3rem'}
-                            id='sell-name' 
-                            placeholder='Name *' 
-                            value={name}
-                            onChange={onNameChange} 
+                        <Input padding={'2.4rem 3rem'} id='sell-name' placeholder='Name *' 
+                            value={name} onChange={onNameChange} 
                         />
 
-                        <Input
-                            padding={'2.4rem 3rem'}
-                            id='sell-email' 
-                            placeholder='Email *' 
-                            value={email} 
-                            onChange={onEmailChange} 
+                        <Input padding={'2.4rem 3rem'} id='sell-email' placeholder='Email *' 
+                            value={email} onChange={onEmailChange} 
                         />
                     </InputsWrapper>   
 
-                    <Input 
-                        padding={'2.4rem 3rem'} 
-                        id='sell-phoneNumber' 
-                        placeholder='Phone number *' 
-                        value={phoneNumber} 
-                        onChange={onPhoneNumberChange} 
+                    <Input padding={'2.4rem 3rem'} id='sell-phoneNumber' placeholder='Phone number *' 
+                        value={phoneNumber} onChange={onPhoneNumberChange} 
                     />
 
-                    <Input 
-                        padding={'2.4rem 3rem'} 
-                        id='sell-brand' 
-                        placeholder='Brand of sofa *' 
-                        value={brand} 
-                        onChange={onBrandChange} 
+                    <Input padding={'2.4rem 3rem'} id='sell-brand' placeholder='Brand of sofa *' 
+                        value={brand} onChange={onBrandChange} 
                     />
 
-                    <Input 
-                        padding={'4rem 3rem'} 
-                        id='sell-comment'
-                        placeholder='Message *' 
-                        type='textarea' 
-                        value={comment} 
-                        onChange={onCommentChange} 
+                    <Input padding={'4rem 3rem'} id='sell-comment' placeholder='Message *' 
+                        type='textarea' value={comment} onChange={onCommentChange} 
                     />
 
                     <ButtonWrapper>
-                        <Button padding={'2rem 7rem'} isReverse={true}>Send</Button>
+                        <Button onClick={onSendClick} padding={'2rem 7rem'} isReverse={true}>
+                            Send
+                        </Button>
                     </ButtonWrapper>
                 </FormWrapper>
             </Wrapper>

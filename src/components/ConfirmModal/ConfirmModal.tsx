@@ -39,7 +39,7 @@ const ConfirmModal: React.FC<IConfirmModalProps> = ({ message, callback, setConf
             }
             setTime(() => {
                 return hours*60*60+min*60+seconds-startTime
-            })
+            });
         }
         
         const timer = setInterval(updateTime, 1000);

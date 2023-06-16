@@ -13,15 +13,21 @@ import { NavLink } from "react-router-dom";
 interface IBlogsTableProps extends IBlogsTableConnectedProps {
 }
 
-const PostsTable: React.FC<IBlogsTableProps> = ({ posts, fetchToDeletePost, fetchPosts }) => {
+const PostsTable: React.FC<IBlogsTableProps> = (props) => {
     
+    const { posts, fetchToDeletePost, fetchPosts, setConfirmModalData } = props;
+
     React.useEffect(() => {
         fetchPosts();
     }, [fetchPosts]);
 
 
-    const onRemoveClick = (id: string) => {
-        fetchToDeletePost(id)
+    const onDeleteClick = (id: string) => {
+        setConfirmModalData({ 
+            isVisible: true, 
+            callback: () => fetchToDeletePost(id), 
+            message: "Are you sure? The post will be deleted..."
+        });
     }
 
     return (
@@ -46,7 +52,7 @@ const PostsTable: React.FC<IBlogsTableProps> = ({ posts, fetchToDeletePost, fetc
                                     <TableTd>{ post.date.toLocaleDateString() }</TableTd>
                                     <TableTd>{ post.text }</TableTd>
                                     <TableTd>
-                                        <RemoveBtn onClick={(ev) => onRemoveClick(post.id)}>
+                                        <RemoveBtn onClick={(ev) => onDeleteClick(post.id)}>
                                             <XLgIcon colorindex={index} />
                                         </RemoveBtn>
                                     </TableTd>

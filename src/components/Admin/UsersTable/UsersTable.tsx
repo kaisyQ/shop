@@ -22,7 +22,7 @@ const UsersTable: React.FC<IUserTableProps> = (props) => {
         setConfirmModalData({ 
             isVisible: true, 
             callback: () => fetchToDeleteUser(id), 
-            message: "Are you sure? The user will be deleted"
+            message: "Are you sure? The user will be deleted..."
         });
     }
 

@@ -14,7 +14,7 @@ import { ADMIN } from "types/types";
 
 import * as Icon from "react-bootstrap-icons";
 
-const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login, role }) => {
+const Admin: React.FC<AdminConnectedProps> = ({ id, login, role }) => {
 
     return (
         <>
@@ -27,7 +27,7 @@ const Admin: React.FC<AdminConnectedProps> = ({ isAuth, id, login, role }) => {
                                     <NavLink to={"/admin/user"}>
                                         <Button isReverse={true}>create user</Button>
                                     </NavLink> 
-                                </>: null
+                                </> : null
                             }   
                             <NavLink to={"/admin/product"}>
                                 <Button isReverse={true}>create product</Button>

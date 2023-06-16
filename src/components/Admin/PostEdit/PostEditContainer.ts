@@ -10,6 +10,8 @@ import {
     updatePost, fetchPostById, fetchToCreatePost, setCurrent, fetchToUpdatePost
 } from "redux/reducers/posts/reducer";
 
+import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
+
 import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps = (state: RootState) => ({
@@ -18,7 +20,8 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-    updatePost, fetchPostById, fetchToCreatePost, setCurrent, fetchToUpdatePost
+    updatePost, fetchPostById, fetchToCreatePost, 
+    setCurrent, fetchToUpdatePost, setConfirmModalData
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

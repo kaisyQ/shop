@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ContactView from 'views/ContactView/ContactView';
 import ProductAboutContainer from 'components/Catalog/Products/Product/ProductAbout/ProductAboutContainer';
 import PostAboutContainer from 'components/Posts/PostAbout/PostAboutContainer';
 import AuthContainer from './../Auth/AuthContainer';
@@ -14,12 +13,10 @@ import UsersTableContainer from 'components/Admin/UsersTable/UsersTableContainer
 import ProductsTableContainer from 'components/Admin/ProductsTable/ProductsTableContainer';
 import PostsTableContainer from 'components/Admin/PostsTable/PostsTableContainer';
 
+import ContactViewContainer from 'views/ContactView/ContactViewContainer';
+import SellSofaViewContainer from 'views/SellSofaView/SellSofaViewContainer';
 
 import { Routes, Route } from 'react-router-dom';
-import SellYourSofaView from 'views/SellSofaView/SellSofaView';
-
-
-import TableSelector from 'components/Admin/TableSelector/TableSelector';
 
 const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
 const Posts = React.lazy(() => import('components/Posts/PostsContainer'));
@@ -57,9 +54,9 @@ const MainRouter: React.FC = () => {
                     <Route path=':id' element={ <ProductAboutContainer /> } />
                 </Route>
 
-                <Route path='/contact' element={ <ContactView /> } />
+                <Route path='/contact' element={ <ContactViewContainer /> } />
 
-                <Route path='/sell' element={<SellYourSofaView />} />
+                <Route path='/sell' element={<SellSofaViewContainer />} />
 
                 <Route 
                     path='/posts' 

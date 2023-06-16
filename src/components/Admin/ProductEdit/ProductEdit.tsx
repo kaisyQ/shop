@@ -18,12 +18,12 @@ interface IProductEditProps extends IProductEditConnectedProps {
 
 const ProductEdit: React.FC<IProductEditProps> = (props) => {
 
-    const { fetchToCreateProduct } = props;
+    const { fetchToCreateProduct, setConfirmModalData } = props;
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
 
-    const onEditFormSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+    const onCreateClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
         const formData = new FormData();
         if (
             state.imagesFiles&&state.name&&state.aboutDelivery&&
@@ -42,7 +42,12 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
                 discountPrice: parseInt(state.discountPrice)
             })
             formData.append("data", bodyData);
-            fetchToCreateProduct(formData);
+            
+            setConfirmModalData({
+                callback: () => fetchToCreateProduct(formData),
+                isVisible: true,
+                message: "Confirm creating product..."
+            });
         }
            
     }
@@ -52,14 +57,14 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
     return (
         <>
             <ProductEditWrapper>
-                <EditForm onSubmit={onEditFormSubmit}>
+                <EditForm onSubmit={(ev) => ev.preventDefault()}>
                     <BlockWrapper>
                         <Inputs dispatch={dispatch} state={inputState} />
                     </BlockWrapper>
                     <BlockWrapper>
                         <Images dispatch={dispatch} imagesSrc={state.imagesSrc} />
                     <BtnWrapper>
-                        <Button isReverse={true}>Save</Button>
+                        <Button onClick={onCreateClick} isReverse={true}>Save</Button>
                     </BtnWrapper>
                     </BlockWrapper>
                 </EditForm>

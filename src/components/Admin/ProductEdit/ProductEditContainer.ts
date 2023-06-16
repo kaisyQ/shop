@@ -1,13 +1,16 @@
 import ProductEdit from "./ProductEdit";
 
-import { RootState } from "redux/store";
+import type { RootState } from "redux/store";
 
 import { connect, ConnectedProps } from "react-redux";
 
 import { getCurrentProduct } from "redux/reducers/product/selector";
 
 import { fetchToCreateProduct } from "redux/reducers/product/productSlice";
+
 import { getIsAuth } from "redux/reducers/auth/selector";
+
+import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
 
 import withAuthRedirect from "components/Hoc/Redirect";
 
@@ -17,7 +20,7 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = {
-    fetchToCreateProduct
+    fetchToCreateProduct, setConfirmModalData
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
