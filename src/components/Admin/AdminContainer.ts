@@ -6,6 +6,10 @@ import { getIsAuth, getId, getLogin, getRole } from "redux/reducers/auth/selecto
 
 import type { RootState } from "redux/store";
 
+import { fetchToLogout } from "redux/reducers/auth/authSlice";
+
+import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
+
 import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps = (state: RootState) => ({
@@ -15,8 +19,12 @@ const mapStateToProps = (state: RootState) => ({
     role: getRole(state)
 })
 
+const mapDipatchToProps = {
+    fetchToLogout, setConfirmModalData
+}
 
-const connector = connect(mapStateToProps, null);
+
+const connector = connect(mapStateToProps, mapDipatchToProps);
 
 export type AdminConnectedProps = ConnectedProps<typeof connector>;
 

@@ -79,6 +79,25 @@ export const fetchToCheckMe = createAsyncThunk(
     }
 );
 
+export const fetchToLogout = createAsyncThunk(
+    "auth/fetchToLogout", 
+    async () => {
+        try {
+            const response = await fetch("http://localhost:8000/auth", {
+                method: "DELETE", 
+                credentials: "include",
+            });
+            
+            console.log(response);
+            return {
+                status: response.status
+            }
+        } catch (err) {
+            throw(err);
+        }
+    }
+);
+
 const authSlice = createSlice({
     name: 'authSlice',
     initialState,
@@ -137,6 +156,26 @@ const authSlice = createSlice({
             }
         })
         builder.addCase(fetchToCheckMe.rejected, (state, action) => {
+            state.loadingStatus = FAILED;
+        })
+
+
+        builder.addCase(fetchToLogout.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToLogout.fulfilled, (state, action: PayloadAction<{status: number}>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+            if (action.payload.status === 202) {
+                state.isAuth = false;
+                state.id = null;
+                state.login = null;
+                state.role = null;
+            }
+            
+        })
+        builder.addCase(fetchToLogout.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
     }

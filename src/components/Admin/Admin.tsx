@@ -14,7 +14,15 @@ import { ADMIN } from "types/types";
 
 import * as Icon from "react-bootstrap-icons";
 
-const Admin: React.FC<AdminConnectedProps> = ({ id, login, role }) => {
+const Admin: React.FC<AdminConnectedProps> = ({ login, role, fetchToLogout, setConfirmModalData }) => {
+
+    const logoutClick = (ev: React.MouseEvent<SVGElement>) => {
+        setConfirmModalData({
+            callback: () => fetchToLogout(),
+            isVisible: true,
+            message: "Are you sure you want to exit ?"
+        });
+    }
 
     return (
         <>
@@ -39,7 +47,7 @@ const Admin: React.FC<AdminConnectedProps> = ({ id, login, role }) => {
                     </AdminNav>
                     <UserInfo>
                         <span>{ login }</span>
-                        <Icon.BoxArrowRight size={"2rem"} cursor={"pointer"} />
+                        <Icon.BoxArrowRight size={"2rem"} cursor={"pointer"} onClick={logoutClick}/>
                     </UserInfo>
                 </AdminHeader>
                 <TableSelector role={role}/>
