@@ -10,6 +10,7 @@ import {
 } from "./ContactViewStyles";
 
 import { ContactViewConnectedProps } from "./ContactViewContainer";
+import reducer, { initialState, actions } from "reducers/contact-view/reducer";
 
 interface IContactView extends ContactViewConnectedProps {
 
@@ -17,26 +18,22 @@ interface IContactView extends ContactViewConnectedProps {
 
 const ContactView: React.FC<IContactView> = ({ setConfirmModalData }) => {
 
-    const [name, setName] =  React.useState('');
-    const [email, setEmail] =  React.useState('');
-    const [phoneNumber, setPhoneNumber] =  React.useState('');
-    const [comment, setComment] =  React.useState('');
-
+    const [state, dispatch] = React.useReducer(reducer, initialState);
 
     const onNameChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setName(ev.target.value);
+        dispatch(actions.setName(ev.target.value));
     }
 
     const onEmailChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setEmail(ev.target.value);
+        dispatch(actions.setEmail(ev.target.value));
     }
 
     const onPhoneNumberChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setPhoneNumber(ev.target.value);
+        dispatch(actions.setPhoneNumber(ev.target.value));
     }
 
     const onCommentChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setComment(ev.target.value);
+        dispatch(actions.setComment(ev.target.value));
     }
     
     const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
@@ -61,21 +58,21 @@ const ContactView: React.FC<IContactView> = ({ setConfirmModalData }) => {
                 <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
                     <InputsWrapper>
                         <Input padding={'2.4rem 3rem'} id='contact-name' 
-                            placeholder='Name *' value={name} onChange={onNameChange} 
+                            placeholder='Name *' value={state.name} onChange={onNameChange} 
                         />
 
                         <Input
                             padding={'2.4rem 3rem'} id='contact-email' placeholder='Email *' 
-                            value={email} onChange={onEmailChange} 
+                            value={state.email} onChange={onEmailChange} 
                         />
                     </InputsWrapper>   
 
                     <Input padding={'2.4rem 3rem'} id='contact-phoneNumber' placeholder='Phone number *' 
-                        value={phoneNumber} onChange={onPhoneNumberChange} 
+                        value={state.phoneNumber} onChange={onPhoneNumberChange} 
                     />
 
                     <Input padding={'4rem 3rem'} id='contact-comment' placeholder='Message *' 
-                        type='textarea' value={comment} onChange={onCommentChange} 
+                        type='textarea' value={state.comment} onChange={onCommentChange} 
                     />
 
                     <ButtonWrapper>
