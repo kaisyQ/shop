@@ -13,7 +13,7 @@ export default styled.button<IButtonProps>`
     
     width: ${props => props.width ? props.width : null};
     
-    border: .1rem solid ${props => props.isReverse ? '#000' :  '#fff'};;
+    border: .1rem solid ${props => props.isReverse ? '#000' :  '#fff'};
     
     font-size: inherit;
     

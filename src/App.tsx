@@ -10,15 +10,18 @@ import MainRouter from 'components/MainRouter/MainRouter';
 import { AppWrapper, MainContainer } from 'AppStyles';
 
 import { AppConnectedProps } from 'AppContainer';
+import ConfirmModalContainer from 'components/ConfirmModal/ConfirmModalContainer';
 
 
-const App: React.FC<AppConnectedProps> = ({ isDark, setIsDark, fetchToCheckMe }) => {
+const App: React.FC<AppConnectedProps> = (props) => {
   
+  const { isDark, setIsDark, fetchToCheckMe, confirmModalVisibility } = props;
+
   const [isOpenSidebar, setIsOpenSidebar] = React.useState(false);
 
   React.useEffect(() => {
     fetchToCheckMe();
-  }, [])
+  }, []);
   
   const darkOpacityClick = (ev: React.MouseEvent<HTMLDivElement>) => {
     setIsDark(false);
@@ -31,6 +34,8 @@ const App: React.FC<AppConnectedProps> = ({ isDark, setIsDark, fetchToCheckMe })
       <HeaderContainer isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
       
       { isDark ? <ShadingBlock onClick={darkOpacityClick} /> : null } 
+
+      { confirmModalVisibility ? <ConfirmModalContainer /> : null }
       
       <Navbar />
 

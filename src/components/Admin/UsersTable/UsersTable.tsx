@@ -10,14 +10,20 @@ import { NavLink } from "react-router-dom";
 interface IUserTableProps extends UserTableConnectedProps {
 }
 
-const UsersTable: React.FC<IUserTableProps> = ({ users, fetchUsers, fetchToDeleteUser }) => {
+const UsersTable: React.FC<IUserTableProps> = (props) => {
     
+    const { users, fetchUsers, fetchToDeleteUser, setConfirmModalData } = props;
+
     React.useEffect(() => {
         fetchUsers();
     }, [fetchUsers])
 
     const onDeleteClick = (id: string) => {
-        fetchToDeleteUser(id);
+        setConfirmModalData({ 
+            isVisible: true, 
+            callback: () => fetchToDeleteUser(id), 
+            message: "Are you sure? The user will be deleted"
+        });
     }
 
     return (

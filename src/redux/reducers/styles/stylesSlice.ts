@@ -2,13 +2,25 @@ import { createSlice } from "@reduxjs/toolkit"
 
 import { PayloadAction } from "@reduxjs/toolkit"
 
-interface IInitialStylesProps {
-    isDark: boolean
+
+type ConfirmModalData = {
+    isVisible: boolean,
+    callback: null | (() => void),
+    message: string | null
 }
 
+interface IInitialStylesProps {
+    isDark: boolean,
+    confirmModalData: ConfirmModalData
+}
 
 const initialState: IInitialStylesProps = {
-    isDark: false
+    isDark: false,
+    confirmModalData: {
+        isVisible: false,
+        callback: null,
+        message: null
+    }
 }
 
 
@@ -16,8 +28,19 @@ const slylesSlice = createSlice({
     name: 'stylesSlice',
     initialState,
     reducers: {
-        setIsDark : (state, action: PayloadAction<boolean>) => {
-            state.isDark = action.payload
+        setIsDark: (state, action: PayloadAction<boolean>) => {
+            state.isDark = action.payload;
+            if (state.confirmModalData.isVisible) {
+                state.confirmModalData.callback = null;
+                state.confirmModalData.message = null;
+                state.confirmModalData.isVisible = false;
+            }
+        },
+        setConfirmModalData: (state, action: PayloadAction<ConfirmModalData>) => {
+            state.confirmModalData.callback = action.payload.callback;
+            state.confirmModalData.isVisible = action.payload.isVisible;
+            state.confirmModalData.message = action.payload.message;
+            state.isDark = action.payload.isVisible;
         }
     }
 })
@@ -25,6 +48,6 @@ const slylesSlice = createSlice({
 const { reducer, actions } = slylesSlice;
 
 
-export const { setIsDark } = actions;
+export const { setIsDark, setConfirmModalData } = actions;
 
 export default reducer;

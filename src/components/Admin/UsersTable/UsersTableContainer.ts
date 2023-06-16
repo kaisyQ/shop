@@ -8,6 +8,8 @@ import { getIsAuth } from "redux/reducers/auth/selector";
 
 import { fetchUsers, fetchToDeleteUser } from "redux/reducers/users/usersSlice";
 
+import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
+
 import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps = (state: RootState) => ({
@@ -16,7 +18,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-    fetchUsers, fetchToDeleteUser
+    fetchUsers, fetchToDeleteUser, setConfirmModalData
 };
 
 export type MapDispatchToProps = typeof mapDispatchToProps;
