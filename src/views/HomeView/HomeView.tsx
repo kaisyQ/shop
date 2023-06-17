@@ -2,6 +2,8 @@ import React from "react";
 
 import Title from "components/Custom/Title/Title";
 
+import Comments from "./../../components/Comments/Comments";
+
 import { Wrapper, PreviewImage, Slogan } from "./HomeViewStyles";
 
 
@@ -16,6 +18,7 @@ export default () => {
                 <Slogan>
                     Our sofas like Lincolns -- except they dont make your ass hurt 
                 </Slogan>
+                <Comments />
             </Wrapper>
         </>
     );
