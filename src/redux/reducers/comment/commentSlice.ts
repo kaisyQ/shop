@@ -66,6 +66,31 @@ export const fetchToCreateComment = createAsyncThunk(
     }
 );
 
+export const fetchToDeleteComment = createAsyncThunk(
+    "comments/fetchToDeleteComment",
+    async (id: string) => {
+        try {
+            const response = await fetch(`http://localhost:8000/comments/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                credentials: "include",
+            });
+            
+            const data = await response.json();
+
+            return {
+                data,
+                status: response.status
+            };
+
+        } catch (err) {
+            throw(err);
+        }
+    }
+);
+
 
 const commentSlice = createSlice({
     name: "commentSlice",

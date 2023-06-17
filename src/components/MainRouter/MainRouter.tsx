@@ -14,6 +14,7 @@ import ProductsTableContainer from 'components/Admin/ProductsTable/ProductsTable
 import PostsTableContainer from 'components/Admin/PostsTable/PostsTableContainer';
 import ContactViewContainer from 'views/ContactView/ContactViewContainer';
 import SellSofaViewContainer from 'views/SellSofaView/SellSofaViewContainer';
+import CommentTableContainer from 'components/Admin/CommentsTable/CommentTableContainer';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -86,6 +87,7 @@ const MainRouter: React.FC = () => {
                        }
                         <Route path='usersTable' element={<UsersTableContainer />} />
                         <Route path='postsTable' element={<PostsTableContainer />} /> 
+                        <Route path='commentsTable' element={<CommentTableContainer />} /> 
                     </Route>
                     
                     <Route path='user/:id?' element={<UserEditContainer />} />

@@ -87,8 +87,6 @@ export const fetchToLogout = createAsyncThunk(
                 method: "DELETE", 
                 credentials: "include",
             });
-            
-            console.log(response);
             return {
                 status: response.status
             }
@@ -116,18 +114,19 @@ const authSlice = createSlice({
         builder.addCase(fetchToLogin.fulfilled, (state, action: PayloadAction<AuthPayload>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            if(action.payload.status !== 200) {
-                state.error = new Error("BAD RESPONSE");
+            if(action.payload.status === 201) {
+                state.isAuth = true;
+                state.login = action.payload.data.login;
+                if (action.payload.data.role === "ADMIN") {
+                    state.role = ADMIN;
+                }
+                if (action.payload.data.role === "EMPLOYEE") {
+                    state.role = EMPLOYEE;
+                }
                 return;
             }
-            state.isAuth = true;
-            state.login = action.payload.data.login;
-            if (action.payload.data.role === "ADMIN") {
-                state.role = ADMIN;
-            }
-            if (action.payload.data.role === "EMPLOYEE") {
-                state.role = EMPLOYEE;
-            }
+            state.error = new Error("BAD RESPONSE");
+            return;
         })
         builder.addCase(fetchToLogin.rejected, (state, action) => {
             state.loadingStatus = FAILED;

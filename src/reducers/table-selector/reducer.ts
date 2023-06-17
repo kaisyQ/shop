@@ -13,6 +13,7 @@ export interface IRoute {
 const usersRoute: IRoute = { id: 0, path: '/admin/usersTable', title: 'Users' };
 const productsRoute: IRoute = { id: 1, path: '/admin/productsTable', title: 'Products' };
 const postsRoute: IRoute = { id: 2, path: '/admin/postsTable', title: 'Posts' };
+const commentRoute: IRoute = { id: 3, path: '/admin/commentsTable', title: 'Comments' }
 
 export type InitialStateType = {
     routes: IRoute[],
@@ -63,13 +64,13 @@ const reducer = (state: InitialStateType, action: ActionType) => {
         case SET_EMPLOYEE_ROUTES: 
             return {
                 ...state,
-                routes: [postsRoute],
+                routes: [postsRoute, commentRoute],
                 mainRoute: productsRoute
             }
         case SET_ADMIN_ROUTES: 
             return {
                 ...state,
-                routes: [usersRoute, postsRoute],
+                routes: [usersRoute, postsRoute, commentRoute],
                 mainRoute: productsRoute
             }
         default: 
