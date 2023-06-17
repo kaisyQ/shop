@@ -12,7 +12,6 @@ import PostEditContainer from 'components/Admin/PostEdit/PostEditContainer';
 import UsersTableContainer from 'components/Admin/UsersTable/UsersTableContainer';
 import ProductsTableContainer from 'components/Admin/ProductsTable/ProductsTableContainer';
 import PostsTableContainer from 'components/Admin/PostsTable/PostsTableContainer';
-
 import ContactViewContainer from 'views/ContactView/ContactViewContainer';
 import SellSofaViewContainer from 'views/SellSofaView/SellSofaViewContainer';
 

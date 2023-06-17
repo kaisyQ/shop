@@ -2,12 +2,15 @@ import React from "react";
 
 import Title from "components/Custom/Title/Title";
 
-import Comments from "./../../components/Comments/Comments";
+import CommentsContainer from "components/Comments/CommentsContainer";
 
 import { Wrapper, PreviewImage, Slogan } from "./HomeViewStyles";
 
+interface IHomeViewProps {
 
-export default () => {
+}
+
+const HomeView: React.FC<IHomeViewProps> = () => {
     return (
         <>
             <Wrapper>
@@ -18,8 +21,10 @@ export default () => {
                 <Slogan>
                     Our sofas like Lincolns -- except they dont make your ass hurt 
                 </Slogan>
-                <Comments />
+                <CommentsContainer />
             </Wrapper>
         </>
     );
 }
+
+export default HomeView;

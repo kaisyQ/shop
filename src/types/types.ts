@@ -78,3 +78,13 @@ export interface IUser {
     password: string,
     role: Role
 }
+
+export type RatingScore = 1 | 2 | 3 | 4 | 5;
+
+export interface IComment {
+    id: string,
+    author: string,
+    date: Date,
+    text: string,
+    rating:  RatingScore
+}

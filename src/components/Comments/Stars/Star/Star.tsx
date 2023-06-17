@@ -2,25 +2,22 @@ import React from "react";
 
 import * as Icon from "react-bootstrap-icons";
 
+import type { ActionType } from "reducers/add-comment-modal/reducer";
+
+import { actions } from "reducers/add-comment-modal/reducer";
+import { RatingScore } from "types/types";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+
 interface IStarProps {
     id: number, 
-    setStar: React.Dispatch<React.SetStateAction<number>>,
+    setStar: () => void
     starCount: number,
-    withReseat?: boolean
 }
 
-const Star: React.FC<IStarProps> = ({ id, setStar, starCount, withReseat }) => {
+const Star: React.FC<IStarProps> = ({ id, setStar, starCount }) => {
     
     const onStarClick = (ev: React.MouseEvent<HTMLDivElement>) => {
-        if (!withReseat) {
-            setStar(id);
-            return;
-        }
-        if (id === starCount) {
-            setStar(0);
-            return;
-        }
-        setStar(id);
+        setStar();
     }
 
     return (

@@ -7,13 +7,15 @@ import postsReducer from './reducers/posts/reducer';
 import stylesReducer from './reducers/styles/stylesSlice';
 import productReducer from './reducers/product/productSlice';
 import usersReducer from './reducers/users/usersSlice';
+import commentsReducer from "./reducers/comment/commentSlice";
 
 const rootReducer = combineReducers({
     auth: authReducer,
     posts: postsReducer,
     styles: stylesReducer,
     product: productReducer,
-    users: usersReducer
+    users: usersReducer,
+    comments: commentsReducer
 });
 
 

@@ -17,6 +17,7 @@ export const CommentsHeader = styled.header`
 export const CommentsTitle = styled.h2`
     font-size: 5rem;
     font-weight: 600;
+    text-transform: uppercase;
 `;
 
 export const CommentsSubtitle = styled.h3`
@@ -50,11 +51,6 @@ export const Filter = styled.div`
 
 export const Star = styled.div`
     cursor: pointer;
-`;
-
-export const Stars = styled.div`
-    display: flex;
-    gap: 1rem;
 `;
 
 export const CommentsBlock = styled.main`

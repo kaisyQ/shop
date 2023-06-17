@@ -8,18 +8,20 @@ import {
 
 import Comment from "./Comment/Comment";
 
-import Stars from "./Stars/Stars";
+import StarsFilterContainer from "./Stars/StarsFilterContainer";
 
 import * as Icon from "react-bootstrap-icons";
-import AddCommentModal from "./AddCommentModal/AddCommentModal";
 
-interface ICommentsProps {
+import AddCommentContainer from "./AddCommentModal/AddCommentContainer";
 
+import { CommentsConnectedProps } from "./CommentsContainer";
+
+interface ICommentsProps extends CommentsConnectedProps{
 }
 
-const Comments: React.FC<ICommentsProps> = () => {
-    
-    const [showModal, setShowModal] = React.useState(true);
+const Comments: React.FC<ICommentsProps> = ({ comments }) => {
+
+    const [showModal, setShowModal] = React.useState(false);
 
     return (
         <>
@@ -29,21 +31,20 @@ const Comments: React.FC<ICommentsProps> = () => {
                     <CommentsSubtitle>Read what our customers have to say</CommentsSubtitle>
                 </CommentsHeader>
                 <CommentConroller>
-                    <CreateButton>
+                    <CreateButton onClick={(ev) => setShowModal(true)}>
                         <Icon.Plus size={"2rem"} />
                         <span>Write a review</span>
                     </CreateButton>
                     <Filter>
-                        <Stars />
+                        <StarsFilterContainer />
                     </Filter>
                 </CommentConroller>
                 <CommentsBlock>
-                    <Comment />
-                    <Comment />
-                    <Comment />
-                    <Comment />
+                {
+                    comments.map((comment) => <Comment key={comment.id} comment={comment} />)
+                }
                 </CommentsBlock>
-                <AddCommentModal />
+                { showModal ? <AddCommentContainer close={() => setShowModal(false)} /> : null }
             </CommentsWrapper>
         </>
     );

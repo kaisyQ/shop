@@ -4,10 +4,19 @@ import Star from "./Star/Star";
 
 import { StarsWrapper } from "./StarsStyles";
 
-const Stars = () => {
+import type { ActionType } from "reducers/add-comment-modal/reducer";
 
-    const [starCount, setStarCount] = React.useState(0);
-    
+import type { RatingScore } from "types/types";
+
+import { actions } from "reducers/add-comment-modal/reducer";
+
+interface IStarsProps {
+    dispatch?: React.Dispatch<ActionType>,
+    starCount: RatingScore
+}
+
+const Stars: React.FC<IStarsProps> = ({ dispatch, starCount }) => {
+
     return (
         <>
             <StarsWrapper>
@@ -18,9 +27,12 @@ const Stars = () => {
                                 arr.push(
                                     <>
                                         <Star 
-                                            withReseat={true} 
                                             starCount={starCount} 
-                                            id={i} setStar={setStarCount}
+                                            id={i} setStar={() => {
+                                                if (dispatch) {
+                                                    dispatch(actions.setRating(i as RatingScore));
+                                                }   
+                                            }}
                                         />
                                     </>
                                 )

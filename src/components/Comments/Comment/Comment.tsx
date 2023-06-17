@@ -7,29 +7,38 @@ import {
 } from "./CommentStyles";
 
 import * as Icon from "react-bootstrap-icons";
+import { IComment } from "types/types";
 
-const Comment = () => {
+interface ICommentProps {
+    comment: IComment
+}
+
+const Comment: React.FC<ICommentProps> = ({ comment }) => {
     return (
         <>
             <CommentWrapper>
                 <CommentInfo>
-                    <AuthorCircle>M</AuthorCircle>
-                    <AuthorName>Micheas</AuthorName>
-                    <CreatedDate>13.04.2023</CreatedDate>
+                    <AuthorCircle>{ comment.author[0].toUpperCase() }</AuthorCircle>
+                    <AuthorName>{ comment.author }</AuthorName>
+                    <CreatedDate>{ comment.date.toLocaleDateString() }</CreatedDate>
                 </CommentInfo>
                 <CommentReview>
                     <CommentScore>
-                        <Icon.StarFill size={"3rem"} />
-                        <Icon.StarFill size={"3rem"} />
-                        <Icon.StarFill size={"3rem"} />
-                        <Icon.StarFill size={"3rem"} />
-                        <Icon.Star size={"3rem"} />
+                    {
+                        (() => {
+                            const arr: React.JSX.Element[] = [];
+
+                            for(let i=1; i<=comment.rating; ++i) {
+                                arr.push(<Icon.StarFill size={"3rem"} />);
+                            }
+                            for(let i=comment.rating; i<5; ++i) {
+                                arr.push(<Icon.Star size={"3rem"} />);
+                            }
+                            return arr;
+                        })()
+                    }
                     </CommentScore>
-                    <CommentText>
-                        Koch by far has the best furniture collection I 
-                        really enjoyed shopping through their website and 
-                        finally getting the sofa
-                    </CommentText>
+                    <CommentText>{ comment.text }</CommentText>
                 </CommentReview>
             </CommentWrapper>
         </>
