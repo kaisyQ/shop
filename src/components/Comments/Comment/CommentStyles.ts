@@ -15,11 +15,15 @@ export const CommentInfo = styled.div`
     flex-direction: column;
     align-items: center;
     gap: .5rem;
+    max-width: 200px;
+    width: 100%;
 `;
 
 export const AuthorName = styled.span`
     font-size: 2rem;
     font-weight: 500;
+    max-width: 200px;
+    word-wrap: break-word;
 `;
 
 export const CreatedDate = styled.span`

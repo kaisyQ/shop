@@ -3,7 +3,7 @@ import React from "react";
 import { 
     CommentWrapper, CommentInfo, AuthorName, 
     AuthorCircle, CreatedDate, CommentText, 
-    CommentScore, ScoreItem, CommentReview
+    CommentScore, CommentReview
 } from "./CommentStyles";
 
 import * as Icon from "react-bootstrap-icons";

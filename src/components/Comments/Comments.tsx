@@ -19,9 +19,13 @@ import { CommentsConnectedProps } from "./CommentsContainer";
 interface ICommentsProps extends CommentsConnectedProps{
 }
 
-const Comments: React.FC<ICommentsProps> = ({ comments }) => {
+const Comments: React.FC<ICommentsProps> = ({ comments, fetchComments }) => {
 
     const [showModal, setShowModal] = React.useState(false);
+
+    React.useEffect(() => {
+        fetchComments()
+    }, [comments, fetchComments]); 
 
     return (
         <>

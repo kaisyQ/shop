@@ -6,11 +6,17 @@ import type { RootState } from "redux/store";
 
 import { getFilteredComments } from "redux/reducers/comment/selector";
 
+import { fetchComments } from "redux/reducers/comment/commentSlice";
+
 const mapStateToProps = (state: RootState) => ({
     comments: getFilteredComments(state)
 })
 
-const connector = connect(mapStateToProps, null);
+const mapDispatchToProps = {
+    fetchComments
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type CommentsConnectedProps = ConnectedProps<typeof connector>;
 

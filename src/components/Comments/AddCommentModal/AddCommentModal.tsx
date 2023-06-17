@@ -18,7 +18,7 @@ interface IAddCommentModalProps extends AddCommentConnectedProps {
     close: () => void
 }
 
-const AddCommentModal: React.FC<IAddCommentModalProps> = ({ addComment, close }) => {
+const AddCommentModal: React.FC<IAddCommentModalProps> = ({ addComment, close, fetchToCreateComment }) => {
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -29,12 +29,10 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ addComment, close })
         dispatch(actions.setReview(ev.target.value));
     }
     const onSubmitClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        addComment({
-            id: "1",
-            date: (new Date()),
+        fetchToCreateComment({ 
+            userName: state.name,
             text: state.review,
-            author: state.name,
-            rating: state.rating
+            stars: state.rating as number
         });
         close();
     }   

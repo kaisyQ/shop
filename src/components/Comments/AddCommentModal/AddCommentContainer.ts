@@ -2,10 +2,12 @@ import AddCommentModal from "./AddCommentModal";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { addComment } from "redux/reducers/comment/commentSlice";
+import { addComment, fetchToCreateComment } from "redux/reducers/comment/commentSlice";
+
+
 
 const mapDispatchToProps = {
-    addComment
+    addComment, fetchToCreateComment
 };
 
 const connector = connect(null, mapDispatchToProps);

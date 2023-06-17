@@ -81,6 +81,16 @@ export interface IUser {
 
 export type RatingScore = 1 | 2 | 3 | 4 | 5;
 
+
+export interface IServerComment {
+    created_at: string,
+    id: string,
+    stars: number
+    text: string,
+    userName: string
+}
+
+
 export interface IComment {
     id: string,
     author: string,
