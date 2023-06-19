@@ -15,4 +15,6 @@ export const getFilteredComments = createSelector([getComments, getFilterScore],
     const filteredComments = comments.filter(comment => comment.rating === score);
 
     return filteredComments;
-})
+});
+
+export const getCommentLoadingStatus = (state: RootState) => state.comments.loadingStatus;

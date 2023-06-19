@@ -17,7 +17,6 @@ import {
 } from "./ProductAboutStyles"
 
 import useFetchById from "hooks/useFetchById";
-import usePageNotFound from "hooks/usePageNotFound";
 
 const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductById }) => {
 

@@ -8,8 +8,7 @@ import {
 
 import { IProductConnectedProps } from "./ProductsTableContainer";
 
-import { NavLink } from "react-router-dom";
-
+import ProductsTableRow from "./ProductsTableRow/ProductsTableRow";
 
 interface IProductsTableProps extends IProductConnectedProps{
 }
@@ -24,14 +23,6 @@ const ProductsTable: React.FC<IProductsTableProps> = (props) => {
         fetchProducts();
     }, [fetchProducts]);
     
-    const onDeleteClick = (id: string) => {
-        setConfirmModalData({ 
-            isVisible: true, 
-            callback: () => fetchToDeleteProduct(id), 
-            message: "Are you sure? The product will be deleted..."
-        });
-    }
-
     return (
         <>
             <TableWrapper>
@@ -48,24 +39,13 @@ const ProductsTable: React.FC<IProductsTableProps> = (props) => {
                 <TableTbody>
                     {
                         products.map((product, index) => <>
-                                <TableTr key={ product.id }>
-                                    <TableTd>{ index+1 }</TableTd>
-                                    <TableTd>{ product.name }</TableTd>
-                                    <TableTd>{ product.price }</TableTd>
-                                    <TableTd>{ product.count }</TableTd>
-                                    <TableTd>
-                                        <RemoveBtn onClick={(ev) => onDeleteClick(product.id)}>
-                                            <XLgIcon colorindex={index} />
-                                        </RemoveBtn>
-                                    </TableTd>
-                                    <TableTd>
-                                        <NavLink to={`/admin/product/${product.id}`}>
-                                            <EditBtn>
-                                                <PencilIcon colorindex={index} />
-                                            </EditBtn>
-                                        </NavLink>
-                                    </TableTd>
-                                </TableTr>
+                                <ProductsTableRow 
+                                    key={product.id}
+                                    index={index}
+                                    {...product}
+                                    fetchToDeleteProduct={fetchToDeleteProduct}
+                                    setConfirmModalData={setConfirmModalData}
+                                />
                             </>
                         )
                     }

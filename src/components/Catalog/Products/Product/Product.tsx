@@ -16,15 +16,14 @@ import {
 } from "./ProductStyles";
 
 
-interface ICardProps {
+interface IProductProps {
     id: string,
     count: number,
     name: string,
     imageSrc: string, 
 }
 
-const Card: React.FC<ICardProps> = ({ count, name, imageSrc, id }) => {
-
+const Product: React.FC<IProductProps> = ({ count, name, imageSrc, id }) => {
     return (
         <>
             <Wrapper>
@@ -56,4 +55,4 @@ const Card: React.FC<ICardProps> = ({ count, name, imageSrc, id }) => {
     );
 }
 
-export default Card;
+export default React.memo(Product);

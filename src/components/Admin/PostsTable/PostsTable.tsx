@@ -1,14 +1,10 @@
 import React from "react";
 
-import {
-    TableWrapper, TableThead, TableTbody, 
-    TableTr, TableTd, RemoveBtn, 
-    EditBtn, XLgIcon, PencilIcon 
-} from '../AdminStyles';
+import { TableWrapper, TableThead, TableTbody, TableTr, TableTd } from '../AdminStyles';
 
 import { IBlogsTableConnectedProps } from "./PostsTableContainer";
 
-import { NavLink } from "react-router-dom";
+import PostsTableRow from "./PostsTableRow/PostsTableRow";
 
 interface IBlogsTableProps extends IBlogsTableConnectedProps {
 }
@@ -20,15 +16,6 @@ const PostsTable: React.FC<IBlogsTableProps> = (props) => {
     React.useEffect(() => {
         fetchPosts();
     }, [fetchPosts]);
-
-
-    const onDeleteClick = (id: string) => {
-        setConfirmModalData({ 
-            isVisible: true, 
-            callback: () => fetchToDeletePost(id), 
-            message: "Are you sure? The post will be deleted..."
-        });
-    }
 
     return (
         <>
@@ -46,24 +33,13 @@ const PostsTable: React.FC<IBlogsTableProps> = (props) => {
                 <TableTbody>
                     {
                         posts.map((post, index) => <>
-                                <TableTr key={ post.id }>
-                                    <TableTd>{ index+1 }</TableTd>
-                                    <TableTd>{ post.title }</TableTd>
-                                    <TableTd>{ post.date.toLocaleDateString() }</TableTd>
-                                    <TableTd>{ post.text }</TableTd>
-                                    <TableTd>
-                                        <RemoveBtn onClick={(ev) => onDeleteClick(post.id)}>
-                                            <XLgIcon colorindex={index} />
-                                        </RemoveBtn>
-                                    </TableTd>
-                                    <TableTd>
-                                        <NavLink to={`/admin/post/${post.id}`}>
-                                            <EditBtn>
-                                                <PencilIcon colorindex={index} />
-                                            </EditBtn>
-                                        </NavLink>
-                                    </TableTd>
-                                </TableTr>
+                                <PostsTableRow 
+                                    index={index}
+                                    key={post.id}
+                                    {...post}
+                                    setConfirmModalData={setConfirmModalData}
+                                    fetchToDeletePost={fetchToDeletePost}
+                                />
                             </>
                         )
                     }

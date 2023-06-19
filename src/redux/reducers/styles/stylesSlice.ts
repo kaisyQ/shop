@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { PayloadAction } from "@reduxjs/toolkit"
 
 
-type ConfirmModalData = {
+export type ConfirmModalData = {
     isVisible: boolean,
     callback: null | (() => void),
     message: string | null

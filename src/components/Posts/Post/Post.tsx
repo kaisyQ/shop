@@ -78,4 +78,4 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imageSrc }) => {
     );
 }
 
-export default BlogItem;
+export default React.memo(BlogItem);
