@@ -12,6 +12,8 @@ import {
 import { ContactViewConnectedProps } from "./ContactViewContainer";
 import reducer, { initialState, actions } from "reducers/contact-view/reducer";
 
+import OkMessage from "components/Ui/OkMessage/OkMessage";
+
 interface IContactView extends ContactViewConnectedProps {
 
 }
@@ -47,6 +49,7 @@ const ContactView: React.FC<IContactView> = ({ setConfirmModalData }) => {
     return (
         <>
             <Wrapper>
+                <OkMessage text="Your request has been sent!" />
                 <Subtitle>
                     <IconWrapper>
                         <MailICon width="64" height="64"/>
