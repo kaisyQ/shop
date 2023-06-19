@@ -125,8 +125,6 @@ const authSlice = createSlice({
                 }
                 return;
             }
-            state.error = new Error("BAD RESPONSE");
-            return;
         })
         builder.addCase(fetchToLogin.rejected, (state, action) => {
             state.loadingStatus = FAILED;
@@ -140,18 +138,17 @@ const authSlice = createSlice({
         builder.addCase(fetchToCheckMe.fulfilled, (state, action: PayloadAction<AuthPayload>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            if(action.payload.status !== 200) {
-                state.error = new Error("BAD RESPONSE");
-                return;
-            }
-            state.isAuth = true;
+            if(action.payload.status === 200) {
+                state.isAuth = true;
         
-            state.login = action.payload.data.login;
-            if (action.payload.data.role === "ADMIN") {
-                state.role = ADMIN;
-            }
-            if (action.payload.data.role === "EMPLOYEE") {
-                state.role = EMPLOYEE;
+                state.login = action.payload.data.login;
+                if (action.payload.data.role === "ADMIN") {
+                    state.role = ADMIN;
+                }
+                if (action.payload.data.role === "EMPLOYEE") {
+                    state.role = EMPLOYEE;
+                }
+                return;
             }
         })
         builder.addCase(fetchToCheckMe.rejected, (state, action) => {
@@ -171,8 +168,8 @@ const authSlice = createSlice({
                 state.id = null;
                 state.login = null;
                 state.role = null;
+                return;
             }
-            
         })
         builder.addCase(fetchToLogout.rejected, (state, action) => {
             state.loadingStatus = FAILED;

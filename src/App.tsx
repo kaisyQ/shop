@@ -6,11 +6,11 @@ import SidebarContainer from './components/Sidebar/SidebarContainer';
 import Navbar from './components/Navbar/Navbar';
 import ShadingBlock from './components/Custom/ShadingBlock/ShadingBlock';
 import MainRouter from 'components/MainRouter/MainRouter';
+import ConfirmModalContainer from 'components/ConfirmModal/ConfirmModalContainer';
 
 import { AppWrapper, MainContainer } from 'AppStyles';
 
 import { AppConnectedProps } from 'AppContainer';
-import ConfirmModalContainer from 'components/ConfirmModal/ConfirmModalContainer';
 
 
 const App: React.FC<AppConnectedProps> = (props) => {

@@ -1,13 +1,15 @@
 import Auth from "./Auth";
 
 import { ConnectedProps, connect } from "react-redux";
-import { getIsAuth } from "../../redux/reducers/auth/selector";
+import { getIsAuth, getAuthLoading, getAuthError } from "../../redux/reducers/auth/selector";
 import { fetchToLogin } from "redux/reducers/auth/authSlice";
 
 import { RootState } from "redux/store";
 
 const mapStateToProps = (state: RootState) => ({
     isAuth: getIsAuth(state),
+    loading: getAuthLoading(state),
+    error: getAuthError(state),
 });
 
 const mapDispatchToProps = {

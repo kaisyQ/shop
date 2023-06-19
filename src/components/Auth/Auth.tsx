@@ -2,16 +2,17 @@ import React from "react";
 
 import Input from '../Custom/Input/Input';
 import Button from "components/Custom/Button/Button";
+import Preloader from "components/Ui/Preloader/Preloader";
 
-import { 
-    LoginWrapper, Title, InputWrapper, BtnWrapper
-} from "./AuthStyles";
+import { LoginWrapper, Title, InputWrapper, BtnWrapper } from "./AuthStyles";
 
 import { AuthConnectedProps } from "./AuthContainer";
 import { Navigate } from "react-router-dom";
 
+import { LOADING, FAILED, IDLE } from "types/types";
 
-const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin }) => {
+
+const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin, loading, error }) => {
 
     const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -23,11 +24,11 @@ const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin }) => {
     }
 
     const onLoginChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setLogin(ev.target.value)
+        setLogin(ev.target.value);
     }
 
     const onPasswordChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setPassword(ev.target.value)
+        setPassword(ev.target.value);
     }
 
     if (isAuth) {
@@ -36,8 +37,8 @@ const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin }) => {
 
     return (
         <>
+            { loading === LOADING ? <Preloader /> : null }
             <LoginWrapper onSubmit={submitForm}>
-
                 <Title>Sign into your working account</Title>
                 <InputWrapper>
                     <Input 
@@ -58,7 +59,7 @@ const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin }) => {
                     />
                 </InputWrapper>
                 <BtnWrapper>
-                    <Button isReverse={true}>Sign in</Button>
+                    <Button disabled={loading===LOADING} isReverse={true}>Sign in</Button>
                 </BtnWrapper>
             </LoginWrapper>
         </>
