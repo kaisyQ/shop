@@ -16,6 +16,10 @@ export default styled.button<IButtonProps>`
     border: .1rem solid ${props => props.isReverse ? '#000' :  '#fff'};
     
     font-size: inherit;
+
+    :disabled {
+        opacity: .8;
+    }
     
     :hover {
         

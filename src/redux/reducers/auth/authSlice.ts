@@ -117,6 +117,7 @@ const authSlice = createSlice({
             if(action.payload.status === 201) {
                 state.isAuth = true;
                 state.login = action.payload.data.login;
+                state.id = action.payload.data.id;
                 if (action.payload.data.role === "ADMIN") {
                     state.role = ADMIN;
                 }
@@ -140,7 +141,7 @@ const authSlice = createSlice({
             state.error = null;
             if(action.payload.status === 200) {
                 state.isAuth = true;
-        
+                state.id = action.payload.data.id;
                 state.login = action.payload.data.login;
                 if (action.payload.data.role === "ADMIN") {
                     state.role = ADMIN;

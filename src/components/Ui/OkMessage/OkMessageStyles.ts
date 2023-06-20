@@ -24,11 +24,10 @@ export const BackHomeButton = styled.button`
     background-color: #000;
     color: #fff;
     border-radius: .5rem;
-    
+    font-family: inherit;
     :hover {
         border-radius: 0;
-        transform: scale(1.1);
-        transition: .3s ease-in-out;
+        transition: border-radius .3s ease-in-out;
     }
-    transition: .3s ease-in-out;
+    transition: border-radius .3s ease-in-out;
 `;

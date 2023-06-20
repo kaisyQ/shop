@@ -30,18 +30,20 @@ const UsersTable: React.FC<IUserTableProps> = (props) => {
                     </TableTr>
                 </TableThead>
                 <TableTbody>
-                    {
-                        users.map((user, index) => <>
-                               <UsersTableRow 
-                                    index={index}
-                                    key={user.id}
-                                    {...user}
-                                    fetchToDeleteUser={fetchToDeleteUser}
-                                    setConfirmModalData={setConfirmModalData}
-                               />
+                {
+                    users.map((user, index) => {
+                            return <>
+                                <UsersTableRow 
+                                        index={index}
+                                        key={user.id}
+                                        {...user}
+                                        fetchToDeleteUser={fetchToDeleteUser}
+                                        setConfirmModalData={setConfirmModalData}
+                                />
                             </>
-                        )
-                    }
+                        }
+                    )
+                }
                 </TableTbody>
             </TableWrapper>
         </>

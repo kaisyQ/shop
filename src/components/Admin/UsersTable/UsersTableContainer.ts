@@ -3,7 +3,7 @@ import UsersTable from "./UsersTable";
 import { RootState } from "redux/store";
 
 import { ConnectedProps, connect } from "react-redux";
-import { getUsers } from "redux/reducers/users/selector";
+import { getUsersWithId } from "redux/reducers/users/selector";
 import { getIsAuth } from "redux/reducers/auth/selector";
 
 import { fetchUsers, fetchToDeleteUser } from "redux/reducers/users/usersSlice";
@@ -13,7 +13,7 @@ import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
 import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps = (state: RootState) => ({
-    users: getUsers(state),
+    users: getUsersWithId(state),
     isAuth: getIsAuth(state)
 });
 

@@ -37,7 +37,6 @@ const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin, loading, err
 
     return (
         <>
-            { loading === LOADING ? <Preloader /> : null }
             <LoginWrapper onSubmit={submitForm}>
                 <Title>Sign into your working account</Title>
                 <InputWrapper>

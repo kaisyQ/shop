@@ -14,4 +14,3 @@ export const getShortProductItems = (state: RootState): IShortProduct[] => {
 
 export const getCurrentProduct = (state: RootState) => state.product.current;
 
-
