@@ -16,10 +16,11 @@ import ContactViewContainer from 'views/ContactView/ContactViewContainer';
 import SellSofaViewContainer from 'views/SellSofaView/SellSofaViewContainer';
 import CommentTableContainer from 'components/Admin/CommentsTable/CommentTableContainer';
 
-import SuspenseWrapper from 'components/SuspenseWrapper/SuspenseWrapper';
 
 
 import { Routes, Route } from 'react-router-dom';
+
+import Preloader from 'components/Ui/Preloader/Preloader';
 
 
 const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
@@ -30,106 +31,96 @@ const Admin = React.lazy(() => import("components/Admin/AdminContainer"));
 const MainRouter: React.FC = () => {
     return (
         <>
-            <Routes>
+            <React.Suspense fallback={<Preloader />}>
+                <Routes>
 
-            {
-                ['/', '/shop'].map((path, index) => <>
-                    <Route 
-                        key={index}
-                        path={path}
-                        element={ <>
-                                <SuspenseWrapper>
+                {
+                    ['/', '/shop'].map((path, index) => <>
+                        <Route 
+                            key={index}
+                            path={path}
+                            element={ <>
                                     <HomeView />    
-                                </SuspenseWrapper>
+                                </>
+                            } 
+                        />
+                    </>)
+                }
+
+                    <Route path='/catalog'>
+                        <Route 
+                            path='' 
+                            element={ <>
+                                <CatalogView /> 
+                            </>}
+                        />
+                        <Route path=':id' element={
+                            <ProductAboutContainer /> 
+                        }/>
+                    </Route>
+
+                    <Route path='/contact' element={ 
+                        <ContactViewContainer />
+                    }/>
+
+                    <Route path='/sell' element={
+                        <SellSofaViewContainer />
+                    }/>
+
+                    <Route 
+                        path='/posts' 
+                        element={ <>    
+                                <Posts /> 
                             </>
                         } 
                     />
-                </>)
-            }
 
-                <Route path='/catalog'>
-                    <Route 
-                        path='' 
-                        element={ <>
-                            <SuspenseWrapper>
-                                <CatalogView /> 
-                            </SuspenseWrapper>
-                        </>}
-                    />
-                    <Route path=':id' element={
-                        <ProductAboutContainer /> 
+                    <Route path='/posts/:id'element={ 
+                        <PostAboutContainer /> 
                     }/>
-                </Route>
 
-                <Route path='/contact' element={ 
-                    <SuspenseWrapper>
-                        <ContactViewContainer />
-                    </SuspenseWrapper> 
-                }/>
+                    <Route path='/auth' element={<AuthContainer />} />
 
-                <Route path='/sell' element={
-                    <SuspenseWrapper>
-                        <SellSofaViewContainer />
-                    </SuspenseWrapper>
-                }/>
-
-                <Route 
-                    path='/posts' 
-                    element={ <>    
-                            <SuspenseWrapper>
-                                <Posts /> 
-                            </SuspenseWrapper>
-                        </>
-                    } 
-                />
-
-                <Route path='/posts/:id'element={ 
-                    <PostAboutContainer /> 
-                }/>
-
-                <Route path='/auth' element={<AuthContainer />} />
-
-                <Route path='search' element={<Search />} />
-                <Route path='/admin'>
-                    
-                    <Route path='' element={<>
-                            <SuspenseWrapper>
+                    <Route path='search' element={<Search />} />
+                    <Route path='/admin'>
+                        
+                        <Route path='' element={<>
                                 <Admin /> 
-                            </SuspenseWrapper>
-                        </>
-                    }>
-                       {
-                        ['productsTable', ''].map((path, index) => <>
-                                <Route
-                                    key={index} 
-                                    path={path} element={<ProductsTableContainer />}
-                                />
                             </>
-                        )
-                       }
-                        <Route path='usersTable' element={
-                            <UsersTableContainer /> 
+                        }>
+                        {
+                            ['productsTable', ''].map((path, index) => <>
+                                    <Route
+                                        key={index} 
+                                        path={path} element={<ProductsTableContainer />}
+                                    />
+                                </>
+                            )
+                        }
+                            <Route path='usersTable' element={
+                                <UsersTableContainer /> 
+                            }/>
+                            <Route path='postsTable' element={
+                                <PostsTableContainer />
+                            }/> 
+                            <Route path='commentsTable' element={
+                                <CommentTableContainer />
+                            }/> 
+                        </Route>
+                        
+                        <Route path='user/:id?' element={
+                            <UserEditContainer />
                         }/>
-                        <Route path='postsTable' element={
-                            <PostsTableContainer />
-                        }/> 
-                        <Route path='commentsTable' element={
-                            <CommentTableContainer />
-                        }/> 
-                    </Route>
-                    
-                    <Route path='user/:id?' element={
-                        <UserEditContainer />
-                    }/>
-                    <Route path='product/:id?' element={
-                        <ProductEditContainer />
-                    }/>
-                    <Route path='post/:id?' element={
-                        <PostEditContainer />
-                    }/>
+                        <Route path='product/:id?' element={
+                            <ProductEditContainer />
+                        }/>
+                        <Route path='post/:id?' element={
+                            <PostEditContainer />
+                        }/>
 
-                </Route>
-            </Routes>
+                    </Route>
+                </Routes>
+            </React.Suspense>
         </>
     );
 }
