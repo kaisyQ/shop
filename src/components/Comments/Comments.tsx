@@ -15,17 +15,23 @@ import * as Icon from "react-bootstrap-icons";
 import AddCommentContainer from "./AddCommentModal/AddCommentContainer";
 
 import { CommentsConnectedProps } from "./CommentsContainer";
+import { LOADING } from "types/types";
+import Preloader from "components/Ui/Preloader/Preloader";
 
 interface ICommentsProps extends CommentsConnectedProps{
 }
 
-const Comments: React.FC<ICommentsProps> = ({ comments, fetchComments }) => {
+const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }) => {
     
     const [showModal, setShowModal] = React.useState(false);
 
     React.useEffect(() => {
         fetchComments()
     }, [fetchComments]); 
+
+    if (loading === LOADING) {
+        return <Preloader />
+    }
 
     return (
         <>

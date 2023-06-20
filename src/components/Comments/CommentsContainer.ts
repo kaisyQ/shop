@@ -4,12 +4,13 @@ import { ConnectedProps, connect } from "react-redux";
 
 import type { RootState } from "redux/store";
 
-import { getFilteredComments } from "redux/reducers/comment/selector";
+import { getCommentLoadingStatus, getFilteredComments } from "redux/reducers/comment/selector";
 
 import { fetchComments } from "redux/reducers/comment/commentSlice";
 
 const mapStateToProps = (state: RootState) => ({
-    comments: getFilteredComments(state)
+    comments: getFilteredComments(state),
+    loading: getCommentLoadingStatus(state)
 })
 
 const mapDispatchToProps = {

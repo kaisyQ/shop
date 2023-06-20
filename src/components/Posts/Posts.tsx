@@ -10,9 +10,11 @@ import { useParams } from "react-router-dom";
 import { PostsWrapper, TitleWrapper, PostWrapper } from "./PostsStyles";
 
 import { PostsConnectedProps } from "./PostsContainer";
+import { LOADING } from "types/types";
+import Preloader from "components/Ui/Preloader/Preloader";
 
 
-const Posts: React.FC<PostsConnectedProps> = ({ posts, fetchPosts }) => {
+const Posts: React.FC<PostsConnectedProps> = ({ posts, loading, fetchPosts }) => {
     
     const { id } = useParams();
 
@@ -22,6 +24,10 @@ const Posts: React.FC<PostsConnectedProps> = ({ posts, fetchPosts }) => {
     React.useEffect(() => {
         fetchPosts();
     }, [fetchPosts]);
+
+    if (loading === LOADING) {
+        return <Preloader />;
+    }
 
     return (
         <>

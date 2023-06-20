@@ -2,18 +2,24 @@ import React from "react";
 
 import Product from "./Product/Product";
 import Message from "components/Custom/Message/Message";
+import Preloader from "components/Ui/Preloader/Preloader";
+
 import { Wrapper } from "./ProductsStyles";
 
 import { CardsConnectedPropsType } from "./ProductsContainer";
 
+import { LOADING } from "types/types";
 
-const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts }) => {
-    
-    console.log("render", "main")
+
+const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, loading }) => {
     
     React.useEffect(() => {
         fetchProducts();
     }, [fetchProducts]);
+
+    if (loading === LOADING) {
+        return <Preloader />;
+    }
 
     return (
         <>

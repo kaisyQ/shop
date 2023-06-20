@@ -2,14 +2,15 @@ import Posts from "./Posts";
 
 import { connect, ConnectedProps } from "react-redux";
 
-import { getPosts } from "../../redux/reducers/posts/selector";
+import { getPosts, getPostsLoading } from "../../redux/reducers/posts/selector";
 
 import { RootState } from "redux/store";
 import { fetchPosts } from "redux/reducers/posts/reducer";
 
 
 const mapStateToProps = (state: RootState) => ({
-    posts: getPosts(state)
+    posts: getPosts(state),
+    loading: getPostsLoading(state)
 })
 
 const mapDispatchToProps = {

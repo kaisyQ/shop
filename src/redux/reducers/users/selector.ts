@@ -8,10 +8,14 @@ export const getUsers = (state: RootState) => state.users.items;
 
 export const getCurrentUser = (state: RootState) => state.users.current;
 
+export const getUsersLoading = (state: RootState) => state.users.loadingStatus;
+
 export const getUsersWithId = createSelector([getId, getUsers], (id, users) => {
     if (!id) {
         return users;
     }
     return users.filter(user => user.id !== id);
 });
+
+
 
