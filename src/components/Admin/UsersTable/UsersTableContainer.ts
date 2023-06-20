@@ -3,7 +3,7 @@ import UsersTable from "./UsersTable";
 import { RootState } from "redux/store";
 
 import { ConnectedProps, connect } from "react-redux";
-import { getUsersWithId } from "redux/reducers/users/selector";
+import { getUsersWithId, getUsersLoading as getLoading } from "redux/reducers/users/selector";
 import { getIsAuth } from "redux/reducers/auth/selector";
 
 import { fetchUsers, fetchToDeleteUser } from "redux/reducers/users/usersSlice";
@@ -14,7 +14,8 @@ import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps = (state: RootState) => ({
     users: getUsersWithId(state),
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state), 
+    loading: getLoading(state)
 });
 
 const mapDispatchToProps = {

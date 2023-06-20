@@ -1,21 +1,29 @@
 import React from "react";
 
+import { LOADING } from "types/types";
+
 import { TableWrapper, TableThead, TableTbody, TableTr, TableTd } from '../AdminStyles';
 
 import { IBlogsTableConnectedProps } from "./PostsTableContainer";
 
 import PostsTableRow from "./PostsTableRow/PostsTableRow";
 
+import Preloader from "components/Ui/Preloader/Preloader";
+
 interface IBlogsTableProps extends IBlogsTableConnectedProps {
 }
 
 const PostsTable: React.FC<IBlogsTableProps> = (props) => {
     
-    const { posts, fetchToDeletePost, fetchPosts, setConfirmModalData } = props;
+    const { posts, loading, fetchToDeletePost, fetchPosts, setConfirmModalData } = props;
 
     React.useEffect(() => {
         fetchPosts();
     }, [fetchPosts]);
+
+    if (loading === LOADING) {
+        return <Preloader />;
+    }
 
     return (
         <>

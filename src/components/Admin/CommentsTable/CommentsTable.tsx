@@ -6,21 +6,28 @@ import {
     XLgIcon 
 } from '../AdminStyles';
 
+import Preloader from "components/Ui/Preloader/Preloader";
 
 import { CommentsTableConnectedProps } from "./CommentTableContainer";
 
 import CommentTableRow from "./CommentTableRow/CommentTableRow";
+import { LOADING } from "types/types";
 
 interface CommentsTableProps extends CommentsTableConnectedProps {
 }
 
 const CommentsTable: React.FC<CommentsTableProps> = (props) => {
     
-    const { fetchComments, comments, fetchToDeleteComment, ...rowProps } = props;
+    const { fetchComments, loading, comments, fetchToDeleteComment, ...rowProps } = props;
     
+   
     React.useEffect(() => {
         fetchComments();
     }, [fetchComments]);
+
+    if (loading === LOADING) {
+        return <Preloader />;
+    }
 
     return (
         <>
@@ -36,18 +43,18 @@ const CommentsTable: React.FC<CommentsTableProps> = (props) => {
                     </TableTr>
                 </TableThead>
                 <TableTbody>
-                    {
-                        comments.map((comment, index) => <>
-                               <CommentTableRow
-                                    fetchToDeleteComment={fetchToDeleteComment}
-                                    index={index}
-                                    {...comment}
-                                    {...rowProps} 
-                                    key={comment.id}
-                                />
-                            </>
-                        )
-                    }
+                {
+                    comments.map((comment, index) => <>
+                            <CommentTableRow
+                                fetchToDeleteComment={fetchToDeleteComment}
+                                index={index}
+                                {...comment}
+                                {...rowProps} 
+                                key={comment.id}
+                            />
+                        </>
+                    )
+                }
                 </TableTbody>
             </TableWrapper>
         </>

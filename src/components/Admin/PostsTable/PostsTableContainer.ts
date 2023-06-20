@@ -4,7 +4,7 @@ import { connect, ConnectedProps } from "react-redux";
 
 import type { RootState } from "redux/store";
 
-import { getPosts } from "redux/reducers/posts/selector";
+import { getPosts, getPostsLoading as getLoading} from "redux/reducers/posts/selector";
 
 import { fetchPosts, fetchToDeletePost } from "redux/reducers/posts/reducer";
 
@@ -17,7 +17,8 @@ import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps = (state: RootState) => ({
     posts: getPosts(state),
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state),
+    loading: getLoading(state)
 })
 
 const mapDispatchToProps = {

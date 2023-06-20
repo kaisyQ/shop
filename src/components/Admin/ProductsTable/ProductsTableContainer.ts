@@ -2,7 +2,7 @@ import ProductsTable from "./ProductsTable";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { getShortProductItems } from "redux/reducers/product/selector";
+import { getProductsLoading as getLoading, getShortProductItems } from "redux/reducers/product/selector";
 import { fetchProducts, fetchToDeleteProduct } from "redux/reducers/product/productSlice";
 import type { RootState } from "redux/store";
 
@@ -14,7 +14,8 @@ import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps  = (state: RootState) => ({
     products: getShortProductItems(state),
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state),
+    loading: getLoading(state)
 });
 
 const mapDispatchToProps = {

@@ -10,8 +10,13 @@ import { getComments } from "redux/reducers/comment/selector";
 
 import type { RootState } from "redux/store";
 
+import { getCommentLoadingStatus as getLoading } from "redux/reducers/comment/selector";
+
+import withAuthRedirect from "components/Hoc/Redirect";
+
 const mapStateToProps = (state: RootState) => ({
-    comments: getComments(state)
+    comments: getComments(state),
+    loading: getLoading(state)
 })
 
 const mapDispatchToProps = {
@@ -23,4 +28,4 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type CommentsTableConnectedProps = ConnectedProps<typeof connector>;
 
-export default connector(CommentsTable);
+export default connector(withAuthRedirect(CommentsTable));

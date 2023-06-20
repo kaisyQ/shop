@@ -6,16 +6,24 @@ import { UserTableConnectedProps } from "./UsersTableContainer";
 
 import UsersTableRow from "./UsersTableRow/UsersTableRow";
 
+import { LOADING } from "types/types";
+
+import Preloader from "components/Ui/Preloader/Preloader";
+
 interface IUserTableProps extends UserTableConnectedProps {
 }
 
 const UsersTable: React.FC<IUserTableProps> = (props) => {
     
-    const { users, fetchUsers, fetchToDeleteUser, setConfirmModalData } = props;
+    const { users, loading, fetchUsers, fetchToDeleteUser, setConfirmModalData } = props;
 
     React.useEffect(() => {
         fetchUsers();
     }, [fetchUsers])
+
+    if (loading === LOADING) {
+        return <Preloader />
+    }
     
     return (
         <>
