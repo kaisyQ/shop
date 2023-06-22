@@ -8,6 +8,8 @@ import stylesReducer from './reducers/styles/stylesSlice';
 import productReducer from './reducers/product/productSlice';
 import usersReducer from './reducers/users/usersSlice';
 import commentsReducer from "./reducers/comment/commentSlice";
+import formReducer from "./reducers/forms/formsSlice";
+
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -15,7 +17,8 @@ const rootReducer = combineReducers({
     styles: stylesReducer,
     product: productReducer,
     users: usersReducer,
-    comments: commentsReducer
+    comments: commentsReducer,
+    forms: formReducer
 });
 
 

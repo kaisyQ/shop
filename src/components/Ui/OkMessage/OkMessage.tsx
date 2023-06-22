@@ -7,16 +7,23 @@ import { OkMessageWrapper, OkMessageLogo, OkMessageText, BackHomeButton } from "
 import { NavLink } from "react-router-dom";
 
 interface IOkMessageProps {
-    text: string
+    text: string,
+    status: number
 }
 
-const OkMessage: React.FC<IOkMessageProps> = ({ text }) => {
+const OkMessage: React.FC<IOkMessageProps> = ({ text, status }) => {
     return (
         <>
             <OkMessageWrapper>
                 <OkMessageText>{ text }</OkMessageText>
                 <OkMessageLogo>
-                    <Icons.CheckCircle size={"15rem"}/>
+                {
+                    status === 202 ? <>
+                        <Icons.CheckCircle size={"15rem"} />
+                    </> : <>
+                        <Icons.ExclamationCircle size={"15rem"} />
+                    </>
+                }
                 </OkMessageLogo>
                 <NavLink to={"/"}>
                     <BackHomeButton>

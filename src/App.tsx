@@ -51,7 +51,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
       const min = date.getMinutes();
       const hours = date.getHours();
       
-      if (time === 120) {
+      if (time === 2) {
         setIsHint(true);
         setIsRunningTimer(false);
         return;

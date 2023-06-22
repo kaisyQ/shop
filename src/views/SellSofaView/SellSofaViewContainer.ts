@@ -4,8 +4,10 @@ import { ConnectedProps, connect } from "react-redux";
 
 import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
 
+import { fetchSellMessage } from "redux/reducers/forms/formsSlice";
+
 const mapDipatchToProps = {
-    setConfirmModalData
+    setConfirmModalData, fetchSellMessage
 }
 
 const connector = connect(null, mapDipatchToProps);

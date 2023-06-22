@@ -18,7 +18,7 @@ interface IContactView extends ContactViewConnectedProps {
 
 }
 
-const ContactView: React.FC<IContactView> = ({ setConfirmModalData }) => {
+const ContactView: React.FC<IContactView> = ({ status, setConfirmModalData, fetchContactMessage }) => {
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -40,7 +40,12 @@ const ContactView: React.FC<IContactView> = ({ setConfirmModalData }) => {
     
     const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
         setConfirmModalData({
-            callback: () => {},
+            callback: () => fetchContactMessage({
+                name: state.name,
+                email: state.email,
+                comment: state.comment,
+                phoneNumber: state.phoneNumber
+            }),
             isVisible: true,
             message: "Confirm your action..."
         });
@@ -49,7 +54,6 @@ const ContactView: React.FC<IContactView> = ({ setConfirmModalData }) => {
     return (
         <>
             <Wrapper>
-                <OkMessage text="Your request has been sent!" />
                 <Subtitle>
                     <IconWrapper>
                         <MailICon width="64" height="64"/>
@@ -85,6 +89,7 @@ const ContactView: React.FC<IContactView> = ({ setConfirmModalData }) => {
                     </ButtonWrapper>
                 </FormWrapper>
             </Wrapper>
+
         </>
     );
 }

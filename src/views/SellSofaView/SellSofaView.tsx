@@ -16,7 +16,7 @@ interface ISellSofaViewProps extends SellSofaViewConnectedProps {
 
 }
 
-const SellSofaView: React.FC<ISellSofaViewProps> = ({ setConfirmModalData }) => {
+const SellSofaView: React.FC<ISellSofaViewProps> = ({ setConfirmModalData, fetchSellMessage }) => {
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -43,7 +43,13 @@ const SellSofaView: React.FC<ISellSofaViewProps> = ({ setConfirmModalData }) => 
     
     const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
         setConfirmModalData({
-            callback: () => {},
+            callback: () => fetchSellMessage({
+                email: state.email,
+                comment: state.comment,
+                brand: state.brandOfSofa,
+                phoneNumber: state.phoneNumber,
+                name: state.name
+            }),
             isVisible: true,
             message: "Confirm your action..."
         });
