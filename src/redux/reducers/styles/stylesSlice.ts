@@ -11,11 +11,13 @@ export type ConfirmModalData = {
 
 interface IInitialStylesProps {
     isDark: boolean,
-    confirmModalData: ConfirmModalData
+    isHint: boolean,
+    confirmModalData: ConfirmModalData,
 }
 
 const initialState: IInitialStylesProps = {
     isDark: false,
+    isHint: false,
     confirmModalData: {
         isVisible: false,
         callback: null,
@@ -41,6 +43,9 @@ const slylesSlice = createSlice({
             state.confirmModalData.isVisible = action.payload.isVisible;
             state.confirmModalData.message = action.payload.message;
             state.isDark = action.payload.isVisible;
+        },
+        setIsHint: (state, action: PayloadAction<boolean>) => {
+            state.isHint = action.payload;
         }
     }
 })
@@ -48,6 +53,6 @@ const slylesSlice = createSlice({
 const { reducer, actions } = slylesSlice;
 
 
-export const { setIsDark, setConfirmModalData } = actions;
+export const { setIsDark, setConfirmModalData, setIsHint } = actions;
 
 export default reducer;

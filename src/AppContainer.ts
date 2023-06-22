@@ -2,8 +2,8 @@ import App from "./App";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { getConfirmModalVisibility, getIsDark } from "./redux/reducers/styles/selector";
-import { setIsDark } from "./redux/reducers/styles/stylesSlice";
+import { getConfirmModalVisibility, getIsDark, getIsHint } from "./redux/reducers/styles/selector";
+import { setIsDark, setIsHint } from "./redux/reducers/styles/stylesSlice";
 
 import { RootState } from "redux/store";
 import { fetchToCheckMe } from "redux/reducers/auth/authSlice";
@@ -11,11 +11,12 @@ import { fetchToCheckMe } from "redux/reducers/auth/authSlice";
 
 const mapStateToProps = (state: RootState) => ({
     isDark: getIsDark(state),
+    isHint: getIsHint(state),
     confirmModalVisibility: getConfirmModalVisibility(state)
 });
 
 const mapDispatchToProps = {
-    setIsDark, fetchToCheckMe
+    setIsDark, setIsHint, fetchToCheckMe
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
