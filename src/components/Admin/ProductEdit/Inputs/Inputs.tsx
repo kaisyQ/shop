@@ -55,19 +55,19 @@ const Inputs: React.FC<IInputsProps> = ({ dispatch, state }) => {
         
             <InputsWrapper>
                 <InputWrapper>
-                    <Input placeholder="Width(cm)" id="product-edit-Width" type="input" 
+                    <Input placeholder="Width(inch)" id="product-edit-Width" type="input" 
                         onChange={(ev) => dispatch(actions.setWidth(ev.target.value))}  
                         value={state.width}
                     />
                 </InputWrapper>
                 <InputWrapper>
-                    <Input placeholder="Height(cm)" id="product-edit-Height" type="input" 
+                    <Input placeholder="Height(inch)" id="product-edit-Height" type="input" 
                         onChange={(ev) => dispatch(actions.setHeight(ev.target.value))}  
                         value={state.height}
                     />
                 </InputWrapper>
                 <InputWrapper>
-                    <Input placeholder="Depth(cm)" id="product-edit-Depth" type="input" 
+                    <Input placeholder="Depth(inch)" id="product-edit-Depth" type="input" 
                         onChange={(ev) => dispatch(actions.setDepth(ev.target.value))} 
                         value={state.depth}
                     />

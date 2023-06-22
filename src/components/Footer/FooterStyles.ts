@@ -8,6 +8,9 @@ export const FooterWrapper = styled.footer`
     margin-top: 2rem;
     text-align: left;
     
+    background-color: #000;
+    color: white;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -34,6 +37,7 @@ export const FooterWrapper = styled.footer`
 
 export const LinksContainer = styled.div`
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     align-items: flex-end;
     gap: 2rem;
@@ -45,7 +49,6 @@ export const Links = styled.div`
 `;
 
 export const OurContacts = styled.div`
-    
 `;
 
 export const Title = styled.h3`
@@ -64,7 +67,7 @@ export const SignInButton = styled.button`
     display: block;
     font-size: 1rem;
     text-decoration: underline;
-    color: #000;
+    color: #fff;
     
     transition: .2s ease-in-out;
     :hover {
@@ -78,7 +81,7 @@ export const SignInButton = styled.button`
 
 export const Copyright = styled.p`
   font-size: 1.4rem;
-  color: #000;
+  color: inherit;
 ;`
 
 export const Span = styled.span<ISpanProps>`

@@ -25,19 +25,19 @@ const Footer: React.FC = () => {
                         <Span>8(228)(228)</Span>
                     </Information>
                 </OurContacts>
-                    <LinksContainer>
-                        <Links>
-                            <NavLink to={"inst-path"}><Icon.Instagram size={'2rem'}/></NavLink>
-                            <NavLink to={"facebook-path"}><Icon.Facebook size={'2rem'}/></NavLink>
-                            <NavLink to={"whatapp-path"}><Icon.Whatsapp size={'2rem'}/></NavLink>
-                        </Links>
-                        <Copyright>
-                        © { new Date().getFullYear() } Company Name. All rights reserved.
-                        </Copyright>
-                        <NavLink to={'/auth'}>
-                            <SignInButton>Sign into your working account</SignInButton>
-                        </NavLink>
-                    </LinksContainer>
+                <LinksContainer>
+                    <Links>
+                        <NavLink to={"inst-path"}><Icon.Instagram size={'2rem'}/></NavLink>
+                        <NavLink to={"facebook-path"}><Icon.Facebook size={'2rem'}/></NavLink>
+                        <NavLink to={"whatapp-path"}><Icon.Whatsapp size={'2rem'}/></NavLink>
+                    </Links>
+                    <Copyright>
+                    © { new Date().getFullYear() } Company Name. All rights reserved.
+                    </Copyright>
+                    <NavLink to={'/auth'}>
+                        <SignInButton>Sign into your working account</SignInButton>
+                    </NavLink>
+                </LinksContainer>
             </FooterWrapper>
         </>
     );

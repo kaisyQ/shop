@@ -17,6 +17,12 @@ export const PreviewImage = styled.img`
 `;
 
 export const Slogan = styled.p`
-    margin-left: 2rem;
-    font-size: 2rem;
+    padding: 3rem;
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+
+    @media only screen and (max-width: 330px) {
+        font-size: 2rem;
+    }
 `;

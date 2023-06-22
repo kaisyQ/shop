@@ -59,35 +59,20 @@ const MainRouter: React.FC = () => {
                         }/>
                     </Route>
 
-                    <Route path='/contact' element={ 
-                        <ContactViewContainer />
-                    }/>
+                    <Route path='/contact' element={ <ContactViewContainer /> }/>
 
-                    <Route path='/sell' element={
-                        <SellSofaViewContainer />
-                    }/>
+                    <Route path='/sell' element={ <SellSofaViewContainer />}/>
 
-                    <Route 
-                        path='/posts' 
-                        element={ <>    
-                                <Posts /> 
-                            </>
-                        } 
-                    />
+                    <Route path='/posts' element={ <Posts /> } />
 
-                    <Route path='/posts/:id'element={ 
-                        <PostAboutContainer /> 
-                    }/>
+                    <Route path='/posts/:id'element={ <PostAboutContainer /> }/>
 
                     <Route path='/auth' element={<AuthContainer />} />
 
                     <Route path='search' element={<Search />} />
                     <Route path='/admin'>
                         
-                        <Route path='' element={<>
-                                <Admin /> 
-                            </>
-                        }>
+                        <Route path='' element={ <Admin /> }>
                         {
                             ['productsTable', ''].map((path, index) => <>
                                     <Route
@@ -97,26 +82,14 @@ const MainRouter: React.FC = () => {
                                 </>
                             )
                         }
-                            <Route path='usersTable' element={
-                                <UsersTableContainer /> 
-                            }/>
-                            <Route path='postsTable' element={
-                                <PostsTableContainer />
-                            }/> 
-                            <Route path='commentsTable' element={
-                                <CommentTableContainer />
-                            }/> 
+                            <Route path='usersTable' element={ <UsersTableContainer /> }/>
+                            <Route path='postsTable' element={ <PostsTableContainer /> }/> 
+                            <Route path='commentsTable' element={ <CommentTableContainer /> }/> 
                         </Route>
                         
-                        <Route path='user/:id?' element={
-                            <UserEditContainer />
-                        }/>
-                        <Route path='product/:id?' element={
-                            <ProductEditContainer />
-                        }/>
-                        <Route path='post/:id?' element={
-                            <PostEditContainer />
-                        }/>
+                        <Route path='user/:id?' element={ <UserEditContainer /> }/>
+                        <Route path='product/:id?' element={ <ProductEditContainer /> }/>
+                        <Route path='post/:id?' element={ <PostEditContainer /> }/>
 
                     </Route>
                 </Routes>

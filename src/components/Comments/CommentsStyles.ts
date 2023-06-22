@@ -1,28 +1,39 @@
 import styled from "styled-components";
 
 
-interface ISelectItemProps {
-    show?: boolean;
-}
-
 export const CommentsWrapper = styled.div`
+    padding: 0 2rem;
     text-align: center;
     width: 100%;
+
+    @media only screen and (max-width: 330px) {
+        max-width: 330px;
+    }
 `;
 
 export const CommentsHeader = styled.header`
     margin-top: 1rem;
+    
 `;
 
 export const CommentsTitle = styled.h2`
     font-size: 5rem;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
+    text-decoration: underline;
+
+    @media only screen and (max-width: 330px) {
+        font-size: 3rem;
+    }
 `;
 
 export const CommentsSubtitle = styled.h3`
     font-size: 3rem;
-    font-weight: 500;
+    font-weight: 400;
+
+    @media only screen and (max-width: 330px) {
+        font-size: 2rem;
+    }
 `;
 
 export const CommentConroller = styled.div`
@@ -31,8 +42,11 @@ export const CommentConroller = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-`;
 
+    @media only screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+`;
 export const CreateButton = styled.button`
     display: flex;
     align-items: center;

@@ -2,7 +2,7 @@ import React from "react"
 
 import { useParams } from "react-router-dom";
 
-import { Wrapper, Image, Date, Title, Text } from "./PostAboutStyles";
+import { Wrapper, Image, Date, Title, Text, ImageWrapper } from "./PostAboutStyles";
 
 import { PostAboutConnectedProps } from "./PostAboutContainer";
 
@@ -29,7 +29,10 @@ const PostAbout: React.FC<IPostAboutProps> = ({ current, fetchPostById }) => {
 
                 { current ? <Text>{ current.text }</Text> : null }
 
-                { current ? <Image src={current.imageSrc}/> : null }
+                { current ? <ImageWrapper>
+                        <Image src={current.imageSrc} /> 
+                    </ImageWrapper>
+                : null }
 
                 { current ? <Date>{ current.date.toLocaleDateString() }</Date> : null }
             </Wrapper>

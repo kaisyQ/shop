@@ -7,10 +7,7 @@ import { useParams } from "react-router-dom";
 
 const PostEditApiContainer: React.FC<IPostEditApiConnectedProps> = (props) => {
 
-    const { post, updatePost, fetchToCreatePost, 
-        fetchPostById, setCurrent, fetchToUpdatePost,
-        setConfirmModalData 
-    } = props;
+    const { fetchPostById, setCurrent } = props;
 
     const { id } = useParams();
 
@@ -29,4 +26,4 @@ const PostEditApiContainer: React.FC<IPostEditApiConnectedProps> = (props) => {
     );
 }
 
-export default PostEditApiContainer
+export default PostEditApiContainer;

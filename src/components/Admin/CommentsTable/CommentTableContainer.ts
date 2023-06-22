@@ -14,9 +14,12 @@ import { getCommentLoadingStatus as getLoading } from "redux/reducers/comment/se
 
 import withAuthRedirect from "components/Hoc/Redirect";
 
+import { getIsAuth } from "redux/reducers/auth/selector";
+
 const mapStateToProps = (state: RootState) => ({
     comments: getComments(state),
-    loading: getLoading(state)
+    loading: getLoading(state),
+    isAuth: getIsAuth(state)
 })
 
 const mapDispatchToProps = {

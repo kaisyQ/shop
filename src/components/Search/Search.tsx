@@ -28,7 +28,7 @@ const Search: React.FC = () => {
                         onChange={onSearchChange}
                     />
                     <IconWrapper>
-                        <Icon.Search color="#c74646" size={'3.5rem'} cursor='pointer' />
+                        <Icon.Search color="#000" size={'3.5rem'} cursor='pointer' />
                     </IconWrapper>
                 </SearchContainer>
             </SearchWrapper>

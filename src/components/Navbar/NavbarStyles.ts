@@ -18,7 +18,7 @@ export const Wrapper = styled.nav`
         left: 50%;
         transform: translateX(-50%);
         width: 70%;
-        border-bottom: .1rem solid #ab5f08;
+        border-bottom: .1rem solid #000;
     }
 
     @media only screen and (max-width: 768px) {

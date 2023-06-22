@@ -42,7 +42,7 @@ const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }
                 </CommentsHeader>
                 <CommentConroller>
                     <CreateButton onClick={(ev) => setShowModal(true)}>
-                        <Icon.Plus size={"2rem"} />
+                        <Icon.Plus size={"3rem"} />
                         <span>Write a review</span>
                     </CreateButton>
                     <Filter>

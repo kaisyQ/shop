@@ -34,6 +34,7 @@ const Show = keyframes`
 export const Wrapper = styled.div`
     width: 100%;
     max-width: 33rem;
+    margin-bottom: 2rem;
 `;
 
 export const Section = styled.section`

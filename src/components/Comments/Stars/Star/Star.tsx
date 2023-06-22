@@ -2,12 +2,6 @@ import React from "react";
 
 import * as Icon from "react-bootstrap-icons";
 
-import type { ActionType } from "reducers/add-comment-modal/reducer";
-
-import { actions } from "reducers/add-comment-modal/reducer";
-import { RatingScore } from "types/types";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-
 interface IStarProps {
     id: number, 
     setStar: () => void
@@ -24,7 +18,7 @@ const Star: React.FC<IStarProps> = ({ id, setStar, starCount }) => {
         <>
             <div onClick={onStarClick}>
             {
-                !(id<=starCount) ? <Icon.Star size={"3rem"} /> : <Icon.StarFill size={"3rem"} />
+                !(id<=starCount) ? <Icon.Star size={"2.4rem"} /> : <Icon.StarFill size={"2.4rem"} />
             }
             </div>
         </>
