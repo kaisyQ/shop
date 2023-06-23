@@ -15,6 +15,8 @@ const SearchResult: React.FC<ISearchResultProps> = (props) => {
                 <SearchResultItem />
                 <SearchResultItem />
                 <SearchResultItem />
+                <SearchResultItem />
+                <SearchResultItem />
             </SearchResultWrapper>
         </>
     );

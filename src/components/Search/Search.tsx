@@ -19,6 +19,10 @@ const Search: React.FC = () => {
 
     React.useEffect(() => {
         console.log(searchQuery);
+
+        return () => {
+
+        }
     }, [searchQuery])
 
     const onSearchChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -30,7 +34,7 @@ const Search: React.FC = () => {
             <SearchWrapper>
                 <SearchContainer>
                     <Input 
-                        fontSize={'1.8rem'} 
+                        fontSize={'2.4rem'} 
                         padding={'3rem 7rem 3rem 2rem'} 
                         id='header-search' 
                         placeholder='Search' 

@@ -11,10 +11,10 @@ const show = keyframes`
 `
 
 export const SearchResultWrapper = styled.div`
-    margin-top: 2rem;
+    margin-top: 8rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
     animation: ${show} 2s ease-in-out forwards;
     overflow-y: hidden;
     max-height: 0;

@@ -3,11 +3,24 @@ import styled from "styled-components";
 export const SearchResultItemWrapper = styled.div`
     display: flex;
     gap: 2rem;
+    align-items: center;
     width: 100%;
-    padding: 3rem;
-    background-color: #000;
-    color: #fff;
+    padding: 1rem;
+    border: .1rem solid #000;
+    border-radius: 1rem;
+    color: #000;
     font-size: 2rem;
+`;
+
+export const ImageWrapper = styled.div`
+    width: 8rem;
+    height: 8rem;
+`;
+
+export const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
 
 export const NumberBlock = styled.p`
