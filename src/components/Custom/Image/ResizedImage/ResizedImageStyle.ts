@@ -1,56 +1,67 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+
+const show = keyframes`
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }    
+`;
+
+const show2 = keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }    
+`;
+
+
 
 interface IModalProps {
     block : string
 }
 
 export const Modal = styled.div<IModalProps>`
-    display: ${props => props.block && props.block};
+    display: ${props => props.block};
     position: fixed;
     top: 0;
-    left:0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: #000;
+    background: rgba(0, 0, 0, .8);
     z-index: 9999;
-    transform: scale(1.2);
+    opacity: 0;
+    animation: ${show2} .5s ease-in-out forwards;
+`;
+
+export const ModalContentWrapper = styled.div`
+    position: relative;
+    height: 100%;
 `;
 
 export const ModalContent = styled.div`
-    position: fixed;
-    top: 50%;
+    position: absolute;
     left: 50%;
-    width: auto;
-    height: auto;
-    padding: 2rem;
-    transform: translate(-50%, -50%);
+    top: 50%;
+    max-width: 1024px;
+    max-height: 900px;
+    width: 100%;
+    aspect-ratio: 1/1;
+    padding: 7rem;
+    animation: ${show} .7s ease-in-out forwards;
 `;
 
 export const ResizedImageContent = styled.img`
-    margin-bottom: 1.4rem;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: .5rem solid #000;
 `;
 
-export const CloseBtn = styled.a`
-    outline: none;
-    text-decoration: none;
-    cursor: pointer;
-    color: inherit;
-`;
-
-export const BtnTextSpan = styled.span`
-    padding: 1rem 2rem;
-    font-size: 1.6rem;
-    text-transform: capitalize;
-    text-align: left;
-    background: #fff;
-    color: #000;
-    border: .1rem solid #000;
-    border-radius: 0;
-    transition: .6s ease-in-out;
-
-    :hover{
-        border: .1rem solid #fff;
-        border-radius: 30%;
-        transition: .6s ease-in-out;
-    }
-`;

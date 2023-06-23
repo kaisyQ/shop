@@ -43,6 +43,7 @@ export const HintCircle = styled.div`
     width: 8rem;
     height: 8rem;
     background-color: #000;
+    border: .2rem solid #fff;
     border-radius: 50%;
 
     animation: ${show} 2s ease-in-out forwards;
@@ -66,13 +67,14 @@ export const HintBlock = styled.div`
     right: 50%;
 
     background-color: #000;
-    border: .1rem solid #000;
+    border: .1rem solid #fff;
     box-shadow: -2px 7px 62px 13px rgba(0, 0, 0, 0.2);
     color: #fff;
     width: 26rem;
     height: 35rem;
 
     padding: 2rem 2rem;
+
 `;
 
 

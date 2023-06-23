@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, ModalContent, ResizedImageContent, CloseBtn, BtnTextSpan } from "./ResizedImageStyle";
+import { Modal, ModalContent, ResizedImageContent, ModalContentWrapper } from "./ResizedImageStyle";
 
 interface IResizedImageProps {
     active: boolean,
@@ -19,15 +19,12 @@ export const ResizedImage: React.FC<IResizedImageProps> = ({ active, setActive, 
 
     return (
         <>
-            <Modal block={active ? "block" : "none"} onClick={hideModal}>
-                <ModalContent onClick={preventHideModal}>
-                    <ResizedImageContent src={src}/>
-                    <CloseBtn onClick={hideModal}>
-                        <BtnTextSpan>
-                            Close
-                        </BtnTextSpan>
-                    </CloseBtn>
-                </ModalContent>
+            <Modal block={active ? "block" : "none"} onClick={hideModal} onTouchEnd={hideModal}>
+                <ModalContentWrapper>
+                    <ModalContent onClick={preventHideModal}>
+                        <ResizedImageContent src={src}/>
+                    </ModalContent>
+                </ModalContentWrapper>
             </Modal>
         </>
     )
