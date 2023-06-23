@@ -18,9 +18,17 @@ interface IContactView extends ContactViewConnectedProps {
 
 }
 
-const ContactView: React.FC<IContactView> = ({ status, setConfirmModalData, fetchContactMessage }) => {
+const ContactView: React.FC<IContactView> = (props) => {
+
+    const { status, setConfirmModalData, fetchContactMessage, setStatus } = props;
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
+
+    React.useEffect(() => {
+        return () => {
+            setStatus(null);
+        }
+    }, [setStatus])
 
     const onNameChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         dispatch(actions.setName(ev.target.value));
@@ -40,12 +48,15 @@ const ContactView: React.FC<IContactView> = ({ status, setConfirmModalData, fetc
     
     const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
         setConfirmModalData({
-            callback: () => fetchContactMessage({
-                name: state.name,
-                email: state.email,
-                comment: state.comment,
-                phoneNumber: state.phoneNumber
-            }),
+            callback: () => { 
+                setStatus(202);
+                fetchContactMessage({
+                    name: state.name,
+                    email: state.email,
+                    comment: state.comment,
+                    phoneNumber: state.phoneNumber
+                })
+            },
             isVisible: true,
             message: "Confirm your action..."
         });
@@ -53,43 +64,48 @@ const ContactView: React.FC<IContactView> = ({ status, setConfirmModalData, fetc
 
     return (
         <>
-            <Wrapper>
-                <Subtitle>
-                    <IconWrapper>
-                        <MailICon width="64" height="64"/>
-                    </IconWrapper>
-                    <span>
-                        Please let us know how we can assist you.
-                    </span>
-                </Subtitle>
-                <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
-                    <InputsWrapper>
-                        <Input padding={'2.4rem 3rem'} id='contact-name' 
-                            placeholder='Name *' value={state.name} onChange={onNameChange} 
-                        />
+            {
+                status ? <>
+                    <OkMessage status={status} />
+                </> : <>
+                    <Wrapper>
+                        <Subtitle>
+                            <IconWrapper>
+                                <MailICon width="64" height="64"/>
+                            </IconWrapper>
+                            <span>
+                                Please let us know how we can assist you.
+                            </span>
+                        </Subtitle>
+                        <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
+                            <InputsWrapper>
+                                <Input padding={'2.4rem 3rem'} id='contact-name' 
+                                    placeholder='Name *' value={state.name} onChange={onNameChange} 
+                                />
 
-                        <Input
-                            padding={'2.4rem 3rem'} id='contact-email' placeholder='Email *' 
-                            value={state.email} onChange={onEmailChange} 
-                        />
-                    </InputsWrapper>   
+                                <Input
+                                    padding={'2.4rem 3rem'} id='contact-email' placeholder='Email *' 
+                                    value={state.email} onChange={onEmailChange} 
+                                />
+                            </InputsWrapper>   
 
-                    <Input padding={'2.4rem 3rem'} id='contact-phoneNumber' placeholder='Phone number *' 
-                        value={state.phoneNumber} onChange={onPhoneNumberChange} 
-                    />
+                            <Input padding={'2.4rem 3rem'} id='contact-phoneNumber' placeholder='Phone number *' 
+                                value={state.phoneNumber} onChange={onPhoneNumberChange} 
+                            />
 
-                    <Input padding={'4rem 3rem'} id='contact-comment' placeholder='Message *' 
-                        type='textarea' value={state.comment} onChange={onCommentChange} 
-                    />
+                            <Input padding={'4rem 3rem'} id='contact-comment' placeholder='Message *' 
+                                type='textarea' value={state.comment} onChange={onCommentChange} 
+                            />
 
-                    <ButtonWrapper>
-                        <Button onClick={onSendClick} padding={'2rem 7rem'} isReverse={true}>
-                            Send
-                        </Button>
-                    </ButtonWrapper>
-                </FormWrapper>
-            </Wrapper>
-
+                            <ButtonWrapper>
+                                <Button onClick={onSendClick} padding={'2rem 7rem'} isReverse={true}>
+                                    Send
+                                </Button>
+                            </ButtonWrapper>
+                        </FormWrapper>
+                    </Wrapper>
+                </>
+            }
         </>
     );
 }

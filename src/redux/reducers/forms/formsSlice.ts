@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import { IDLE, LOADING, FAILED } from "types/types";
 
@@ -13,7 +13,7 @@ type InitialStateType = {
 const initialState: InitialStateType = {
     loadingStatus: IDLE,
     error: null,
-    responseStatus: 202
+    responseStatus: null
 }
 
 
@@ -63,6 +63,9 @@ const formsSlice = createSlice({
     name: "formsSlice",
     initialState,
     reducers: {
+        setStatus: (state, action: PayloadAction<number | null>) => {
+            state.responseStatus = action.payload
+        }
 
     },
     extraReducers: (builder) => {
@@ -96,6 +99,6 @@ const formsSlice = createSlice({
 
 export const { reducer, actions } = formsSlice;
 
-export const {} = actions;
+export const { setStatus } = actions;
 
 export default reducer;

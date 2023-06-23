@@ -35,6 +35,7 @@ export const HintWrapper = styled.div`
     position: fixed;
     right: 1rem;
     bottom: 1rem;
+    z-index: 99999;
 `;
 
 export const HintCircle = styled.div`

@@ -11,15 +11,23 @@ import {
 
 import { SellSofaViewConnectedProps } from "./SellSofaViewContainer";
 import reducer, { initialState, actions } from "reducers/sell-sofa-view/reducer";
+import OkMessage from "components/Ui/OkMessage/OkMessage";
 
 interface ISellSofaViewProps extends SellSofaViewConnectedProps {
 
 }
 
-const SellSofaView: React.FC<ISellSofaViewProps> = ({ setConfirmModalData, fetchSellMessage }) => {
+const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
+
+    const { status, setStatus, setConfirmModalData, fetchSellMessage } = props;
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
+    React.useEffect(() => {
+        return () => {
+            setStatus(null);
+        }
+    }, []);
 
     const onNameChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         dispatch(actions.setName(ev.target.value));
@@ -43,57 +51,66 @@ const SellSofaView: React.FC<ISellSofaViewProps> = ({ setConfirmModalData, fetch
     
     const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
         setConfirmModalData({
-            callback: () => fetchSellMessage({
-                email: state.email,
-                comment: state.comment,
-                brand: state.brandOfSofa,
-                phoneNumber: state.phoneNumber,
-                name: state.name
-            }),
+            callback: () => {
+                setStatus(500);
+                fetchSellMessage({
+                    email: state.email,
+                    comment: state.comment,
+                    brand: state.brandOfSofa,
+                    phoneNumber: state.phoneNumber,
+                    name: state.name
+                })
+            },
             isVisible: true,
             message: "Confirm your action..."
         });
     }
 
     return (
-        <>
-            <Wrapper>
-                <Subtitle>
-                    <IconWrapper>
-                        <SellingIcon width="64" height="64" />
-                    </IconWrapper>
-                    <span>Sell your sofa.</span>
-                </Subtitle>
-                <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
-                    <InputsWrapper>
-                        <Input padding={'2.4rem 3rem'} id='sell-name' placeholder='Name *' 
-                            value={state.name} onChange={onNameChange} 
+        <> 
+        {
+            status ? <OkMessage status={status} /> :
+            <>
+                <Wrapper>
+                    <Subtitle>
+                        <IconWrapper>
+                            <SellingIcon width="64" height="64" />
+                        </IconWrapper>
+                        <span>Sell your sofa.</span>
+                    </Subtitle>
+                    <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
+                        <InputsWrapper>
+                            <Input padding={'2.4rem 3rem'} id='sell-name' placeholder='Name *' 
+                                value={state.name} onChange={onNameChange} 
+                            />
+
+                            <Input padding={'2.4rem 3rem'} id='sell-email' placeholder='Email *' 
+                                value={state.email} onChange={onEmailChange} 
+                            />
+                        </InputsWrapper>   
+
+                        <Input padding={'2.4rem 3rem'} id='sell-phoneNumber' placeholder='Phone number *' 
+                            value={state.phoneNumber} onChange={onPhoneNumberChange} 
                         />
 
-                        <Input padding={'2.4rem 3rem'} id='sell-email' placeholder='Email *' 
-                            value={state.email} onChange={onEmailChange} 
+                        <Input padding={'2.4rem 3rem'} id='sell-brand' placeholder='Brand of sofa *' 
+                            value={state.brandOfSofa} onChange={onBrandChange} 
                         />
-                    </InputsWrapper>   
 
-                    <Input padding={'2.4rem 3rem'} id='sell-phoneNumber' placeholder='Phone number *' 
-                        value={state.phoneNumber} onChange={onPhoneNumberChange} 
-                    />
+                        <Input padding={'4rem 3rem'} id='sell-comment' placeholder='Message *' 
+                            type='textarea' value={state.comment} onChange={onCommentChange} 
+                        />
 
-                    <Input padding={'2.4rem 3rem'} id='sell-brand' placeholder='Brand of sofa *' 
-                        value={state.brandOfSofa} onChange={onBrandChange} 
-                    />
-
-                    <Input padding={'4rem 3rem'} id='sell-comment' placeholder='Message *' 
-                        type='textarea' value={state.comment} onChange={onCommentChange} 
-                    />
-
-                    <ButtonWrapper>
-                        <Button onClick={onSendClick} padding={'2rem 7rem'} isReverse={true}>
-                            Send
-                        </Button>
-                    </ButtonWrapper>
-                </FormWrapper>
-            </Wrapper>
+                        <ButtonWrapper>
+                            <Button onClick={onSendClick} padding={'2rem 7rem'} isReverse={true}>
+                                Send
+                            </Button>
+                        </ButtonWrapper>
+                    </FormWrapper>
+                </Wrapper>
+            </>
+        }
+            
         </>
     );
 }

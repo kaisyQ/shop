@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 export const SearchWrapper = styled.div`
-    position: fixed;
-    width: 60%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 2rem;
 `;
 
 export const SearchContainer = styled.div`

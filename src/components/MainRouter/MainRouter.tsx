@@ -16,8 +16,6 @@ import ContactViewContainer from 'views/ContactView/ContactViewContainer';
 import SellSofaViewContainer from 'views/SellSofaView/SellSofaViewContainer';
 import CommentTableContainer from 'components/Admin/CommentsTable/CommentTableContainer';
 
-
-
 import { Routes, Route } from 'react-router-dom';
 
 import Preloader from 'components/Ui/Preloader/Preloader';
@@ -69,7 +67,9 @@ const MainRouter: React.FC = () => {
 
                     <Route path='/auth' element={<AuthContainer />} />
 
-                    <Route path='search' element={<Search />} />
+                    <Route path='/search'>
+                        <Route path='' element={ <Search />} /> 
+                    </Route>
                     <Route path='/admin'>
                         
                         <Route path='' element={ <Admin /> }>

@@ -8,13 +8,14 @@ import { fetchContactMessage } from "redux/reducers/forms/formsSlice";
 
 import { RootState } from "redux/store";
 import { getFormStatus } from "redux/reducers/forms/selector";
+import { setStatus } from "redux/reducers/forms/formsSlice";
 
 const mapStateToProps = (state: RootState) => ({
     status: getFormStatus(state)
 })
 
 const mapDipatchToProps = {
-    setConfirmModalData, fetchContactMessage
+    setConfirmModalData, fetchContactMessage, setStatus
 }
 
 const connector = connect(mapStateToProps, mapDipatchToProps);
