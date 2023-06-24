@@ -55,8 +55,6 @@ export const fetchToCreateComment = createAsyncThunk(
             
             const data = await response.json();
 
-            console.log(response);
-            console.log(data);
             return {
                 comment: data.comment,
                 status: response.status
@@ -82,9 +80,8 @@ export const fetchToDeleteComment = createAsyncThunk(
             
             const data = await response.json();
 
-            console.log(data)
             return {
-                comment: data.deletedComment,
+                id: data.deletedComment.id,
                 status: response.status
             };
 
@@ -129,6 +126,44 @@ const commentSlice = createSlice({
         })
         builder.addCase(fetchComments.rejected, (state, action) => {
             state.loadingStatus = FAILED;
+        })
+    
+
+
+    
+        builder.addCase(fetchToCreateComment.pending, (state) => {
+            state.error = null;
+        })
+        builder.addCase(fetchToCreateComment.fulfilled, 
+            (state, action: PayloadAction<{status: number, comment: { id: string, text: string, userName: string, stars: number}}>) => {
+            state.error = null;
+            if (action.payload.status === 200) {
+                state.comments.push({
+                    id: action.payload.comment.id,
+                    author: action.payload.comment.userName,
+                    date: new Date(),
+                    text: action.payload.comment.text,
+                    rating:  action.payload.comment.stars as RatingScore
+                })
+            }
+        })
+        builder.addCase(fetchToCreateComment.rejected, (state, action) => {
+        })
+
+
+
+
+        builder.addCase(fetchToDeleteComment.pending, (state) => {
+            state.error = null;
+        })
+        builder.addCase(fetchToDeleteComment.fulfilled, 
+            (state, action: PayloadAction<{status: number,  id: string}>) => {
+            state.error = null;
+            if (action.payload.status === 200) {
+                state.comments = state.comments.filter(comment => comment.id !== action.payload.id)
+            }
+        })
+        builder.addCase(fetchToDeleteComment.rejected, (state, action) => {
         })
     }
 });
