@@ -114,7 +114,7 @@ const authSlice = createSlice({
         builder.addCase(fetchToLogin.fulfilled, (state, action: PayloadAction<AuthPayload>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            if(action.payload.status === 201) {
+            if(action.payload.status === 200) {
                 state.isAuth = true;
                 state.login = action.payload.data.login;
                 state.id = action.payload.data.id;
@@ -164,7 +164,7 @@ const authSlice = createSlice({
         builder.addCase(fetchToLogout.fulfilled, (state, action: PayloadAction<{status: number}>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            if (action.payload.status === 202) {
+            if (action.payload.status === 200) {
                 state.isAuth = false;
                 state.id = null;
                 state.login = null;

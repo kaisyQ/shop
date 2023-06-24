@@ -9,7 +9,7 @@ import productReducer from './reducers/product/productSlice';
 import usersReducer from './reducers/users/usersSlice';
 import commentsReducer from "./reducers/comment/commentSlice";
 import formReducer from "./reducers/forms/formsSlice";
-
+import searchReducer from "./reducers/search/searchSlice";
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -18,7 +18,8 @@ const rootReducer = combineReducers({
     product: productReducer,
     users: usersReducer,
     comments: commentsReducer,
-    forms: formReducer
+    forms: formReducer,
+    search: searchReducer
 });
 
 

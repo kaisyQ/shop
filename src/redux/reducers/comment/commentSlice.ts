@@ -55,8 +55,10 @@ export const fetchToCreateComment = createAsyncThunk(
             
             const data = await response.json();
 
+            console.log(response);
+            console.log(data);
             return {
-                data,
+                comment: data.comment,
                 status: response.status
             };
 
@@ -80,8 +82,9 @@ export const fetchToDeleteComment = createAsyncThunk(
             
             const data = await response.json();
 
+            console.log(data)
             return {
-                data,
+                comment: data.deletedComment,
                 status: response.status
             };
 

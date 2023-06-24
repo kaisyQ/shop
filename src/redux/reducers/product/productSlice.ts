@@ -15,7 +15,6 @@ interface IProductsInitialState {
     current: IProduct | null,
     loadingStatus: LoadingType,
     error: Error | null
-
 }
 
 
