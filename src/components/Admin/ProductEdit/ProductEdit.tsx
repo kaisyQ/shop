@@ -7,7 +7,7 @@ import Inputs from "./Inputs/Inputs";
 import { ProductEditWrapper, EditForm, BlockWrapper, BtnWrapper } from "./ProductEditStyles";
 
 import { IProductEditConnectedProps } from "./ProductEditContainer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import reducer, { initialState, actions } from "reducers/product-edit/reducer";
 
@@ -19,6 +19,8 @@ interface IProductEditProps extends IProductEditConnectedProps {
 const ProductEdit: React.FC<IProductEditProps> = (props) => {
 
     const { fetchToCreateProduct, setConfirmModalData } = props;
+
+    const navigate = useNavigate();
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -44,7 +46,10 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
             formData.append("data", bodyData);
             
             setConfirmModalData({
-                callback: () => fetchToCreateProduct(formData),
+                callback: () => {
+                    fetchToCreateProduct(formData);
+                    navigate("/admin");
+                },
                 isVisible: true,
                 message: "Confirm creating product..."
             });
@@ -64,6 +69,7 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
                     <BlockWrapper>
                         <Images dispatch={dispatch} imagesSrc={state.imagesSrc} />
                     <BtnWrapper>
+                        
                         <Button onClick={onCreateClick} isReverse={true}>Save</Button>
                     </BtnWrapper>
                     </BlockWrapper>
