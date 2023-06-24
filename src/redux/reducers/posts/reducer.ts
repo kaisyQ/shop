@@ -82,10 +82,16 @@ export const fetchToCreatePost = createAsyncThunk(
         try {
             const response = await fetch("http://localhost:8000/posts", {
                 method: "POST",
-                body: formData
+                body: formData,
+                credentials: "include"
             })
-            console.log(response)
-            return response;
+
+            const data = await response.json();
+            console.log(data)
+            return {
+                post: data.createdPost,
+                status: response.status
+            }
         } catch (err) {
             console.log(err);
             return err;
@@ -100,10 +106,15 @@ export const fetchToUpdatePost = createAsyncThunk(
         try {
             const response = await fetch("http://localhost:8000/posts", {
                 method: "PUT",
-                body: formData
+                body: formData,
+                credentials: "include"
             })
-            console.log(response)
-            return response;
+
+            const data = await response.json();
+            return {
+                status: response.status,
+                post: data.updatedPost
+            };
         } catch (err) {
             console.log(err);
             return err;
@@ -204,9 +215,18 @@ const postsSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToCreatePost.fulfilled, (state, action) => {
+        builder.addCase(fetchToCreatePost.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
+            if (action.payload.status === 200) {
+                state.items.push({
+                    id: action.payload.post.id,
+                    date: new Date(action.payload.post.created_at),
+                    imageSrc: action.payload.post.imageSrc,
+                    text: action.payload.post.text,
+                    title:action.payload.post.title
+                })
+            }
         })
         builder.addCase(fetchToCreatePost.rejected, (state, action) => {
             state.loadingStatus = FAILED;

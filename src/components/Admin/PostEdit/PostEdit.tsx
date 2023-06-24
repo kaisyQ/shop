@@ -8,7 +8,7 @@ import {
     EditForm, UserEditWrapper, EditFormControl, InputWrapper, LabelWrapper, LabelSpan
 } from "./PostEditStyles";
 
-import { useParams, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import reducer, 
 { 
@@ -25,6 +25,8 @@ interface IPostEditProps extends IPostEditApiConnectedProps{
 const PostEdit: React.FC<IPostEditProps> = (props) => {
     
     const { post, fetchToCreatePost, fetchToUpdatePost, setConfirmModalData } = props;
+
+    const navigate = useNavigate();
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -62,7 +64,10 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
             }));
 
             setConfirmModalData({
-                callback: () => fetchToCreatePost(formData),
+                callback: () => {
+                    fetchToCreatePost(formData);
+                    navigate("/admin/postsTable")
+                },
                 isVisible: true,
                 message: "Confirm creating post..."
             })
@@ -86,7 +91,10 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
             formData.append("data", JSON.stringify(data));
 
             setConfirmModalData({
-                callback: () => fetchToUpdatePost(formData),
+                callback: () => {
+                    fetchToUpdatePost(formData);
+                    navigate("/admin/postTable");
+                },
                 isVisible: true,
                 message: "Confirm updating post..."
             })
@@ -146,9 +154,7 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
                     </InputWrapper>
 
                     <EditFormControl>
-                        <NavLink to={"/admin"}>
-                            <Button onClick={saveOrCreate} isReverse={true}>Save</Button>
-                        </NavLink>
+                        <Button onClick={saveOrCreate} isReverse={true}>Save</Button>
                     </EditFormControl>
                 </EditForm>
             </UserEditWrapper>
