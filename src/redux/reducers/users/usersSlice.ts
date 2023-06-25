@@ -26,8 +26,18 @@ export const fetchUsers = createAsyncThunk(
     "users/fetchUsers",
     async () => {
         try {
-            const response = await getUsers();
-            return response.data
+            const response = await fetch(`http://localhost:8000/users`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            });
+            const data = await response.json();
+            return {
+                users: data.users,
+                status: response.status
+            }
         } catch (err) {
             console.log(err);
             return err;
@@ -39,11 +49,22 @@ export const fetchUserById = createAsyncThunk(
     "users/fetchUserById",
     async (id: string) => {
         try {
-            const response = await getUser(id);
-            return response.data
+            const response = await fetch(`http://localhost:8000/users/${id}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            });
+
+            const data = await response.json();
+            return {
+                user: data.user,
+                status: response.status
+            }
         } catch (err) {
             console.log(err);
-            return err;
+            throw(err);
         }
     }
 );
@@ -51,12 +72,7 @@ export const fetchUserById = createAsyncThunk(
 export const fetchToCreateUser = createAsyncThunk(
     "users/fetchToCreateUser",
     async (user: IShortUser) => {
-        console.log(user);
         try {
-
-            //const response = await createUser(user);
-            //return response.data
-
             const response = await fetch("http://localhost:8000/users", {
                 method: "POST",
                 headers: {
@@ -65,8 +81,11 @@ export const fetchToCreateUser = createAsyncThunk(
                 credentials: "include",
                 body: JSON.stringify(user)
             });
-            const res = await response.json();
-            return res;
+            const data = await response.json();
+            return {
+                user: data.user,
+                status: response.status
+            };
         } catch (err) {
             console.log(err);
             return err;
@@ -86,8 +105,11 @@ export const fetchToUpdateUser = createAsyncThunk(
                 credentials: "include",
                 body: JSON.stringify({ id, user })
             });
-            const res = await response.json();
-            return res;
+            const data = await response.json();
+            return {
+                user: data.updatedUser,
+                status: response.status
+            };
         } catch (err) {
             console.log(err);
             return err;
@@ -99,8 +121,16 @@ export const fetchToDeleteUser = createAsyncThunk(
     "users/fetchToDeleteUser",
     async (id: string) => {
         try {
-            const response = await deleteUser(id);
-            return response.data
+            const response = await fetch(`http://localhost:8000/users/${id}`, {
+                method: "DELETE",
+                credentials: "include"
+            })
+
+            const data = await response.json();
+            return {
+                status: response.status,
+                user: data.deletedUser                
+            }
         } catch (err) {
             console.log(err);
             return err;
@@ -128,10 +158,12 @@ const usersSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchUsers.fulfilled, (state, action: PayloadAction<{users: IUser[]}>) => {
+        builder.addCase(fetchUsers.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            state.items = action.payload.users;
+            if (action.payload.status === 200) {
+                state.items = action.payload.users;
+            }
         })
         builder.addCase(fetchUsers.rejected, (state, action) => {
             state.loadingStatus = FAILED;
@@ -143,10 +175,12 @@ const usersSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchUserById.fulfilled, (state, action: PayloadAction<{user: IUser}>) => {
+        builder.addCase(fetchUserById.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            state.current = action.payload.user;
+            if (action.payload.status === 200) {
+                state.current = action.payload.user;
+            }
         })
         builder.addCase(fetchUserById.rejected, (state, action) => {
             state.loadingStatus = FAILED;
@@ -158,10 +192,13 @@ const usersSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToCreateUser.fulfilled, (state, action: PayloadAction<{user: IUser}>) => {
+        builder.addCase(fetchToCreateUser.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            state.items.push(action.payload.user);
+            console.log(action.payload)
+            if(action.payload.status === 200) {
+                state.items.push(action.payload.user);
+            }
         })
         builder.addCase(fetchToCreateUser.rejected, (state, action) => {
             state.loadingStatus = FAILED;
@@ -174,7 +211,7 @@ const usersSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToUpdateUser.fulfilled, (state, action: PayloadAction<{user: IUser}>) => {
+        builder.addCase(fetchToUpdateUser.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
         })
@@ -184,17 +221,17 @@ const usersSlice = createSlice({
 
 
 
-
         builder.addCase(fetchToDeleteUser.pending, (state) => {
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToDeleteUser.fulfilled, (state, action: PayloadAction<{deletedUser: IUser}>) => {
+        builder.addCase(fetchToDeleteUser.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            const id = action.payload.deletedUser.id;
-            
-            state.items = state.items.filter(user => user.id !== id);
+            if (action.payload.status === 200) {
+                const id = action.payload.user.id;
+                state.items = state.items.filter(user => user.id !== id);
+            }
         })
         builder.addCase(fetchToDeleteUser.rejected, (state, action) => {
             state.loadingStatus = FAILED;
