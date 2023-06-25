@@ -7,6 +7,9 @@ import { LOADING, IDLE, FAILED } from "types/types";
 import type { IShortUser, LoadingType } from "types/types";
 
 
+import { ADMIN, EMPLOYEE } from "types/types";
+
+
 interface IUserInitialState {
     items: IUser[],
     current: IUser | null,
@@ -106,6 +109,7 @@ export const fetchToUpdateUser = createAsyncThunk(
                 body: JSON.stringify({ id, user })
             });
             const data = await response.json();
+            console.log(data)
             return {
                 user: data.updatedUser,
                 status: response.status
@@ -195,7 +199,6 @@ const usersSlice = createSlice({
         builder.addCase(fetchToCreateUser.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            console.log(action.payload)
             if(action.payload.status === 200) {
                 state.items.push(action.payload.user);
             }
@@ -214,6 +217,18 @@ const usersSlice = createSlice({
         builder.addCase(fetchToUpdateUser.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
+            if (action.payload.status === 200) {
+                state.items = state.items.filter(user => {
+                    if (user.id !== action.payload.user.id) {
+                        return user;
+                    }
+                    return {
+                        id: action.payload.user.id,
+                        login:  action.payload.user.login,
+                        role: action.payload.user.role === "ADMIN" ? ADMIN : EMPLOYEE
+                    }
+                })
+            }
         })
         builder.addCase(fetchToUpdateUser.rejected, (state, action) => {
             state.loadingStatus = FAILED;
