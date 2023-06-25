@@ -4,7 +4,6 @@ import ProductAboutContainer from 'components/Catalog/Products/Product/ProductAb
 import PostAboutContainer from 'components/Posts/PostAbout/PostAboutContainer';
 import AuthContainer from './../Auth/AuthContainer';
 import Search from 'components/Search/Search';
-import AdminContainer from 'components/Admin/AdminContainer';
 import UserEditContainer from 'components/Admin/UserEdit/UserEditContainer';
 import ProductEditContainer from 'components/Admin/ProductEdit/ProductEditContainer';
 import PostEditContainer from 'components/Admin/PostEdit/PostEditContainer';
@@ -15,6 +14,7 @@ import PostsTableContainer from 'components/Admin/PostsTable/PostsTableContainer
 import ContactViewContainer from 'views/ContactView/ContactViewContainer';
 import SellSofaViewContainer from 'views/SellSofaView/SellSofaViewContainer';
 import CommentTableContainer from 'components/Admin/CommentsTable/CommentTableContainer';
+import SearchContainer from 'components/Search/SearchContainer';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -63,7 +63,7 @@ const MainRouter: React.FC = () => {
                     <Route path='/auth' element={<AuthContainer />} />
 
                     <Route path='/search'>
-                        <Route path='' element={ <Search />} /> 
+                        <Route path='' element={ <SearchContainer />} /> 
                     </Route>
                     <Route path='/admin'>
                         

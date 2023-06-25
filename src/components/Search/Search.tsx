@@ -1,7 +1,8 @@
 import React from "react";
 
 import Input from "../Custom/Input/Input";
-import SearchResult from "./SearchResults/SearchResult";
+
+import SearchResultContainer from "./SearchResults/SearchResultContainer";
 
 import * as Icon from 'react-bootstrap-icons';
 
@@ -9,7 +10,12 @@ import { SearchWrapper, SearchContainer, IconWrapper } from "./SearchStyles";
 
 import { NavLink, useLocation } from "react-router-dom";
 
-const Search: React.FC = () => {
+import { SearchConnectedProps } from "./SearchContainer";
+
+interface ISearchProps extends SearchConnectedProps {
+}
+
+const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchPosts, setSearchProducts }) => {
 
     const [searchVl, setSearchVl] = React.useState('');
 
@@ -18,12 +24,17 @@ const Search: React.FC = () => {
     const searchQuery = new URLSearchParams(location.search).get("query");
 
     React.useEffect(() => {
-        console.log(searchQuery);
+        if (!searchQuery) {
+            return;
+        }
+        
+        fetchSearch(searchQuery);
 
         return () => {
-
+            setSearchPosts([]);
+            setSearchProducts([]);
         }
-    }, [searchQuery])
+    }, [searchQuery, fetchSearch, setSearchPosts, setSearchProducts]);
 
     const onSearchChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchVl(ev.target.value);
@@ -48,7 +59,7 @@ const Search: React.FC = () => {
                     </IconWrapper>
                 </SearchContainer>
                 {
-                    searchQuery ? <SearchResult /> : null
+                    searchQuery ? <SearchResultContainer /> : null
                 }
             </SearchWrapper>
         </>

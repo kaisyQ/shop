@@ -6,8 +6,7 @@ export const SearchResultItemWrapper = styled.div`
     align-items: center;
     width: 100%;
     padding: 1rem;
-    border: .1rem solid #000;
-    border-radius: 1rem;
+    border: .2rem solid #000;
     color: #000;
     font-size: 2rem;
 `;

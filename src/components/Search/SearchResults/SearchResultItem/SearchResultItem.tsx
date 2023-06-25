@@ -7,23 +7,31 @@ import {
 
 import * as Icon from "react-bootstrap-icons";
 
-interface ISearchResultItemProps {
+import { NavLink } from "react-router-dom";
 
+interface ISearchResultItemProps {
+    name: string,
+    id: string,
+    imageSrc: string,
+    index: number,
+    type: "POST" | "PRODUCT"
 }
 
 const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
     return (
         <>
-            <SearchResultItemWrapper>
-                <NumberBlock>1</NumberBlock>
-                <ImageWrapper>
-                    <Image src="https://i.pinimg.com/originals/f9/1a/fd/f91afd42d577e4fa7cf3353eaef914ad.jpg" />
-                </ImageWrapper>
-                <NameBlock>natus error sit voluptatem</NameBlock>
-                <RightArrrow>
-                    <Icon.ArrowRight size={"3rem"} />
-                </RightArrrow>
-            </SearchResultItemWrapper>
+            <NavLink to={`/${props.type === "POST" ? "posts" : "catalog"}/${props.id}`}>
+                <SearchResultItemWrapper>
+                    <NumberBlock>{ props.index }</NumberBlock>
+                    <ImageWrapper>
+                        <Image src={props.imageSrc} />
+                    </ImageWrapper>
+                    <NameBlock>{ props.name }</NameBlock>
+                    <RightArrrow>
+                        <Icon.ArrowRight size={"3rem"} />
+                    </RightArrrow>
+                </SearchResultItemWrapper>
+            </NavLink>
         </>
     );
 }
