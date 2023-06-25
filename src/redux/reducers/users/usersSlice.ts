@@ -1,5 +1,4 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUsers, getUser, createUser, updateUser, deleteUser } from "api/api";
 
 import { IUser } from "types/types";
 
