@@ -33,8 +33,7 @@ const MainRouter: React.FC = () => {
                 <Routes>
 
                 {
-                    ['/', '/shop'].map((path, index) => <>
-                        <Route 
+                    ['/', '/shop'].map((path, index) => <Route 
                             key={index}
                             path={path}
                             element={ <>
@@ -42,19 +41,15 @@ const MainRouter: React.FC = () => {
                                 </>
                             } 
                         />
-                    </>)
+                    )
                 }
 
                     <Route path='/catalog'>
                         <Route 
                             path='' 
-                            element={ <>
-                                <CatalogView /> 
-                            </>}
+                            element={ <CatalogView /> }
                         />
-                        <Route path=':id' element={
-                            <ProductAboutContainer /> 
-                        }/>
+                        <Route path=':id' element={ <ProductAboutContainer /> }/>
                     </Route>
 
                     <Route path='/contact' element={ <ContactViewContainer /> }/>
@@ -74,12 +69,10 @@ const MainRouter: React.FC = () => {
                         
                         <Route path='' element={ <Admin /> }>
                         {
-                            ['productsTable', ''].map((path, index) => <>
-                                    <Route
+                            ['productsTable', ''].map((path, index) => <Route
                                         key={index} 
                                         path={path} element={<ProductsTableContainer />}
                                     />
-                                </>
                             )
                         }
                             <Route path='usersTable' element={ <UsersTableContainer /> }/>

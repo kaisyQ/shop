@@ -93,7 +93,7 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
             setConfirmModalData({
                 callback: () => {
                     fetchToUpdatePost(formData);
-                    navigate("/admin/postTable");
+                    navigate("/admin/postsTable");
                 },
                 isVisible: true,
                 message: "Confirm updating post..."

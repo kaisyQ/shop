@@ -27,6 +27,7 @@ const Stars: React.FC<IStarsProps> = ({ dispatch, starCount }) => {
                                 arr.push(
                                     <>
                                         <Star 
+                                            key={i}
                                             starCount={starCount} 
                                             id={i} setStar={() => {
                                                 if (dispatch) {

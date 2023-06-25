@@ -22,13 +22,11 @@ export const DropDownContent : React.FC<IDropDownContentProps> = ({ visibility, 
     return (
         <DropDownItems visible={ visibility ? 'visible' : 'hidden'}>
         {
-            routes.map((route, index) => <>
-                    <DropDownLi key={index} marginRight={ visibility ? '2rem' : '0rem'} >
-                        <NavLink to={route.path} onClick={(ev) => onDropDownClick(route)}>
-                            {route.title}
-                        </NavLink>
-                    </DropDownLi>   
-                </>
+            routes.map((route, index) => <DropDownLi key={index} marginRight={ visibility ? '2rem' : '0rem'} >
+                    <NavLink to={route.path} onClick={(ev) => onDropDownClick(route)}>
+                        {route.title}
+                    </NavLink>
+                </DropDownLi>   
             )    
         }
         </DropDownItems>

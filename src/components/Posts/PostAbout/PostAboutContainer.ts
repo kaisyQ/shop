@@ -6,6 +6,8 @@ import { fetchPostById } from "redux/reducers/posts/reducer";
 
 import { getCurrentPost } from "../../../redux/reducers/posts/selector";
 
+import { setCurrent } from "redux/reducers/posts/reducer";
+
 import { RootState } from "redux/store";
 
 
@@ -14,7 +16,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-    fetchPostById
+    fetchPostById, setCurrent
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

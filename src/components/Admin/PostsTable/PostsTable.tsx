@@ -40,15 +40,13 @@ const PostsTable: React.FC<IBlogsTableProps> = (props) => {
                 </TableThead>
                 <TableTbody>
                     {
-                        posts.map((post, index) => <>
-                                <PostsTableRow 
-                                    index={index}
-                                    key={post.id}
-                                    {...post}
-                                    setConfirmModalData={setConfirmModalData}
-                                    fetchToDeletePost={fetchToDeletePost}
-                                />
-                            </>
+                        posts.map((post, index) => <PostsTableRow 
+                                index={index}
+                                key={post.id}
+                                {...post}
+                                setConfirmModalData={setConfirmModalData}
+                                fetchToDeletePost={fetchToDeletePost}
+                            />
                         )
                     }
                 </TableTbody>

@@ -24,7 +24,6 @@ const TableSelector: React.FC<ITableSelectorProps> = ({ role }) => {
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
     React.useEffect(() => {
-        console.log(role);
         if (role === ADMIN) {
             dispatch(actions.setAdminRoutes());
             return;

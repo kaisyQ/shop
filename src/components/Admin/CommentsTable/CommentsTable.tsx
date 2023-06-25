@@ -44,15 +44,13 @@ const CommentsTable: React.FC<CommentsTableProps> = (props) => {
                 </TableThead>
                 <TableTbody>
                 {
-                    comments.map((comment, index) => <>
-                            <CommentTableRow
-                                fetchToDeleteComment={fetchToDeleteComment}
-                                index={index}
-                                {...comment}
-                                {...rowProps} 
-                                key={comment.id}
-                            />
-                        </>
+                    comments.map((comment, index) => <CommentTableRow
+                            fetchToDeleteComment={fetchToDeleteComment}
+                            index={index}
+                            {...comment}
+                            {...rowProps} 
+                            key={comment.id}
+                        />
                     )
                 }
                 </TableTbody>

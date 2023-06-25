@@ -23,6 +23,7 @@ const Stars: React.FC<IStarsProps> = ({ filterScore, setFilterScore }) => {
                                 arr.push(
                                     <>
                                         <Star 
+                                            key={i}
                                             starCount={filterScore} 
                                             id={i} setStar={() => {
                                                 if (i === filterScore) {

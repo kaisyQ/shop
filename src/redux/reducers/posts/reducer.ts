@@ -34,11 +34,19 @@ export const fetchPosts = createAsyncThunk(
     "posts/fetchPosts",
     async () => {
         try {
-            const response = await getPosts();
-            return response.data;
+            const response = await fetch("http://localhost:8000/posts", {
+                method: "GET",
+                credentials: "include"
+            });
+
+            const data = await response.json();
+            return {
+                posts: data.posts,
+                status: response.status
+            }
         } catch (err) {
             console.log(err);
-            return err;
+            throw(err);
         }
 
     }
@@ -49,11 +57,18 @@ export const fetchPostById = createAsyncThunk(
     "posts/fetchPostById",
     async (id: string) => {
         try {
-            const response = await getPost(id);
-            return response.data;
+            const response = await fetch(`http://localhost:8000/posts/${id}`, {
+                method: "GET",
+                credentials: "include"
+            });
+            const data = await response.json();
+            return {
+                post: data.post,
+                status: response.status
+            }
         } catch (err) {
             console.log(err);
-            return err;
+            throw(err);
         }
 
     }
@@ -65,11 +80,19 @@ export const fetchToDeletePost = createAsyncThunk(
     "posts/fetchToDeletePost",
     async (id: string) => {
         try {
-            const response = await deletePost(id);
-            return response.data;
+            const response = await fetch(`http://localhost:8000/posts/${id}`, {
+                method: "DELETE",
+                credentials: "include"
+            });
+
+            const data = await response.json();
+            return {
+                post: data.deletedPost,
+                status: response.status
+            }
         } catch (err) {
             console.log(err);
-            return err;
+            throw(err);
         }
 
     }
@@ -87,7 +110,6 @@ export const fetchToCreatePost = createAsyncThunk(
             })
 
             const data = await response.json();
-            console.log(data)
             return {
                 post: data.createdPost,
                 status: response.status
@@ -158,10 +180,10 @@ const postsSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchPosts.fulfilled, (state, action: PayloadAction<{posts: IServerPost[]}>) => {
+        builder.addCase(fetchPosts.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            state.items = action.payload.posts.map(post => ({
+            state.items = action.payload.posts.map((post: any) => ({
                 id: post.id,
                 title: post.title,
                 text: post.text,
@@ -180,16 +202,18 @@ const postsSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchPostById.fulfilled, (state, action: PayloadAction<{post: IServerPost}>) => {
+        builder.addCase(fetchPostById.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            state.current = {
-                id: action.payload.post.id,
-                title: action.payload.post.title,
-                text: action.payload.post.text,
-                imageSrc: action.payload.post.imageSrc,
-                date: new Date(action.payload.post.created_at)
-            } as IPostWithDate;
+            if (action.payload.status === 200) {
+                state.current = {
+                    id: action.payload.post.id,
+                    title: action.payload.post.title,
+                    text: action.payload.post.text,
+                    imageSrc: action.payload.post.imageSrc,
+                    date: new Date(action.payload.post.created_at)
+                } as IPostWithDate;
+            }
         })
         builder.addCase(fetchPostById.rejected, (state, action) => {
             state.loadingStatus = FAILED;
@@ -202,15 +226,20 @@ const postsSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToDeletePost.fulfilled, (state, action: PayloadAction<{ deletedPost: IServerPost}>) => {
+        builder.addCase(fetchToDeletePost.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            state.items = state.items.filter(post => post.id !== action.payload.deletedPost.id)
+            if (action.payload.status === 200) { 
+                state.items = state.items.filter(post => post.id !== action.payload.post.id);
+            }
         })
         builder.addCase(fetchToDeletePost.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
 
+        
+        
+        
         builder.addCase(fetchToCreatePost.pending, (state) => {
             state.loadingStatus = LOADING;
             state.error = null;
@@ -218,6 +247,7 @@ const postsSlice = createSlice({
         builder.addCase(fetchToCreatePost.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
+
             if (action.payload.status === 200) {
                 state.items.push({
                     id: action.payload.post.id,
@@ -225,10 +255,40 @@ const postsSlice = createSlice({
                     imageSrc: action.payload.post.imageSrc,
                     text: action.payload.post.text,
                     title:action.payload.post.title
-                })
+                });
             }
         })
         builder.addCase(fetchToCreatePost.rejected, (state, action) => {
+            state.loadingStatus = FAILED;
+        })
+    
+        
+
+
+        builder.addCase(fetchToUpdatePost.pending, (state) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToUpdatePost.fulfilled, (state, action: PayloadAction<any>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+
+            if (action.payload.status === 200) {
+                state.items = state.items.filter(post => { 
+                    if (post.id !== action.payload.post.id) {
+                        return post;
+                    }
+                    return {
+                        id: action.payload.post.id,
+                        date: new Date(action.payload.post.created_at),
+                        imageSrc: action.payload.post.imageSrc,
+                        text: action.payload.post.text,
+                        title:action.payload.post.title
+                    }
+                });
+            }
+        })
+        builder.addCase(fetchToUpdatePost.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
     },
