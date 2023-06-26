@@ -1,8 +1,8 @@
 import React from "react";
 
-import Title from "components/Custom/Title/Title";
 
 import CommentsContainer from "components/Comments/CommentsContainer";
+import TopProducts from "components/TopProducts/TopProducts";
 
 import { Wrapper, PreviewImage, Slogan } from "./HomeViewStyles";
 
@@ -21,6 +21,7 @@ const HomeView: React.FC<IHomeViewProps> = () => {
                 <Slogan>
                     Our sofas like Lincolns -- except they dont make your ass hurt 
                 </Slogan>
+                <TopProducts />
                 <CommentsContainer />
             </Wrapper>
         </>
