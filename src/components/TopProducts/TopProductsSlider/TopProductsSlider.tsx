@@ -26,7 +26,7 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
         intervalRef.current = setInterval(() => {
             setArr(prevArr => {
                 const [first, ...tArr] = prevArr;
-                return [...tArr, first]
+                return [...tArr, first];
             });
         }, 2000);
 
@@ -46,7 +46,7 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
             <TopProductsSliderWrapper width={props.width}>
                 <TopProductsSliderBlock width={props.width}>
                     {
-                        arr.map((color, index) => <TopProductsSliderItem current={current} key={index} width={props.width} clr={color}>
+                        arr.map((color, index) => <TopProductsSliderItem key={index} width={props.width} clr={color}>
                         </TopProductsSliderItem>)
                     }
                 </TopProductsSliderBlock>

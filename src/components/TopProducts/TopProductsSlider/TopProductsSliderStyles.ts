@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface ITopProdutsSliderProps {
     width: number
@@ -6,8 +6,18 @@ interface ITopProdutsSliderProps {
 
 interface ISliderItemProps extends ITopProdutsSliderProps {
     clr: string,
-    current: number
 } 
+
+export const sliderMove = keyframes`
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {    
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+`
 
 export const TopProductsSliderWrapper = styled.div<ITopProdutsSliderProps>`
     box-sizing: border-box;
@@ -29,7 +39,8 @@ export const TopProductsSliderItem = styled.div<ISliderItemProps>`
     width: 100%;
     height: 100%;
     background-color: ${props => props.clr};
-    transition: 1s ease-in-out;
+    animation: ${sliderMove} 2s ease-in-out;
+    animation-iteration-count: infinite;
 `;
 
 export const TopProductsSliderItemImage = styled.img`
