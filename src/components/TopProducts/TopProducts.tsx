@@ -8,23 +8,14 @@ import {
 import TopProduct from "./TopProduct/TopProduct";
 import TopProductsSlider from "./TopProductsSlider/TopProductsSlider";
 
+import useWindowWidth from "hooks/useWindowWidth";
+
 interface ITopProductsProps {
 }
 
 const TopProducts: React.FC<ITopProductsProps> = (props) => {
     
-    const [ width, setWidth ] = React.useState(window.innerWidth);
-    console.log(width);
-
-    React.useEffect(() => {
-        const handleWindowResize = () => setWidth(window.innerWidth);
-
-        window.addEventListener("resize", handleWindowResize);
-
-        return () => {
-            window.removeEventListener("resize", handleWindowResize);
-        }
-    },[]);
+    const width = useWindowWidth();
 
     return (
         <>
@@ -34,7 +25,7 @@ const TopProducts: React.FC<ITopProductsProps> = (props) => {
                 </TopProductsHeader>
                 {
                     width <= 330 ? 
-                        <TopProductsSlider /> : <>
+                        <TopProductsSlider width={width}/> : <>
                             <TopProductsMain>
                                 <TopProduct />
                                 <TopProduct />

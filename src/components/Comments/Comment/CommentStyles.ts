@@ -20,10 +20,6 @@ export const CommentInfo = styled.div`
     gap: .5rem;
     max-width: 200px;
     width: 100%;
-
-    @media only screen and (max-width: 330px) {
-        
-    }
 `;
 
 export const AuthorName = styled.span`
