@@ -3,14 +3,13 @@ import styled from "styled-components";
 export const CommentWrapper = styled.div`
     display: flex;
     align-items: center;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1rem;
+    padding: 1rem;
     border-top: .1rem solid #000;
     min-height: 200px;
 
-    @media only screen and (max-width: 330px){
+    @media only screen and (max-width: 768px){
         flex-direction: column;
-        max-width: 330px;
     }
 `;
 
@@ -32,11 +31,19 @@ export const AuthorName = styled.span`
     font-weight: 400;
     width: 100%;
     word-wrap: break-word;
+
+    @media only screen and (max-width: 768px) {
+        font-size: 1.6rem;
+    }
 `;
 
 export const CreatedDate = styled.span`
     font-size: 1.4rem;
     font-weight: 500;
+
+    @media only screen and (max-width: 768px) {
+        font-size: 1.2rem;
+    }
 `;
 
 export const AuthorCircle = styled.div`
@@ -47,16 +54,24 @@ export const AuthorCircle = styled.div`
     background-color: #000;
     border-radius: 50%;
     font-size: 2rem;
+    @media only screen and (max-width: 768px) {
+        font-size: 1.6rem;
+    }
 `;
 
 export const CommentText = styled.p`
     text-align: left;
     font-size: 2rem;
+    height: 100%;
+    @media only screen and (max-width: 768px) {
+        font-size: 1.6rem;
+    }
 `;
 
 export const CommentScore = styled.div`
     display: flex;
     gap: 1rem;
+    justify-content: center;
 `;
 
 export const ScoreItem = styled.div`
@@ -70,8 +85,8 @@ export const CommentReview = styled.div`
     justify-content: flex-start;
     gap: 1.5rem;
 
-    @media only screen and (max-width: 330px) {
-        max-width: 330px;
+    @media only screen and (max-width: 768px) {
+        align-items: center;
     }
 `;
 

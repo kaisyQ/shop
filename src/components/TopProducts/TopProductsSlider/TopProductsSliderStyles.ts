@@ -1,13 +1,7 @@
 import styled from "styled-components";
 
 export const TopProductsSliderWrapper = styled.div`
-    display: none;
-    @media only screen and (max-width: 330px) {
-        display: block;
-    }
-
-    width: 100%;
-    max-width: 330px;
+    max-width: 300px;
     aspect-ratio: 1/1;
     background-color: #000;
     overflow-x: scroll;
@@ -15,12 +9,12 @@ export const TopProductsSliderWrapper = styled.div`
 
 export const TopProductsSliderBlock = styled.div`
     display: flex;
-    width: calc(330px*4);
+    width: calc(300px*4);
     height: 100%;
 `;
 
 export const TopProductsSliderItem = styled.div<any>`
-    max-width: 330px;
+    max-width: 300px;
     width: 100%;
     height: 100%;
     background-color: ${props => props.clr};

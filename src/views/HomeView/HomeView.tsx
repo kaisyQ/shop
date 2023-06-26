@@ -21,7 +21,9 @@ const HomeView: React.FC<IHomeViewProps> = () => {
                 <Slogan>
                     Our sofas like Lincolns -- except they dont make your ass hurt 
                 </Slogan>
-                <TopProducts />
+                {
+                //<TopProducts />
+                }
                 <CommentsContainer />
             </Wrapper>
         </>

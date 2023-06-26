@@ -16,39 +16,41 @@ export const FooterWrapper = styled.footer`
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
-    
     gap: 3rem;
     
-    padding: 2rem ;
+    padding: 2rem;
 
 
     @media only screen and (max-width: 768px){
-        max-width: 768px;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
+        justify-content: space-around;
     }
 
-    @media only screen and (max-width: 330px){
-        max-width: 330px;
-        flex-direction: column;
-    }
 `;
 
 export const LinksContainer = styled.div`
     display: flex;
-    flex-grow: 1;
     flex-direction: column;
     align-items: flex-end;
     gap: 2rem;
+    width: 100%;
+
+    @media only screen and (max-width: 768px){
+        align-items: center;
+        justify-content: space-around;
+    }
 `;
 
 export const Links = styled.div`
     display: flex;
+    justify-content: flex-end;
     gap: 2rem;
+    width: 100%;
 `;
 
 export const OurContacts = styled.div`
+    width: 100%;
 `;
 
 export const Title = styled.h3`
@@ -56,11 +58,10 @@ export const Title = styled.h3`
 `;
 
 export const Information = styled.p`
+    width: 100%;
     margin-top: .5rem;
-    padding-left: 1rem;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
 `;
 
 export const SignInButton = styled.button`
@@ -77,11 +78,17 @@ export const SignInButton = styled.button`
     :not(:hover){
         transform: scale(1);
     }
+
+    @media only screen and (max-width: 768px){
+        width: 100%;
+    }
 `;
 
 export const Copyright = styled.p`
-  font-size: 1.4rem;
-  color: inherit;
+    text-align: right;
+    width: 100%;
+    font-size: 1.4rem;
+    color: inherit;
 ;`
 
 export const Span = styled.span<ISpanProps>`

@@ -6,62 +6,38 @@ interface IMenuProps {
 }
 
 export const HeaderWrapper = styled.header`
-    padding: 3rem 2.5rem 4rem 2.5rem;
+    padding: 2.5rem;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    gap: 3rem;
+    gap: 2rem;
 
     @media only screen and (max-width: 768px){
         z-index: 5;
     }
+    
+    @media only screen and (max-width: 330px){
+        justify-content: space-between;
+    }
+    
 `;
 
 export const Logo = styled.img`
     display: block;
-    width: 30rem;
-
-    @media only screen and (max-width: 330px){
-        width: 20rem;
-    }
-`;
-
-export const LinksContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    column-gap: 1rem;
-    width: 2rem;
-    height: 100%;
-`;
-
-
-export const MenuWrapper = styled.div`
-    position: absolute;
-    display: none;
-    width: 2rem;
-    height: 100%;
-    top: 50%;
-    right: calc(100% + 1rem);
-    transform: translateY(-50%);
-    cursor: pointer;
-
-
-    @media only screen and (max-width: 768px){
-        display: block;
-    }
+    max-width: 30rem;
+    width: 100%;
+    object-fit: cover;
 `;
 
 export const Menu = styled.div`
     position: relative;
     width: 2rem;
-    top: 50%;
-    height: 0rem;
-    background-color: inherit;
-    transform: translateY(-50%);
+    height: 2rem;
 `;
+
+
 
 export const MenuLine = styled.div<IMenuProps>`
     position: absolute;
