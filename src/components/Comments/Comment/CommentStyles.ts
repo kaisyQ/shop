@@ -4,7 +4,7 @@ export const CommentWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem;
+    padding: 1rem 0;
     border-top: .1rem solid #000;
     min-height: 200px;
 
@@ -71,7 +71,7 @@ export const CommentText = styled.p`
 export const CommentScore = styled.div`
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: flex-start;
 `;
 
 export const ScoreItem = styled.div`

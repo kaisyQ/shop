@@ -61,7 +61,17 @@ export const Information = styled.p`
     width: 100%;
     margin-top: .5rem;
     display: flex;
+    gap: 1rem;
     justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (max-width: 300px) {
+        flex-direction: column;
+    }
+`;
+
+export const SignInButtonWrapper = styled.div`
+    width: 100%;
 `;
 
 export const SignInButton = styled.button`
@@ -69,6 +79,7 @@ export const SignInButton = styled.button`
     font-size: 1rem;
     text-decoration: underline;
     color: #fff;
+    float: right;
     
     transition: .2s ease-in-out;
     :hover {
@@ -91,6 +102,23 @@ export const Copyright = styled.p`
     color: inherit;
 ;`
 
-export const Span = styled.span<ISpanProps>`
+export const ContactTitle = styled.span<ISpanProps>`
+    text-align: left;
     font-weight: ${props => props.weight};
+
+    @media only screen and (max-width: 300px) {
+        text-align: center;
+        width: 100%;
+    }
 `;
+
+export const Span = styled.span<ISpanProps>`
+    word-break: break-all;
+    text-align: right;
+
+    @media only screen and (max-width: 300px) {
+        text-align: center;
+        width: 100%;
+    }
+`;
+

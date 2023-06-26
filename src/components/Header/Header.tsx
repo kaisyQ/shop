@@ -12,6 +12,7 @@ import {
 
 import type { HeaderConnectedProps } from "./HeaderContainer";
 
+import useWindowWidth from "hooks/useWindowWidth";
 
 interface IHeaderProps extends HeaderConnectedProps {
     setIsOpenSidebar: React.Dispatch<React.SetStateAction<boolean>>,
@@ -27,6 +28,8 @@ const Header: React.FC<IHeaderProps> = ({ setIsDark, isDark, setIsOpenSidebar, i
         }
     }, [isDark]);
 
+    const windowWidth = useWindowWidth();
+
     const onMenuClick = (ev: React.MouseEvent<HTMLDivElement>) => {
         setIsOpenSidebar((prev) => !prev);
         setIsDark(!isDark);
@@ -41,9 +44,13 @@ const Header: React.FC<IHeaderProps> = ({ setIsDark, isDark, setIsOpenSidebar, i
                 <NavLink to={'/'}>
                     <Logo src={logo} alt="logo" />
                 </NavLink>
-                <Menu onClick={onMenuClick}>
-                    <MenuLine isOpen={isOpenSidebar} />
-                </Menu>
+                {
+                    windowWidth <= 768 ? <>
+                        <Menu onClick={onMenuClick}>
+                            <MenuLine isOpen={isOpenSidebar} />
+                        </Menu> 
+                    </> : <div></div>
+                }
             </HeaderWrapper>
         </>
     );  

@@ -3,7 +3,7 @@ import React from "react";
 import { 
     FooterWrapper, OurContacts, Title, Information, 
     LinksContainer, Links, SignInButton, Copyright,
-    Span
+    Span, SignInButtonWrapper, ContactTitle
 } from "./FooterStyles";
 
 import { NavLink } from "react-router-dom";
@@ -17,11 +17,11 @@ const Footer: React.FC = () => {
                 <OurContacts>
                     <Title>Contacts</Title>
                     <Information>
-                        <Span weight={500}>Our Email:</Span>
+                        <ContactTitle weight={500}>Our Email:</ContactTitle>
                         <Span>contact@gmail.com</Span>
                     </Information>
                     <Information>
-                        <Span weight={500}>Our Phone:</Span>
+                        <ContactTitle weight={500}>Our Phone:</ContactTitle>
                         <Span>8(228)(228)</Span>
                     </Information>
                 </OurContacts>
@@ -34,9 +34,11 @@ const Footer: React.FC = () => {
                     <Copyright>
                     © { new Date().getFullYear() } Company Name. All rights reserved.
                     </Copyright>
-                    <NavLink to={'/auth'}>
-                        <SignInButton>Sign into your working account</SignInButton>
-                    </NavLink>
+                    <SignInButtonWrapper>
+                        <NavLink to={'/auth'}>
+                            <SignInButton>Sign into your working account</SignInButton>
+                        </NavLink>
+                    </SignInButtonWrapper>
                 </LinksContainer>
             </FooterWrapper>
         </>

@@ -17,11 +17,15 @@ export const PreviewImage = styled.img`
 `;
 
 export const Slogan = styled.p`
-    padding: 3rem;
+    padding: 1.5rem;
     font-size: 3rem;
     text-align: center;
     width: 100%;
 
+    @media only screen and (max-width: 768px) {
+        font-size: 2.5rem;
+    }
+    
     @media only screen and (max-width: 330px) {
         font-size: 2rem;
     }

@@ -22,14 +22,23 @@ export const CommentsTitle = styled.h2`
     text-transform: uppercase;
     text-decoration: underline;
 
+    @media only screen and (max-width: 768px) {
+        font-size: 3.5rem;
+    }
+
     @media only screen and (max-width: 330px) {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 `;
 
 export const CommentsSubtitle = styled.h3`
+    margin-top: 1rem;
     font-size: 3rem;
     font-weight: 400;
+
+    @media only screen and (max-width: 768px) {
+        font-size: 2.5rem;
+    }
 
     @media only screen and (max-width: 330px) {
         font-size: 2rem;
@@ -38,15 +47,17 @@ export const CommentsSubtitle = styled.h3`
 
 export const CommentConroller = styled.div`
     margin-top: 1rem;
-    padding: 3rem;
+    padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1.5rem;
 
     @media only screen and (max-width: 768px) {
         flex-direction: column;
     }
 `;
+
 export const CreateButton = styled.button`
     display: flex;
     align-items: center;
@@ -57,10 +68,21 @@ export const CreateButton = styled.button`
     border-radius: .5rem;
     font: inherit;
     font-size: 2rem;
+
+    @media only screen and (max-width: 330px) {
+        font-size: 1.6rem;
+        padding: 1rem 1.7rem;
+    }
 `;
 
 export const Filter = styled.div`
     padding: 2rem;
+    
+    
+    @media only screen and (max-width: 330px) {
+        padding: 0;
+    }
+
 `;
 
 export const Star = styled.div`
