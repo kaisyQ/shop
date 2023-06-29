@@ -41,9 +41,6 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
         }
     }, []);
 
-
-
-
     return (
         <>
             <TopProductsSliderWrapper width={props.width}>

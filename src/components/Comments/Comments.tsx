@@ -37,7 +37,7 @@ const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }
         <>
             <CommentsWrapper>
                 <CommentsHeader>
-                    <CommentsTitle>CUSTOMER REVIEWS</CommentsTitle>
+                    <CommentsTitle>Customer reviews</CommentsTitle>
                     <CommentsSubtitle>Read what our customers have to say</CommentsSubtitle>
                 </CommentsHeader>
                 <CommentConroller>

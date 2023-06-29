@@ -4,6 +4,10 @@ export const TopProductWrapper = styled.div`
     width: 23%;
     aspect-ratio: 1/1;
     background-color: #000;
+
+    @media only screen and (max-width: 768px) {
+        width: 40%;
+    }
 `;
 
 export const TopProductImage = styled.img`

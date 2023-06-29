@@ -17,9 +17,8 @@ export const CommentsHeader = styled.header`
 `;
 
 export const CommentsTitle = styled.h2`
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 500;
-    text-transform: uppercase;
     text-decoration: underline;
 
     @media only screen and (max-width: 768px) {

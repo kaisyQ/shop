@@ -29,6 +29,10 @@ export const AuthorName = styled.span`
     word-wrap: break-word;
 
     @media only screen and (max-width: 768px) {
+        font-size: 2rem;
+    }
+
+    @media only screen and (max-width: 330px) {
         font-size: 1.6rem;
     }
 `;
@@ -38,6 +42,10 @@ export const CreatedDate = styled.span`
     font-weight: 500;
 
     @media only screen and (max-width: 768px) {
+        font-size: 1.4rem;
+    }
+
+    @media only screen and (max-width: 330px) {
         font-size: 1.2rem;
     }
 `;
@@ -51,6 +59,9 @@ export const AuthorCircle = styled.div`
     border-radius: 50%;
     font-size: 2rem;
     @media only screen and (max-width: 768px) {
+        font-size: 2rem;
+    }
+    @media only screen and (max-width: 330px) {
         font-size: 1.6rem;
     }
 `;
@@ -60,6 +71,9 @@ export const CommentText = styled.p`
     font-size: 2rem;
     height: 100%;
     @media only screen and (max-width: 768px) {
+        font-size: 2rem;
+    }
+    @media only screen and (max-width: 330px) {
         font-size: 1.6rem;
     }
 `;
