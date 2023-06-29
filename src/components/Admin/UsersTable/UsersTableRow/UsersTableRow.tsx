@@ -1,12 +1,12 @@
 import React from "react";
 
-import { TableTr, TableTd, RemoveBtn, XLgIcon, EditBtn, PencilIcon, TableTdInner } from "components/Admin/AdminStyles";
-
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { 
+    TableTr, TableTd, RemoveBtn, 
+    XLgIcon, EditBtn, PencilIcon, 
+    TableTdInner 
+} from "components/Admin/AdminStyles";
 
 import { NavLink } from "react-router-dom";
-
-import { ConfirmModalData } from "redux/reducers/styles/stylesSlice";
 
 import { Role } from "types/types";
 
@@ -15,19 +15,10 @@ interface ITableRowProps{
     index: number,
     login: string,
     role: Role
-    setConfirmModalData: ActionCreatorWithPayload<ConfirmModalData>,
-    fetchToDeleteUser: (arg: string) => Promise<any>
+    delete: (id: string) => void
 }
 
 const UsersTableRow: React.FC<ITableRowProps> = (props) => {
-
-    const onDeleteClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        props.setConfirmModalData({ 
-            isVisible: true, 
-            callback: () => props.fetchToDeleteUser(props.id), 
-            message: "Are you sure? The comment will be deleted..."
-        });
-    }
 
     return (
         <>
@@ -42,20 +33,20 @@ const UsersTableRow: React.FC<ITableRowProps> = (props) => {
                     <TableTdInner>{ props.role }</TableTdInner>
                 </TableTd>
                 <TableTd>
-                <TableTdInner>
-                    <RemoveBtn onClick={onDeleteClick}>
-                        <XLgIcon colorindex={props.index} />
-                    </RemoveBtn>
-                </TableTdInner>
+                    <TableTdInner>
+                        <RemoveBtn onClick={(ev) => props.delete(props.id)}>
+                            <XLgIcon colorindex={props.index} />
+                        </RemoveBtn>
+                    </TableTdInner>
                 </TableTd>
                 <TableTd>
-                <TableTdInner>
-                    <NavLink to={`/admin/user/${props.id}`}>
-                        <EditBtn>
-                            <PencilIcon colorindex={props.index} />
-                        </EditBtn>
-                    </NavLink>
-                </TableTdInner>
+                    <TableTdInner>
+                        <NavLink to={`/admin/user/${props.id}`}>
+                            <EditBtn>
+                                <PencilIcon colorindex={props.index} />
+                            </EditBtn>
+                        </NavLink>
+                    </TableTdInner>
                 </TableTd>
             </TableTr>
         </>

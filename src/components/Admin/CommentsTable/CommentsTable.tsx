@@ -18,12 +18,20 @@ interface CommentsTableProps extends CommentsTableConnectedProps {
 
 const CommentsTable: React.FC<CommentsTableProps> = (props) => {
     
-    const { fetchComments, loading, comments, fetchToDeleteComment, ...rowProps } = props;
+    const { fetchComments, loading, comments, setConfirmModalData, fetchToDeleteComment } = props;
     
-   
     React.useEffect(() => {
         fetchComments();
     }, [fetchComments]);
+
+    const deleteComment = React.useCallback((id: string) => {
+        setConfirmModalData({ 
+            isVisible: true, 
+            callback: () => fetchToDeleteComment(id), 
+            message: "Are you sure? The comment will be deleted..."
+        });
+    }, [fetchToDeleteComment, setConfirmModalData]);
+
 
     if (loading === LOADING) {
         return <Preloader />;
@@ -45,11 +53,10 @@ const CommentsTable: React.FC<CommentsTableProps> = (props) => {
                 <TableTbody>
                 {
                     comments.map((comment, index) => <CommentTableRow
-                            fetchToDeleteComment={fetchToDeleteComment}
                             index={index}
                             {...comment}
-                            {...rowProps} 
                             key={comment.id}
+                            delete={deleteComment}
                         />
                     )
                 }
@@ -59,4 +66,4 @@ const CommentsTable: React.FC<CommentsTableProps> = (props) => {
     );
 }
 
-export default CommentsTable;
+export default React.memo(CommentsTable);

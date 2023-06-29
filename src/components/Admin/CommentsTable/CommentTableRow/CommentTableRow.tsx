@@ -2,11 +2,7 @@ import React from "react";
 
 import { TableTr, TableTd, RemoveBtn, XLgIcon, TableTdInner } from "components/Admin/AdminStyles";
 
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-
 import { RatingScore } from "types/types";
-
-import { ConfirmModalData } from "redux/reducers/styles/stylesSlice";
 
 interface ITableRowProps{
     id: string,
@@ -15,19 +11,10 @@ interface ITableRowProps{
     text: string,
     index: number,
     rating: RatingScore,
-    setConfirmModalData: ActionCreatorWithPayload<ConfirmModalData>,
-    fetchToDeleteComment: (arg: string) => Promise<any>
+    delete: (id: string) => void
 }
 
 const TableRow: React.FC<ITableRowProps> = (props) => {
-
-    const onDeleteClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        props.setConfirmModalData({ 
-            isVisible: true, 
-            callback: () => props.fetchToDeleteComment(props.id), 
-            message: "Are you sure? The comment will be deleted..."
-        });
-    }
 
     return (
         <>
@@ -49,7 +36,7 @@ const TableRow: React.FC<ITableRowProps> = (props) => {
                 </TableTd>
                 <TableTd>
                     <TableTdInner>
-                        <RemoveBtn onClick={onDeleteClick}>
+                        <RemoveBtn onClick={(ev) => props.delete(props.id)}>
                             <XLgIcon colorindex={props.index} />
                         </RemoveBtn>
                     </TableTdInner>

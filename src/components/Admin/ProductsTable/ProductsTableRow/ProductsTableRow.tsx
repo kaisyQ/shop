@@ -2,11 +2,7 @@ import React from "react";
 
 import { TableTr, TableTd, RemoveBtn, XLgIcon, EditBtn, PencilIcon, TableTdInner } from "components/Admin/AdminStyles";
 
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-
 import { NavLink } from "react-router-dom";
-
-import { ConfirmModalData } from "redux/reducers/styles/stylesSlice";
 
 interface ITableRowProps{
     id: string,
@@ -14,19 +10,10 @@ interface ITableRowProps{
     name: string
     count: number,
     index: number,
-    setConfirmModalData: ActionCreatorWithPayload<ConfirmModalData>,
-    fetchToDeleteProduct: (arg: string) => Promise<any>
+    delete: (id: string) => void
 }
 
 const ProductsTableRow: React.FC<ITableRowProps> = (props) => {
-
-    const onDeleteClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        props.setConfirmModalData({ 
-            isVisible: true, 
-            callback: () => props.fetchToDeleteProduct(props.id), 
-            message: "Are you sure? The comment will be deleted..."
-        });
-    }
 
     return (
         <>
@@ -44,11 +31,11 @@ const ProductsTableRow: React.FC<ITableRowProps> = (props) => {
                     <TableTdInner>{ props.count }</TableTdInner>
                 </TableTd>
                 <TableTd>
-                <TableTdInner>
-                    <RemoveBtn onClick={onDeleteClick}>
-                        <XLgIcon colorindex={props.index} />
-                    </RemoveBtn>
-                </TableTdInner>
+                    <TableTdInner>
+                        <RemoveBtn onClick={(ev) => props.delete(props.id)}>
+                            <XLgIcon colorindex={props.index} />
+                        </RemoveBtn>
+                    </TableTdInner>
                 </TableTd>
                 <TableTd>
                     <TableTdInner>

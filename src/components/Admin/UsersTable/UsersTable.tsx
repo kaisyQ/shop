@@ -19,12 +19,20 @@ const UsersTable: React.FC<IUserTableProps> = (props) => {
 
     React.useEffect(() => {
         fetchUsers();
-    }, [fetchUsers])
+    }, [fetchUsers]);
+
+    const deleteUser = React.useCallback((id: string) => {
+            setConfirmModalData({ 
+                isVisible: true, 
+                callback: () => fetchToDeleteUser(id), 
+                message: "Are you sure? The user will be deleted..."
+            });
+        }, [fetchToDeleteUser, setConfirmModalData]);
 
     if (loading === LOADING) {
-        return <Preloader />
+        return <Preloader />;
     }
-    
+
     return (
         <>
             <TableWrapper>
@@ -43,10 +51,8 @@ const UsersTable: React.FC<IUserTableProps> = (props) => {
                             index={index}
                             key={user.id}
                             {...user}
-                            fetchToDeleteUser={fetchToDeleteUser}
-                            setConfirmModalData={setConfirmModalData}
+                            delete={deleteUser}
                         />
-                        
                     )
                 }
                 </TableTbody>
@@ -55,4 +61,4 @@ const UsersTable: React.FC<IUserTableProps> = (props) => {
     );
 }
 
-export default UsersTable;
+export default React.memo(UsersTable);

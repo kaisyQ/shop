@@ -21,6 +21,14 @@ const PostsTable: React.FC<IBlogsTableProps> = (props) => {
         fetchPosts();
     }, [fetchPosts]);
 
+    const deletePost = React.useCallback((id: string) => {
+        setConfirmModalData({ 
+            isVisible: true, 
+            callback: () => fetchToDeletePost(id), 
+            message: "Are you sure? The post will be deleted..."
+        });
+    }, [fetchToDeletePost, setConfirmModalData]);
+
     if (loading === LOADING) {
         return <Preloader />;
     }
@@ -44,8 +52,7 @@ const PostsTable: React.FC<IBlogsTableProps> = (props) => {
                                 index={index}
                                 key={post.id}
                                 {...post}
-                                setConfirmModalData={setConfirmModalData}
-                                fetchToDeletePost={fetchToDeletePost}
+                                delete={deletePost}
                             />
                         )
                     }
@@ -55,4 +62,4 @@ const PostsTable: React.FC<IBlogsTableProps> = (props) => {
     );
 }
 
-export default PostsTable;
+export default React.memo(PostsTable);

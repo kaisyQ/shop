@@ -25,8 +25,16 @@ const ProductsTable: React.FC<IProductsTableProps> = (props) => {
         fetchProducts();
     }, [fetchProducts]);
     
+    const deleteProduct = React.useCallback((id: string) => {
+        setConfirmModalData({ 
+            isVisible: true, 
+            callback: () => fetchToDeleteProduct(id), 
+            message: "Are you sure? The product will be deleted..."
+        });
+    }, [fetchToDeleteProduct, setConfirmModalData]);
+
     if (loading === LOADING) {
-        return <Preloader />
+        return <Preloader />;
     }
 
     return (
@@ -48,8 +56,7 @@ const ProductsTable: React.FC<IProductsTableProps> = (props) => {
                                 key={product.id}
                                 index={index}
                                 {...product}
-                                fetchToDeleteProduct={fetchToDeleteProduct}
-                                setConfirmModalData={setConfirmModalData}
+                                delete={deleteProduct}
                             />
                         )
                     }
@@ -59,4 +66,4 @@ const ProductsTable: React.FC<IProductsTableProps> = (props) => {
     );
 }
 
-export default ProductsTable;
+export default React.memo(ProductsTable);
