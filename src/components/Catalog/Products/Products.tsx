@@ -27,15 +27,13 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
             products.length ? <>
                 <Wrapper>
                 {
-                    products.map(item => <>
-                            <Product 
-                                key={item.id} 
-                                id={item.id} 
-                                count={item.count} 
-                                name={item.name} 
-                                imageSrc={item.imagesSrc[0]} 
-                            />
-                        </>
+                    products.map(item => <Product 
+                            key={item.id} 
+                            id={item.id} 
+                            count={item.count} 
+                            name={item.name} 
+                            imageSrc={item.imagesSrc[0]} 
+                        />
                     )
                 }
                 </Wrapper>

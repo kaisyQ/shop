@@ -25,4 +25,4 @@ const Star: React.FC<IStarProps> = ({ id, setStar, starCount }) => {
     );
 }
 
-export default Star;
+export default React.memo(Star);

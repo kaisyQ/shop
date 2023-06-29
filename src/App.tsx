@@ -23,8 +23,6 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
   const width = useWindowWidth();
 
-  console.log('render')
-
   React.useEffect(() => {
     fetchToCheckMe();
   }, []);
@@ -46,7 +44,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
       { width >= 768 ? <HintContainer /> : null } 
       
-      <Navbar />
+      { width >= 768 ? <Navbar /> : null }
 
       <MainContainer>
       

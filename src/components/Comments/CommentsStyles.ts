@@ -92,3 +92,7 @@ export const CommentsBlock = styled.main`
     overflow-y: scroll;
     max-height: 600px;
 `;
+
+export const TotalStarRating = styled.div`
+
+`;

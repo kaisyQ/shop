@@ -14,11 +14,10 @@ import {
     Prise, DiscountPrice, ZeroCountMessage, InfoHeader
 } from "./ProductAboutStyles"
 
-import useFetchById from "hooks/useFetchById";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useParams } from "react-router-dom";
 
-const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductById }) => {
+const ProductAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductById }) => {
 
     const { id } = useParams();
 
@@ -30,6 +29,8 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductByI
     }, [id, fetchProductById]);
 
     const width = useWindowWidth();
+
+    console.log("render-product-about")
 
     if (!product) {
         return <Component404 />;
@@ -92,4 +93,4 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductByI
     );
 }
 
-export default CardAbout;
+export default React.memo(ProductAbout);

@@ -7,7 +7,7 @@ interface CardAboutImages {
     images: string[]
 }
 
-const CardAboutImages: React.FC<CardAboutImages> = ({ images }) => {
+const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
     return (
         <>
             <ImagesWrapper>
@@ -17,18 +17,18 @@ const CardAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                         const result: React.JSX.Element[] = [];
                         for(let i=0; i<images.length; ++i) {
                             if (i % 3 === 0)  {
-                                result.push(<>
-                                    <ImageRow>
+                                result.push(
+                                    <ImageRow key={i}>
                                         <ImageWrapper width={'100%'}>
                                             <Image src={images[i]}/>
                                         </ImageWrapper>
                                     </ImageRow>
-                                </>)
+                                )
                                 continue;
                             }
                             if (i + 1 < images.length) {
-                                result.push(<>
-                                    <ImageRow>
+                                result.push(
+                                    <ImageRow key={i}>
                                         <ImageWrapper>
                                             <Image src={images[i]} />
                                         </ImageWrapper>
@@ -36,17 +36,17 @@ const CardAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                                             <Image src={images[i+1]} />
                                         </ImageWrapper>
                                     </ImageRow>
-                                </>)
+                                )
                                 i++;
                                 continue;
                             }
-                            result.push(<>
-                                <ImageRow>
+                            result.push(
+                                <ImageRow key={i}>
                                     <ImageWrapper width="100%">
                                         <Image src={images[i]}/>
                                     </ImageWrapper>
                                 </ImageRow>
-                            </>)
+                            )
                         }
                         return result;
                     })()
@@ -56,4 +56,4 @@ const CardAboutImages: React.FC<CardAboutImages> = ({ images }) => {
     );
 }
 
-export default CardAboutImages;
+export default ProductAboutImages;

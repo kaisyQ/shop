@@ -29,12 +29,19 @@ const Comment: React.FC<ICommentProps> = ({ comment }) => {
                             const arr: React.JSX.Element[] = [];
 
                             for(let i=1; i<=comment.rating; ++i) {
-                                arr.push(<Icon.StarFill size={"2rem"} />);
+                                arr.push(<Icon.StarFill key={i} size={"2rem"} />);
                             }
-                            for(let i=comment.rating; i<5; ++i) {
-                                arr.push(<Icon.Star size={"2rem"} />);
-                            }
+                            
                             return arr;
+                        })()
+                    }
+                    {
+                        (() => {
+                            const arr: React.JSX.Element[] = [];
+                            for(let i=comment.rating; i<5; ++i) {
+                                arr.push(<Icon.Star key={i} size={"2rem"} />);
+                            }
+                            return arr
                         })()
                     }
                     </CommentScore>

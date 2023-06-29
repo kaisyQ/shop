@@ -3,12 +3,10 @@ import React from "react";
 import { 
     CommentsWrapper, CommentsHeader, CommentConroller, 
     CommentsTitle, CommentsSubtitle, CommentsBlock,
-    CreateButton, Filter
+    CreateButton, Filter, TotalStarRating
 } from "./CommentsStyles";
 
 import Comment from "./Comment/Comment";
-
-import StarsFilterContainer from "./Stars/StarsFilterContainer";
 
 import * as Icon from "react-bootstrap-icons";
 
@@ -45,9 +43,15 @@ const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }
                         <Icon.Plus size={"3rem"} />
                         <span>Write a review</span>
                     </CreateButton>
-                    <Filter>
-                        <StarsFilterContainer />
-                    </Filter>
+                    
+                    <TotalStarRating>
+                        <Icon.StarFill size={"3rem"} />
+                        <Icon.StarFill size={"3rem"} />
+                        <Icon.StarFill size={"3rem"} />
+                        <Icon.StarFill size={"3rem"} />
+                        <Icon.StarHalf size={"3rem"} />
+                    </TotalStarRating>
+                
                 </CommentConroller>
                 <CommentsBlock>
                 {

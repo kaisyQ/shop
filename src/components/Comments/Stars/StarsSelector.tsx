@@ -15,7 +15,7 @@ interface IStarsProps {
     starCount: RatingScore
 }
 
-const Stars: React.FC<IStarsProps> = ({ dispatch, starCount }) => {
+const StarsSelector: React.FC<IStarsProps> = ({ dispatch, starCount }) => {
 
     return (
         <>
@@ -23,9 +23,8 @@ const Stars: React.FC<IStarsProps> = ({ dispatch, starCount }) => {
                 {
                     (() => {
                             const arr: React.JSX.Element[] = []
-                            for(let i=1; i<=5;++i) {
+                            for(let i=1; i<=5; ++i) {
                                 arr.push(
-                                    <>
                                         <Star 
                                             key={i}
                                             starCount={starCount} 
@@ -35,8 +34,7 @@ const Stars: React.FC<IStarsProps> = ({ dispatch, starCount }) => {
                                                 }   
                                             }}
                                         />
-                                    </>
-                                )
+                            )
                             }
                             return arr
                     })()
@@ -47,4 +45,4 @@ const Stars: React.FC<IStarsProps> = ({ dispatch, starCount }) => {
     
 }
 
-export default Stars;
+export default StarsSelector;

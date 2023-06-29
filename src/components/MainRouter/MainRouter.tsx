@@ -91,4 +91,4 @@ const MainRouter: React.FC = () => {
     );
 }
 
-export default MainRouter;
+export default React.memo(MainRouter);
