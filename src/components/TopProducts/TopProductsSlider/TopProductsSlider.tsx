@@ -13,9 +13,10 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
     
     const intervalRef = React.useRef<NodeJS.Timer | null>(null);
 
-    const [current, setCurrent] = React.useState(1);
+    const [current, setCurrent] = React.useState(0);
 
     const [arr, setArr] = React.useState<string[]>(["red",  "yellow", "green",  "pink"]);
+
 
     React.useEffect(() => {
         
@@ -24,9 +25,9 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
         }
         
         intervalRef.current = setInterval(() => {
-            setArr(prevArr => {
-                const [first, ...tArr] = prevArr;
-                return [...tArr, first];
+            setCurrent(prevCurrent=>{
+                if (prevCurrent === arr.length-1) return 0;
+                return prevCurrent+1;
             });
         }, 2000);
 
@@ -41,14 +42,16 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
     }, []);
 
 
+
+
     return (
         <>
             <TopProductsSliderWrapper width={props.width}>
                 <TopProductsSliderBlock width={props.width}>
                     {
-                        arr.map((color, index) => <TopProductsSliderItem key={index} width={props.width} clr={color}>
-                        </TopProductsSliderItem>)
-                    }
+                    arr.map
+                        ((itm, index) => <TopProductsSliderItem key={index} width={props.width} clr={itm} current={current}/>
+                    )}
                 </TopProductsSliderBlock>
             </TopProductsSliderWrapper>
         </>
