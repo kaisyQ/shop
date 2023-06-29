@@ -16,11 +16,56 @@ interface IHintProps extends HintConnectedProps {}
 
 
 
-const Hint: React.FC<IHintProps> = ({ setIsHint }) => {
+const Hint: React.FC<IHintProps> = ({ setIsHint, isHint }) => {
+    
+    const date = new Date();
+    const seconds = date.getSeconds();
+    const min = date.getMinutes();
+    const hours = date.getHours();
+  
+    const [time, setTime] = React.useState(0);
+    const [startTime, setStartTime] = React.useState(hours*60*60+min*60+seconds);
+    const [timerInterval, setTimerInterval] = React.useState<number | null>(null);
+    const [isRunningTimer, setIsRunningTimer] = React.useState(true);
+
     
     React.useEffect(() => {
 
-    }, [])
+        if (!isRunningTimer) {
+          return () => {
+            if (timerInterval) {
+              clearInterval(timerInterval);
+            }
+          }
+        }
+    
+        const updateTime = () => {
+          const date = new Date();
+          const seconds = date.getSeconds();
+          const min = date.getMinutes();
+          const hours = date.getHours();
+          
+          if (time === 2) {
+            setIsHint(true);
+            setIsRunningTimer(false);
+            return;
+          }
+    
+          setTime(() => {
+              return hours*60*60+min*60+seconds-startTime;
+          });
+        }
+        
+        const timer = setInterval(updateTime, 1000);
+    
+        return () => {
+          clearInterval(timer);
+        }
+      }, [time, isRunningTimer]);
+
+    if (!isHint) {
+        return null;
+    }
     
     return (
         <>

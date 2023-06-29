@@ -17,59 +17,18 @@ import useWindowWidth from 'hooks/useWindowWidth';
 
 const App: React.FC<AppConnectedProps> = (props) => {
   
-  const { isDark, isHint, setIsHint, setIsDark, fetchToCheckMe, confirmModalVisibility } = props;
+  const { isDark, setIsDark, fetchToCheckMe, confirmModalVisibility } = props;
 
   const [isOpenSidebar, setIsOpenSidebar] = React.useState(false);
 
   const width = useWindowWidth();
 
-  const date = new Date();
-  const seconds = date.getSeconds();
-  const min = date.getMinutes();
-  const hours = date.getHours();
-
-  const [time, setTime] = React.useState(0);
-  const [startTime, setStartTime] = React.useState(hours*60*60+min*60+seconds);
-  const [timerInterval, setTimerInterval] = React.useState<number | null>(null);
-  const [isRunningTimer, setIsRunningTimer] = React.useState(true);
+  console.log('render')
 
   React.useEffect(() => {
     fetchToCheckMe();
   }, []);
   
-  React.useEffect(() => {
-
-    if (!isRunningTimer) {
-      return () => {
-        if (timerInterval) {
-          clearInterval(timerInterval);
-        }
-      }
-    }
-
-    const updateTime = () => {
-      const date = new Date();
-      const seconds = date.getSeconds();
-      const min = date.getMinutes();
-      const hours = date.getHours();
-      
-      if (time === 300) {
-        setIsHint(true);
-        setIsRunningTimer(false);
-        return;
-      }
-
-      setTime(() => {
-          return hours*60*60+min*60+seconds-startTime;
-      });
-    }
-    
-    const timer = setInterval(updateTime, 1000);
-
-    return () => {
-      clearInterval(timer);
-    }
-  }, [time, isRunningTimer]);
 
   const darkOpacityClick = (ev: React.MouseEvent<HTMLDivElement>) => {
     setIsDark(false);
@@ -85,7 +44,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
       { confirmModalVisibility ? <ConfirmModalContainer /> : null }
 
-      { isHint && width >= 768 ? <HintContainer /> : null } 
+      { width >= 768 ? <HintContainer /> : null } 
       
       <Navbar />
 
