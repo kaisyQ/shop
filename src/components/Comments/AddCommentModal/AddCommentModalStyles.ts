@@ -1,11 +1,32 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+
+
+const ShowModal = keyframes`
+    0% {
+        opacity: 0;
+        transform: rotate(0) translate(-50%, -50%);
+
+    }
+    25% {
+        transform: rotate(20deg) translate(-50%, -50%);
+    }
+    75% {
+        transform: rotate(-20deg) translate(-50%, -50%);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0) translate(-50%, -50%);
+    }
+`;
+
 
 export const AddCommentModalWrapper = styled.div`
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 99999;
     padding: 3rem;
     max-width: 500px;
     width: 100%;
@@ -15,6 +36,8 @@ export const AddCommentModalWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 3rem;
+
+    animation: ${ShowModal} .7s ease-in-out forwards;
 `;
 
 

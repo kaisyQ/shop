@@ -57,10 +57,14 @@ export const TableTd = styled.td`
     padding: 2rem;
 `;
 
-export const ProductTh = styled.th`
-    padding: 2rem;
-    border: 1px solid #fff;
+export const TableTdInner = styled.div`
+    max-width: 200px;
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
+
+
 
 export const AdminHeader = styled.header`
     display: flex;

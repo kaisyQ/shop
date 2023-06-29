@@ -5,7 +5,6 @@ import { ConnectedProps, connect } from "react-redux";
 import { addComment, fetchToCreateComment } from "redux/reducers/comment/commentSlice";
 
 
-
 const mapDispatchToProps = {
     addComment, fetchToCreateComment
 };

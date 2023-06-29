@@ -17,7 +17,7 @@ import useWindowWidth from 'hooks/useWindowWidth';
 
 const App: React.FC<AppConnectedProps> = (props) => {
   
-  const { isDark, setIsDark, fetchToCheckMe, confirmModalVisibility } = props;
+  const { isDark, isAuth, setIsDark, fetchToCheckMe, confirmModalVisibility } = props;
 
   const [isOpenSidebar, setIsOpenSidebar] = React.useState(false);
 
@@ -42,7 +42,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
       { confirmModalVisibility ? <ConfirmModalContainer /> : null }
 
-      { width >= 768 ? <HintContainer /> : null } 
+      { width >= 768 && !isAuth ? <HintContainer /> : null } 
       
       { width >= 768 ? <Navbar /> : null }
 

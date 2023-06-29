@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TableTr, TableTd, RemoveBtn, XLgIcon } from "components/Admin/AdminStyles";
+import { TableTr, TableTd, RemoveBtn, XLgIcon, TableTdInner } from "components/Admin/AdminStyles";
 
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
@@ -32,15 +32,27 @@ const TableRow: React.FC<ITableRowProps> = (props) => {
     return (
         <>
             <TableTr key={ props.id }>
-                <TableTd>{ props.index+1 }</TableTd>
-                <TableTd>{ props.author }</TableTd>
-                <TableTd>{ props.date.toLocaleDateString() }</TableTd>
-                <TableTd>{ props.text }</TableTd>
-                <TableTd>{ props.rating }</TableTd>
                 <TableTd>
-                    <RemoveBtn onClick={onDeleteClick}>
-                        <XLgIcon colorindex={props.index} />
-                    </RemoveBtn>
+                    <TableTdInner>{ props.index+1 }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.author }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.date.toLocaleDateString() }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.text }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.rating }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>
+                        <RemoveBtn onClick={onDeleteClick}>
+                            <XLgIcon colorindex={props.index} />
+                        </RemoveBtn>
+                    </TableTdInner>
                 </TableTd>
             </TableTr>
         </>

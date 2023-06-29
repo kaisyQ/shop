@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TableTr, TableTd, RemoveBtn, XLgIcon, EditBtn, PencilIcon } from "components/Admin/AdminStyles";
+import { TableTr, TableTd, RemoveBtn, XLgIcon, EditBtn, PencilIcon, TableTdInner } from "components/Admin/AdminStyles";
 
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
@@ -32,21 +32,33 @@ const PostsTableRow: React.FC<ITableRowProps> = (props) => {
     return (
         <>
             <TableTr key={ props.id }>
-                <TableTd>{ props.index+1 }</TableTd>
-                <TableTd>{ props.title }</TableTd>
-                <TableTd>{ props.date.toLocaleDateString() }</TableTd>
-                <TableTd>{ props.text }</TableTd>
                 <TableTd>
-                    <RemoveBtn onClick={onDeleteClick}>
-                        <XLgIcon colorindex={props.index} />
-                    </RemoveBtn>
+                    <TableTdInner>{ props.index+1 }</TableTdInner>
                 </TableTd>
                 <TableTd>
-                    <NavLink to={`/admin/post/${props.id}`}>
-                        <EditBtn>
-                            <PencilIcon colorindex={props.index} />
-                        </EditBtn>
-                    </NavLink>
+                    <TableTdInner>{ props.title }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.date.toLocaleDateString() }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.text }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>
+                        <RemoveBtn onClick={onDeleteClick}>
+                            <XLgIcon colorindex={props.index} />
+                        </RemoveBtn>
+                    </TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>
+                        <NavLink to={`/admin/post/${props.id}`}>
+                            <EditBtn>
+                                <PencilIcon colorindex={props.index} />
+                            </EditBtn>
+                        </NavLink>
+                    </TableTdInner>
                 </TableTd>
             </TableTr>
         </>

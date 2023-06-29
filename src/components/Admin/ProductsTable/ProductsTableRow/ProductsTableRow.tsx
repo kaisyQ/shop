@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TableTr, TableTd, RemoveBtn, XLgIcon, EditBtn, PencilIcon } from "components/Admin/AdminStyles";
+import { TableTr, TableTd, RemoveBtn, XLgIcon, EditBtn, PencilIcon, TableTdInner } from "components/Admin/AdminStyles";
 
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
@@ -31,21 +31,33 @@ const ProductsTableRow: React.FC<ITableRowProps> = (props) => {
     return (
         <>
             <TableTr key={ props.id }>
-                <TableTd>{ props.index+1 }</TableTd>
-                <TableTd>{ props.name }</TableTd>
-                <TableTd>{ props.price }</TableTd>
-                <TableTd>{ props.count }</TableTd>
                 <TableTd>
+                    <TableTdInner>{ props.index+1 }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.name }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.price }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                    <TableTdInner>{ props.count }</TableTdInner>
+                </TableTd>
+                <TableTd>
+                <TableTdInner>
                     <RemoveBtn onClick={onDeleteClick}>
                         <XLgIcon colorindex={props.index} />
                     </RemoveBtn>
+                </TableTdInner>
                 </TableTd>
                 <TableTd>
-                    <NavLink to={`/admin/product/${props.id}`}>
-                        <EditBtn>
-                            <PencilIcon colorindex={props.index} />
-                        </EditBtn>
-                    </NavLink>
+                    <TableTdInner>
+                        <NavLink to={`/admin/product/${props.id}`}>
+                            <EditBtn>
+                                <PencilIcon colorindex={props.index} />
+                            </EditBtn>
+                        </NavLink>
+                    </TableTdInner>
                 </TableTd>
             </TableTr>
         </>

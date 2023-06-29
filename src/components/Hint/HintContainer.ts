@@ -1,3 +1,4 @@
+import { getIsAuth } from "redux/reducers/auth/selector";
 import Hint from "./Hint";
 
 import { ConnectedProps, connect } from "react-redux";
