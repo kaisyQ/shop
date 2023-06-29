@@ -5,29 +5,26 @@ interface ISliderBlockProps {
     width: string
 }
 
-export const Wrapper = styled.div`
-    max-height: 30rem;
-`;
-
-export const Slider = styled.div`
-    max-height: 32rem;
+export const Slider = styled.div<ISliderBlockProps>`
+    max-width: ${props => props.width};
+    height: ${props => props.width};
+    aspect-ratio: 1/1;
     overflow-x: scroll;
-    position: relative;
 `;
 
 export const Block = styled.div<ISliderBlockProps>`
     width: ${props => props.width};
     height: 100%;
     display: flex;
-    column-gap: 1rem;
     z-index: 1;
     transition: .2s ease-in-out;
+
 `;
 
-export const SliderItem = styled.img`
+export const SliderItem = styled.img<ISliderBlockProps>`
     display: block;
-    max-width: 30rem;
-    min-height: 30rem;
+    max-width: ${props => props.width};
+    max-height: ${props => props.width};
     object-fit: cover;
     transition: .6s ease-in-out;
 `;

@@ -15,15 +15,10 @@ export const Wrapper = styled.div`
 
     @media only screen and (max-width: 1200px) {
         flex-direction: row;
-        padding: 0 2rem;
-    }
-
-    @media only screen and (max-width: 768px) {
-        flex-direction: column;
         align-items: center;
     }
 
-    @media only screen and (max-width: 330px) {
+    @media only screen and (max-width: 768px) {
         flex-direction: column;
         align-items: center;
     }
@@ -33,6 +28,7 @@ export const InfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    width: 100%;
 `;
 
 export const InfoHeader = styled.header`
@@ -43,8 +39,6 @@ export const InfoHeader = styled.header`
 `;
 
 export const Title = styled.h3`
-    position: relative;
-    text-align: center;
     text-align: left;
     font-size: 3rem;
     color: #000;
@@ -87,7 +81,6 @@ export const DiscountPrice = styled.div`
 
 export const SliderWrapper = styled.div`
     margin-bottom: 1rem;
-    max-width: 32rem;
     display: none;
 
     @media only screen and (max-width: 1200px) {
@@ -95,10 +88,6 @@ export const SliderWrapper = styled.div`
     }
 
     @media only screen and (max-width: 768px) {
-        display: block;
-    }
-
-    @media only screen and (max-width: 330px) {
         display: block;
     }
 `;

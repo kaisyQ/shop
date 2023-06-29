@@ -24,6 +24,9 @@ const CardAboutSection: React.FC<React.PropsWithChildren<ICardAboutSectionProps>
         if(window.outerWidth >= 768) {
             setVisibleText(true);
         }
+        return () => {
+            setVisibleText(true);
+        }
     }, [setVisibleText]) 
 
     

@@ -1,13 +1,11 @@
 import React from "react";
 
-import Slider from "components/Slider/Slider";
+import Slider from "components/Catalog/Products/Product/ProductAbout/Slider/Slider";
 
 import Images from "./Images/Images";
 import Sections from "./Sections/Sections";
 import Path from "components/Custom/Path/Path";
 import Component404 from "components/Error/404";
-
-import { useParams } from "react-router-dom";
 
 import { CardAboutConnectedProps } from "./ProductAboutContainer";
 
@@ -17,17 +15,24 @@ import {
 } from "./ProductAboutStyles"
 
 import useFetchById from "hooks/useFetchById";
+import useWindowWidth from "hooks/useWindowWidth";
+import { useParams } from "react-router-dom";
 
 const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductById }) => {
 
-    useFetchById(fetchProductById);
+    const { id } = useParams();
+
+    React.useEffect(() => {
+        if (!id) {
+            return;
+        }
+        fetchProductById(id);
+    }, [id, fetchProductById]);
+
+    const width = useWindowWidth();
 
     if (!product) {
-        return (
-            <>
-                <Component404 />
-            </>
-        );
+        return <Component404 />;
     }
 
     return (
@@ -43,13 +48,13 @@ const CardAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductByI
                 }}
             />
             <Wrapper>
-                
-                <SliderWrapper>
-                    <Slider images={product.imagesSrc}/>
-                </SliderWrapper>
-
-
-                <Images images={product.imagesSrc}/>
+                {
+                    width <= 768? <>
+                        <SliderWrapper>
+                            <Slider images={product.imagesSrc}/>
+                        </SliderWrapper>
+                    </> : <Images images={product.imagesSrc}/>
+                }
                 
                 <InfoWrapper>
                     <InfoHeader>

@@ -33,7 +33,6 @@ const Show = keyframes`
 
 export const Wrapper = styled.div`
     width: 100%;
-    max-width: 33rem;
     margin-bottom: 2rem;
 `;
 
@@ -89,6 +88,7 @@ export const Arrow = styled.div<IShowProps>`
 
 export const Span = styled.span`
     overflow: hidden;
+    flex-grow: 1;
 `;
 
 export const ParamsList = styled.ul<IShowProps>`

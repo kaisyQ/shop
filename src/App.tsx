@@ -12,16 +12,18 @@ import HintContainer from 'components/Hint/HintContainer';
 import { AppWrapper, MainContainer } from 'AppStyles';
 
 import { AppConnectedProps } from 'AppContainer';
+import useWindowWidth from 'hooks/useWindowWidth';
 
 
 const App: React.FC<AppConnectedProps> = (props) => {
   
   const { isDark, isHint, setIsHint, setIsDark, fetchToCheckMe, confirmModalVisibility } = props;
 
-  const date = new Date();
-
   const [isOpenSidebar, setIsOpenSidebar] = React.useState(false);
 
+  const width = useWindowWidth();
+
+  const date = new Date();
   const seconds = date.getSeconds();
   const min = date.getMinutes();
   const hours = date.getHours();
@@ -83,7 +85,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
       { confirmModalVisibility ? <ConfirmModalContainer /> : null }
 
-      { isHint ? <HintContainer /> : null } 
+      { isHint && width >= 768 ? <HintContainer /> : null } 
       
       <Navbar />
 
