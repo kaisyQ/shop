@@ -3,8 +3,8 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "types/types";
 
 import { LOADING, IDLE, FAILED } from "types/types";
-import type { IShortUser, LoadingType } from "types/types";
 
+import type { IShortUser, LoadingType } from "types/types";
 
 import { ADMIN, EMPLOYEE } from "types/types";
 
@@ -13,14 +13,16 @@ interface IUserInitialState {
     items: IUser[],
     current: IUser | null,
     loadingStatus: LoadingType,
-    error: Error | null
+    error: Error | null,
+    searchValue: string,
 }
 
 const initialState: IUserInitialState = {
     items: [],
     current: null,
     loadingStatus: IDLE,
-    error: null
+    error: null,
+    searchValue: "",
 }
 
 
@@ -155,6 +157,9 @@ const usersSlice = createSlice({
         setCurrentUser: (state, action: PayloadAction<null | IUser>) => {
             state.current = action.payload;
         },
+        setSearchValue: (state, action: PayloadAction<string>) => {
+            state.searchValue = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchUsers.pending, (state) => {
@@ -255,6 +260,9 @@ const usersSlice = createSlice({
 
 const { actions, reducer } = usersSlice;
 
-export const { addUser, removeUser, setCurrentUser } = actions;
+export const { 
+    addUser, removeUser, setCurrentUser, 
+    setSearchValue 
+} = actions;
 
 export default reducer;

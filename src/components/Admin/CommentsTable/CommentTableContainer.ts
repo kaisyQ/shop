@@ -6,7 +6,7 @@ import { fetchComments, fetchToDeleteComment } from "redux/reducers/comment/comm
 
 import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
 
-import { getComments } from "redux/reducers/comment/selector";
+import { getCommentSelectorType, getFilteredAdminComments } from "redux/reducers/comment/selector";
 
 import type { RootState } from "redux/store";
 
@@ -16,14 +16,18 @@ import withAuthRedirect from "components/Hoc/Redirect";
 
 import { getIsAuth } from "redux/reducers/auth/selector";
 
+import { setSelectorType } from "redux/reducers/comment/commentSlice";
+
 const mapStateToProps = (state: RootState) => ({
-    comments: getComments(state),
+    comments: getFilteredAdminComments(state),
     loading: getLoading(state),
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state),
+    select: getCommentSelectorType(state)
 })
 
 const mapDispatchToProps = {
-    fetchComments, fetchToDeleteComment, setConfirmModalData
+    fetchComments, fetchToDeleteComment, setConfirmModalData,
+    setSelectorType
 }
 
 

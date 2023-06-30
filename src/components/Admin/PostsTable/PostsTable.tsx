@@ -10,12 +10,20 @@ import PostsTableRow from "./PostsTableRow/PostsTableRow";
 
 import Preloader from "components/Ui/Preloader/Preloader";
 
+import type { SelectType } from "types/types";
+
+import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
+
 interface IBlogsTableProps extends IBlogsTableConnectedProps {
 }
 
 const PostsTable: React.FC<IBlogsTableProps> = (props) => {
     
-    const { posts, loading, fetchToDeletePost, fetchPosts, setConfirmModalData } = props;
+    const { 
+        posts, loading, fetchToDeletePost, 
+        fetchPosts, setConfirmModalData, setSearchValue,
+        setSelectorType, search, select
+    } = props;
 
     React.useEffect(() => {
         fetchPosts();
@@ -35,6 +43,16 @@ const PostsTable: React.FC<IBlogsTableProps> = (props) => {
 
     return (
         <>
+            <div>
+                <input value={search} onChange={(ev) => setSearchValue(ev.target.value)}/>
+                <div>
+                    <h3>sort by</h3>
+                    <select name="" id="" onChange={(ev) => setSelectorType(ev.target.value as SelectType)}>
+                        <option selected={select===SELECT_OLDEST} value={SELECT_OLDEST}>Oldest</option>
+                        <option selected={select===SELECT_NEWEST} value={SELECT_NEWEST}>Newest</option>
+                    </select>
+                </div>
+            </div>
             <TableWrapper>
                 <TableThead>
                     <TableTr>

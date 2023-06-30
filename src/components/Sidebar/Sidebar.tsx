@@ -19,8 +19,8 @@ interface ISidebarProps extends SidebarConnectedProps{
 const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
 
     const hideSidebar = (ev: React.MouseEvent<HTMLLIElement>) => {
-        setIsOpen(false)
-        setIsDark(false)
+        setIsOpen(false);
+        setIsDark(false);
     }
 
     return (

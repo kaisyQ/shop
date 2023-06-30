@@ -2,22 +2,27 @@ import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { IComment } from "types/types";
 
 import type { IServerComment, RatingScore } from "types/types";
-import type { LoadingType } from "types/types";
+
+import type { LoadingType, SelectType } from "types/types";
 
 import { IDLE, FAILED, LOADING } from "types/types";
+
+import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
 
 interface InitialStateType {
     comments: IComment[],
     filerScore: RatingScore | 0,
     loadingStatus: LoadingType,
-    error: Error | null
+    error: Error | null,
+    selectorType: SelectType,
 }
 
 const initialState: InitialStateType = {
     comments: [],
     filerScore: 0,
     loadingStatus: IDLE,
-    error: null
+    error: null,
+    selectorType: SELECT_NEWEST,
 }
 
 export const fetchComments = createAsyncThunk(
@@ -37,8 +42,6 @@ export const fetchComments = createAsyncThunk(
         }
     }
 );
-
-
 
 export const fetchToCreateComment = createAsyncThunk(
     "comments/fetchToCreateComment",
@@ -101,6 +104,9 @@ const commentSlice = createSlice({
         },
         setFilterScore: (state, action: PayloadAction<RatingScore | 0>) => {
             state.filerScore = action.payload
+        },
+        setSelectorType: (state, action: PayloadAction<SelectType>) => {
+            state.selectorType = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -170,6 +176,8 @@ const commentSlice = createSlice({
 
 const { reducer, actions } = commentSlice;
 
-export const { addComment, setFilterScore } = actions;
+export const { 
+    addComment, setFilterScore, setSelectorType, 
+} = actions;
 
 export default reducer;

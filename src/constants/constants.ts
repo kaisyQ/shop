@@ -1,0 +1,2 @@
+export const SELECT_OLDEST = "SELECT_OLDEST";
+export const SELECT_NEWEST = "SELECT_NEWEST";

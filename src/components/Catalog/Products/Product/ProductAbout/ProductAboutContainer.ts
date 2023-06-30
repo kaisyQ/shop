@@ -18,6 +18,6 @@ const mapDispatchToProps = {
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export type CardAboutConnectedProps = ConnectedProps<typeof connector>;
+export type ProductAboutConnectedProps = ConnectedProps<typeof connector>;
 
 export default connector(ProductAbout);

@@ -1,3 +1,5 @@
+import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
+
 export const LOADING = "LOADING";
 export const IDLE = "IDLE";
 export const FAILED = "FAILED";
@@ -29,7 +31,8 @@ export interface IShortProduct {
     id: string,
     name: string,
     count: number,
-    price: number
+    price: number,
+    createdAt: Date
 }
 
 
@@ -79,6 +82,7 @@ export interface IUser {
     role: Role
 }
 
+
 export type RatingScore = 1 | 2 | 3 | 4 | 5;
 
 
@@ -98,3 +102,5 @@ export interface IComment {
     text: string,
     rating:  RatingScore
 }
+
+export type SelectType = typeof SELECT_OLDEST |  typeof SELECT_NEWEST;

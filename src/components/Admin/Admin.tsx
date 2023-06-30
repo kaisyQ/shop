@@ -47,10 +47,10 @@ const Admin: React.FC<AdminConnectedProps> = ({ login, role, fetchToLogout, setC
                     </AdminNav>
                     <UserInfo>
                         <span>{ login }</span>
-                        <Icon.BoxArrowRight size={"2rem"} cursor={"pointer"} onClick={logoutClick}/>
+                        <Icon.BoxArrowRight size={"2rem"} cursor={"pointer"} onClick={logoutClick} />
                     </UserInfo>
                 </AdminHeader>
-                <TableSelector role={role}/>
+                <TableSelector role={role} />
                 <Outlet />
             </AdminWrapper>
         </>

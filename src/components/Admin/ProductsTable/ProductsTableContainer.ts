@@ -2,7 +2,12 @@ import ProductsTable from "./ProductsTable";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { getProductsLoading as getLoading, getShortProductItems } from "redux/reducers/product/selector";
+import { 
+    getFilteredProducts,
+    getProductsLoading as getLoading, 
+    getProductSearch, 
+    getProductSelectorType, 
+    getShortProductItems } from "redux/reducers/product/selector";
 import { fetchProducts, fetchToDeleteProduct } from "redux/reducers/product/productSlice";
 import type { RootState } from "redux/store";
 
@@ -10,16 +15,21 @@ import { getIsAuth } from "redux/reducers/auth/selector";
 
 import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
 
+import { setSelectorType, setSearchValue } from "redux/reducers/product/productSlice";
+
 import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps  = (state: RootState) => ({
-    products: getShortProductItems(state),
+    products: getFilteredProducts(state),
     isAuth: getIsAuth(state),
-    loading: getLoading(state)
+    loading: getLoading(state),
+    search: getProductSearch(state),
+    select: getProductSelectorType(state)
 });
 
 const mapDispatchToProps = {
-    fetchProducts, fetchToDeleteProduct, setConfirmModalData
+    fetchProducts, fetchToDeleteProduct, setConfirmModalData,
+    setSelectorType, setSearchValue
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

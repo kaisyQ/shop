@@ -2,14 +2,13 @@ import React from "react";
 
 import Input from '../Custom/Input/Input';
 import Button from "components/Custom/Button/Button";
-import Preloader from "components/Ui/Preloader/Preloader";
 
 import { LoginWrapper, Title, InputWrapper, BtnWrapper } from "./AuthStyles";
 
 import { AuthConnectedProps } from "./AuthContainer";
 import { Navigate } from "react-router-dom";
 
-import { LOADING, FAILED, IDLE } from "types/types";
+import { LOADING } from "types/types";
 
 
 const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin, loading, error }) => {

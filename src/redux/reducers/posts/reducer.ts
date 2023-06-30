@@ -1,11 +1,12 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPosts, getPost, deletePost } from "api/api";
 
-import { IPost, IPostWithDate } from "types/types";
+import type { IPost, IPostWithDate } from "types/types";
 
 import { LOADING, IDLE, FAILED } from "types/types";
 
-import type { LoadingType } from "types/types";
+import type { LoadingType, SelectType } from "types/types";
+
+import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
 
 interface IServerPost {
     id: string,
@@ -20,14 +21,18 @@ interface IBlogsInitialState {
     items: IPostWithDate[],
     current: null | IPostWithDate,
     loadingStatus: LoadingType,
-    error: Error | null
+    error: Error | null,
+    selectorType: SelectType,
+    searchValue: string
 }
 
 const initialState: IBlogsInitialState = {
     items: [],
     current: null,
     loadingStatus: IDLE,
-    error: null
+    error: null,
+    selectorType: SELECT_NEWEST,
+    searchValue: ""
 }
 
 export const fetchPosts = createAsyncThunk(
@@ -173,6 +178,12 @@ const postsSlice = createSlice({
                 }
             })
         },
+        setSelectorType: (state, action: PayloadAction<SelectType>) => {
+            state.selectorType = action.payload;
+        },
+        setSearchValue: (state, action: PayloadAction<string>) => {
+            state.searchValue = action.payload;
+        },
     },
     extraReducers: (builder) => {
         
@@ -296,7 +307,10 @@ const postsSlice = createSlice({
 
 const { actions, reducer } = postsSlice;
 
-export const { setPosts, setCurrent, removePost, updatePost } = actions;
+export const { 
+    setPosts, setCurrent, removePost, 
+    updatePost, setSearchValue, setSelectorType
+} = actions;
 
 
 export default reducer;

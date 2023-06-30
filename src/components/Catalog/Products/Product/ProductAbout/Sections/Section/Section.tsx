@@ -17,7 +17,7 @@ interface ICardAboutSectionProps {
 
 
 const CardAboutSection: React.FC<React.PropsWithChildren<ICardAboutSectionProps>> = (props) => {
-    
+    console.log('section-render')
     const [visibleText, setVisibleText] = React.useState(false);
     
     React.useEffect(() => {
@@ -41,7 +41,7 @@ const CardAboutSection: React.FC<React.PropsWithChildren<ICardAboutSectionProps>
             <Wrapper>
                 <Section>
                     <Title onClick={onTitleClick}>
-                        {children}
+                        { children }
                         <Span>{ title }</Span>
                         <Arrow visible={visibleText} />
                     </Title>

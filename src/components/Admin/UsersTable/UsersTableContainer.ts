@@ -3,23 +3,29 @@ import UsersTable from "./UsersTable";
 import { RootState } from "redux/store";
 
 import { ConnectedProps, connect } from "react-redux";
-import { getUsersWithId, getUsersLoading as getLoading } from "redux/reducers/users/selector";
+
+import { getFilteredUsers, getUsersLoading as getLoading, getUsersSearchValue } from "redux/reducers/users/selector";
+
 import { getIsAuth } from "redux/reducers/auth/selector";
 
 import { fetchUsers, fetchToDeleteUser } from "redux/reducers/users/usersSlice";
+
+import { setSearchValue } from "redux/reducers/users/usersSlice";
 
 import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
 
 import withAuthRedirect from "components/Hoc/Redirect";
 
 const mapStateToProps = (state: RootState) => ({
-    users: getUsersWithId(state),
+    users: getFilteredUsers(state),
     isAuth: getIsAuth(state), 
-    loading: getLoading(state)
+    loading: getLoading(state),
+    searchValue: getUsersSearchValue(state)
 });
 
 const mapDispatchToProps = {
-    fetchUsers, fetchToDeleteUser, setConfirmModalData
+    fetchUsers, fetchToDeleteUser, setConfirmModalData,
+    setSearchValue
 };
 
 export type MapDispatchToProps = typeof mapDispatchToProps;

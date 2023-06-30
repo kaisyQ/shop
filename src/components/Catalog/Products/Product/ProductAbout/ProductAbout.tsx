@@ -7,7 +7,7 @@ import Sections from "./Sections/Sections";
 import Path from "components/Custom/Path/Path";
 import Component404 from "components/Error/404";
 
-import { CardAboutConnectedProps } from "./ProductAboutContainer";
+import { ProductAboutConnectedProps } from "./ProductAboutContainer";
 
 import { 
     Wrapper, SliderWrapper, InfoWrapper, Title, PriseWrapper,
@@ -15,9 +15,13 @@ import {
 } from "./ProductAboutStyles"
 
 import useWindowWidth from "hooks/useWindowWidth";
+
 import { useParams } from "react-router-dom";
 
-const ProductAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProductById }) => {
+interface ProductAboutProps extends ProductAboutConnectedProps {
+}
+
+const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProductById }) => {
 
     const { id } = useParams();
 
@@ -30,7 +34,7 @@ const ProductAbout: React.FC<CardAboutConnectedProps> = ({ product, fetchProduct
 
     const width = useWindowWidth();
 
-    console.log("render-product-about")
+    console.log("render-product-about", product, fetchProductById)
 
     if (!product) {
         return <Component404 />;

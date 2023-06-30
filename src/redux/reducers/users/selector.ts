@@ -1,4 +1,4 @@
-import { RootState } from "redux/store";
+import type { RootState } from "redux/store";
 
 import { getId } from "../auth/selector";
 
@@ -10,6 +10,8 @@ export const getCurrentUser = (state: RootState) => state.users.current;
 
 export const getUsersLoading = (state: RootState) => state.users.loadingStatus;
 
+export const getUsersSearchValue = (state: RootState) => state.users.searchValue;
+
 export const getUsersWithId = createSelector([getId, getUsers], (id, users) => {
     if (!id) {
         return users;
@@ -17,5 +19,10 @@ export const getUsersWithId = createSelector([getId, getUsers], (id, users) => {
     return users.filter(user => user.id !== id);
 });
 
-
+export const getFilteredUsers = createSelector(
+    [getUsersWithId, getUsersSearchValue],
+    (users, search) => {
+        return users.filter(user => user.login.includes(search));
+    }
+);
 

@@ -2,21 +2,33 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { getProducts, getProduct, deleteProduct } from "api/api";
+import { getProducts, getProduct } from "api/api";
+
 
 import { 
-    IProduct, ServerProduct, LoadingType, IDLE, LOADING, FAILED 
+    IProduct, ServerProduct, LoadingType, IDLE, LOADING, FAILED, SelectType
 } from "types/types";
 
+import { SELECT_NEWEST } from "constants/constants";
 
 
 interface IProductsInitialState {
     items: IProduct[],
     current: IProduct | null,
     loadingStatus: LoadingType,
-    error: Error | null
+    error: Error | null,
+    selectorType: SelectType,
+    searchValue: string
 }
 
+const initialState : IProductsInitialState = {
+    items: [],
+    loadingStatus: IDLE,
+    error: null,
+    current: null,
+    selectorType: SELECT_NEWEST,
+    searchValue: ""
+}
 
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts", async () => {
@@ -86,14 +98,6 @@ export const fetchToCreateProduct = createAsyncThunk(
     }
 );
 
-
-const initialState : IProductsInitialState = {
-    items: [],
-    loadingStatus: IDLE,
-    error: null,
-    current: null
-}
-
 const productSlice = createSlice({
     name: 'productSlice',
     initialState, 
@@ -115,9 +119,15 @@ const productSlice = createSlice({
                 }
             })
         },
-        removeProduct:(state, action: PayloadAction<string>) => {
+        removeProduct: (state, action: PayloadAction<string>) => {
             state.items = state.items.filter(product => product.id !== action.payload);
-        }
+        },
+        setSelectorType: (state, action: PayloadAction<SelectType>) => {
+            state.selectorType = action.payload;
+        },
+        setSearchValue: (state, action: PayloadAction<string>) => {
+            state.searchValue = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProducts.pending, (state) => {
@@ -240,6 +250,9 @@ const productSlice = createSlice({
 
 const { actions, reducer } = productSlice;
 
-export const { setCurrent, addProduct, removeProduct, updateProduct } = actions;
+export const { 
+    setCurrent, addProduct, removeProduct, 
+    updateProduct, setSelectorType, setSearchValue 
+} = actions;
 
 export default reducer;

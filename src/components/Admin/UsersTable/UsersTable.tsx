@@ -6,16 +6,18 @@ import { UserTableConnectedProps } from "./UsersTableContainer";
 
 import UsersTableRow from "./UsersTableRow/UsersTableRow";
 
-import { LOADING } from "types/types";
+import { LOADING, SelectType } from "types/types";
 
 import Preloader from "components/Ui/Preloader/Preloader";
+
+import { SELECT_NEWEST, SELECT_OLDEST } from "constants/constants";
 
 interface IUserTableProps extends UserTableConnectedProps {
 }
 
 const UsersTable: React.FC<IUserTableProps> = (props) => {
     
-    const { users, loading, fetchUsers, fetchToDeleteUser, setConfirmModalData } = props;
+    const { users, loading, fetchUsers, fetchToDeleteUser, setConfirmModalData, searchValue, setSearchValue } = props;
 
     React.useEffect(() => {
         fetchUsers();
@@ -35,6 +37,9 @@ const UsersTable: React.FC<IUserTableProps> = (props) => {
 
     return (
         <>
+            <div>
+                <input value={searchValue} onChange={(ev) => setSearchValue(ev.target.value)}/>
+            </div>
             <TableWrapper>
                 <TableThead>
                     <TableTr>
