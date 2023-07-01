@@ -6,9 +6,10 @@ import type { LoadingType, SelectType } from "types/types";
 
 import { IDLE, FAILED, LOADING } from "constants/constants";
 
-import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
+import { SELECT_NEWEST } from "constants/constants";
 
 import { getComments, deleteComment, createComment } from "api/api";
+
 import { CreateCommentResponse, DeleteCommentResponse, GetCommentsResponse } from "./response.types";
 
 interface InitialStateType {
@@ -46,7 +47,7 @@ export const fetchToCreateComment = createAsyncThunk(
         return {
             status: response.status,
             comment: response.data.comment
-        }
+        };
     }
 );
 

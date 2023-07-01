@@ -28,6 +28,23 @@ export type ServerProduct = {
     updated_at: string,
 }
 
+export type ServerCreatedProduct = {
+    id: string,
+    name: string,
+    bestseller: boolean,
+    about_delivery: string,
+    about_product: string,
+    count: number,
+    price: number,
+    discount_price: number,
+    depth: string,
+    height: string,
+    width: string,
+    images: string[],
+    created_at: string,
+    updated_at: string,
+}
+
 
 export interface IShortProduct {
     id: string,
@@ -35,6 +52,11 @@ export interface IShortProduct {
     count: number,
     price: number,
     createdAt: Date
+}
+
+export type TopProduct = {
+    imagesSrc: string[],
+    id: string
 }
 
 

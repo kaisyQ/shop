@@ -18,3 +18,4 @@ export const deleteComment = (id: string) => HttpQuery.delete(`comments/${id}`);
 export const createComment = (body: any) => HttpQuery.post("comments", body, {
     "Content-Type": "application/json"
 });
+

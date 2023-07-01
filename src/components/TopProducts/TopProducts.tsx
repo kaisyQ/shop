@@ -20,15 +20,12 @@ interface ITopProductsProps extends TopProductsConnectedProps{
 
 const TopProducts: React.FC<ITopProductsProps> = ({ fetchTopProducts, topProducts }) => {
     
-    /*React.useEffect(() => {
+    React.useEffect(() => {
         fetchTopProducts();
     }, [fetchTopProducts]);
-*/
+    
     const width = useWindowWidth();
 
-    if (topProducts.length === 0) {
-        return null;
-    }
     return (
         <>
             <TopProductsWrapper>

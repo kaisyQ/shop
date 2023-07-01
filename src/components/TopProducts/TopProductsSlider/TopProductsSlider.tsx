@@ -5,11 +5,13 @@ import {
     TopProductsSliderItemImage
 } from "./TopProductsSliderStyles";
 
-import type { IProduct } from "types/types";
+import type { TopProduct } from "types/types";
+
+import { NavLink } from "react-router-dom";
 
 interface ITopProductsSliderProps {
     width: number,
-    topProducts: IProduct[]
+    topProducts: TopProduct[]
 }
 
 const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
@@ -18,7 +20,19 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
 
     const [current, setCurrent] = React.useState(0);
 
-    const [arr, setArr] = React.useState<string[]>(["red",  "yellow", "green",  "pink"]);
+    const [arr, setArr] = React.useState<{ image: string, id: string }[] | null>(null);
+
+    React.useEffect(() => {
+        setArr(props.topProducts.map(topProduct => ({ 
+                image: topProduct.imagesSrc[0],
+                id: topProduct.id
+            })
+        ));
+
+        return () => {
+            setArr(null);
+        }
+    }, [props.topProducts, setArr])
 
 
     React.useEffect(() => {
@@ -28,6 +42,9 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
         }
         
         intervalRef.current = setInterval(() => {
+            if (!arr) {
+                return;
+            }
             setCurrent(prevCurrent=>{
                 if (prevCurrent === arr.length-1) return 0;
                 return prevCurrent+1;
@@ -42,16 +59,22 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
                 intervalRef.current = null;
             }
         }
-    }, []);
+    }, [arr]);
 
     return (
         <>
             <TopProductsSliderWrapper width={props.width}>
                 <TopProductsSliderBlock width={props.width}>
                     {
-                    arr.map
-                        ((itm, index) => <TopProductsSliderItem key={index} width={props.width} clr={itm} current={current}/>
-                    )}
+                        arr ? arr.map
+                            (
+                                (topProduct, index) => <TopProductsSliderItem key={index} width={props.width} current={current}>
+                                        <NavLink to={`catalog/${topProduct.id}`}>
+                                            <TopProductsSliderItemImage src={topProduct.image} alt="top-product"/>
+                                        </NavLink>
+                                    </TopProductsSliderItem>
+                            ) : null
+                    }
                 </TopProductsSliderBlock>
             </TopProductsSliderWrapper>
         </>

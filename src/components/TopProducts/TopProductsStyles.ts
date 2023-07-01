@@ -14,6 +14,14 @@ export const TopProductsTitle = styled.h2`
     text-align: center;
     font-weight: 500;
     text-decoration: underline;
+    
+    @media only screen and (max-width: 768px) {
+        font-size: 3.5rem;
+    }
+
+    @media only screen and (max-width: 330px) {
+        font-size: 2rem;
+    }
 `;
 
 export const TopProductsMain = styled.main`

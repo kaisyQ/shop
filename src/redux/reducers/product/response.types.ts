@@ -1,4 +1,4 @@
-import { ServerProduct } from "types/types"
+import type { ServerProduct, ServerCreatedProduct } from "types/types"
 
 export type GetProductsResponse = {
     data: {
@@ -29,7 +29,7 @@ export type DeleteProductResponse = {
 
 export type CreateProductResponse = {
     data: {
-        createdProduct: ServerProduct
+        createdProduct: ServerCreatedProduct
     },
     status: number
 }
