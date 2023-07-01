@@ -7,3 +7,7 @@ export const TopCheckboxLabel = styled.label`
     font-size: 1.6rem;
 `;
 
+export const Checkbox = styled.input`
+    width: 2rem;
+    height: 2rem;
+`;

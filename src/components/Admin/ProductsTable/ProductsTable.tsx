@@ -18,7 +18,7 @@ import { SELECT_NEWEST, SELECT_OLDEST } from "constants/constants";
 
 import type { SelectType } from "types/types";
 
-import { TopCheckboxLabel } from "./ProductTableStyles";
+import { TopCheckboxLabel, Checkbox } from "./ProductTableStyles";
 
 interface IProductsTableProps extends IProductConnectedProps{
 }
@@ -63,7 +63,7 @@ const ProductsTable: React.FC<IProductsTableProps> = (props) => {
                 <div>
                     <TopCheckboxLabel>
                         <span>Top Of the week</span>
-                        <input type="checkbox" checked={filteredByTop} onChange={(ev) => setFilteredByTop(!filteredByTop)} />
+                        <Checkbox type="checkbox" checked={filteredByTop} onChange={(ev) => setFilteredByTop(!filteredByTop)} />
                     </TopCheckboxLabel>
                 </div>
             </FilterWrapper>

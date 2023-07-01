@@ -2,7 +2,10 @@ import React from "react";
 
 import { LOADING } from "constants/constants";
 
-import { TableWrapper, TableThead, TableTbody, TableTr, TableTd } from '../AdminStyles';
+import { 
+    TableWrapper, TableThead, TableTbody, 
+    TableTr, TableTd, FilterSearch, FilterWrapper
+} from '../AdminStyles';
 
 import { IBlogsTableConnectedProps } from "./PostsTableContainer";
 
@@ -43,16 +46,16 @@ const PostsTable: React.FC<IBlogsTableProps> = (props) => {
 
     return (
         <>
-            <div>
-                <input value={search} onChange={(ev) => setSearchValue(ev.target.value)}/>
+            <FilterWrapper>
+                <FilterSearch placeholder="Search" value={search} onChange={(ev) => setSearchValue(ev.target.value)}/>
                 <div>
-                    <h3>sort by</h3>
+                    <h3>Sort by</h3>
                     <select name="" id="" onChange={(ev) => setSelectorType(ev.target.value as SelectType)}>
                         <option selected={select===SELECT_OLDEST} value={SELECT_OLDEST}>Oldest</option>
                         <option selected={select===SELECT_NEWEST} value={SELECT_NEWEST}>Newest</option>
                     </select>
                 </div>
-            </div>
+            </FilterWrapper>
             <TableWrapper>
                 <TableThead>
                     <TableTr>

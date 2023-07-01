@@ -1,18 +1,19 @@
 import React from "react";
 
-import{ TableWrapper, TableThead, TableTbody, TableTr, TableTd } from './../AdminStyles';
+import{ 
+    TableWrapper, TableThead, TableTbody, 
+    TableTr, TableTd, FilterSearch, FilterWrapper
+} from './../AdminStyles';
 
 import { UserTableConnectedProps } from "./UsersTableContainer";
 
 import UsersTableRow from "./UsersTableRow/UsersTableRow";
 
-import type { SelectType } from "types/types";
 
 import { LOADING } from "constants/constants";
 
 import Preloader from "components/Ui/Preloader/Preloader";
 
-import { SELECT_NEWEST, SELECT_OLDEST } from "constants/constants";
 
 interface IUserTableProps extends UserTableConnectedProps {
 }
@@ -39,9 +40,9 @@ const UsersTable: React.FC<IUserTableProps> = (props) => {
 
     return (
         <>
-            <div>
-                <input value={searchValue} onChange={(ev) => setSearchValue(ev.target.value)}/>
-            </div>
+            <FilterWrapper>
+                <FilterSearch placeholder="Search" value={searchValue} onChange={(ev) => setSearchValue(ev.target.value)}/>
+            </FilterWrapper>
             <TableWrapper>
                 <TableThead>
                     <TableTr>

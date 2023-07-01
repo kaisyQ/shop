@@ -2,7 +2,7 @@ import React from "react";
 
 import {
     TableWrapper, TableThead, TableTbody, 
-    TableTr, TableTd,
+    TableTr, TableTd, FilterSearch, FilterWrapper
 } from '../AdminStyles';
 
 import Preloader from "components/Ui/Preloader/Preloader";
@@ -48,13 +48,15 @@ const CommentsTable: React.FC<CommentsTableProps> = (props) => {
 
     return (
         <>
-            <div>
-                <h3>sort by</h3>
-                <select name="" id="" onChange={(ev) => setSelectorType(ev.target.value as SelectType)}>
-                    <option selected={select===SELECT_OLDEST} value={SELECT_OLDEST}>Oldest</option>
-                    <option selected={select===SELECT_NEWEST} value={SELECT_NEWEST}>Newest</option>
-                </select>
-            </div>
+            <FilterWrapper>
+                <div>
+                    <h3>Sort by</h3>
+                    <select name="" id="" onChange={(ev) => setSelectorType(ev.target.value as SelectType)}>
+                        <option selected={select===SELECT_OLDEST} value={SELECT_OLDEST}>Oldest</option>
+                        <option selected={select===SELECT_NEWEST} value={SELECT_NEWEST}>Newest</option>
+                    </select>
+                </div>
+            </FilterWrapper>
             <TableWrapper>
                 <TableThead>
                     <TableTr>
