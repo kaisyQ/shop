@@ -5,8 +5,11 @@ import {
     TopProductsSliderItemImage
 } from "./TopProductsSliderStyles";
 
+import type { IProduct } from "types/types";
+
 interface ITopProductsSliderProps {
-    width: number
+    width: number,
+    topProducts: IProduct[]
 }
 
 const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {

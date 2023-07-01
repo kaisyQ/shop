@@ -33,6 +33,7 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
             state.height&&state.depth
         ) {
             state.imagesFiles.map(file => formData.append("productImages", file));
+            
             const bodyData = JSON.stringify({
                 name: state.name,
                 aboutDelivery: state.aboutDelivery,
@@ -41,8 +42,10 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
                 height: state.height,
                 depth: state.depth,
                 price: parseInt(state.price),
-                discountPrice: parseInt(state.discountPrice)
+                discountPrice: parseInt(state.discountPrice),
+                bestseller: state.topOfTheWeek
             })
+            
             formData.append("data", bodyData);
             
             setConfirmModalData({
@@ -68,10 +71,9 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
                     </BlockWrapper>
                     <BlockWrapper>
                         <Images dispatch={dispatch} imagesSrc={state.imagesSrc} />
-                    <BtnWrapper>
-                        
-                        <Button onClick={onCreateClick} isReverse={true}>Save</Button>
-                    </BtnWrapper>
+                        <BtnWrapper>
+                            <Button onClick={onCreateClick} isReverse={true}>Save</Button>
+                        </BtnWrapper>
                     </BlockWrapper>
                 </EditForm>
             </ProductEditWrapper>

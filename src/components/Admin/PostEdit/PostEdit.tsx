@@ -70,7 +70,7 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
                 },
                 isVisible: true,
                 message: "Confirm creating post..."
-            })
+            });
         } else {
             if (!imageFile && !title && !text) {
                 return;

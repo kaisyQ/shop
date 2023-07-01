@@ -12,7 +12,7 @@ interface IServerPost {
     id: string,
     updated_at: string,
     created_at: string,
-    imageSrc: string,
+    imagesSrc: { id: string, src: string }[],
     text: string,
     title: string
 }
@@ -45,6 +45,7 @@ export const fetchPosts = createAsyncThunk(
             });
 
             const data = await response.json();
+            console.log(data);
             return {
                 posts: data.posts,
                 status: response.status
@@ -115,6 +116,7 @@ export const fetchToCreatePost = createAsyncThunk(
             })
 
             const data = await response.json();
+            console.log(data)
             return {
                 post: data.createdPost,
                 status: response.status
@@ -149,8 +151,6 @@ export const fetchToUpdatePost = createAsyncThunk(
 
     }
 );
-
-
 
 
 const postsSlice = createSlice({
@@ -198,7 +198,7 @@ const postsSlice = createSlice({
                 id: post.id,
                 title: post.title,
                 text: post.text,
-                imageSrc: post.imageSrc,
+                imagesSrc: post.imagesSrc,
                 date: new Date(post.created_at)
             }));
         })
@@ -221,7 +221,7 @@ const postsSlice = createSlice({
                     id: action.payload.post.id,
                     title: action.payload.post.title,
                     text: action.payload.post.text,
-                    imageSrc: action.payload.post.imageSrc,
+                    imagesSrc: action.payload.post.imagesSrc,
                     date: new Date(action.payload.post.created_at)
                 } as IPostWithDate;
             }
@@ -263,7 +263,7 @@ const postsSlice = createSlice({
                 state.items.push({
                     id: action.payload.post.id,
                     date: new Date(action.payload.post.created_at),
-                    imageSrc: action.payload.post.imageSrc,
+                    imagesSrc: action.payload.post.imagesSrc,
                     text: action.payload.post.text,
                     title:action.payload.post.title
                 });
@@ -292,7 +292,7 @@ const postsSlice = createSlice({
                     return {
                         id: action.payload.post.id,
                         date: new Date(action.payload.post.created_at),
-                        imageSrc: action.payload.post.imageSrc,
+                        imagesSrc: action.payload.post.imagesSrc,
                         text: action.payload.post.text,
                         title:action.payload.post.title
                     }

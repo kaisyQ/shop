@@ -2,9 +2,10 @@ import React from "react";
 import Input from "components/Custom/Input/Input";
 
 import { actions } from "reducers/product-edit/reducer";
+
 import type { ProductsDispatchType } from "reducers/product-edit/reducer";
 
-import { InputsWrapper, InputWrapper } from "./InputStyles";
+import { InputsWrapper, InputWrapper, Label, Checkbox } from "./InputStyles";
 
 
 interface IInputsProps {
@@ -17,7 +18,8 @@ interface IInputsProps {
         discountPrice: string,
         width: string,
         height: string,
-        depth: string
+        depth: string,
+        topOfTheWeek: boolean
     }
 }
 
@@ -28,6 +30,14 @@ const Inputs: React.FC<IInputsProps> = ({ dispatch, state }) => {
                 <Input placeholder="Name" id="product-edit-title" type="input" 
                     onChange={(ev) => dispatch(actions.setName(ev.target.value))} value={state.name}
                 />
+            </InputWrapper>
+            <InputWrapper>
+                <Label>
+                    <span>top of the week</span>
+                    <Checkbox type="checkbox" checked={state.topOfTheWeek} 
+                        onChange={(ev) => dispatch(actions.setTopOfTheWeek(!state.topOfTheWeek))}
+                    />
+                </Label>
             </InputWrapper>
 
             <InputWrapper>

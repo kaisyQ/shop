@@ -13,3 +13,15 @@ export const InputsWrapper = styled.div`
 export const InputWrapper = styled.div`
 
 `;
+
+export const Label = styled.label`
+    display: flex;
+    gap: 1rem;
+    font-size: 2rem;
+    align-items: center;
+`;
+
+export const Checkbox = styled.input`
+    width: 2rem;
+    height: 2rem;
+`;

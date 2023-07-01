@@ -1,6 +1,7 @@
 import React from "react"
 
 import { Slider, Block, SliderItem } from "./SliderStyles"
+
 import useWindowWidth from "hooks/useWindowWidth"
 
 
@@ -10,9 +11,8 @@ interface ISliderProps {
 
 export default ({ images }: ISliderProps) => {
 
-    const sliderRef = React.useRef(null)
-
     const width = useWindowWidth();
+    
     return (
         <>
             <Slider width={(width-40).toString()+"px"} >

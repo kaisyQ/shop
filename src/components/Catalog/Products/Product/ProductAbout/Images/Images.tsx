@@ -14,7 +14,6 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                 {
 
                     (() => {
-                        console.log("call")
                         const result: React.JSX.Element[] = [];
                         for(let i=0; i<images.length; ++i) {
                             if (i % 3 === 0)  {

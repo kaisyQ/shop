@@ -1,40 +1,11 @@
-import axios from 'axios';
-import { IShortUser } from 'types/types';
+import HttpQuery from "./fetch.setup/fetch.setup";
 
-const instance = axios.create({
-    baseURL: 'http://127.0.0.1:8000/',
-    withCredentials: true,
-    headers: {
-        "Content-Type": "multipart/form-data; application/json; charset=utf-8"
-    }
-});
+export const getProducts = () => HttpQuery.get('products');
+   
+export const getTopProducts = () => HttpQuery.get("bestProducts");
 
+export const getProduct = (id: string) => HttpQuery.get(`products/${id}`);
 
-export const getUsers = () => instance.get("users");
-export const getUser = (id: string) => instance.get(`users/${id}`);
-export const createUser = (user: IShortUser) => instance.post("users", {
-    ...user
-});
-export const updateUser = (id: string, user: IShortUser) => instance.put("users", {
-    data: {
-        id: id,
-        user: {...user}
-    }
-});
-export const deleteUser = (id: string) => instance.delete(`users/${id}`);
+export const deleteProduct = (id: string) => HttpQuery.delete(`products/${id}`);
 
-
-export const getPosts = () => instance.get("posts");
-export const getPost = (id: string) => instance.get(`posts/${id}`);
-export const deletePost = (id: string) => instance.delete(`posts/${id}`);
-
-
-export const getProducts = () => instance.get("products");
-export const getProduct = (id: string) => instance.get(`products/${id}`); 
-export const deleteProduct = (id: string) => instance.delete(`products/${id}`);
-
-export default instance;
-
-
-
-
+export const createProduct = (body: FormData) => HttpQuery.post("products", body);

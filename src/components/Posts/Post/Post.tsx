@@ -4,6 +4,8 @@ import Button from "components/Custom/Button/Button";
 
 import { NavLink } from "react-router-dom";
 
+import useWindowWidth from "hooks/useWindowWidth";
+
 import { 
     CardWrapper, CardImageWrapper, CardImage, CardInfoWrapper, CardInfoContainer, CardInfo, CardInfoItem,
     CardTitle, CardAbout
@@ -13,13 +15,15 @@ import {
 interface IBlogItemProps {
     id: string,
     title: string,
-    imageSrc: string
+    imagesSrc: {id: string, src: string}[]
 }
 
 
-const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imageSrc }) => {
+const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imagesSrc }) => {
 
     const [isHovered, setIsHovered] = React.useState(false);
+
+    const width = useWindowWidth();
 
     const onImageMouseOver = () => {
         setIsHovered(true);
@@ -28,6 +32,16 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imageSrc }) => {
     const onImageMouseOut = () => {
         setIsHovered(false);
     }
+
+    const smallSrc = imagesSrc.find(imageSrc => imageSrc.src.toLowerCase().includes("small".toLowerCase()));
+    const mediumSrc = imagesSrc.find(imageSrc => imageSrc.src.toLowerCase().includes("large".toLowerCase()));
+    const largeSrc = imagesSrc.find(imageSrc => imageSrc.src.toLowerCase().includes("medium".toLowerCase()));
+
+    let resSrc : string | undefined = largeSrc?.src;
+    
+    if (width <= 768) resSrc = mediumSrc?.src;
+    if (width <= 330) resSrc = smallSrc?.src;
+
 
     return (
         <>
@@ -39,7 +53,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imageSrc }) => {
                     <NavLink to={`/posts/${id}`}>
                         <CardImage 
                             isHovered={isHovered}
-                            src={imageSrc}
+                            src={resSrc}
                             alt="Card image" 
                         />
                     </NavLink>

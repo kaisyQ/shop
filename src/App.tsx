@@ -12,8 +12,8 @@ import HintContainer from 'components/Hint/HintContainer';
 import { AppWrapper, MainContainer } from 'AppStyles';
 
 import { AppConnectedProps } from 'AppContainer';
-import useWindowWidth from 'hooks/useWindowWidth';
 
+import useWindowWidth from 'hooks/useWindowWidth';
 
 const App: React.FC<AppConnectedProps> = (props) => {
   

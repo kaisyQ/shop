@@ -13,6 +13,7 @@ export type LoadingType = typeof LOADING | typeof IDLE | typeof FAILED;
 export type ServerProduct = {
     id: string,
     name: string,
+    bestseller: boolean,
     about_delivery: string,
     about_product: string,
     count: number,
@@ -46,6 +47,7 @@ export interface IProduct extends IShortProduct {
     },
     delivery: string,
     imagesSrc: string[],
+    topOfTheWeek: boolean,
     createdAt: Date
 }
 
@@ -54,7 +56,7 @@ export interface IPost {
     id?: string,
     title: string,
     text: string,
-    imageSrc: string,
+    imagesSrc: {id: string, src: string}[],
 }
 
 
@@ -63,7 +65,7 @@ export interface IPostWithDate {
     id: string,
     title: string,
     text: string,
-    imageSrc: string,
+    imagesSrc: {id: string, src: string}[],
     date: Date
 }
 

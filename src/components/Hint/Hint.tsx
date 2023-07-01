@@ -45,7 +45,7 @@ const Hint: React.FC<IHintProps> = ({ setIsHint, isHint }) => {
           const min = date.getMinutes();
           const hours = date.getHours();
           
-          if (time === 2) {
+          if (time === 120) {
             setIsHint(true);
             setIsRunningTimer(false);
             return;

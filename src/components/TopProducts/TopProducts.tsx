@@ -6,17 +6,29 @@ import {
 } from "./TopProductsStyles";
 
 import TopProduct from "./TopProduct/TopProduct";
+
 import TopProductsSlider from "./TopProductsSlider/TopProductsSlider";
 
 import useWindowWidth from "hooks/useWindowWidth";
 
-interface ITopProductsProps {
+import type { TopProductsConnectedProps } from "./TopProductsContainer";
+
+interface ITopProductsProps extends TopProductsConnectedProps{
 }
 
-const TopProducts: React.FC<ITopProductsProps> = (props) => {
+
+
+const TopProducts: React.FC<ITopProductsProps> = ({ fetchTopProducts, topProducts }) => {
     
+    /*React.useEffect(() => {
+        fetchTopProducts();
+    }, [fetchTopProducts]);
+*/
     const width = useWindowWidth();
 
+    if (topProducts.length === 0) {
+        return null;
+    }
     return (
         <>
             <TopProductsWrapper>
@@ -25,12 +37,11 @@ const TopProducts: React.FC<ITopProductsProps> = (props) => {
                 </TopProductsHeader>
                 {
                     width <= 330 ? 
-                        <TopProductsSlider width={width}/> : <>
+                        <TopProductsSlider topProducts={topProducts} width={width}/> : <>
                             <TopProductsMain>
-                                <TopProduct />
-                                <TopProduct />
-                                <TopProduct />
-                                <TopProduct />
+                            {
+                                topProducts.map(product => <TopProduct {...product} />)
+                            }
                             </TopProductsMain> 
                         </>
                 }

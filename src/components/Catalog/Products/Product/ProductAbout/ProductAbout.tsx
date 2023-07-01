@@ -34,7 +34,6 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
 
     const width = useWindowWidth();
 
-    console.log("render-product-about", product, fetchProductById)
 
     if (!product) {
         return <Component404 />;

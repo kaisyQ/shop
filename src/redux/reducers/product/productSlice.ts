@@ -2,18 +2,21 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { getProducts, getProduct } from "api/api";
+import { getProduct, getProducts, deleteProduct, createProduct, getTopProducts } from "api/api";
 
 
 import { 
-    IProduct, ServerProduct, LoadingType, IDLE, LOADING, FAILED, SelectType
+    IProduct, LoadingType, IDLE, LOADING, FAILED, SelectType
 } from "types/types";
 
 import { SELECT_NEWEST } from "constants/constants";
 
+import type { GetProductsResponse, GetProductResponse, DeleteProductResponse, CreateProductResponse } from "./response.types";
+
 
 interface IProductsInitialState {
     items: IProduct[],
+    topProducts: IProduct[]
     current: IProduct | null,
     loadingStatus: LoadingType,
     error: Error | null,
@@ -23,6 +26,7 @@ interface IProductsInitialState {
 
 const initialState : IProductsInitialState = {
     items: [],
+    topProducts: [],
     loadingStatus: IDLE,
     error: null,
     current: null,
@@ -32,46 +36,33 @@ const initialState : IProductsInitialState = {
 
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts", async () => {
-        try {
-            const response = await getProducts();
-            return response.data;
-        } catch (error) {
-            console.log(error);
-        }
+        const response: GetProductsResponse = await getProducts();
+        return {
+            products: response.data.products,
+            status: response.status
+        };
     }
 );
 
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById", 
     async (id: string) => {
-        try {
-            const response = await getProduct(id);
-            return response.data;
-        } catch (error) {
-            console.log(error);
-        }
+        const response: GetProductResponse = await getProduct(id);
+        return {
+            product: response.data.product,
+            status: response.status
+        };
     }
 );
 
 export const fetchToDeleteProduct = createAsyncThunk(
     "products/fetchToDeleteProduct", 
     async (id: string) => {
-        try {
-            const response = await fetch(`http://localhost:8000/products/${id}`, {
-                method: "DELETE",
-                credentials: "include",
-                headers: {
-                    "Content-type": "application/json"
-                }
-            })
-            const data = await response.json();
-            return {
-                product: data.deletedProduct,
-                status: response.status
-            };
-        } catch (error) {
-            console.log(error);
-        }
+        const response: DeleteProductResponse = await deleteProduct(id);
+        return {
+            id: response.data.deletedProduct.id,
+            status: response.status
+        };
     }
 );
 
@@ -79,24 +70,25 @@ export const fetchToDeleteProduct = createAsyncThunk(
 export const fetchToCreateProduct = createAsyncThunk(
     "products/fetchToCreateProduct", 
     async (formData: FormData) => {
-        try {
-            const response = await fetch("http://localhost:8000/products", {
-                method: "POST", 
-                body: formData,
-                credentials: "include"
-            });
-            const data = await response.json();
-
-            const result = {
-                product: data.createdProduct as ServerProduct,
-                status: response.status
-            }
-            return result;
-        } catch (error) {
-            console.log(error);
-        }
+        const response: CreateProductResponse = await createProduct(formData);
+        return {
+            product: response.data.createdProduct,
+            status: response.status
+        };
     }
 );
+
+export const fetchTopProducts = createAsyncThunk(
+    "products/fetchTopProducts",
+    async () => {
+        const response: GetProductsResponse = await getTopProducts();
+        return {
+            products: response.data.products,
+            status: response.status
+        };
+    }
+);
+
 
 const productSlice = createSlice({
     name: 'productSlice',
@@ -134,10 +126,11 @@ const productSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<{products: ServerProduct[]}>) => {
+        builder.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<any>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            state.items = action.payload.products.map(product => {
+            
+            state.items = action.payload.products.map((product: any) => {
                 return {
                     id: product.id,
                     name: product.name,
@@ -152,7 +145,8 @@ const productSlice = createSlice({
                         Depth: product.depth
                     },
                     createdAt: new Date(product.created_at),
-                    imagesSrc: product.images.map(img => img.src)
+                    imagesSrc: product.images.map((img: any) => img.src),
+                    topOfTheWeek: product.bestseller
                 };
             })
         })
@@ -168,7 +162,7 @@ const productSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchProductById.fulfilled, 
-            (state, action: PayloadAction<{ product: ServerProduct }>) => {
+            (state, action: PayloadAction<any>) => {
                 state.loadingStatus = IDLE;
                 state.error = null;
                 const product = action.payload.product;
@@ -186,7 +180,8 @@ const productSlice = createSlice({
                         Height: product.height,
                         Depth: product.depth
                     },
-                    imagesSrc: product.images.map(img => img.src)
+                    imagesSrc: product.images.map((img: any) => img.src),
+                    topOfTheWeek: product.bestseller
                 } as IProduct;
         })
         builder.addCase(fetchProductById.rejected, (state, action) => {
@@ -212,8 +207,6 @@ const productSlice = createSlice({
         })
 
 
-
-
         builder.addCase(fetchToCreateProduct.pending, (state) => {
             state.loadingStatus = LOADING;
             state.error = null;
@@ -237,12 +230,51 @@ const productSlice = createSlice({
                             Height: action.payload.product.height,
                             Depth: action.payload.product.depth
                         },
-                        imagesSrc: action.payload.product.images.map((img: any) => img.src)
+                        imagesSrc: action.payload.product.images.map((img: any) => img.src),
+                        topOfTheWeek: action.payload.product.bestseller
                     })
                 }
             }
         )
         builder.addCase(fetchToCreateProduct.rejected, (state, action) => {
+            state.loadingStatus = FAILED;
+        })
+
+
+        
+        builder.addCase(fetchTopProducts.pending, (state, action) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+
+        builder.addCase(fetchTopProducts.fulfilled, (state, action: PayloadAction<any>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+
+            if (action.payload.status === 200) {
+                state.topProducts = action.payload.products.map((product: any) => {
+                    return {
+                        id: product.id,
+                        name: product.name,
+                        delivery: product.about_delivery,
+                        description: product.about_product,
+                        count: product.count,
+                        price: product.price,
+                        discountPrice: product.discount_price,
+                        params: {
+                            Width: product.width,
+                            Height: product.height,
+                            Depth: product.depth
+                        },
+                        createdAt: new Date(product.created_at),
+                        imagesSrc: product.images.map((img: any) => img.src),
+                        topOfTheWeek: product.bestseller
+                    };
+                })
+            }
+        })
+
+        builder.addCase(fetchTopProducts.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
     }
