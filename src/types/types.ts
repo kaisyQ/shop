@@ -74,21 +74,29 @@ export interface IProduct extends IShortProduct {
     createdAt: Date
 }
 
+export type ServerPost = {
+    created_at: string,
+    id: string,
+    imagesSrc: Images[],
+    text: string,
+    title: string,
+    updated_at: string
+}
+
 
 export interface IPost {
     id?: string,
     title: string,
     text: string,
-    imagesSrc: Images[],
+    imagesSrc: string[],
 }
-
 
 
 export interface IPostWithDate {
     id: string,
     title: string,
     text: string,
-    imagesSrc: Images[],
+    imagesSrc: string[],
     date: Date
 }
 

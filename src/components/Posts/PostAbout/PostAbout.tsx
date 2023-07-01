@@ -34,7 +34,7 @@ const PostAbout: React.FC<IPostAboutProps> = ({ current, fetchPostById, setCurre
                 { current ? <Text>{ current.text }</Text> : null }
 
                 { current ? <ImageWrapper>
-                        <Image src={current.imageSrc} /> 
+                        <Image src={current.imagesSrc[0]} /> 
                     </ImageWrapper>
                 : null }
 

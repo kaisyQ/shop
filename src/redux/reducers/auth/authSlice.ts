@@ -4,6 +4,10 @@ import type { LoadingType, Role } from "types/types";
 
 import { FAILED, IDLE, LOADING, ADMIN, EMPLOYEE } from "constants/constants";
 
+import { login as loginApi, logout, checkMe } from "api/api";
+
+import type { LoginResponse } from "./response.types";
+
 export interface IAuthState {
     id: string | null,
     isAuth: boolean,
@@ -37,23 +41,11 @@ const initialState: IAuthState = {
 export const fetchToLogin = createAsyncThunk(
     "auth/fetchToLogin", 
     async ({ login, password }: { login: string, password: string }) => {
-        try {
-            const response = await fetch("http://localhost:8000/auth", {
-                method: "POST", 
-                headers: {
-                    "Content-type": "application/json"
-                },
-                credentials: "include",
-                body: JSON.stringify({ login, password })
-            });
 
-            const data = await response.json();
-            return {
-                data: data,
-                status: response.status
-            }
-        } catch (err) {
-            throw(err)
+        const response: LoginResponse = await loginApi(JSON.stringify({ login, password }));
+        return {
+            status: response.status,
+            data: response.data
         }
     }
 );
@@ -161,7 +153,7 @@ const authSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToLogout.fulfilled, (state, action: PayloadAction<{status: number}>) => {
+        builder.addCase(fetchToLogout.fulfilled, (state, action: PayloadAction<{ status: number }>) => {
             state.loadingStatus = IDLE;
             state.error = null;
             if (action.payload.status === 200) {

@@ -34,11 +34,8 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
         if (!post) {
             return;
         }
-        dispatch(setFullState({
-            title: post.title,
-            text: post.text,
-            imageSrc: post.imageSrc
-        }));
+        dispatch(setTitle(post.title));
+        dispatch(setText(post.text));
     }, [post])
 
 
@@ -48,10 +45,6 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
     const imageFile = selectImageFile(state);
 
     const saveOrCreate = () => {
-        if(!imageSrc) {
-            return;
-        }
-
         if (!post) {
             if (!imageFile || !title || !text) {
                return;
@@ -72,32 +65,32 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
                 message: "Confirm creating post..."
             });
         } else {
-            if (!imageFile && !title && !text) {
-                return;
+            console.log("here")
+            if (post.title !== title || post.text !== text) {
+                const formData = new FormData();
+                const data = {
+                    id: post.id
+                };
+                if (imageFile) {
+                    formData.append("postImage", imageFile);
+                }
+                if(text) {
+                    Object.assign(data, { text });
+                }
+                if(title) {
+                    Object.assign(data, { title });
+                }
+                console.log(data);
+                formData.append("data", JSON.stringify(data));
+                setConfirmModalData({
+                    callback: () => {
+                        fetchToUpdatePost(formData);
+                        navigate("/admin/postsTable");
+                    },
+                    isVisible: true,
+                    message: "Confirm updating post..."
+                })
             }
-            const formData = new FormData();
-            const data = {
-                id: post.id
-            };
-            if (imageFile) {
-                formData.append("postImage", imageFile);
-            }
-            if(text) {
-                Object.assign(data, { text });
-            }
-            if(title) {
-                Object.assign(data, { title });
-            }
-            formData.append("data", JSON.stringify(data));
-
-            setConfirmModalData({
-                callback: () => {
-                    fetchToUpdatePost(formData);
-                    navigate("/admin/postsTable");
-                },
-                isVisible: true,
-                message: "Confirm updating post..."
-            })
         }
     }
 
@@ -139,22 +132,27 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
                             onChange={onTextChange} value={text} minHeight="30rem"
                         />
                     </InputWrapper>
-                    <InputWrapper>
-                        <LabelWrapper>
-                            <LabelSpan>Choose a post image</LabelSpan>
-                            <input id="post-edit-image" type="file" style={{display: 'none'}}
-                                accept="image/png, image/jpeg, image/jpg" onChange={onImageChange}
-                            />
-                        </LabelWrapper>
-                        <div>
-                        {
-                            imageSrc ? <img src={imageSrc} alt="post image" /> : null
-                        }
-                        </div>
-                    </InputWrapper>
+
+                    {
+                        !post ? <InputWrapper>
+                            <LabelWrapper>
+                                <LabelSpan>Choose a post image</LabelSpan>
+                                <input id="post-edit-image" type="file" style={{display: 'none'}}
+                                    accept="image/png, image/jpeg, image/jpg" onChange={onImageChange}
+                                />
+                            </LabelWrapper>
+                            <div>
+                            {
+                                imageSrc ? <img src={imageSrc} alt="post image" /> : null
+                            }
+                            </div>
+                        </InputWrapper> : null
+                    }
 
                     <EditFormControl>
-                        <Button onClick={saveOrCreate} isReverse={true}>Save</Button>
+                        <Button onClick={saveOrCreate} isReverse={true}>
+                            { post ? "Update" : "Save" }
+                        </Button>
                     </EditFormControl>
                 </EditForm>
             </UserEditWrapper>

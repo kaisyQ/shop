@@ -12,15 +12,15 @@ import {
 } from "./PostStyles";
 
 
-interface IBlogItemProps {
+interface IPostProps {
     id: string,
     title: string,
-    imagesSrc: {id: string, src: string}[]
+    imagesSrc: string[]
 }
 
 
-const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imagesSrc }) => {
-
+const Post: React.FC<IPostProps> = ({ id, title, imagesSrc }) => {
+    
     const [isHovered, setIsHovered] = React.useState(false);
 
     const width = useWindowWidth();
@@ -33,16 +33,16 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imagesSrc }) => {
         setIsHovered(false);
     }
 
-    const smallSrc = imagesSrc.find(imageSrc => imageSrc.src.toLowerCase().includes("small".toLowerCase()));
-    const mediumSrc = imagesSrc.find(imageSrc => imageSrc.src.toLowerCase().includes("large".toLowerCase()));
-    const largeSrc = imagesSrc.find(imageSrc => imageSrc.src.toLowerCase().includes("medium".toLowerCase()));
-
-    let resSrc : string | undefined = largeSrc?.src;
+    let image = imagesSrc.find(src => src.toLowerCase().includes("large".toLowerCase()));
     
-    if (width <= 768) resSrc = mediumSrc?.src;
-    if (width <= 330) resSrc = smallSrc?.src;
-
-
+    if (width <= 768) {
+        image = imagesSrc.find(src => src.toLowerCase().includes("medium".toLowerCase()));
+    }
+    
+    if (width <= 330) {
+        image = imagesSrc.find(src => src.toLowerCase().includes("small".toLowerCase()));
+    }
+    
     return (
         <>
             <CardWrapper>
@@ -53,7 +53,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imagesSrc }) => {
                     <NavLink to={`/posts/${id}`}>
                         <CardImage 
                             isHovered={isHovered}
-                            src={resSrc}
+                            src={image}
                             alt="Card image" 
                         />
                     </NavLink>
@@ -92,4 +92,4 @@ const BlogItem: React.FC<IBlogItemProps> = ({ id, title, imagesSrc }) => {
     );
 }
 
-export default React.memo(BlogItem);
+export default React.memo(Post);

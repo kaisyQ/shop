@@ -17,19 +17,22 @@ export type GetProductResponse = {
 
 export type DeleteProductResponse = {
     data: {
-        deletedProduct: {
-            images: {
-                count: number
-            },
-            product: ServerProduct
-        }
+        deletedProduct: ServerProduct
+        
     },
     status: number
 }
 
 export type CreateProductResponse = {
     data: {
-        createdProduct: ServerCreatedProduct
+        createdProduct: ServerProduct
+    },
+    status: number
+}
+
+export type UpdateProductResponse = {
+    data: {
+        updatedProduct: ServerProduct
     },
     status: number
 }

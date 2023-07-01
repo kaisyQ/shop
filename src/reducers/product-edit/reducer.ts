@@ -14,7 +14,7 @@ const ADD_IMAGE = "PRODUCT-EDIT/ADD_IMAGE";
 const SET_TOP_OF_THE_WEEK = "PRODUCT-EDIT/SET_TOP_OF_THE_WEEK";
 const SET_COUNT = "PRODUCT-EDIT/SET_COUNT";
 
-type InitialStateType = {
+export type InitialStateType = {
     name: string,
     aboutProduct: string,
     aboutDelivery: string,
@@ -146,11 +146,12 @@ export const actions = {
 
 const reducer = (state: InitialStateType, action: ActionType) => {
     switch(action.type) {
-        case SET_NAME: 
+        case SET_NAME: {
             return {
                 ...state,
                 name: action.payload
             }
+        }
         case SET_ABOUT_PRODUCT: 
             return {
                 ...state,

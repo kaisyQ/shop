@@ -2,7 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { getProduct, getProducts, deleteProduct, createProduct, getTopProducts } from "api/api";
+import { 
+    getProduct, getProducts, deleteProduct, createProduct, getTopProducts, updateProduct as updateProductApi
+} from "api/api";
 
 import type { IProduct, LoadingType, SelectType, ServerCreatedProduct, ServerProduct, TopProduct } from "types/types";
 
@@ -10,7 +12,9 @@ import { IDLE, LOADING, FAILED } from "constants/constants";
 
 import { SELECT_NEWEST } from "constants/constants";
 
-import type { GetProductsResponse, GetProductResponse, DeleteProductResponse, CreateProductResponse } from "./response.types";
+import type { 
+    GetProductsResponse, GetProductResponse, DeleteProductResponse, CreateProductResponse, UpdateProductResponse
+} from "./response.types";
 
 
 interface IProductsInitialState {
@@ -61,7 +65,7 @@ export const fetchToDeleteProduct = createAsyncThunk(
     async (id: string) => {
         const response: DeleteProductResponse = await deleteProduct(id);
         return {
-            id: response.data.deletedProduct.product.id,
+            id: response.data.deletedProduct.id,
             status: response.status
         };
     }
@@ -72,9 +76,19 @@ export const fetchToCreateProduct = createAsyncThunk(
     "products/fetchToCreateProduct", 
     async (formData: FormData) => {
         const response: CreateProductResponse = await createProduct(formData);
-        console.log(response);
         return {
             product: response.data.createdProduct,
+            status: response.status
+        };
+    }
+);
+
+export const fetchToUpdateProduct = createAsyncThunk(
+    "products/fetchToUpdateProduct",
+    async (formData: FormData) => {
+        const response: UpdateProductResponse = await updateProductApi(formData);
+        return {
+            product: response.data.updatedProduct,
             status: response.status
         };
     }
@@ -84,7 +98,6 @@ export const fetchTopProducts = createAsyncThunk(
     "products/fetchTopProducts",
     async () => {
         const response: GetProductsResponse = await getTopProducts();
-        console.log(response);
         return {
             products: response.data.products,
             status: response.status
@@ -203,6 +216,7 @@ const productSlice = createSlice({
             (state, action: PayloadAction<{ status: number, id: string }>) => {
                 state.loadingStatus = IDLE;
                 state.error = null;
+                console.log(action.payload)
                 if (action.payload.status === 200) {
                     state.items = state.items.filter(product => product.id !== action.payload.id);
                 }
@@ -213,12 +227,13 @@ const productSlice = createSlice({
         })
 
 
+
         builder.addCase(fetchToCreateProduct.pending, (state) => {
             state.loadingStatus = LOADING;
             state.error = null;
         })
         builder.addCase(fetchToCreateProduct.fulfilled, 
-            (state, action: PayloadAction<{ status: number, product: ServerCreatedProduct }>) => {
+            (state, action: PayloadAction<{ status: number, product: ServerProduct }>) => {
                 state.loadingStatus = IDLE;
                 state.error = null;
                 
@@ -237,7 +252,7 @@ const productSlice = createSlice({
                             Height: action.payload.product.height,
                             Depth: action.payload.product.depth
                         },
-                        imagesSrc: action.payload.product.images,
+                        imagesSrc: action.payload.product.images.map(img => img.src),
                         topOfTheWeek: action.payload.product.bestseller
                     })
                 }
@@ -253,7 +268,6 @@ const productSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-
         builder.addCase(fetchTopProducts.fulfilled, (state, action: PayloadAction<{ status: number, products: ServerProduct[] }>) => {
             state.loadingStatus = IDLE;
             state.error = null;
@@ -265,8 +279,46 @@ const productSlice = createSlice({
                 }))
             }
         })
-
         builder.addCase(fetchTopProducts.rejected, (state, action) => {
+            state.loadingStatus = FAILED;
+        })
+
+
+
+        builder.addCase(fetchToUpdateProduct.pending, (state, action) => {
+            state.loadingStatus = LOADING;
+            state.error = null;
+        })
+        builder.addCase(fetchToUpdateProduct.fulfilled, (state, action: PayloadAction<{ status: number, product: ServerProduct }>) => {
+            state.loadingStatus = IDLE;
+            state.error = null;
+
+            if (action.payload.status === 200) {
+                state.items = state.items.filter((product => {
+                    if (product.id !== action.payload.product.id) {
+                        return product;
+                    }
+                    return {
+                        id: action.payload.product.id,
+                        name: action.payload.product.name,
+                        delivery: action.payload.product.about_delivery,
+                        description: action.payload.product.about_product,
+                        count: action.payload.product.count,
+                        price: action.payload.product.price,
+                        discountPrice: action.payload.product.discount_price,
+                        createdAt: new Date(action.payload.product.created_at),
+                        params: {
+                            Width: action.payload.product.width,
+                            Height: action.payload.product.height,
+                            Depth: action.payload.product.depth
+                        },
+                        imagesSrc: action.payload.product.images.map(img => img.src),
+                        topOfTheWeek: action.payload.product.bestseller
+                    };
+                }));
+            }
+        })
+        builder.addCase(fetchToUpdateProduct.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
     }
