@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import type { IPost, IPostWithDate } from "types/types";
 
-import { LOADING, IDLE, FAILED } from "types/types";
+import { LOADING, IDLE, FAILED } from "constants/constants";
 
 import type { LoadingType, SelectType } from "types/types";
 

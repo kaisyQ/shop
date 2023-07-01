@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LOADING } from "types/types";
+import { LOADING } from "constants/constants";
 
 import { TableWrapper, TableThead, TableTbody, TableTr, TableTd } from '../AdminStyles';
 

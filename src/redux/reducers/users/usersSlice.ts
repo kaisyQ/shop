@@ -2,11 +2,11 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { IUser } from "types/types";
 
-import { LOADING, IDLE, FAILED } from "types/types";
+import { LOADING, IDLE, FAILED } from "constants/constants";
 
 import type { IShortUser, LoadingType } from "types/types";
 
-import { ADMIN, EMPLOYEE } from "types/types";
+import { ADMIN, EMPLOYEE } from "constants/constants";
 
 
 interface IUserInitialState {

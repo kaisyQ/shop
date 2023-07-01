@@ -5,7 +5,7 @@ import type { IServerComment, RatingScore } from "types/types";
 
 import type { LoadingType, SelectType } from "types/types";
 
-import { IDLE, FAILED, LOADING } from "types/types";
+import { IDLE, FAILED, LOADING } from "constants/constants";
 
 import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
 

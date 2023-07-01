@@ -1,14 +1,15 @@
 import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
 
-export const LOADING = "LOADING";
-export const IDLE = "IDLE";
-export const FAILED = "FAILED";
+import { LOADING, IDLE, FAILED } from "constants/constants";
 
-
-export const ADMIN = "TYPES/ADMIN";
-export const EMPLOYEE = "TYPES/EMPLOYEE";
+import { ADMIN, EMPLOYEE } from "constants/constants";
 
 export type LoadingType = typeof LOADING | typeof IDLE | typeof FAILED;
+
+export type Images = {
+    src: string,
+    id: string
+}
 
 export type ServerProduct = {
     id: string,
@@ -22,7 +23,7 @@ export type ServerProduct = {
     depth: string,
     height: string,
     width: string,
-    images: {src: string, id: string} [],
+    images: Images[],
     created_at: string,
     updated_at: string,
 }
@@ -56,7 +57,7 @@ export interface IPost {
     id?: string,
     title: string,
     text: string,
-    imagesSrc: {id: string, src: string}[],
+    imagesSrc: Images[],
 }
 
 
@@ -65,7 +66,7 @@ export interface IPostWithDate {
     id: string,
     title: string,
     text: string,
-    imagesSrc: {id: string, src: string}[],
+    imagesSrc: Images[],
     date: Date
 }
 

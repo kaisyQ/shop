@@ -10,7 +10,7 @@ import { Outlet, NavLink } from "react-router-dom";
 
 import { AdminWrapper, AdminHeader, AdminNav, LinksWrapper, UserInfo } from "./AdminStyles";
 
-import { ADMIN } from "types/types";
+import { ADMIN } from "constants/constants";
 
 import * as Icon from "react-bootstrap-icons";
 

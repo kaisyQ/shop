@@ -4,10 +4,9 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 import { getProduct, getProducts, deleteProduct, createProduct, getTopProducts } from "api/api";
 
+import type { IProduct, LoadingType, SelectType } from "types/types";
 
-import { 
-    IProduct, LoadingType, IDLE, LOADING, FAILED, SelectType
-} from "types/types";
+import { IDLE, LOADING, FAILED } from "constants/constants";
 
 import { SELECT_NEWEST } from "constants/constants";
 
@@ -59,6 +58,7 @@ export const fetchToDeleteProduct = createAsyncThunk(
     "products/fetchToDeleteProduct", 
     async (id: string) => {
         const response: DeleteProductResponse = await deleteProduct(id);
+        console.log(response);
         return {
             id: response.data.deletedProduct.id,
             status: response.status

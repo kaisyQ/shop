@@ -10,7 +10,8 @@ import { SearchResultWrapper, ResultItemsWrapper, SearchResultController } from 
 
 import type { SearchResultConnectedProps } from "./SearchResultContainer";
 
-import { LOADING } from "types/types";
+import { LOADING } from "constants/constants";
+
 
 interface ISearchResultProps extends SearchResultConnectedProps{
 }

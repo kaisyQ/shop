@@ -6,7 +6,9 @@ import { UserTableConnectedProps } from "./UsersTableContainer";
 
 import UsersTableRow from "./UsersTableRow/UsersTableRow";
 
-import { LOADING, SelectType } from "types/types";
+import type { SelectType } from "types/types";
+
+import { LOADING } from "constants/constants";
 
 import Preloader from "components/Ui/Preloader/Preloader";
 

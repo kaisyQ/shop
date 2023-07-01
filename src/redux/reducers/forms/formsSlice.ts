@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-import { IDLE, LOADING, FAILED } from "types/types";
+import { IDLE, LOADING, FAILED } from "constants/constants";
 
 import type { LoadingType } from "types/types";
 

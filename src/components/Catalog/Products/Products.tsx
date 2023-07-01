@@ -8,7 +8,7 @@ import { Wrapper } from "./ProductsStyles";
 
 import { CardsConnectedPropsType } from "./ProductsContainer";
 
-import { LOADING } from "types/types";
+import { LOADING } from "constants/constants";
 
 
 const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, loading }) => {

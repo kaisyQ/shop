@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import type { LoadingType, Role } from "types/types";
 
-import { FAILED, IDLE, LOADING, ADMIN, EMPLOYEE } from "types/types";
+import { FAILED, IDLE, LOADING, ADMIN, EMPLOYEE } from "constants/constants";
 
 export interface IAuthState {
     id: string | null,

@@ -13,7 +13,9 @@ import * as Icon from "react-bootstrap-icons";
 import AddCommentContainer from "./AddCommentModal/AddCommentContainer";
 
 import { CommentsConnectedProps } from "./CommentsContainer";
-import { LOADING } from "types/types";
+
+import { LOADING } from "constants/constants";
+
 import Preloader from "components/Ui/Preloader/Preloader";
 
 interface ICommentsProps extends CommentsConnectedProps{

@@ -11,7 +11,7 @@ import { CommentsTableConnectedProps } from "./CommentTableContainer";
 
 import CommentTableRow from "./CommentTableRow/CommentTableRow";
 
-import { LOADING } from "types/types";
+import { LOADING } from "constants/constants";
 
 import type { SelectType } from "types/types";
 

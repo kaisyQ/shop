@@ -40,7 +40,7 @@ class HttpQuery {
         try {
             const { baseUrl, ...options } = this.__options;
 
-            const response = await fetch(`baseUrl${url}`, {
+            const response = await fetch(`${baseUrl}${url}`, {
                 method: "POST",
                 credentials: options.credentials,
                 headers: options.headers,
@@ -66,7 +66,7 @@ class HttpQuery {
         try {
             const { baseUrl, ...options } = this.__options;
 
-            const response = await fetch(`baseUrl${url}`, {
+            const response = await fetch(`${baseUrl}${url}`, {
                 method: "PUT",
                 credentials: options.credentials,
                 headers: options.headers,
@@ -92,7 +92,7 @@ class HttpQuery {
         try {
             const { baseUrl, ...options } = this.__options;
 
-            const response = await fetch(`baseUrl${url}`, {
+            const response = await fetch(`${baseUrl}${url}`, {
                 method: "DELETE",
                 credentials: options.credentials,
                 headers: options.headers

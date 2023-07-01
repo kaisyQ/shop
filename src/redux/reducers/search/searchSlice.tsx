@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import type { LoadingType } from "types/types";
 
-import { IDLE, LOADING, FAILED } from "types/types";
+import { IDLE, LOADING, FAILED } from "constants/constants";
 
 type SearchItem = {
     id: string,

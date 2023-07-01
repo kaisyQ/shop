@@ -9,7 +9,7 @@ import { IProductConnectedProps } from "./ProductsTableContainer";
 
 import ProductsTableRow from "./ProductsTableRow/ProductsTableRow";
 
-import { LOADING } from "types/types";
+import { LOADING } from "constants/constants";
 
 import Preloader from "components/Ui/Preloader/Preloader";
 

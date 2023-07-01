@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 
 import reducer, { initialState, actions } from "reducers/table-selector/reducer";
 
-import { ADMIN } from "types/types";
+import { ADMIN } from "constants/constants";
 
 import type { Role } from "types/types";
 

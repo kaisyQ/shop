@@ -10,9 +10,10 @@ import { useParams } from "react-router-dom";
 import { PostsWrapper, TitleWrapper, PostWrapper } from "./PostsStyles";
 
 import { PostsConnectedProps } from "./PostsContainer";
-import { LOADING } from "types/types";
+
 import Preloader from "components/Ui/Preloader/Preloader";
 
+import { LOADING } from "constants/constants";
 
 const Posts: React.FC<PostsConnectedProps> = ({ posts, loading, fetchPosts }) => {
     

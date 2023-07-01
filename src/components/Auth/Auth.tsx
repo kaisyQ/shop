@@ -8,7 +8,7 @@ import { LoginWrapper, Title, InputWrapper, BtnWrapper } from "./AuthStyles";
 import { AuthConnectedProps } from "./AuthContainer";
 import { Navigate } from "react-router-dom";
 
-import { LOADING } from "types/types";
+import { LOADING } from "constants/constants";
 
 
 const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin, loading, error }) => {
