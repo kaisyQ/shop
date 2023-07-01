@@ -19,7 +19,8 @@ interface IInputsProps {
         width: string,
         height: string,
         depth: string,
-        topOfTheWeek: boolean
+        topOfTheWeek: boolean,
+        count: string
     }
 }
 
@@ -31,14 +32,17 @@ const Inputs: React.FC<IInputsProps> = ({ dispatch, state }) => {
                     onChange={(ev) => dispatch(actions.setName(ev.target.value))} value={state.name}
                 />
             </InputWrapper>
-            <InputWrapper>
+            <InputsWrapper>
                 <Label>
                     <span>top of the week</span>
                     <Checkbox type="checkbox" checked={state.topOfTheWeek} 
                         onChange={(ev) => dispatch(actions.setTopOfTheWeek(!state.topOfTheWeek))}
                     />
                 </Label>
-            </InputWrapper>
+                <Input placeholder="Count" id="product-edit-count" type="input" 
+                    onChange={(ev) => dispatch(actions.setCount(ev.target.value))} value={state.count}
+                />
+            </InputsWrapper>
 
             <InputWrapper>
                 <Input placeholder="About" id="user-edit-about" type="textarea" 

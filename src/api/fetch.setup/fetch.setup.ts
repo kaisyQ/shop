@@ -1,6 +1,7 @@
-import { HttpQueryOptionsType } from "./fetch.types";
+import type { HttpQueryOptionsType, HeadersType } from "./fetch.types";
 
-import options from "./fetch.params";
+import options, { withoutBodyHeaders } from "./fetch.params";
+
 
 class HttpQuery { 
     
@@ -18,7 +19,7 @@ class HttpQuery {
             const response = await fetch(`${baseUrl}${url}`, {
                 method: "GET",
                 credentials: options.credentials,
-                headers: options.headers
+                headers: withoutBodyHeaders
             });
 
             const data = await response.json();
@@ -36,14 +37,14 @@ class HttpQuery {
         }
     }
 
-    post = async (url: string, body: any) => {
+    post = async (url: string, body: any, headers?: HeadersType) => {
         try {
             const { baseUrl, ...options } = this.__options;
 
             const response = await fetch(`${baseUrl}${url}`, {
                 method: "POST",
                 credentials: options.credentials,
-                headers: options.headers,
+                headers: headers,
                 body: body
             });
 
@@ -62,14 +63,14 @@ class HttpQuery {
         }
     }
 
-    put = async (url: string, body: any) => {
+    put = async (url: string, body: any, headers?: HeadersType) => {
         try {
             const { baseUrl, ...options } = this.__options;
 
             const response = await fetch(`${baseUrl}${url}`, {
                 method: "PUT",
                 credentials: options.credentials,
-                headers: options.headers,
+                headers: headers,
                 body: body
             });
 
@@ -95,7 +96,7 @@ class HttpQuery {
             const response = await fetch(`${baseUrl}${url}`, {
                 method: "DELETE",
                 credentials: options.credentials,
-                headers: options.headers
+                headers: withoutBodyHeaders
             });
 
             const data = await response.json();

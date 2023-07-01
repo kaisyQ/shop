@@ -36,16 +36,18 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
             
             const bodyData = JSON.stringify({
                 name: state.name,
-                aboutDelivery: state.aboutDelivery,
-                aboutProduct: state.aboutProduct,
+                about_delivery: state.aboutDelivery,
+                about_product: state.aboutProduct,
                 width: state.width,
                 height: state.height,
                 depth: state.depth,
                 price: parseInt(state.price),
                 discountPrice: parseInt(state.discountPrice),
-                bestseller: state.topOfTheWeek
-            })
+                bestseller: state.topOfTheWeek,
+                count: parseInt(state.count)
+            });
             
+            console.log(bodyData)
             formData.append("data", bodyData);
             
             setConfirmModalData({

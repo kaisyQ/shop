@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { IComment } from "types/types";
 
-import type { IServerComment, RatingScore } from "types/types";
+import type { ServerComment, RatingScore, Comment } from "types/types";
 
 import type { LoadingType, SelectType } from "types/types";
 
@@ -9,8 +8,11 @@ import { IDLE, FAILED, LOADING } from "constants/constants";
 
 import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
 
+import { getComments, deleteComment, createComment } from "api/api";
+import { CreateCommentResponse, DeleteCommentResponse, GetCommentsResponse } from "./response.types";
+
 interface InitialStateType {
-    comments: IComment[],
+    comments: Comment[],
     filerScore: RatingScore | 0,
     loadingStatus: LoadingType,
     error: Error | null,
@@ -28,43 +30,22 @@ const initialState: InitialStateType = {
 export const fetchComments = createAsyncThunk(
     "comments/fetchComments",
     async () => {
-        try {
-            const response =  await fetch("http://localhost:8000/comments");
-            const data = await response.json();
-
-            return {
-                data,
-                status: response.status
-            };
-
-        } catch (err) {
-            throw(err);
-        }
+        const response: GetCommentsResponse = await getComments();
+        return {
+            comments: response.data.comments,
+            status: response.status
+        };
     }
 );
 
 export const fetchToCreateComment = createAsyncThunk(
     "comments/fetchToCreateComment",
     async ({ userName, text, stars}: { userName: string, text: string, stars: number }) => {
-        try {
-            const response = await fetch("http://localhost:8000/comments", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                credentials: "include",
-                body: JSON.stringify({ userName, text, stars })
-            });
-            
-            const data = await response.json();
 
-            return {
-                comment: data.comment,
-                status: response.status
-            };
-
-        } catch (err) {
-            throw(err);
+        const response: CreateCommentResponse = await createComment(JSON.stringify({ userName, text, stars }));
+        return {
+            status: response.status,
+            comment: response.data.comment
         }
     }
 );
@@ -72,24 +53,10 @@ export const fetchToCreateComment = createAsyncThunk(
 export const fetchToDeleteComment = createAsyncThunk(
     "comments/fetchToDeleteComment",
     async (id: string) => {
-        try {
-            const response = await fetch(`http://localhost:8000/comments/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                credentials: "include",
-            });
-            
-            const data = await response.json();
-
-            return {
-                id: data.deletedComment.id,
-                status: response.status
-            };
-
-        } catch (err) {
-            throw(err);
+        const response: DeleteCommentResponse = await deleteComment(id);
+        return {
+            status: response.status,
+            id: response.data.deletedComment.id
         }
     }
 );
@@ -99,7 +66,7 @@ const commentSlice = createSlice({
     name: "commentSlice",
     initialState,
     reducers: {
-        addComment: (state, action: PayloadAction<IComment>) => {
+        addComment: (state, action: PayloadAction<Comment>) => {
             state.comments.push(action.payload);
         },
         setFilterScore: (state, action: PayloadAction<RatingScore | 0>) => {
@@ -115,19 +82,19 @@ const commentSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchComments.fulfilled, 
-            (state, action: PayloadAction<{ data: { comments: IServerComment[] }, status: number }>) => {
+            (state, action: PayloadAction<{ status: number, comments: ServerComment[]}>) => {
+            
             state.loadingStatus = IDLE;
             state.error = null;
+            
             if (action.payload.status === 200) {
-                state.comments = action.payload.data.comments.map(comment => {
-                    return {
-                        id: comment.id,
-                        author: comment.userName,
-                        date: (new Date(comment.created_at)),
-                        text: comment.text,
-                        rating: comment.stars as RatingScore
-                    }
-                });
+                state.comments = action.payload.comments.map(comment => ({
+                    id: comment.id,
+                    author: comment.userName,
+                    date: (new Date(comment.created_at)),
+                    text: comment.text,
+                    rating: comment.stars as RatingScore
+                }));
             }
         })
         builder.addCase(fetchComments.rejected, (state, action) => {
@@ -141,13 +108,13 @@ const commentSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchToCreateComment.fulfilled, 
-            (state, action: PayloadAction<{status: number, comment: { id: string, text: string, userName: string, stars: number}}>) => {
+            (state, action: PayloadAction<{status: number, comment: ServerComment}>) => {
             state.error = null;
             if (action.payload.status === 200) {
                 state.comments.push({
                     id: action.payload.comment.id,
                     author: action.payload.comment.userName,
-                    date: new Date(),
+                    date: new Date(action.payload.comment.created_at),
                     text: action.payload.comment.text,
                     rating:  action.payload.comment.stars as RatingScore
                 })

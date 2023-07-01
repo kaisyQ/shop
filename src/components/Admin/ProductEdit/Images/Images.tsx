@@ -64,7 +64,6 @@ const Images: React.FC<IImagesProps> = ({ dispatch, imagesSrc }) => {
             filesArr.push(ev.target.files[i]);
             imgSrcArr.push(URL.createObjectURL(ev.target.files[i]));
         }
-        console.log(filesArr, imgSrcArr);
         dispatch(actions.addImagesWithFile({ files: filesArr, images: imgSrcArr }));
     }
 

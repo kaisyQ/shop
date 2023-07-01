@@ -89,7 +89,7 @@ export interface IUser {
 export type RatingScore = 1 | 2 | 3 | 4 | 5;
 
 
-export interface IServerComment {
+export type ServerComment = {
     created_at: string,
     id: string,
     stars: number
@@ -98,7 +98,7 @@ export interface IServerComment {
 }
 
 
-export interface IComment {
+export type Comment = {
     id: string,
     author: string,
     date: Date,

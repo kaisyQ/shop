@@ -1,11 +1,12 @@
-import { HttpQueryOptionsType } from "./fetch.types"
+import type { HttpQueryOptionsType, HeadersType } from "./fetch.types"
+
+export const withoutBodyHeaders: HeadersType = {
+    "Content-Type": "application/json"
+}
 
 const options: HttpQueryOptionsType = {
     baseUrl: "http://localhost:8000/",
     credentials: "include",
-    headers: {
-        "Content-Type": "application/json, multipart/form-data"
-    }
 }
 
 export default options;

@@ -17,8 +17,9 @@ export const InputWrapper = styled.div`
 export const Label = styled.label`
     display: flex;
     gap: 1rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
     align-items: center;
+    min-width: 200px;
 `;
 
 export const Checkbox = styled.input`

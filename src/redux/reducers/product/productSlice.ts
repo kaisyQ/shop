@@ -58,9 +58,8 @@ export const fetchToDeleteProduct = createAsyncThunk(
     "products/fetchToDeleteProduct", 
     async (id: string) => {
         const response: DeleteProductResponse = await deleteProduct(id);
-        console.log(response);
         return {
-            id: response.data.deletedProduct.id,
+            id: response.data.deletedProduct.product.id,
             status: response.status
         };
     }
@@ -71,6 +70,7 @@ export const fetchToCreateProduct = createAsyncThunk(
     "products/fetchToCreateProduct", 
     async (formData: FormData) => {
         const response: CreateProductResponse = await createProduct(formData);
+        console.log(response);
         return {
             product: response.data.createdProduct,
             status: response.status
@@ -198,7 +198,7 @@ const productSlice = createSlice({
                 state.loadingStatus = IDLE;
                 state.error = null;
                 if (action.payload.status === 200) {
-                    state.items = state.items.filter(product => product.id !== action.payload.product.id);
+                    state.items = state.items.filter(product => product.id !== action.payload.id);
                 }
             }
         )
