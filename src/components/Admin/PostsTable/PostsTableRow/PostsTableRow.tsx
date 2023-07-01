@@ -8,7 +8,7 @@ interface ITableRowProps{
     id: string,
     title: string,
     text: string,
-    imageSrc: string,
+    imagesSrc: {},
     date: Date
     index: number,
     delete: (id: string) => void

@@ -33,11 +33,11 @@ const TopProducts: React.FC<ITopProductsProps> = ({ fetchTopProducts, topProduct
                     <TopProductsTitle>Top of the week</TopProductsTitle>
                 </TopProductsHeader>
                 {
-                    width <= 330 ? 
+                    width <= 450 ? 
                         <TopProductsSlider topProducts={topProducts} width={width}/> : <>
                             <TopProductsMain>
                             {
-                                topProducts.map(product => <TopProduct {...product} />)
+                                topProducts.map(product => <TopProduct {...product} key={product.id}/>)
                             }
                             </TopProductsMain> 
                         </>

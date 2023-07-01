@@ -20,7 +20,8 @@ interface IProductsInitialState {
     loadingStatus: LoadingType,
     error: Error | null,
     selectorType: SelectType,
-    searchValue: string
+    searchValue: string,
+    filterByTop: boolean
 }
 
 const initialState : IProductsInitialState = {
@@ -30,7 +31,8 @@ const initialState : IProductsInitialState = {
     error: null,
     current: null,
     selectorType: SELECT_NEWEST,
-    searchValue: ""
+    searchValue: "",
+    filterByTop: false
 }
 
 export const fetchProducts = createAsyncThunk(
@@ -120,6 +122,9 @@ const productSlice = createSlice({
         },
         setSearchValue: (state, action: PayloadAction<string>) => {
             state.searchValue = action.payload;
+        },
+        setFilteredByTop: (state, action: PayloadAction<boolean>) => {
+            state.filterByTop = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -271,7 +276,8 @@ const { actions, reducer } = productSlice;
 
 export const { 
     setCurrent, addProduct, removeProduct, 
-    updateProduct, setSelectorType, setSearchValue 
+    updateProduct, setSelectorType, setSearchValue, 
+    setFilteredByTop
 } = actions;
 
 export default reducer;

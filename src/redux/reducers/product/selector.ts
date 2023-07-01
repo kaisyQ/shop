@@ -20,7 +20,8 @@ export const getShortProductItems = (state: RootState): IShortProduct[] => {
         name: product.name,
         price: product.price,
         count: product.count,
-        createdAt: product.createdAt
+        createdAt: product.createdAt,
+        topOfTheWeek: product.topOfTheWeek
     }));
 }
 
@@ -28,9 +29,23 @@ export const getCurrentProduct = (state: RootState) => state.product.current;
 
 export const getTopProducts = (state: RootState) => state.product.topProducts;
 
+export const getFilteredByTop = (state: RootState) => state.product.filterByTop;
+
+
+export const getFilteredByTopProducts = createSelector(
+    [getShortProductItems, getFilteredByTop],
+    (products, filteredByTop) => {
+        if (filteredByTop) {
+            return products.filter(product => product.topOfTheWeek);
+        }
+        return [...products]; 
+    }
+);
+
 export const getFilteredProducts = createSelector(
-    [getShortProductItems, getProductSelectorType, getProductSearch], 
+    [getFilteredByTopProducts, getProductSelectorType, getProductSearch], 
     (products, select, search) => {
+
         const searchedProducts = products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()));
 
         switch (select) {

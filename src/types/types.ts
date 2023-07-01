@@ -51,6 +51,7 @@ export interface IShortProduct {
     name: string,
     count: number,
     price: number,
+    topOfTheWeek: boolean,
     createdAt: Date
 }
 
@@ -70,7 +71,6 @@ export interface IProduct extends IShortProduct {
     },
     delivery: string,
     imagesSrc: string[],
-    topOfTheWeek: boolean,
     createdAt: Date
 }
 

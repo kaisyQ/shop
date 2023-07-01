@@ -117,3 +117,20 @@ export const UserInfo = styled.span`
     align-items: center;
     gap: 1rem;
 `;
+
+export const FilterWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+`;
+
+export const SortBy = styled.div`
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+`;
+
+export const FilterSearch = styled.input`
+    max-width: 300px;
+    padding: 1rem;
+`;
