@@ -21,7 +21,8 @@ const initialState: InitialStateType = {
 export const fetchSellMessage = createAsyncThunk(
     "formsSlice/fetchSellMessage",
     async ({ name, email, phoneNumber, comment, brand } : { name: string, email: string, brand: string, phoneNumber: string, comment: string }) => {
-        const response = await fetch("http://localhost:8000/sendSofaContacts", {
+        
+        const response = await fetch(`${process.env.BACKEND_PORT || "http://localhost:8000/"}/sendSofaContacts`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -41,7 +42,8 @@ export const fetchSellMessage = createAsyncThunk(
 export const fetchContactMessage = createAsyncThunk(
     "formsSlice/fetchContactMessage",
     async ({ name, email, phoneNumber, comment } : { name: string, email: string, phoneNumber: string, comment: string }) => {
-        const response = await fetch("http://localhost:8000/sendContacts", {
+        `${process.env.BACKEND_PORT || "http://localhost:8000/"}/sendContacts`
+        const response = await fetch(`${process.env.BACKEND_PORT || "http://localhost:8000/"}/sendContacts`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"

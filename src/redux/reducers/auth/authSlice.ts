@@ -55,7 +55,7 @@ export const fetchToCheckMe = createAsyncThunk(
     "auth/fetchToCheckMe", 
     async () => {
         try {
-            const response = await fetch("http://localhost:8000/auth", {
+            const response = await fetch(`${process.env.BACKEND_PORT || "http://localhost:8000/"}/auth`, {
                 method: "GET", 
                 credentials: "include",
             });
@@ -75,7 +75,7 @@ export const fetchToLogout = createAsyncThunk(
     "auth/fetchToLogout", 
     async () => {
         try {
-            const response = await fetch("http://localhost:8000/auth", {
+            const response = await fetch(`${process.env.BACKEND_PORT || "http://localhost:8000/"}/auth`, {
                 method: "DELETE", 
                 credentials: "include",
             });

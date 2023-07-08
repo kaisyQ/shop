@@ -28,7 +28,7 @@ export const fetchSearch = createAsyncThunk(
     "searchSlice/fetchSearch",
     async (searchData: string) => {
         try {
-            const response = await fetch(`http://localhost:8000/search/${searchData}`,{
+            const response = await fetch(`${process.env.BACKEND_PORT || "http://localhost:8000/"}/sendContacts/search/${searchData}`,{
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"

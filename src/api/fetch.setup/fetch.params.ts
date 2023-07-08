@@ -5,7 +5,7 @@ export const withoutBodyHeaders: HeadersType = {
 }
 
 const options: HttpQueryOptionsType = {
-    baseUrl: "http://localhost:8000/",
+    baseUrl: process.env.BACKEND_PORT || "http://localhost:8000/",
     credentials: "include",
 }
 
