@@ -25,6 +25,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
   React.useEffect(() => {
     fetchToCheckMe();
+    console.log(process.env.BACKEND_PORT);
   }, []);
   
 
