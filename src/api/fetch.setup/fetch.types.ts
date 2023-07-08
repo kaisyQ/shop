@@ -1,5 +1,8 @@
 export type HeadersType = {
-    "Content-Type": string
+    "Content-Type": string,
+    'Accept': string,
+    'Access-Control-Allow-Origin': string | string[],
+    'Access-Control-Allow-Credentials': string
 }
 
 
