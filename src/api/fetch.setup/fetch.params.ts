@@ -5,7 +5,7 @@ export const withoutBodyHeaders: HeadersType = {
 }
 
 const options: HttpQueryOptionsType = {
-    baseUrl: process.env.BACKEND_PORT || "http://localhost:8000/",
+    baseUrl: "https://sofas-6bfb2aa4dea9.herokuapp.com/",
     credentials: "include",
 }
 

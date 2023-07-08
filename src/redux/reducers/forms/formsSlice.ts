@@ -22,7 +22,7 @@ export const fetchSellMessage = createAsyncThunk(
     "formsSlice/fetchSellMessage",
     async ({ name, email, phoneNumber, comment, brand } : { name: string, email: string, brand: string, phoneNumber: string, comment: string }) => {
         
-        const response = await fetch(`${process.env.BACKEND_PORT || "http://localhost:8000/"}/sendSofaContacts`, {
+        const response = await fetch(`https://sofas-6bfb2aa4dea9.herokuapp.com/sendSofaContacts`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -42,7 +42,7 @@ export const fetchSellMessage = createAsyncThunk(
 export const fetchContactMessage = createAsyncThunk(
     "formsSlice/fetchContactMessage",
     async ({ name, email, phoneNumber, comment } : { name: string, email: string, phoneNumber: string, comment: string }) => {
-        const response = await fetch(`${process.env.BACKEND_PORT || "http://localhost:8000/"}/sendContacts`, {
+        const response = await fetch(`https://sofas-6bfb2aa4dea9.herokuapp.com/sendContacts`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
