@@ -2,11 +2,7 @@ import type { HttpQueryOptionsType, HeadersType } from "./fetch.types"
 
 
 export const withoutBodyHeaders: HeadersType = {
-    "Content-Type": "application/json",
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': 'true'
-
+    "Content-Type": "application/json"
 }
 
 const options: HttpQueryOptionsType = {
