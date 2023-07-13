@@ -55,7 +55,7 @@ export const fetchToCheckMe = createAsyncThunk(
     "auth/fetchToCheckMe", 
     async () => {
         try {
-            const response = await fetch(`https://sofas-6bfb2aa4dea9.herokuapp.com/auth`, {
+            const response = await fetch(`http://62.113.103.174:8000/auth`, {
                 method: "GET", 
                 credentials: "include",
             });
@@ -75,7 +75,7 @@ export const fetchToLogout = createAsyncThunk(
     "auth/fetchToLogout", 
     async () => {
         try {
-            const response = await fetch(`https://sofas-6bfb2aa4dea9.herokuapp.com/auth`, {
+            const response = await fetch(`http://62.113.103.174:8000/auth`, {
                 method: "DELETE", 
                 credentials: "include",
             });

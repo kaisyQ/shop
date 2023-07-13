@@ -6,7 +6,7 @@ export const withoutBodyHeaders: HeadersType = {
 }
 
 const options: HttpQueryOptionsType = {
-    baseUrl: "https://sofas-6bfb2aa4dea9.herokuapp.com/",
+    baseUrl: "http://62.113.103.174:8000/",
     credentials: "include",
 }
 
