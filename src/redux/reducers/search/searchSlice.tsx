@@ -83,7 +83,7 @@ const searchSlice = createSlice({
                     return {
                         id: post.id,
                         name: post.title,
-                        imageSrc: post.imageSrc
+                        imageSrc: post.imagesSrc[0].src
                     }
                 });
             }
