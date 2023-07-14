@@ -30,7 +30,7 @@ export const fetchUsers = createAsyncThunk(
     "users/fetchUsers",
     async () => {
         try {
-            const response = await fetch(`http://62.113.103.174:8000/users`, {
+            const response = await fetch(`http://198.245.55.24:8000/users`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export const fetchUserById = createAsyncThunk(
     "users/fetchUserById",
     async (id: string) => {
         try {
-            const response = await fetch(`http://62.113.103.174:8000/${id}`, {
+            const response = await fetch(`http://198.245.55.24:8000/${id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export const fetchToCreateUser = createAsyncThunk(
     "users/fetchToCreateUser",
     async (user: IShortUser) => {
         try {
-            const response = await fetch(`http://62.113.103.174:8000/users`, {
+            const response = await fetch(`http://198.245.55.24:8000/users`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -101,7 +101,7 @@ export const fetchToUpdateUser = createAsyncThunk(
     "users/fetchToUpdateUser",
     async ({ id, user }: { id: string, user: { login?: string, password?: string} }) => {
         try {
-            const response = await fetch(`http://62.113.103.174:8000/users`, {
+            const response = await fetch(`http://198.245.55.24:8000/users`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -126,7 +126,7 @@ export const fetchToDeleteUser = createAsyncThunk(
     "users/fetchToDeleteUser",
     async (id: string) => {
         try {
-            const response = await fetch(`http://62.113.103.174:8000/users/${id}`, {
+            const response = await fetch(`http://198.245.55.24:8000/users/${id}`, {
                 method: "DELETE",
                 credentials: "include"
             })

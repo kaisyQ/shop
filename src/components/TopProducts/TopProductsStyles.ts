@@ -26,7 +26,7 @@ export const TopProductsTitle = styled.h2`
 
 export const TopProductsMain = styled.main`
 
-    @media only screen and (max-width: 330px) {
+    @media only screen and (max-width: 450px) {
         display: none;
     }
 

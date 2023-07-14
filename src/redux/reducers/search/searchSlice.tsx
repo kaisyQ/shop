@@ -28,7 +28,7 @@ export const fetchSearch = createAsyncThunk(
     "searchSlice/fetchSearch",
     async (searchData: string) => {
         try {
-            const response = await fetch(`https://sofas-6bfb2aa4dea9.herokuapp.com/sendContacts/search/${searchData}`,{
+            const response = await fetch(`http://198.245.55.24:8000/sendContacts/search/${searchData}`,{
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"
