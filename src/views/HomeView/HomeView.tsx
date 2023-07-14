@@ -20,7 +20,7 @@ const HomeView: React.FC<IHomeViewProps> = () => {
                     alt="preview-image"
                 />
                 <Slogan>
-                    Our sofas like Lincolns -- except they dont make your ass hurt 
+                    We help you to find your sofa and save the environment
                 </Slogan>
                 <TopProductsContainer />
                 <CommentsContainer />
