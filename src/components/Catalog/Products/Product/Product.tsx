@@ -23,7 +23,10 @@ interface IProductProps {
     imageSrc: string, 
 }
 
-const Product: React.FC<IProductProps> = ({ count, name, imageSrc, id }) => {
+const Product: React.FC<IProductProps> = (props) => {
+    const { count, name, imageSrc, id } = props;
+    
+    console.log(props);
     return (
         <>
             <Wrapper>

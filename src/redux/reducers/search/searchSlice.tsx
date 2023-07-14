@@ -70,7 +70,6 @@ const searchSlice = createSlice({
             state.error = null;
             if (action.payload.status === 200) {
                 
-                console.log(action.payload)
                 state.products = action.payload.products.map((product: any) => {
                     return {
                         id: product.id,
