@@ -18,6 +18,7 @@ interface ISearchResultItemProps {
 }
 
 const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
+    console.log(props)
     return (
         <>
             <NavLink to={`/${props.type === "POST" ? "posts" : "catalog"}/${props.id}`}>
