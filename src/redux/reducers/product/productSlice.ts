@@ -42,6 +42,7 @@ const initialState : IProductsInitialState = {
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts", async () => {
         const response: GetProductsResponse = await getProducts();
+        console.log(response);
         return {
             products: response.data.products,
             status: response.status
