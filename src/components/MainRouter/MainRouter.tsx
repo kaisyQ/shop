@@ -15,6 +15,7 @@ import ContactViewContainer from 'views/ContactView/ContactViewContainer';
 import SellSofaViewContainer from 'views/SellSofaView/SellSofaViewContainer';
 import CommentTableContainer from 'components/Admin/CommentsTable/CommentTableContainer';
 import SearchContainer from 'components/Search/SearchContainer';
+import AdminView from 'components/Admin/AdminContainer';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -25,6 +26,7 @@ const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
 const Posts = React.lazy(() => import('components/Posts/PostsContainer'));
 const HomeView = React.lazy(() => import ('views/HomeView/HomeView'));
 const Admin = React.lazy(() => import("components/Admin/AdminContainer"));
+
 
 const MainRouter: React.FC = () => {
     return (
@@ -67,7 +69,7 @@ const MainRouter: React.FC = () => {
                     </Route>
                     <Route path='/admin'>
                         
-                        <Route path='' element={ <Admin /> }>
+                        <Route path='' element={ <AdminView /> }>
                         {
                             ['productsTable', ''].map((path, index) => <Route
                                         key={index} 
