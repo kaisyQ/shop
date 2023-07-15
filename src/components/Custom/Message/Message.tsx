@@ -11,6 +11,21 @@ const Wrapper = styled.div`
 
 const MessageTitle = styled.h1`
     font-size: 7rem;
+
+    @media screen and (max-width: 768px) {
+        font-size: 5rem;
+    }
+
+    @media screen and (max-width: 500px) {
+        font-size: 4rem;
+    }
+    @media screen and (max-width: 500px) {
+        font-size: 3.4rem;
+    }
+
+    @media screen and (max-width: 330px) {
+        font-size: 2.8rem;
+    }
 `;
 
 interface IMessageProps {

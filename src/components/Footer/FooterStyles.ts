@@ -65,8 +65,9 @@ export const Information = styled.p`
     justify-content: space-between;
     align-items: center;
 
-    @media only screen and (max-width: 300px) {
+    @media only screen and (max-width: 400px) {
         flex-direction: column;
+        margin-top: 1rem;
     }
 `;
 

@@ -40,6 +40,7 @@ const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin, loading, err
                 <Title>Sign into your working account</Title>
                 <InputWrapper>
                     <Input 
+                        inputType="text"
                         width="100%" 
                         id='auht-login' 
                         placeholder='Login' 
@@ -49,6 +50,7 @@ const Auth: React.FC<AuthConnectedProps> = ({ isAuth, fetchToLogin, loading, err
                 </InputWrapper>
                 <InputWrapper>
                     <Input 
+                        inputType="password"
                         width="100%" 
                         id='auth-password' 
                         placeholder='Password' 

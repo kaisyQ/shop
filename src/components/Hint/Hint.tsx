@@ -45,7 +45,7 @@ const Hint: React.FC<IHintProps> = ({ setIsHint, isHint }) => {
           const min = date.getMinutes();
           const hours = date.getHours();
           
-          if (time === 120) {
+          if (time === 2) {
             setIsHint(true);
             setIsRunningTimer(false);
             return;
@@ -87,7 +87,7 @@ const Hint: React.FC<IHintProps> = ({ setIsHint, isHint }) => {
                                     </HintMessageLink>
                                 </HintMessageText>
                                 <SunWrapper>
-                                    <Icon.BrightnessHigh size={"7rem"} />
+                                    <Icon.Bell size={"7rem"} />
                                 </SunWrapper>
                             </HintMessage>
                         </HintMessageWrapper>

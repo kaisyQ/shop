@@ -22,15 +22,6 @@ const textBlink = keyframes`
     }
 `
 
-const rotateSun = keyframes`
-    from {
-        transform:  rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-`
-
 export const HintWrapper = styled.div`
     position: fixed;
     right: 1rem;
@@ -110,6 +101,4 @@ export const HintMessageLink = styled.span`
 `;
 
 export const SunWrapper = styled.div`
-    animation: ${rotateSun} 1s linear forwards;
-    animation-iteration-count: infinite;
 `;

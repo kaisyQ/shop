@@ -10,6 +10,8 @@ import {
 
 import { SidebarConnectedProps } from "./SidebarContainer"
 
+import SellingIcon from "./../Custom/Icons/SellingIcon";
+
 interface ISidebarProps extends SidebarConnectedProps{
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
     isOpen: boolean
@@ -29,7 +31,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
                 <ListWrapper>
                     <NavLink to={'/'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.HouseFill size={'2rem'}/>
+                            <Icon.House size={'2rem'}/>
                             <span>Home</span>
                         </Item>
                     </NavLink>
@@ -41,7 +43,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
                     </NavLink>
                     <NavLink to={'/contact'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.EnvelopeFill size={'2rem'}/>
+                            <Icon.Envelope size={'2rem'}/>
                             <span>Contact</span>
                         </Item>
                     </NavLink>
@@ -51,6 +53,14 @@ const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
                             <span>Posts</span>
                         </Item>
                     </NavLink>
+
+                    <NavLink to={'/posts'}>
+                        <Item onClick={hideSidebar}>
+                            <SellingIcon width="2rem" height="2rem" />
+                            <span>Sell</span>
+                        </Item>
+                    </NavLink>
+
                 </ListWrapper>
             </SidebarWrapper>
         </>

@@ -11,13 +11,19 @@ interface IInputProps {
     padding?: string,
     width?: string, 
     fontSize?: string,
-    minHeight?: string
+    minHeight?: string,
+    inputType?: string
 }
 
 
 const Input: React.FC<IInputProps> = (props) => {
 
-    const { placeholder, id, type, value, onChange, padding, width, fontSize, minHeight } = props;
+    const { 
+        placeholder, id, type, 
+        value, onChange, padding, 
+        width, fontSize, minHeight,
+        inputType
+    } = props;
     
     const [focused, setFocused] = React.useState(false);
     
@@ -43,7 +49,7 @@ const Input: React.FC<IInputProps> = (props) => {
                 </LabelWrapper>
                 {
                     type !== 'textarea' ?
-                        <InputWrapper fontSize={fontSize} width={width} padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
+                        <InputWrapper type={inputType || "text"} fontSize={fontSize} width={width} padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
                         <TextareaWrapper minHeight={minHeight} padding={padding} value={value} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
                 }
             </Wrapper>  

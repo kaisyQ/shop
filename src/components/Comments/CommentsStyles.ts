@@ -20,6 +20,8 @@ export const CommentsTitle = styled.h2`
     font-size: 4rem;
     font-weight: 500;
     text-decoration: underline;
+    font-family: 'Jacques Francois Shadow', cursive;
+
 
     @media only screen and (max-width: 768px) {
         font-size: 3.5rem;
@@ -34,6 +36,7 @@ export const CommentsSubtitle = styled.h3`
     margin-top: 1rem;
     font-size: 3rem;
     font-weight: 400;
+    
 
     @media only screen and (max-width: 768px) {
         font-size: 2.5rem;
