@@ -6,7 +6,7 @@ export const withoutBodyHeaders: HeadersType = {
 }
 
 const options: HttpQueryOptionsType = {
-    baseUrl: "http://198.245.55.24/api/",
+    baseUrl: "https://198.245.55.24/api/",
     credentials: "include",
 }
 
