@@ -1,6 +1,6 @@
 {
   "name": "shop-app",
-  "proxy": "https://bmfurniture.ca",
+  "proxy": "http://bmfurniture.ca",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
