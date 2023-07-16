@@ -6,7 +6,7 @@ export const withoutBodyHeaders: HeadersType = {
 }
 
 const options: HttpQueryOptionsType = {
-    baseUrl: "http://bmfurniture.ca/api/",
+    baseUrl: "https://bmfurniture.ca/api/",
     credentials: "include",
 }
 
