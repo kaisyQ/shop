@@ -55,7 +55,7 @@ export const fetchToCheckMe = createAsyncThunk(
     "auth/fetchToCheckMe", 
     async () => {
         try {
-            const response = await fetch(`https://bmfurniture.ca/auth`, {
+            const response = await fetch(`https://bmfurniture.ca/api/auth`, {
                 method: "GET", 
                 credentials: "include",
             });
@@ -75,7 +75,7 @@ export const fetchToLogout = createAsyncThunk(
     "auth/fetchToLogout", 
     async () => {
         try {
-            const response = await fetch(`https://bmfurniture.ca/auth`, {
+            const response = await fetch(`https://bmfurniture.ca/api/auth`, {
                 method: "DELETE", 
                 credentials: "include",
             });
