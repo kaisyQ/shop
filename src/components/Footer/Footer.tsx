@@ -27,7 +27,10 @@ const Footer: React.FC = () => {
                 </OurContacts>
                 <LinksContainer>
                     <Links>
-                        <NavLink to={"inst-path"}><Icon.Instagram size={'2rem'}/></NavLink>
+                        <NavLink 
+                            to={"https://instagram.com/bm_furniture_finds?igshid=MmIzYWVlNDQ5Yg=="}>
+                                <Icon.Instagram size={'2rem'}/>
+                        </NavLink>
                         <NavLink to={"facebook-path"}><Icon.Facebook size={'2rem'}/></NavLink>
                         <NavLink to={"whatapp-path"}><Icon.Whatsapp size={'2rem'}/></NavLink>
                     </Links>

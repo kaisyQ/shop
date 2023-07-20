@@ -12,7 +12,7 @@ export const TopProductsSliderWrapper = styled.div<ITopProdutsSliderProps>`
     margin: 0 auto;
     box-sizing: border-box;
     width: ${props => `${props.width - 40}px`};
-    aspect-ratio: 1/1;
+    aspect-ratio: 16/9;
     overflow: hidden;
 `;
 
