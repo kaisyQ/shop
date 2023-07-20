@@ -16,7 +16,7 @@ export const Image = styled.img`
     display: block;
     margin: 0 auto;
     margin-top: 4rem;
-
+    object-fit: fill;
 `;
 
 export const Date = styled.p`

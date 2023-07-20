@@ -33,7 +33,7 @@ export const TopProductsMain = styled.main`
 
     margin-top: 2rem;
     display: flex;
-    gap: .5rem;
+    gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;

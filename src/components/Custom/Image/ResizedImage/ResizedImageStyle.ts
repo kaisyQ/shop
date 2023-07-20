@@ -61,7 +61,7 @@ export const ResizedImageContent = styled.img`
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     border: .5rem solid #000;
 `;
 

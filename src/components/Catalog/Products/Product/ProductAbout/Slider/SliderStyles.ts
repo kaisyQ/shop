@@ -25,6 +25,6 @@ export const SliderItem = styled.img<ISliderBlockProps>`
     display: block;
     max-width: ${props => props.width};
     max-height: ${props => props.width};
-    object-fit: cover;
+    object-fit: fill;
     transition: .6s ease-in-out;
 `;

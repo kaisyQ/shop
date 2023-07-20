@@ -50,7 +50,7 @@ export const CardImageWrapper = styled.div`
 export const CardImage = styled.img<ICardHoveredProps>`
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
 
     transform: ${props => props.isHovered ? 'scale(110%)' : 'scale(1)'};
     transition: .4s ease-in-out;

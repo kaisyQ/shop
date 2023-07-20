@@ -26,7 +26,6 @@ interface IProductProps {
 const Product: React.FC<IProductProps> = (props) => {
     const { count, name, imageSrc, id } = props;
     
-    console.log(props);
     return (
         <>
             <Wrapper>
