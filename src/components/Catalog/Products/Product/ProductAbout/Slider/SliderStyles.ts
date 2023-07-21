@@ -8,7 +8,6 @@ interface ISliderBlockProps {
 export const Slider = styled.div<ISliderBlockProps>`
     max-width: ${props => props.width};
     height: ${props => props.width};
-    aspect-ratio: 1/1;
     overflow-x: scroll;
 `;
 
@@ -25,6 +24,5 @@ export const SliderItem = styled.img<ISliderBlockProps>`
     display: block;
     max-width: ${props => props.width};
     max-height: ${props => props.width};
-    object-fit: fill;
     transition: .6s ease-in-out;
 `;

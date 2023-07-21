@@ -36,7 +36,6 @@ export const CardImageWrapper = styled.div`
     width: 100%;
     overflow: hidden;
     z-index: 1;
-    aspect-ratio: 5/4;
 `;
 
 export const CardImage = styled.img`
@@ -44,7 +43,6 @@ export const CardImage = styled.img`
     height: 100%;
     transition: .3s ease-in-out;
     transform: scale(100%);
-    object-fit: fill;
     :hover {
         transition: .3s ease-in-out;
         transform: scale(120%);

@@ -52,8 +52,7 @@ export const ModalContent = styled.div`
     max-width: 1024px;
     max-height: 900px;
     width: 100%;
-    aspect-ratio: 1/1;
-    padding: 7rem;
+    padding: 5rem;
     animation: ${show} .7s ease-in-out forwards;
 `;
 
@@ -61,7 +60,6 @@ export const ResizedImageContent = styled.img`
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: fill;
     border: .5rem solid #000;
 `;
 

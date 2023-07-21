@@ -9,7 +9,6 @@ export const ImagesWrapper = styled.div`
     flex-direction: column;
     gap: 2.5rem;
     max-width: 48%;
-    aspect-ratio: 1/1;
     
     @media only screen and (max-width: 1200px) {
         display: flex;
@@ -33,5 +32,4 @@ export const ImageRow = styled.div`
 export const ImageWrapper = styled.div<IImage>`
     overflow: hidden;
     max-width: ${props => props.width || '48%'};
-    aspect-ratio: 1/1;
 `;
