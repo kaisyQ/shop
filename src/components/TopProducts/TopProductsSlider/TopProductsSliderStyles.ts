@@ -12,7 +12,6 @@ export const TopProductsSliderWrapper = styled.div<ITopProdutsSliderProps>`
     margin: 0 auto;
     box-sizing: border-box;
     width: ${props => `${props.width - 40}px`};
-    aspect-ratio: 16/9;
     overflow: hidden;
 `;
 
@@ -34,5 +33,4 @@ export const TopProductsSliderItemImage = styled.img`
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: fill;
 `;
