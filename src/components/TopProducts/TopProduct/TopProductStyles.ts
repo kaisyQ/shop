@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const TopProductWrapper = styled.div`
     width: 40%;
     background-color: #000;
-    flex-grow: 1;
 `;
 
 export const TopProductImage = styled.img`
