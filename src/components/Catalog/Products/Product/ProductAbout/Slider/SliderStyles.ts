@@ -7,13 +7,12 @@ interface ISliderBlockProps {
 
 export const Slider = styled.div<ISliderBlockProps>`
     max-width: ${props => props.width};
-    height: ${props => props.width};
+    max-height: ${props => props.width};
     overflow-x: scroll;
 `;
 
 export const Block = styled.div<ISliderBlockProps>`
     width: ${props => props.width};
-    height: 100%;
     display: flex;
     z-index: 1;
     transition: .2s ease-in-out;
