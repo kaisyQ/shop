@@ -148,7 +148,7 @@ const productSlice = createSlice({
         builder.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<{status: number, products: ServerProduct[]}>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            
+            console.log(action.payload.products);
             state.items = action.payload.products.map(product => {
                 return {
                     id: product.id,
