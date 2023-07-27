@@ -38,7 +38,7 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
     if (!product) {
         return <Component404 />;
     }
-
+    console.log(product);
     return (
         <>
             <Path 
@@ -55,9 +55,9 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
                 {
                     width <= 768? <>
                         <SliderWrapper>
-                            <Slider images={product.imagesSrc}/>
+                            <Slider images={product.imagesSrc} />
                         </SliderWrapper>
-                    </> : <Images images={product.imagesSrc}/>
+                    </> : <Images images={product.imagesSrc} />
                 }
                 
                 <InfoWrapper>
