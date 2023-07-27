@@ -38,7 +38,6 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
     if (!product) {
         return <Component404 />;
     }
-    console.log(product);
     return (
         <>
             <Path 
