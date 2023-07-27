@@ -21,8 +21,6 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
         return <Preloader />;
     }
 
-    console.log(products);
-
     return (
         <>
         {

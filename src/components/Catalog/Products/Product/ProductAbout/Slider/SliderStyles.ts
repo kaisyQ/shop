@@ -9,7 +9,7 @@ export const Slider = styled.div<ISliderBlockProps>`
     max-width: ${props => props.width};
     max-height: ${props => props.width};
     overflow-x: scroll;
-    border: .1rem solid #000;
+    background-color: #000;
 `;
 
 export const Block = styled.div<ISliderBlockProps>`
