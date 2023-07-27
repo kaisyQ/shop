@@ -67,7 +67,7 @@ export const PriseWrapper = styled.div`
 export const Prise = styled.div<IPriceProps>`
     font-size: ${props => props.crossedOut ? '2.2rem' : '3rem'};
     text-decoration: ${props => props.crossedOut ? 'line-through' : 'none'};
-    opacity: ${props => props.crossedOut ? '70%' : '0'};
+    opacity: ${props => props.crossedOut ? '70%' : '100%'};
     font-style: ${props => props.crossedOut ? 'normal' : 'italic'};
     font-weight: ${props => props.crossedOut ? '400' : '500'};
 `;
