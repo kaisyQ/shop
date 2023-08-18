@@ -27,6 +27,7 @@ export const TopProductsSliderItem = styled.div<ISliderItemProps>`
     height: 100%;
     transition: 2s transform ease-in-out;
     transform: ${props => `translateX(-${100*props.current}%)`};
+    
 `;
 
 export const TopProductsSliderItemImage = styled.img`
