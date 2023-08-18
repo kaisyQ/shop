@@ -42,7 +42,6 @@ export const Title = styled.h3`
     font-size: 3rem;
     color: #000;
     font-weight: 600;
-    text-decoration: underline;
     word-wrap: break-word;
 `;
 
