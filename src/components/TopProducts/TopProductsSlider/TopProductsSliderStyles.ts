@@ -64,5 +64,4 @@ export const TopProductSliderName = styled.div`
     width: 90%;
     transform: translateX(-50%);
     color: #fff;
-    text-decoration: underline;
 `;

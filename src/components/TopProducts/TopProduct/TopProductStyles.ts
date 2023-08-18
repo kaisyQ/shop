@@ -56,5 +56,4 @@ export const TopProductName = styled.div<ITopProductName>`
     transition: all .4s ease-in-out;
     color: ${props => props.hovered ? "#fff" : "inherit"};
     opacity: ${props => props.hovered ? "1" :  "0"};
-    text-decoration: underline;
 `;

@@ -5,7 +5,7 @@ import * as Icon from 'react-bootstrap-icons'
 import { NavLink } from "react-router-dom"
 
 import { 
-    SidebarWrapper, ListWrapper, Item, Span
+    SidebarWrapper, ListWrapper, Item
 } from "./SidebarStyles"
 
 import { SidebarConnectedProps } from "./SidebarContainer"
@@ -32,32 +32,32 @@ const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
                     <NavLink to={'/'}>
                         <Item onClick={hideSidebar}>
                             <Icon.House size={'2.2rem'}/>
-                            <Span>Home</Span>
+                            <span>Home</span>
                         </Item>
                     </NavLink>
                     <NavLink to={'/catalog'}>
                         <Item onClick={hideSidebar}>
                             <Icon.Cart size={'2.2rem'}/>
-                            <Span>Catalog</Span>
+                            <span>Catalog</span>
                         </Item>
                     </NavLink>
                     <NavLink to={'/contact'}>
                         <Item onClick={hideSidebar}>
                             <Icon.Envelope size={'2.2rem'}/>
-                            <Span>Contact</Span>
+                            <span>Contact</span>
                         </Item>
                     </NavLink>
                     <NavLink to={'/posts'}>
                         <Item onClick={hideSidebar}>
                             <Icon.Newspaper size={'2.2rem'}/>
-                            <Span>Posts</Span>
+                            <span>Posts</span>
                         </Item>
                     </NavLink>
 
                     <NavLink to={'/sell'}>
                         <Item onClick={hideSidebar}>
                             <SellingIcon width="2.2rem" height="2.2rem" />
-                            <Span>Sell your sofa</Span>
+                            <span>Sell your sofa</span>
                         </Item>
                     </NavLink>
 

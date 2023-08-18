@@ -67,17 +67,3 @@ export const Item = styled.li`
         text-decoration: underline;
     }
 `;
-
-export const Span = styled.span`
-    position: relative;
-    ::after {
-        content: '';
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        height: .1rem;
-        background-color: #000;
-
-    }
-`;
