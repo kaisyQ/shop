@@ -57,6 +57,7 @@ export interface IShortProduct {
 
 export type TopProduct = {
     imagesSrc: string[],
+    name: string,
     id: string
 }
 

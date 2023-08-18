@@ -1,20 +1,37 @@
 import React from "react";
 
-import { TopProductWrapper, TopProductImage } from "./TopProductStyles";
+import { TopProductWrapper, TopProductImage, TopProductName, ImageWrapper } from "./TopProductStyles";
 
 import { NavLink } from "react-router-dom";
 
 interface ITopProductProps {
     id: string, 
+    name: string,
     imagesSrc: string[]
 }
 
 const TopProduct: React.FC<ITopProductProps> = (props) => {
+    console.log(props.name);
+
+    const [hovered, setHovered] = React.useState(false);
+    
+    const wrapperMouseOver = () => {
+        setHovered(true);
+    }
+
+    const wrapperMouseOut = () => {
+        setHovered(false);
+    }
+
+
     return (
         <>
-            <TopProductWrapper>
+            <TopProductWrapper onMouseOver={wrapperMouseOver} onMouseOut={wrapperMouseOut}> 
                 <NavLink to={`/catalog/${props.id}`}>
-                    <TopProductImage src={props.imagesSrc[0]} alt="top-product"/>
+                    <ImageWrapper>
+                        <TopProductName hovered={hovered}>{props.name}</TopProductName>
+                        <TopProductImage src={props.imagesSrc[0]} alt="top-product"/>
+                    </ImageWrapper>
                 </NavLink>
             </TopProductWrapper>
         </>

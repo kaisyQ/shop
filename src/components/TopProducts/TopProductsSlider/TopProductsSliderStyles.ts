@@ -30,8 +30,39 @@ export const TopProductsSliderItem = styled.div<ISliderItemProps>`
     
 `;
 
+export const ImageWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    background: #000;
+    ::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(to top,rgba(0,0,0,.9), rgba(0,0,0,.8), rgba(0,0,0,.5), rgba(0,0,0,0));
+    }
+`;
+
 export const TopProductsSliderItemImage = styled.img`
     display: block;
     width: 100%;
     height: 100%;
+`;
+
+export const TopProductSliderName = styled.div`
+    position: absolute;
+    bottom: 2rem;
+    font-size: 2.2rem;
+    z-index: 22223;
+    overflow: hidden;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    color: #fff;
+    text-decoration: underline;
 `;

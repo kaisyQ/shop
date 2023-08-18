@@ -2,7 +2,7 @@ import React from "react";
 
 import { 
     TopProductsSliderWrapper, TopProductsSliderBlock, TopProductsSliderItem,
-    TopProductsSliderItemImage
+    TopProductsSliderItemImage, ImageWrapper, TopProductSliderName
 } from "./TopProductsSliderStyles";
 
 import type { TopProduct } from "types/types";
@@ -20,12 +20,13 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
 
     const [current, setCurrent] = React.useState(0);
 
-    const [arr, setArr] = React.useState<{ image: string, id: string }[] | null>(null);
+    const [arr, setArr] = React.useState<{ image: string, id: string, name: string }[] | null>(null);
 
     React.useEffect(() => {
         setArr(props.topProducts.map(topProduct => ({ 
                 image: topProduct.imagesSrc[0],
-                id: topProduct.id
+                id: topProduct.id,
+                name: topProduct.name
             })
         ));
 
@@ -70,7 +71,10 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
                             (
                                 (topProduct, index) => <TopProductsSliderItem key={index} width={props.width} current={current}>
                                         <NavLink to={`catalog/${topProduct.id}`}>
-                                            <TopProductsSliderItemImage src={topProduct.image} alt="top-product"/>
+                                            <ImageWrapper>
+                                                <TopProductsSliderItemImage src={topProduct.image} alt="top-product"/>
+                                                <TopProductSliderName>{topProduct.name}</TopProductSliderName>
+                                            </ImageWrapper>
                                         </NavLink>
                                     </TopProductsSliderItem>
                             ) : null

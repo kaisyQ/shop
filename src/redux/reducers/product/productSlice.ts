@@ -275,6 +275,7 @@ const productSlice = createSlice({
             if (action.payload.status === 200) {
                 state.topProducts = action.payload.products.map(product => ({
                     id: product.id,
+                    name: product.name,
                     imagesSrc: product.images.map(img => img.src),
                 }))
             }

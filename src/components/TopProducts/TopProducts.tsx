@@ -33,7 +33,7 @@ const TopProducts: React.FC<ITopProductsProps> = ({ fetchTopProducts, topProduct
                     <TopProductsTitle>Top of the week</TopProductsTitle>
                 </TopProductsHeader>
                 {
-                    width <= 450 ? 
+                    width <= 500 ? 
                         <TopProductsSlider topProducts={topProducts} width={width}/> : <>
                             <TopProductsMain>
                             {
