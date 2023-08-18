@@ -20,7 +20,6 @@ export const CommentsTitle = styled.h2`
     font-size: 4rem;
     font-weight: 500;
     text-decoration: underline;
-    font-family: 'Jacques Francois Shadow', cursive;
 
 
     @media only screen and (max-width: 768px) {
@@ -67,9 +66,17 @@ export const CreateButton = styled.button`
     padding: 1.3rem 2rem;
     background-color: #000;
     color: #fff;
-    border-radius: .5rem;
     font: inherit;
     font-size: 2rem;
+
+    transition: .3s ease-in-out;
+    
+    :hover {
+        -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, .2);
+    }
+
 
     @media only screen and (max-width: 330px) {
         font-size: 1.6rem;

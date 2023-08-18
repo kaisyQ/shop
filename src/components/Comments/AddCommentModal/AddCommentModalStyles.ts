@@ -5,18 +5,11 @@ import styled, {keyframes} from "styled-components";
 const ShowModal = keyframes`
     0% {
         opacity: 0;
-        transform: rotate(0) translate(-50%, -50%);
+       
 
-    }
-    25% {
-        transform: rotate(20deg) translate(-50%, -50%);
-    }
-    75% {
-        transform: rotate(-20deg) translate(-50%, -50%);
     }
     100% {
         opacity: 1;
-        transform: rotate(0) translate(-50%, -50%);
     }
 `;
 
@@ -37,7 +30,7 @@ export const AddCommentModalWrapper = styled.div`
     flex-direction: column;
     gap: 3rem;
 
-    animation: ${ShowModal} .7s ease-in-out forwards;
+    animation: ${ShowModal} .3s ease-in-out forwards;
 `;
 
 

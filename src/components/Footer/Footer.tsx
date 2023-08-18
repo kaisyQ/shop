@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                         <NavLink to={"whatapp-path"}><Icon.Whatsapp size={'2rem'}/></NavLink>
                     </Links>
                     <Copyright>
-                    © { new Date().getFullYear() } Company Name. All rights reserved.
+                    © { new Date().getFullYear() } Bm-furniture-finds. All rights reserved.
                     </Copyright>
                     <SignInButtonWrapper>
                         <NavLink to={'/auth'}>

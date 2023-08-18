@@ -5,7 +5,7 @@ import * as Icon from 'react-bootstrap-icons'
 import { NavLink } from "react-router-dom"
 
 import { 
-    SidebarWrapper, ListWrapper, Item
+    SidebarWrapper, ListWrapper, Item, Span
 } from "./SidebarStyles"
 
 import { SidebarConnectedProps } from "./SidebarContainer"
@@ -31,33 +31,33 @@ const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
                 <ListWrapper>
                     <NavLink to={'/'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.House size={'2rem'}/>
-                            <span>Home</span>
+                            <Icon.House size={'2.2rem'}/>
+                            <Span>Home</Span>
                         </Item>
                     </NavLink>
                     <NavLink to={'/catalog'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.Cart size={'2rem'}/>
-                            <span>Catalog</span>
+                            <Icon.Cart size={'2.2rem'}/>
+                            <Span>Catalog</Span>
                         </Item>
                     </NavLink>
                     <NavLink to={'/contact'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.Envelope size={'2rem'}/>
-                            <span>Contact</span>
+                            <Icon.Envelope size={'2.2rem'}/>
+                            <Span>Contact</Span>
                         </Item>
                     </NavLink>
                     <NavLink to={'/posts'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.Newspaper size={'2rem'}/>
-                            <span>Posts</span>
+                            <Icon.Newspaper size={'2.2rem'}/>
+                            <Span>Posts</Span>
                         </Item>
                     </NavLink>
 
-                    <NavLink to={'/posts'}>
+                    <NavLink to={'/sell'}>
                         <Item onClick={hideSidebar}>
-                            <SellingIcon width="2rem" height="2rem" />
-                            <span>Sell</span>
+                            <SellingIcon width="2.2rem" height="2.2rem" />
+                            <Span>Sell your sofa</Span>
                         </Item>
                     </NavLink>
 

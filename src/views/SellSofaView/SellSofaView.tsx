@@ -102,7 +102,7 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
                         />
 
                         <ButtonWrapper>
-                            <Button onClick={onSendClick} padding={'2rem 7rem'} isReverse={true}>
+                            <Button onClick={onSendClick} padding={'1.6rem 5.5rem'} isReverse={true}>
                                 Send
                             </Button>
                         </ButtonWrapper>

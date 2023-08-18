@@ -45,8 +45,16 @@ export const LinksContainer = styled.div`
 export const Links = styled.div`
     display: flex;
     justify-content: flex-end;
-    gap: 2rem;
+    gap: 5rem;
     width: 100%;
+
+    @media only screen and (max-width: 768px) {
+        justify-content: center;
+    }
+    
+    @media only screen and (max-width: 330px) {
+        gap: 3rem;
+    }
 `;
 
 export const OurContacts = styled.div`
@@ -77,10 +85,11 @@ export const SignInButtonWrapper = styled.div`
 
 export const SignInButton = styled.button`
     display: block;
-    font-size: 1rem;
+    font-size: .6rem;
     text-decoration: underline;
     color: #fff;
     float: right;
+    font: inherit;
     
     transition: .2s ease-in-out;
     :hover {
@@ -101,6 +110,10 @@ export const Copyright = styled.p`
     width: 100%;
     font-size: 1.4rem;
     color: inherit;
+
+    @media only screen and (max-width: 768px) {
+        text-align: center;
+    }
 ;`
 
 export const ContactTitle = styled.span<ISpanProps>`

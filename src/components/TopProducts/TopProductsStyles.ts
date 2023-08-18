@@ -14,7 +14,6 @@ export const TopProductsTitle = styled.h2`
     text-align: center;
     font-weight: 500;
     text-decoration: underline;
-    font-family: 'Jacques Francois Shadow', cursive;
     
     @media only screen and (max-width: 768px) {
         font-size: 3.5rem;

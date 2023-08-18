@@ -29,6 +29,7 @@ export const SidebarWrapper = styled.div<ISidebarProps>`
     background-color: white;
     animation-duration: 0.3s;
     animation-name: ${openSidebar};
+    animation: ${openSidebar} .3s ease-in-out forwards;
     z-index: 10;
     
     @media only screen and (max-width: 1200px) {
@@ -48,25 +49,35 @@ export const SidebarWrapper = styled.div<ISidebarProps>`
 
 
 export const ListWrapper = styled.ul`
-    padding: 5rem;
-    
-    @media only screen and (max-width: 330px){
-        padding: 5rem 2rem 5rem 2rem;
-    }
+    padding: 2rem 1rem;
 `
 
 export const Item = styled.li`
     padding: 1rem 1.5rem;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     line-height:1.6rem;
     text-transform: capitalize;
     text-align: left;
     display: flex;
     align-items: center;
-    column-gap: .5rem;
+    column-gap: 1rem;
 
     :hover{
         color: #993255;
         text-decoration: underline;
     }
-`
+`;
+
+export const Span = styled.span`
+    position: relative;
+    ::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: .1rem;
+        background-color: #000;
+
+    }
+`;

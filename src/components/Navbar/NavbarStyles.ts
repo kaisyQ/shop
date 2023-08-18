@@ -27,8 +27,8 @@ export const Wrapper = styled.nav`
 `;
 
 export const Item =  styled.div`
-    padding: 1rem 2rem;
-    font-size: 1.6rem;
+    padding: 1rem 2.2rem;
+    font-size: 1.8rem;
     text-transform: capitalize;
     text-align: left;
     background: #fff;

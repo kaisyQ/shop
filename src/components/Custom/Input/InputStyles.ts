@@ -26,7 +26,7 @@ export const LabelWrapper = styled.label<ILabelProps>`
     padding: ${props => (props.focused||props.value) ? '0 2rem' : "0"};
     left: 1.4rem;
     top: ${props => (props.focused||props.value) ? '0' : props.type==='INPUT'? '50%':'20%'};
-    font-size: ${props => (props.focused||props.value)?props.fontSize?props.fontSize:'1rem':'1.4rem'};
+    font-size: ${props => (props.focused||props.value)?props.fontSize?props.fontSize:'1.2rem':'1.6rem'};
     transform: translateY(-50%);
     color: ${props => (props.focused||props.value) ? '#000' : 'inherit'};
     background-color: white;
