@@ -18,11 +18,17 @@ const Footer: React.FC = () => {
                     <Title>Contacts</Title>
                     <Information>
                         <ContactTitle weight={500}>Our Email:</ContactTitle>
-                        <Span>BM.unique.furniture.finds@gmail.com</Span>
+                        <Span>
+                            <a href="mailto:BM.unique.furniture.finds@gmail.com">
+                                BM.unique.furniture.finds@gmail.com
+                            </a>
+                        </Span>
                     </Information>
                     <Information>
                         <ContactTitle weight={500}>Our Phone:</ContactTitle>
-                        <Span>+16475615320</Span>
+                        <Span>
+                            <a href="tel:+16475615320">+16475615320</a>
+                        </Span>
                     </Information>
                 </OurContacts>
                 <LinksContainer>

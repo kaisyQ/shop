@@ -47,9 +47,9 @@ class HttpQuery {
                 headers: headers,
                 body: body
             });
-            console.log('before data', response)
+            
             const data = await response.json();
-            console.log('after data', data)
+            
             
             return {
                 data,
