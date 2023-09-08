@@ -6,8 +6,8 @@ export const withoutBodyHeaders: HeadersType = {
 }
 
 const options: HttpQueryOptionsType = {
-    //baseUrl: "https://bmfurniture.ca/api/",
-    baseUrl: "http://localhost:8000/api/",
+    baseUrl: "https://bmfurniture.ca/api/",
+    //baseUrl: "http://localhost:8000/api/",
     credentials: "include",
 }
 
