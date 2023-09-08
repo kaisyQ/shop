@@ -3,7 +3,8 @@ import React from "react";
 import { 
     FooterWrapper, OurContacts, Title, Information, 
     LinksContainer, Links, SignInButton, Copyright,
-    Span, SignInButtonWrapper, ContactTitle
+    Span, SignInButtonWrapper, ContactTitle, MainLinks,
+    AboutSiteAndCompanyLinkList, AboutSiteAndCompanyLinkListItem
 } from "./FooterStyles";
 
 import { NavLink } from "react-router-dom";
@@ -15,23 +16,37 @@ const Footer: React.FC = () => {
     return (
         <>
             <FooterWrapper>
-                <OurContacts>
-                    <Title>Contacts</Title>
-                    <Information>
-                        <ContactTitle weight={500}>Our Email:</ContactTitle>
-                        <Span>
-                            <a href="mailto:BM.unique.furniture.finds@gmail.com">
-                                BM.unique.furniture.finds@gmail.com
-                            </a>
-                        </Span>
-                    </Information>
-                    <Information>
-                        <ContactTitle weight={500}>Our Phone:</ContactTitle>
-                        <Span>
-                            <a href="tel:+16475615320">+16475615320</a>
-                        </Span>
-                    </Information>
-                </OurContacts>
+                <MainLinks>
+                
+                    <OurContacts>
+                        <Title>Contacts</Title>
+                        <Information>
+                            <ContactTitle weight={500}>Our Email:</ContactTitle>
+                            <Span>
+                                <a href="mailto:BM.unique.furniture.finds@gmail.com">
+                                    BM.unique.furniture.finds@gmail.com
+                                </a>
+                            </Span>
+                        </Information>
+                        <Information>
+                            <ContactTitle weight={500}>Our Phone:</ContactTitle>
+                            <Span>
+                                <a href="tel:+16475615320">+16475615320</a>
+                            </Span>
+                        </Information>
+                    </OurContacts>
+
+                    <AboutSiteAndCompanyLinkList>
+                    
+                        <AboutSiteAndCompanyLinkListItem>
+                            <NavLink to={'/terms'}>
+                                Terms of Service
+                            </NavLink>
+                        </AboutSiteAndCompanyLinkListItem>
+                    
+                    </AboutSiteAndCompanyLinkList>
+
+                </MainLinks>
                 <LinksContainer>
                     <Links>
                         <NavLink 

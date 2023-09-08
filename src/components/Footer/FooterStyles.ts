@@ -137,3 +137,22 @@ export const Span = styled.span<ISpanProps>`
     }
 `;
 
+
+export const MainLinks = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+`;
+
+export const AboutSiteAndCompanyLinkList = styled.ul`
+    list-style: inside;
+`;
+
+export const AboutSiteAndCompanyLinkListItem = styled.li`
+    
+    :hover {
+        color: #cecece;
+        text-decoration: underline;
+    }
+`;

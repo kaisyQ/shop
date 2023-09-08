@@ -21,6 +21,7 @@ import AdminView from 'components/Admin/AdminContainer';
 import { Routes, Route } from 'react-router-dom';
 
 import Preloader from 'components/Ui/Preloader/Preloader';
+import WebsiteTermsView from 'views/WebsiteTermsView/WebsiteTermsView';
 
 
 const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
@@ -60,6 +61,8 @@ const MainRouter: React.FC = () => {
                     <Route path='/sell' element={ <SellSofaViewContainer />}/>
 
                     <Route path='/cart' element={ <CartContainer />} />
+
+                    <Route path='/terms' element={<WebsiteTermsView />} />
 
                     <Route path='/posts' element={ <Posts /> } />
 
