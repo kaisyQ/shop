@@ -41,3 +41,4 @@ export const deletePost = (id: string) => HttpQuery.delete(`posts/${id}`);
 export const createPost = (body: any) => HttpQuery.post("posts", body);
 
 export const updatePost = (body: any) => HttpQuery.put("posts", body);
+

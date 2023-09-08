@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import * as Icon from 'react-bootstrap-icons';
 
 import { 
-    HeaderWrapper, Logo, Menu, MenuLine
+    HeaderWrapper, Logo, Menu, MenuLine, LinksWrapper
 } from "./HeaderStyles";
 
 import type { HeaderConnectedProps } from "./HeaderContainer";
@@ -44,13 +44,25 @@ const Header: React.FC<IHeaderProps> = ({ setIsDark, isDark, setIsOpenSidebar, i
                 <NavLink to={'/'}>
                     <Logo src={logo} alt="logo" />
                 </NavLink>
-                {
-                    windowWidth <= 768 ? <>
-                        <Menu onClick={onMenuClick}>
-                            <MenuLine isOpen={isOpenSidebar} />
-                        </Menu> 
-                    </> : <div></div>
-                }
+                <LinksWrapper>
+
+                    <div>
+                        <NavLink to={'/cart'}>
+                            <Icon.Bag size={'2rem'} />
+                        </NavLink>                        
+                    </div>
+                    {
+                        windowWidth <= 768 ? <>
+        
+                            <Menu onClick={onMenuClick}>
+        
+                                <MenuLine isOpen={isOpenSidebar} />
+        
+                            </Menu> 
+
+                        </> : null
+                    }
+                </LinksWrapper>
             </HeaderWrapper>
         </>
     );  

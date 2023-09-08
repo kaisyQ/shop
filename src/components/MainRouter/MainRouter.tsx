@@ -3,10 +3,11 @@ import React from 'react';
 import ProductAboutContainer from 'components/Catalog/Products/Product/ProductAbout/ProductAboutContainer';
 import PostAboutContainer from 'components/Posts/PostAbout/PostAboutContainer';
 import AuthContainer from './../Auth/AuthContainer';
-import Search from 'components/Search/Search';
 import UserEditContainer from 'components/Admin/UserEdit/UserEditContainer';
 import ProductEditContainer from 'components/Admin/ProductEdit/ProductEditContainer';
 import PostEditContainer from 'components/Admin/PostEdit/PostEditContainer';
+import CartContainer from 'components/Cart/CartContainer';
+
 
 import UsersTableContainer from 'components/Admin/UsersTable/UsersTableContainer';
 import ProductsTableContainer from 'components/Admin/ProductsTable/ProductsTableContainer';
@@ -57,6 +58,8 @@ const MainRouter: React.FC = () => {
                     <Route path='/contact' element={ <ContactViewContainer /> }/>
 
                     <Route path='/sell' element={ <SellSofaViewContainer />}/>
+
+                    <Route path='/cart' element={ <CartContainer />} />
 
                     <Route path='/posts' element={ <Posts /> } />
 

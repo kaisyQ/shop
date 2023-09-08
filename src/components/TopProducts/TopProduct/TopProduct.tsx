@@ -1,6 +1,11 @@
 import React from "react";
 
-import { TopProductWrapper, TopProductImage, TopProductName, ImageWrapper } from "./TopProductStyles";
+import { 
+    TopProductWrapper, 
+    TopProductImage, 
+    TopProductName, 
+    ImageWrapper 
+} from "./TopProductStyles";
 
 import { NavLink } from "react-router-dom";
 
@@ -11,15 +16,14 @@ interface ITopProductProps {
 }
 
 const TopProduct: React.FC<ITopProductProps> = (props) => {
-    console.log(props.name);
 
     const [hovered, setHovered] = React.useState(false);
     
-    const wrapperMouseOver = () => {
+    const wrapperMouseOver = (ev: React.MouseEvent<HTMLDivElement>) => {
         setHovered(true);
     }
 
-    const wrapperMouseOut = () => {
+    const wrapperMouseOut = (ev: React.MouseEvent<HTMLDivElement>) => {
         setHovered(false);
     }
 

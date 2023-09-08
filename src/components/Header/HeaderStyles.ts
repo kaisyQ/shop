@@ -81,3 +81,9 @@ export const LinkWrapper = styled.div`
     line-height: 100%;
     position: relative;
 `;
+
+export const LinksWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+`;

@@ -2,6 +2,8 @@ import React from "react";
 
 import Slider from "components/Catalog/Products/Product/ProductAbout/Slider/Slider";
 
+import Button from "components/Custom/Button/Button";
+
 import Images from "./Images/Images";
 import Sections from "./Sections/Sections";
 import Path from "components/Custom/Path/Path";
@@ -21,7 +23,7 @@ import { useParams } from "react-router-dom";
 interface ProductAboutProps extends ProductAboutConnectedProps {
 }
 
-const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProductById }) => {
+const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProductById, addToCart }) => {
 
     const { id } = useParams();
 
@@ -34,10 +36,18 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
 
     const width = useWindowWidth();
 
+    
+    const addToCartBtnClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
+        if (product) {
+            addToCart(product);
+        }
+    }
+
 
     if (!product) {
         return <Component404 />;
     }
+
     return (
         <>
             <Path 
@@ -82,6 +92,9 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
                                 </> : null
                             }
                         </PriseWrapper>
+                    
+                            <Button isReverse={true} onClick={addToCartBtnClick}>Add to cart</Button>
+                    
                     </InfoHeader>
 
                     <Sections 

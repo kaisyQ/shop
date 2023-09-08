@@ -129,6 +129,7 @@ export const ContactTitle = styled.span<ISpanProps>`
 export const Span = styled.span<ISpanProps>`
     word-break: break-all;
     text-align: right;
+    text-decoration: underline;
 
     @media only screen and (max-width: 300px) {
         text-align: center;

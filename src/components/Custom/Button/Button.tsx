@@ -21,6 +21,7 @@ export default styled.button<IButtonProps>`
     :disabled {
         opacity: .8;
     }
+
     
     :hover {
         
@@ -32,6 +33,19 @@ export default styled.button<IButtonProps>`
         
         transition: .2s ease-in-out;
         
+    }
+
+    :disabled:hover {
+        
+        transform: scale(1);
+        
+        color: ${props => props.isReverse ? '#fff' :  '#000'};
+        
+        background-color: ${props => props.isReverse ? '#000' :  '#fff'};
+        
+        transition: .2s ease-in-out;
+
+        cursor: not-allowed;
     }
 
 

@@ -8,11 +8,13 @@ import {
 
 
 interface ICounterProps {
-    productCount: number
+    productCount: number,
+    size?: string 
 }
 
 
-const Counter: React.FC<ICounterProps> = ({ productCount }) => {
+const Counter: React.FC<ICounterProps> = ({ productCount, size }) => {
+    
     const [ count, setCount ] = React.useState(1);
 
 
@@ -29,9 +31,9 @@ const Counter: React.FC<ICounterProps> = ({ productCount }) => {
     return (
         <>
             <CounterWrapper>
-                <BlockWrapper onClick={minusClick}>&ndash;</BlockWrapper>
-                <ValueWrapper>{ count }</ValueWrapper>
-                <BlockWrapper onClick={plusClick}>&#43;</BlockWrapper>
+                <BlockWrapper size={size} onClick={minusClick}>&ndash;</BlockWrapper>
+                <ValueWrapper size={size}>{ count }</ValueWrapper>
+                <BlockWrapper size={size} onClick={plusClick}>&#43;</BlockWrapper>
             </CounterWrapper>
         </>
     );

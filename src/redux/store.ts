@@ -10,6 +10,8 @@ import usersReducer from './reducers/users/usersSlice';
 import commentsReducer from "./reducers/comment/commentSlice";
 import formReducer from "./reducers/forms/formsSlice";
 import searchReducer from "./reducers/search/searchSlice";
+import cartReducer from './reducers/cart/cartSlice';
+
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -19,7 +21,8 @@ const rootReducer = combineReducers({
     users: usersReducer,
     comments: commentsReducer,
     forms: formReducer,
-    search: searchReducer
+    search: searchReducer,
+    cart: cartReducer
 });
 
 

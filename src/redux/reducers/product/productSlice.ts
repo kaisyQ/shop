@@ -148,7 +148,6 @@ const productSlice = createSlice({
         builder.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<{status: number, products: ServerProduct[]}>) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            console.log(action.payload.products);
             state.items = action.payload.products.map(product => {
                 return {
                     id: product.id,
@@ -216,7 +215,6 @@ const productSlice = createSlice({
             (state, action: PayloadAction<{ status: number, id: string }>) => {
                 state.loadingStatus = IDLE;
                 state.error = null;
-                console.log(action.payload)
                 if (action.payload.status === 200) {
                     state.items = state.items.filter(product => product.id !== action.payload.id);
                 }
