@@ -8,6 +8,7 @@ import ShadingBlock from './components/Custom/ShadingBlock/ShadingBlock';
 import MainRouter from 'components/MainRouter/MainRouter';
 import ConfirmModalContainer from 'components/ConfirmModal/ConfirmModalContainer';
 import HintContainer from 'components/Hint/HintContainer';
+import LiveChat from 'components/LiveChat/LiveChat';
 
 import { AppWrapper, MainContainer } from 'AppStyles';
 
@@ -43,6 +44,8 @@ const App: React.FC<AppConnectedProps> = (props) => {
       { confirmModalVisibility ? <ConfirmModalContainer /> : null }
 
       { width >= 768 && !isAuth ? <HintContainer /> : null } 
+
+      <LiveChat />
       
       { width >= 768 ? <Navbar /> : null }
 
