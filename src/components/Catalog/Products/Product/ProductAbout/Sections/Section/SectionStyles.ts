@@ -40,6 +40,7 @@ export const Section = styled.section`
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    white-space: pre-line;
 `;
 
 export const InfoWrapper = styled.div`

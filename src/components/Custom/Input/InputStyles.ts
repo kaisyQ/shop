@@ -55,6 +55,7 @@ export const TextareaWrapper = styled.textarea<IInputProps>`
     font-size: 1.8rem;
     width: 100%;
     border: 0.1rem solid #000;
+    resize: none;
 
     min-height: ${props =>props.minHeight};
 

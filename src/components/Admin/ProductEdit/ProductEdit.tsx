@@ -16,6 +16,7 @@ import reducer, { initialState, actions } from "reducers/product-edit/reducer";
 
 import { updateCheck, createCheck } from "helpers/product-edit.boolean-expressions";
 
+import { DELIVERY_TEXT } from "constants/constants";
 
 interface IProductEditProps extends IProductEditConnectedProps {
 
@@ -46,6 +47,7 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
     React.useEffect(() => {
         if (!product){
             setCurrent(null);
+            dispatch(actions.setAboutDelivery(DELIVERY_TEXT));
             return;
         }
         dispatch(actions.setName(product.name));
