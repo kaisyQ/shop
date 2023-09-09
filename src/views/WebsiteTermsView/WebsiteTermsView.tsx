@@ -2,7 +2,14 @@ import React from 'react';
 
 import WebsiteTermsStyles from './WebsiteTermsStyles';
 
+import { animateScroll } from 'react-scroll';
+
 const WebsiteTermsView = () => {
+
+    React.useEffect(() => {
+        animateScroll.scrollToTop();
+    }, []);
+
     return (
         <>  
             <WebsiteTermsStyles.Wrapper>
