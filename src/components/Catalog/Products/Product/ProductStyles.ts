@@ -20,14 +20,15 @@ export const Wrapper = styled.div`
         transition: .4s ease-in-out;
     }
 
+    width: calc((100% / 3) - 20px);
+    
+    margin: 10px;
 
-    width: 30%;
-
-    @media only screen and (max-width: 768px){
-        width: 45%;
+    @media only screen and (max-width: 568px) {
+        width: calc((100% / 2) - 20px);
     }
 
-    @media only screen and (max-width: 330px){
+    @media only screen and (max-width: 486px) {
         width: 100%;
     }
 `;
