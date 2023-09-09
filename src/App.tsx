@@ -43,7 +43,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
       { confirmModalVisibility ? <ConfirmModalContainer /> : null }
 
-      { width >= 768 && !isAuth ? <HintContainer /> : null } 
+      { /*width >= 768 && !isAuth ? <HintContainer /> : null*/ } 
 
       <LiveChat />
       
