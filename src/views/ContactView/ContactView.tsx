@@ -10,9 +10,12 @@ import {
 } from "./ContactViewStyles";
 
 import { ContactViewConnectedProps } from "./ContactViewContainer";
-import reducer, { initialState, actions } from "reducers/contact-view/reducer";
+
+import { useFormik } from "formik";
 
 import OkMessage from "components/Ui/OkMessage/OkMessage";
+
+import ContactValidationSchema from './../../yup/contact.validation.schema';
 
 interface IContactView extends ContactViewConnectedProps {
 
@@ -22,45 +25,37 @@ const ContactView: React.FC<IContactView> = (props) => {
 
     const { status, setConfirmModalData, fetchContactMessage, setStatus } = props;
 
-    const [state, dispatch] = React.useReducer(reducer, initialState);
-
     React.useEffect(() => {
         return () => {
             setStatus(null);
         }
-    }, [setStatus])
+    }, [setStatus]);
 
-    const onNameChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setName(ev.target.value));
-    }
 
-    const onEmailChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setEmail(ev.target.value));
-    }
-
-    const onPhoneNumberChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setPhoneNumber(ev.target.value));
-    }
-
-    const onCommentChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setComment(ev.target.value));
-    }
-    
-    const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        setConfirmModalData({
-            callback: () => { 
-                setStatus(202);
-                fetchContactMessage({
-                    name: state.name,
-                    email: state.email,
-                    comment: state.comment,
-                    phoneNumber: state.phoneNumber
-                })
-            },
-            isVisible: true,
-            message: "Confirm your action..."
-        });
-    }
+    const formik = useFormik({
+        initialValues: {
+            contactName: '',
+            contactEmail: '',
+            contactPhoneNumber: '',
+            contactMessage: ''
+        },
+        validationSchema: ContactValidationSchema,
+        onSubmit: (values) => {
+            setConfirmModalData({
+                callback: () => { 
+                    setStatus(202);
+                    fetchContactMessage({
+                        name: values.contactName,
+                        email: values.contactEmail,
+                        comment: values.contactMessage,
+                        phoneNumber: values.contactPhoneNumber
+                    })
+                },
+                isVisible: true,
+                message: "Confirm your action..."
+            });
+        }
+    })
 
     return (
         <>
@@ -77,28 +72,52 @@ const ContactView: React.FC<IContactView> = (props) => {
                                 Please let us know how we can assist you.
                             </span>
                         </Subtitle>
-                        <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
+                        <FormWrapper onSubmit={formik.handleSubmit}>
                             <InputsWrapper>
-                                <Input padding={'2.4rem 3rem'} id='contact-name' 
-                                    placeholder='Name *' value={state.name} onChange={onNameChange} 
+                                <Input 
+                                    padding={'2.4rem 3rem'} 
+                                    id='contactName' 
+                                    placeholder='Name *'
+                                    error={
+                                        formik.touched.contactName && formik.errors.contactName 
+                                            ? formik.errors.contactName : undefined
+                                    }
+                                    {...formik.getFieldProps('contactName')}
                                 />
-
                                 <Input
-                                    padding={'2.4rem 3rem'} id='contact-email' placeholder='Email *' 
-                                    value={state.email} onChange={onEmailChange} 
+                                    padding={'2.4rem 3rem'} 
+                                    id='contactEmail' 
+                                    placeholder='Email *' 
+                                    error={
+                                        formik.touched.contactEmail && formik.errors.contactEmail 
+                                            ? formik.errors.contactEmail : undefined
+                                    }
+                                    {...formik.getFieldProps('contactEmail')}
                                 />
                             </InputsWrapper>   
 
-                            <Input padding={'2.4rem 3rem'} id='contact-phoneNumber' placeholder='Phone number *' 
-                                value={state.phoneNumber} onChange={onPhoneNumberChange} 
+                            <Input 
+                                padding={'2.4rem 3rem'} 
+                                id='contactPhoneNumber' 
+                                placeholder='Phone number *' 
+                                error={
+                                    formik.touched.contactPhoneNumber && formik.errors.contactPhoneNumber 
+                                        ? formik.errors.contactPhoneNumber : undefined
+                                }
+                                {...formik.getFieldProps('contactPhoneNumber')}
                             />
-
-                            <Input padding={'4rem 3rem'} id='contact-comment' placeholder='Message *' 
-                                type='textarea' value={state.comment} onChange={onCommentChange} 
+                            <Input 
+                                padding={'4rem 3rem'} 
+                                id='contactMessage' placeholder='Message *' 
+                                type='textarea'
+                                error={
+                                    formik.touched.contactMessage && formik.errors.contactMessage 
+                                        ? formik.errors.contactMessage : undefined
+                                }
+                                {...formik.getFieldProps('contactMessage')}
                             />
-
                             <ButtonWrapper>
-                                <Button onClick={onSendClick} padding={'1.6rem 5.5rem'} isReverse={true}>
+                                <Button padding={'1.6rem 5.5rem'} isReverse={true}>
                                     Send
                                 </Button>
                             </ButtonWrapper>

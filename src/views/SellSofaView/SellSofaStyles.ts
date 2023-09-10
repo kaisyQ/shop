@@ -30,7 +30,7 @@ export const InputsWrapper = styled.div`
     gap: 2rem;
     flex-direction: row;
     
-    @media only screen and (max-width: 330px){
+    @media only screen and (max-width: 500px){
         flex-direction: column;
     }
 `;

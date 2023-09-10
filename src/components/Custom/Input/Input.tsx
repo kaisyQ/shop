@@ -2,17 +2,21 @@ import React from "react";
 
 import { Wrapper, LabelWrapper, InputWrapper, TextareaWrapper } from "./InputStyles";
 
+import InputError from "./InputError/InputError";
+
 interface IInputProps {
     placeholder: string,
     id: string,
     type?: 'textarea' | 'input',
     value: string, 
-    onChange: (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
     padding?: string,
     width?: string, 
     fontSize?: string,
     minHeight?: string,
-    inputType?: string
+    inputType?: string,
+    error?: string,
+    onBlur?: (ev: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
+    onChange: (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
 }
 
 
@@ -22,18 +26,22 @@ const Input: React.FC<IInputProps> = (props) => {
         placeholder, id, type, 
         value, onChange, padding, 
         width, fontSize, minHeight,
-        inputType
+        inputType, onBlur, error
     } = props;
     
     const [focused, setFocused] = React.useState(false);
     
-    const onFocus = (ev: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const onFocusHandler = (ev: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFocused(true);
     } 
 
-    const onBlur = (ev: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const onBlurHadler = (ev: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFocused(false);
-    }
+        
+        if (onBlur) {
+            onBlur(ev);
+        }
+    }   
 
     return (
         <>
@@ -48,10 +56,32 @@ const Input: React.FC<IInputProps> = (props) => {
                     { placeholder }
                 </LabelWrapper>
                 {
-                    type !== 'textarea' ?
-                        <InputWrapper type={inputType || "text"} fontSize={fontSize} width={width} padding={padding} value={value} id={id} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/> :
-                        <TextareaWrapper minHeight={minHeight} padding={padding} value={value} onFocus={onFocus} onBlur={onBlur} onChange={onChange}/>
-                }
+                    type !== 'textarea' ? <>
+                            <InputWrapper 
+                                type={inputType || "text"} 
+                                fontSize={fontSize} 
+                                width={width} 
+                                padding={padding} 
+                                value={value} 
+                                id={id} 
+                                onFocus={onFocusHandler} 
+                                onBlur={onBlurHadler} 
+                                onChange={onChange}
+                            /> 
+                        </> : <>
+                            <TextareaWrapper 
+                                id={id}
+                                minHeight={minHeight} 
+                                padding={padding} 
+                                value={value} 
+                                onFocus={onFocusHandler} 
+                                onBlur={onBlurHadler} 
+                                onChange={onChange}
+                            />
+                        </>
+                }   
+
+                { error ? <InputError text={error} /> : null }
             </Wrapper>  
         </>
     );

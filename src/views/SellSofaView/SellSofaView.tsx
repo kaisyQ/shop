@@ -10,8 +10,14 @@ import {
 } from "./SellSofaStyles";
 
 import { SellSofaViewConnectedProps } from "./SellSofaViewContainer";
-import reducer, { initialState, actions } from "reducers/sell-sofa-view/reducer";
+
+import { useFormik } from "formik";
+
+import sellSofaValidationSchema from './../../yup/sellsofa.validation.schema';
+
 import OkMessage from "components/Ui/OkMessage/OkMessage";
+
+
 
 interface ISellSofaViewProps extends SellSofaViewConnectedProps {
 
@@ -21,50 +27,39 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
 
     const { status, setStatus, setConfirmModalData, fetchSellMessage } = props;
 
-    const [state, dispatch] = React.useReducer(reducer, initialState);
-
     React.useEffect(() => {
         return () => {
             setStatus(null);
         }
     }, []);
 
-    const onNameChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setName(ev.target.value));
-    }
+    const formik = useFormik({
+        initialValues: {
+            sellSofaName: '',
+            sellSofaEmail: '',
+            sellSofaPhoneNumber: '',
+            sellSofaBrand: '',
+            sellSofaMessage: ''
+        },
+        validationSchema: sellSofaValidationSchema,
+        onSubmit: (values) => {
+            setConfirmModalData({
+                callback: () => {
+                    setStatus(500);
+                    fetchSellMessage({
+                        email: values.sellSofaEmail,
+                        comment: values.sellSofaMessage,
+                        brand: values.sellSofaBrand,
+                        phoneNumber: values.sellSofaPhoneNumber,
+                        name: values.sellSofaName
+                    })
+                },
+                isVisible: true,
+                message: "Confirm your action..."
+            });
+        }
+    });
 
-    const onEmailChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setEmail(ev.target.value));
-    }
-
-    const onPhoneNumberChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setPhoneNumber(ev.target.value));
-    }
-
-    const onBrandChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setBrandOfSofa(ev.target.value));
-    }
-
-    const onCommentChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        dispatch(actions.setComment(ev.target.value));
-    }
-    
-    const onSendClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        setConfirmModalData({
-            callback: () => {
-                setStatus(500);
-                fetchSellMessage({
-                    email: state.email,
-                    comment: state.comment,
-                    brand: state.brandOfSofa,
-                    phoneNumber: state.phoneNumber,
-                    name: state.name
-                })
-            },
-            isVisible: true,
-            message: "Confirm your action..."
-        });
-    }
 
     return (
         <> 
@@ -78,31 +73,67 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
                         </IconWrapper>
                         <span>Sell your sofa.</span>
                     </Subtitle>
-                    <FormWrapper onSubmit={(ev) => ev.preventDefault()}>
+                    <FormWrapper onSubmit={formik.handleSubmit}>
                         <InputsWrapper>
-                            <Input padding={'2.4rem 3rem'} id='sell-name' placeholder='Name *' 
-                                value={state.name} onChange={onNameChange} 
+                            <Input 
+                                padding={'2.4rem 3rem'} 
+                                id='sellSofaName' 
+                                placeholder='Name *' 
+                                error={
+                                    formik.touched.sellSofaName && formik.errors.sellSofaName 
+                                        ? formik.errors.sellSofaName : undefined
+                                }
+                                {...formik.getFieldProps('sellSofaName')}
                             />
 
-                            <Input padding={'2.4rem 3rem'} id='sell-email' placeholder='Email *' 
-                                value={state.email} onChange={onEmailChange} 
+                            <Input 
+                                padding={'2.4rem 3rem'} 
+                                id='sellSofaEmail' 
+                                placeholder='Email *' 
+                                error={
+                                    formik.touched.sellSofaEmail && formik.errors.sellSofaEmail 
+                                        ? formik.errors.sellSofaEmail : undefined
+                                }
+                                {...formik.getFieldProps('sellSofaEmail')}
                             />
                         </InputsWrapper>   
 
-                        <Input padding={'2.4rem 3rem'} id='sell-phoneNumber' placeholder='Phone number *' 
-                            value={state.phoneNumber} onChange={onPhoneNumberChange} 
+                        <Input 
+                            padding={'2.4rem 3rem'} 
+                            id='sellSofaPhoneNumber' 
+                            placeholder='Phone number *' 
+                            error={
+                                formik.touched.sellSofaPhoneNumber && formik.errors.sellSofaPhoneNumber 
+                                    ? formik.errors.sellSofaPhoneNumber : undefined
+                            }
+                            {...formik.getFieldProps('sellSofaPhoneNumber')}
                         />
 
-                        <Input padding={'2.4rem 3rem'} id='sell-brand' placeholder='Brand of sofa *' 
-                            value={state.brandOfSofa} onChange={onBrandChange} 
+                        <Input 
+                            padding={'2.4rem 3rem'} 
+                            id='sellSofaBrand' 
+                            placeholder='Brand of sofa *' 
+                            error={
+                                formik.touched.sellSofaBrand && formik.errors.sellSofaBrand 
+                                    ? formik.errors.sellSofaBrand : undefined
+                            }
+                            {...formik.getFieldProps('sellSofaBrand')}
                         />
 
-                        <Input padding={'4rem 3rem'} id='sell-comment' placeholder='Message *' 
-                            type='textarea' value={state.comment} onChange={onCommentChange} 
+                        <Input 
+                            padding={'4rem 3rem'} 
+                            id='sellSofaMessage' 
+                            placeholder='Message *' 
+                            type='textarea'
+                            error={
+                                formik.touched.sellSofaMessage && formik.errors.sellSofaMessage 
+                                    ? formik.errors.sellSofaMessage : undefined
+                            }
+                            {...formik.getFieldProps('sellSofaMessage')}
                         />
 
                         <ButtonWrapper>
-                            <Button onClick={onSendClick} padding={'1.6rem 5.5rem'} isReverse={true}>
+                            <Button padding={'1.6rem 5.5rem'} isReverse={true}>
                                 Send
                             </Button>
                         </ButtonWrapper>
