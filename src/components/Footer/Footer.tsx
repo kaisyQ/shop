@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
                         <Title>Contacts</Title>
                         <Information>
                             <ContactTitle weight={500}>Our Email:</ContactTitle>
-                            <Span>
+                            <Span underline={true}>
                                 <a href="mailto:BM.unique.furniture.finds@gmail.com">
                                     BM.unique.furniture.finds@gmail.com
                                 </a>
@@ -30,8 +30,15 @@ const Footer: React.FC = () => {
                         </Information>
                         <Information>
                             <ContactTitle weight={500}>Our Phone:</ContactTitle>
-                            <Span>
+                            <Span underline={true}>
                                 <a href="tel:+16475615320">+16475615320</a>
+                            </Span>
+                        </Information>
+
+                        <Information>
+                            <ContactTitle weight={500}>Our Address:</ContactTitle>
+                            <Span underline={false}>
+                                21 Raleigh avenue
                             </Span>
                         </Information>
                     </OurContacts>
@@ -57,7 +64,7 @@ const Footer: React.FC = () => {
                         <NavLink to={"whatapp-path"}><Icon.Whatsapp size={'2rem'}/></NavLink>
                     </Links>
                     <Copyright>
-                    © { new Date().getFullYear() } Bm-furniture-finds. All rights reserved.
+                    © { new Date().getFullYear() } BM-furniture-finds. All rights reserved.
                     </Copyright>
                     <SignInButtonWrapper>
                         <NavLink to={'/auth'}>

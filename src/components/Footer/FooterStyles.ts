@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 interface ISpanProps {
-    weight?: number
+    weight?: number,
+    underline?: boolean
 }
 
 export const FooterWrapper = styled.footer`
@@ -119,7 +120,6 @@ export const Copyright = styled.p`
 export const ContactTitle = styled.span<ISpanProps>`
     text-align: left;
     font-weight: ${props => props.weight};
-
     @media only screen and (max-width: 300px) {
         text-align: center;
         width: 100%;
@@ -129,7 +129,7 @@ export const ContactTitle = styled.span<ISpanProps>`
 export const Span = styled.span<ISpanProps>`
     word-break: break-all;
     text-align: right;
-    text-decoration: underline;
+    text-decoration: ${props => props.underline ? 'underline' : null};
 
     @media only screen and (max-width: 300px) {
         text-align: center;
