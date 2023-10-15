@@ -28,7 +28,7 @@ export const fetchSearch = createAsyncThunk(
     "searchSlice/fetchSearch",
     async (searchData: string) => {
         try {
-            const response = await fetch(`https://bmfurniture.ca/api/search/${searchData}`,{
+            const response = await fetch(`http://localhost:8000/api/v1/search/${searchData}`,{
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"
@@ -36,7 +36,7 @@ export const fetchSearch = createAsyncThunk(
                 credentials: "include"
             })
             const data = await response.json();
-            
+            console.log(data)
             return {
                 posts: data.posts,
                 products: data.products,
@@ -74,7 +74,7 @@ const searchSlice = createSlice({
                     return {
                         id: product.id,
                         name: product.name,
-                        imageSrc: product.images[0].src
+                        imageSrc: product.images[0]
                     }
                 });
 
@@ -82,7 +82,7 @@ const searchSlice = createSlice({
                     return {
                         id: post.id,
                         name: post.title,
-                        imageSrc: post.imagesSrc[0].src
+                        imageSrc: post.imagesSrc[0]
                     }
                 });
             }

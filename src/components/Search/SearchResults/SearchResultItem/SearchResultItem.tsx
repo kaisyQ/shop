@@ -8,6 +8,7 @@ import {
 import * as Icon from "react-bootstrap-icons";
 
 import { NavLink } from "react-router-dom";
+import { API_URL } from "constants/constants";
 
 interface ISearchResultItemProps {
     name: string,
@@ -25,7 +26,7 @@ const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
                 <SearchResultItemWrapper>
                     <NumberBlock>{ props.index }</NumberBlock>
                     <ImageWrapper>
-                        <Image src={props.imageSrc} />
+                        <Image src={`${API_URL}${props.imageSrc}`} />
                     </ImageWrapper>
                     <NameBlock>{ props.name }</NameBlock>
                     <RightArrrow>
