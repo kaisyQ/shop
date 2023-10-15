@@ -10,12 +10,14 @@ import { fetchProductById } from "redux/reducers/product/productSlice";
 
 import { addToCart } from "redux/reducers/cart/cartSlice";
 
+import { setCurrent } from "redux/reducers/product/productSlice";
+
 const mapStateToProps = (state: RootState) => ({
     product: getCurrentProduct(state)
 });
 
 const mapDispatchToProps = {
-    fetchProductById, addToCart
+    fetchProductById, addToCart, setCurrent
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

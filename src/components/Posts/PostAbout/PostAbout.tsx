@@ -6,6 +6,8 @@ import { Wrapper, Image, Date, Title, Text, ImageWrapper } from "./PostAboutStyl
 
 import { PostAboutConnectedProps } from "./PostAboutContainer";
 
+import { API_URL } from "constants/constants";
+
 
 interface IPostAboutProps extends PostAboutConnectedProps {
 
@@ -34,7 +36,7 @@ const PostAbout: React.FC<IPostAboutProps> = ({ current, fetchPostById, setCurre
                 { current ? <Text>{ current.text }</Text> : null }
 
                 { current ? <ImageWrapper>
-                        <Image src={current.imagesSrc[0]} /> 
+                        <Image src={`${API_URL}${current.imagesSrc[0]}`} /> 
                     </ImageWrapper>
                 : null }
 

@@ -14,6 +14,8 @@ import { Trash3, ArrowBarRight, ArrowRight } from 'react-bootstrap-icons';
 
 import type { CartItemConnectedProps } from './CartItemContainer';
 
+import { API_URL } from 'constants/constants';
+
 interface ICartItemProps extends CartItemConnectedProps{
     product: IProduct
 }
@@ -32,7 +34,7 @@ const CartItem: React.FC<ICartItemProps> = (props) => {
 
                 <CartItemStyles.ImageWrapper>
                         
-                    <CartItemStyles.Image src={props.product.imagesSrc[0]}/>
+                    <CartItemStyles.Image src={`${API_URL}${props.product.imagesSrc[0]}`}/>
                     
 
                 </CartItemStyles.ImageWrapper>

@@ -30,7 +30,7 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ addComment, close, f
     }
     const onSubmitClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
         fetchToCreateComment({ 
-            userName: state.name,
+            username: state.name,
             text: state.review,
             stars: state.rating as number
         });

@@ -12,11 +12,15 @@ import {
 } from "./PostStyles";
 
 
+import { API_URL } from "constants/constants";
+
+
 interface IPostProps {
     id: string,
     title: string,
     imagesSrc: string[]
 }
+
 
 
 const Post: React.FC<IPostProps> = ({ id, title, imagesSrc }) => {
@@ -42,7 +46,7 @@ const Post: React.FC<IPostProps> = ({ id, title, imagesSrc }) => {
     if (width <= 330) {
         image = imagesSrc.find(src => src.toLowerCase().includes("small".toLowerCase()));
     }
-    
+    console.log(imagesSrc);
     return (
         <>
             <CardWrapper>
@@ -53,7 +57,7 @@ const Post: React.FC<IPostProps> = ({ id, title, imagesSrc }) => {
                     <NavLink to={`/posts/${id}`}>
                         <CardImage 
                             isHovered={isHovered}
-                            src={image}
+                            src={`${API_URL}${image}`}
                             alt="Card image" 
                         />
                     </NavLink>

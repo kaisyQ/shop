@@ -65,7 +65,6 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
                 message: "Confirm creating post..."
             });
         } else {
-            console.log("here")
             if (post.title !== title || post.text !== text) {
                 const formData = new FormData();
                 const data = {
@@ -80,11 +79,10 @@ const PostEdit: React.FC<IPostEditProps> = (props) => {
                 if(title) {
                     Object.assign(data, { title });
                 }
-                console.log(data);
                 formData.append("data", JSON.stringify(data));
                 setConfirmModalData({
                     callback: () => {
-                        fetchToUpdatePost(formData);
+                        fetchToUpdatePost({formData, id: post.id});
                         navigate("/admin/postsTable");
                     },
                     isVisible: true,

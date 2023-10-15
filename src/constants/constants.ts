@@ -22,3 +22,6 @@ export const DELIVERY_TEXT = `
     Best regards,\n
     [ BM Furniture Finds ]
 `;
+
+
+export const API_URL = "http://localhost:8000/api/v1/uploads";

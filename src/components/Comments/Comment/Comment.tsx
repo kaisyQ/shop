@@ -7,7 +7,7 @@ import {
 } from "./CommentStyles";
 
 import * as Icon from "react-bootstrap-icons";
-import { IComment } from "types/types";
+import { Comment as IComment } from "types/types";
 
 interface ICommentProps {
     comment: IComment

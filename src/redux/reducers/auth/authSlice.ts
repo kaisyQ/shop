@@ -43,6 +43,8 @@ export const fetchToLogin = createAsyncThunk(
     async ({ login, password }: { login: string, password: string }) => {
 
         const response: LoginResponse = await loginApi(JSON.stringify({ login, password }));
+        console.log(response)
+
         return {
             status: response.status,
             data: response.data
@@ -55,7 +57,7 @@ export const fetchToCheckMe = createAsyncThunk(
     "auth/fetchToCheckMe", 
     async () => {
         try {
-            const response = await fetch(`https://bmfurniture.ca/api/auth`, {
+            const response = await fetch(`http://localhost:8000/api/v1/auth/checkMe`, {
                 method: "GET", 
                 credentials: "include",
             });
@@ -75,7 +77,7 @@ export const fetchToLogout = createAsyncThunk(
     "auth/fetchToLogout", 
     async () => {
         try {
-            const response = await fetch(`https://bmfurniture.ca/api/auth`, {
+            const response = await fetch(`http://localhost:8000/api/v1/auth/logout`, {
                 method: "DELETE", 
                 credentials: "include",
             });

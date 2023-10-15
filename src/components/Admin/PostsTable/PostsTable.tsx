@@ -17,10 +17,10 @@ import type { SelectType } from "types/types";
 
 import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
 
-interface IBlogsTableProps extends IBlogsTableConnectedProps {
+interface IPostTableProps extends IBlogsTableConnectedProps {
 }
 
-const PostsTable: React.FC<IBlogsTableProps> = (props) => {
+const PostsTable: React.FC<IPostTableProps> = (props) => {
     
     const { 
         posts, loading, fetchToDeletePost, 

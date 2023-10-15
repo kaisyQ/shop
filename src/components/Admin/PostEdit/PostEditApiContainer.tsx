@@ -16,7 +16,13 @@ const PostEditApiContainer: React.FC<IPostEditApiConnectedProps> = (props) => {
             setCurrent(null);
             return;
         }
+        
         fetchPostById(id);
+
+        return () => {
+            setCurrent(null);
+        }
+
     }, [fetchPostById, id]);
 
     return (

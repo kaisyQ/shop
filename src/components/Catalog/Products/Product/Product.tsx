@@ -4,6 +4,8 @@ import Button from "../../../Custom/Button/Button";
 
 import { NavLink } from "react-router-dom";
 
+import { API_URL } from "constants/constants";
+
 import { 
     Wrapper, 
     CardTitle,
@@ -35,7 +37,7 @@ const Product: React.FC<IProductProps> = (props) => {
                 <NavLink to={`/catalog/${id}`}>
                     <CardImageWrapper>
                         <CardImage 
-                            src={imageSrc}
+                            src={`${API_URL}${imageSrc}`}
                             alt="Card image" 
                         />
                     </CardImageWrapper>

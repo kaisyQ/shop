@@ -3,6 +3,9 @@ import React from "react";
 import { ImagesWrapper, ImageRow, ImageWrapper } from "./ImagesStyles"
 
 import { Image } from "components/Custom/Image/Image";
+
+import { API_URL } from "constants/constants";
+
 interface CardAboutImages {
     images: string[]
 }
@@ -20,7 +23,7 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                                 result.push(
                                     <ImageRow key={i}>
                                         <ImageWrapper width={'100%'}>
-                                            <Image src={images[i]}/>
+                                            <Image src={`${API_URL}${images[i]}`}/>
                                         </ImageWrapper>
                                     </ImageRow>
                                 )
@@ -30,10 +33,10 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                                 result.push(
                                     <ImageRow key={i}>
                                         <ImageWrapper>
-                                            <Image src={images[i]} />
+                                            <Image src={`${API_URL}${images[i]}`} />
                                         </ImageWrapper>
                                         <ImageWrapper>
-                                            <Image src={images[i+1]} />
+                                            <Image src={`${API_URL}${images[i + 1]}`} />
                                         </ImageWrapper>
                                     </ImageRow>
                                 )
@@ -43,7 +46,7 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                             result.push(
                                 <ImageRow key={i}>
                                     <ImageWrapper width="100%">
-                                        <Image src={images[i]}/>
+                                        <Image src={`${API_URL}${images[i]}`}/>
                                     </ImageWrapper>
                                 </ImageRow>
                             )

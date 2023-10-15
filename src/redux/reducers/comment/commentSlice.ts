@@ -31,9 +31,9 @@ const initialState: InitialStateType = {
 export const fetchComments = createAsyncThunk(
     "comments/fetchComments",
     async () => {
-        const response: GetCommentsResponse = await getComments();
+        const response = await getComments();
         return {
-            comments: response.data.comments,
+            comments: response.data.items,
             status: response.status
         };
     }
@@ -41,12 +41,14 @@ export const fetchComments = createAsyncThunk(
 
 export const fetchToCreateComment = createAsyncThunk(
     "comments/fetchToCreateComment",
-    async ({ userName, text, stars}: { userName: string, text: string, stars: number }) => {
+    async ({ username, text, stars}: { username: string, text: string, stars: number }) => {
 
-        const response: CreateCommentResponse = await createComment(JSON.stringify({ userName, text, stars }));
+        const response = await createComment(JSON.stringify({ username, text, stars }));
+        console.log(response)
+
         return {
             status: response.status,
-            comment: response.data.comment
+            comment: response.data.items[0]
         };
     }
 );
@@ -54,7 +56,9 @@ export const fetchToCreateComment = createAsyncThunk(
 export const fetchToDeleteComment = createAsyncThunk(
     "comments/fetchToDeleteComment",
     async (id: string) => {
-        const response: DeleteCommentResponse = await deleteComment(id);
+        const response = await deleteComment(id);
+        console.log(response)
+
         return {
             status: response.status,
             id: response.data.deletedComment.id
@@ -83,16 +87,16 @@ const commentSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchComments.fulfilled, 
-            (state, action: PayloadAction<{ status: number, comments: ServerComment[]}>) => {
+            (state, action) => {
             
             state.loadingStatus = IDLE;
             state.error = null;
             
             if (action.payload.status === 200) {
-                state.comments = action.payload.comments.map(comment => ({
+                state.comments = action.payload.comments.map((comment: any) => ({
                     id: comment.id,
-                    author: comment.userName,
-                    date: (new Date(comment.created_at)),
+                    author: comment.username,
+                    date: (new Date(comment.createdAt)),
                     text: comment.text,
                     rating: comment.stars as RatingScore
                 }));
@@ -109,13 +113,13 @@ const commentSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchToCreateComment.fulfilled, 
-            (state, action: PayloadAction<{status: number, comment: ServerComment}>) => {
+            (state, action) => {
             state.error = null;
             if (action.payload.status === 200) {
                 state.comments.push({
                     id: action.payload.comment.id,
-                    author: action.payload.comment.userName,
-                    date: new Date(action.payload.comment.created_at),
+                    author: action.payload.comment.username,
+                    date: new Date(action.payload.comment.createdAt),
                     text: action.payload.comment.text,
                     rating:  action.payload.comment.stars as RatingScore
                 })

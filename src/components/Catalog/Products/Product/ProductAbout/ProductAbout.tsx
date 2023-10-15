@@ -23,7 +23,7 @@ import { useParams } from "react-router-dom";
 interface ProductAboutProps extends ProductAboutConnectedProps {
 }
 
-const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProductById, addToCart }) => {
+const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProductById, addToCart, setCurrent }) => {
 
     const { id } = useParams();
 
@@ -32,7 +32,13 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
             return;
         }
         fetchProductById(id);
+        
+        return () => {
+            setCurrent(null);
+        }
+
     }, [id, fetchProductById]);
+
 
     const width = useWindowWidth();
 

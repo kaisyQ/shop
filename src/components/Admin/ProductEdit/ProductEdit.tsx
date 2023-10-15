@@ -42,7 +42,11 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
         }
         fetchProductById(id);
 
-    }, [id, fetchProductById, setCurrent])
+        return () => {
+            setCurrent(null);
+        }
+
+    }, [id, fetchProductById, setCurrent]);
 
     React.useEffect(() => {
         if (!product){
@@ -60,7 +64,7 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
         dispatch(actions.setHeight(product.params.Height));
         dispatch(actions.setDepth(product.params.Depth));
         dispatch(actions.setTopOfTheWeek(product.topOfTheWeek));
-    }, [product])
+    }, [product]);
 
 
     const onSubmitClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
@@ -117,7 +121,7 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
 
                 setConfirmModalData({
                     callback: () => {
-                        fetchToUpdateProduct(formData);
+                        fetchToUpdateProduct({formData, id});
                         navigate("/admin");
                     },
                     isVisible: true,
