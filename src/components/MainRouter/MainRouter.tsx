@@ -22,7 +22,9 @@ import { Routes, Route } from 'react-router-dom';
 
 import Preloader from 'components/Ui/Preloader/Preloader';
 import WebsiteTermsView from 'views/WebsiteTermsView/WebsiteTermsView';
-
+import UpdateCategoryFormContainer from 'components/Admin/UpdateCategoryForm/UpdateCategoryFormContainer';
+import CreateCategoryFormContainer from 'components/Admin/CreateCategoryForm/CreateCategoryFormContainer';
+import CategoriesTableContainer from 'components/Admin/CategoriesTable/CategoriesTableContainer';
 
 const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
 const Posts = React.lazy(() => import('components/Posts/PostsContainer'));
@@ -86,11 +88,21 @@ const MainRouter: React.FC = () => {
                             <Route path='usersTable' element={ <UsersTableContainer /> }/>
                             <Route path='postsTable' element={ <PostsTableContainer /> }/> 
                             <Route path='commentsTable' element={ <CommentTableContainer /> }/> 
+                            <Route path='categoryTable' element={ <CategoriesTableContainer />} />
                         </Route>
                         
                         <Route path='user/:id?' element={ <UserEditContainer /> }/>
+                        
                         <Route path='product/:id?' element={ <ProductEditContainer /> }/>
+                        
                         <Route path='post/:id?' element={ <PostEditContainer /> }/>
+                        
+                        
+                        <Route path='category/update/:slug' element={ <UpdateCategoryFormContainer />}/>
+                        
+                        <Route path='category/create' element={ <CreateCategoryFormContainer /> } />
+
+
 
                     </Route>
                 </Routes>

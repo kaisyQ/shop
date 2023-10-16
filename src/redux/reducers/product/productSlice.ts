@@ -16,6 +16,7 @@ import type {
     GetProductsResponse, GetProductResponse, DeleteProductResponse, CreateProductResponse, UpdateProductResponse
 } from "./response.types";
 
+import { getProductsWithCategoryParams } from "api/api";
 
 interface IProductsInitialState {
     items: IProduct[],
@@ -40,10 +41,11 @@ const initialState : IProductsInitialState = {
 }
 
 export const fetchProducts = createAsyncThunk(
-    "products/fetchProducts", async () => {
-        const response = await getProducts();
+    "products/fetchProducts", async (category: string | null | undefined) => {
+        const response = await getProductsWithCategoryParams(category? category : null);
+        console.log(response.data);
         return {
-            products: response.data.products.items,
+            products: response.data.products.items ? response.data.products.items : response.data.products,
             status: response.status
         };
     }
@@ -87,11 +89,9 @@ export const fetchToCreateProduct = createAsyncThunk(
 export const fetchToUpdateProduct = createAsyncThunk(
     "products/fetchToUpdateProduct",
     async ({ formData, id }: { formData: FormData, id: string }) => {
-
-        console.log(id);
         const response = await updateProductApi(formData, id);
 
-        console.log(response.data);
+        console.log(response);
         return {
             product: response.data.items[0],
             status: response.status
@@ -276,13 +276,13 @@ const productSlice = createSlice({
             state.loadingStatus = IDLE;
             state.error = null;
 
-            if (action.payload.status === 200) {
-                state.topProducts = action.payload.products.map(product => ({
-                    id: product.id,
-                    name: product.name,
-                    imagesSrc: product.images.map(img => img.src),
-                }))
-            }
+            // if (action.payload.status === 200) {
+            //     state.topProducts = action.payload.products.map(product => ({
+            //         id: product.id,
+            //         name: product.name,
+            //         imagesSrc: product.images.map(img => img.src),
+            //     }))
+            // }
         })
         builder.addCase(fetchTopProducts.rejected, (state, action) => {
             state.loadingStatus = FAILED;

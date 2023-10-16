@@ -4,6 +4,7 @@ const SWAP_MAIN_ROUTE = 'TABLE-SELECTOR/SWAP_MAIN_ROUTE';
 const SET_EMPLOYEE_ROUTES = "TABLE-SELECTOR/SET_EMPLOYEE_ROUTES";
 const SET_ADMIN_ROUTES = "TABLE-SELECTOR/SET_ADMIN_ROUTES";
 
+
 export interface IRoute {
     id: number,
     path: string,
@@ -14,6 +15,7 @@ const usersRoute: IRoute = { id: 0, path: '/admin/usersTable', title: 'Users' };
 const productsRoute: IRoute = { id: 1, path: '/admin/productsTable', title: 'Products' };
 const postsRoute: IRoute = { id: 2, path: '/admin/postsTable', title: 'Posts' };
 const commentRoute: IRoute = { id: 3, path: '/admin/commentsTable', title: 'Comments' }
+const categoryRoute: IRoute = {id: 4, path: '/admin/categoryTable', title: 'Categories'}
 
 export type InitialStateType = {
     routes: IRoute[],
@@ -64,13 +66,13 @@ const reducer = (state: InitialStateType, action: ActionType) => {
         case SET_EMPLOYEE_ROUTES: 
             return {
                 ...state,
-                routes: [postsRoute, commentRoute],
+                routes: [postsRoute, commentRoute, categoryRoute],
                 mainRoute: productsRoute
             }
         case SET_ADMIN_ROUTES: 
             return {
                 ...state,
-                routes: [usersRoute, postsRoute, commentRoute],
+                routes: [usersRoute, postsRoute, commentRoute, categoryRoute],
                 mainRoute: productsRoute
             }
         default: 

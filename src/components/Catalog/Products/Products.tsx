@@ -9,13 +9,22 @@ import { Wrapper } from "./ProductsStyles";
 import { CardsConnectedPropsType } from "./ProductsContainer";
 
 import { LOADING } from "constants/constants";
+import { useLocation } from "react-router-dom";
 
 
 const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, loading }) => {
     
+    const location = useLocation();
+
     React.useEffect(() => {
-        fetchProducts();
-    }, [fetchProducts]);
+        
+        const category = new URLSearchParams(location.search).get("category");
+
+        fetchProducts(category)
+        
+        console.log(category)
+    
+    }, [location, fetchProducts])
 
     if (loading === LOADING) {
         return <Preloader />;

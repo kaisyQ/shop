@@ -26,9 +26,19 @@ const FilterMenu: React.FC<Props> = ({categories}) => {
       
         {isOpen && (
             <styles.comp.MenuContent>
-            
+
             <styles.comp.List>
-            
+                
+                <NavLink to={`/catalog`}>
+
+                    <styles.comp.ListItem>
+                        
+                        show all
+                        
+                    </styles.comp.ListItem>
+
+                </NavLink>            
+                
                 {
                     categories.map(category => <React.Fragment key={category.slug}>
                         

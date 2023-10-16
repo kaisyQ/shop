@@ -47,7 +47,6 @@ export const updatePost = (body: any, id: string) => HttpQuery.put(`posts/update
 
 
 
-
 const instance = axios.create(
     {
         baseURL: "http://localhost:8000/api/v1/",
@@ -56,4 +55,16 @@ const instance = axios.create(
 );
 
 
-export const getProductCategories = () => instance.get("/products/categories")
+export const getProductCategories = () => instance.get("/products/categories");
+
+export const getProductsWithCategoryParams = (categorySlug: string | null) => instance.get(
+    categorySlug ? `products?category=${categorySlug}` : 'products'
+);
+
+export const getCategoryBySlug = (slug: string) => instance.get(`/products/categories/${slug}`);
+
+export const createCategory = (name: string) => instance.post("/products/categories/create", { name });
+
+export const updateCategory = (name: string, slug: string) => instance.put(`products/categories/update/${slug}`, {name});
+
+export const deleteCategory = (slug: string) => instance.delete(`products/categories/delete/${slug}`);

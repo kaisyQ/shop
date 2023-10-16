@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
     forms: formReducer,
     search: searchReducer,
     cart: cartReducer,
-    categoris: categoriesReducer
+    categories: categoriesReducer
 });
 
 

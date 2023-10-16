@@ -30,6 +30,7 @@ const Admin: React.FC<AdminConnectedProps> = ({ login, role, fetchToLogout, setC
                 <AdminHeader>
                     <AdminNav>
                         <LinksWrapper>
+                        
                             {
                                 role === ADMIN ? <>
                                     <NavLink to={"/admin/user"}>
@@ -37,12 +38,19 @@ const Admin: React.FC<AdminConnectedProps> = ({ login, role, fetchToLogout, setC
                                     </NavLink> 
                                 </> : null
                             }   
+                        
                             <NavLink to={"/admin/product"}>
                                 <Button isReverse={true}>create product</Button>
                             </NavLink>
+                        
                             <NavLink to={"/admin/post"}>
                                 <Button isReverse={true}>create post</Button>
                             </NavLink>
+                        
+                            <NavLink to={"/admin/category"}>
+                                <Button isReverse={true}>create category</Button>
+                            </NavLink>
+                        
                         </LinksWrapper>
                     </AdminNav>
                     <UserInfo>
