@@ -3,7 +3,7 @@ import React from "react";
 import Product from "./Product/Product";
 import Message from "components/Custom/Message/Message";
 import Preloader from "components/Ui/Preloader/Preloader";
-
+import Filter from "../Filter/Filter";
 import { Wrapper } from "./ProductsStyles";
 
 import { CardsConnectedPropsType } from "./ProductsContainer";
@@ -23,6 +23,7 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
 
     return (
         <>
+        
         {
             products.length ? <>
                 <Wrapper>

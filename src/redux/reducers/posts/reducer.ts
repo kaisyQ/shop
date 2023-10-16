@@ -95,7 +95,10 @@ export const fetchToCreatePost = createAsyncThunk(
 export const fetchToUpdatePost = createAsyncThunk(
     "posts/fetchToUpdatePost",
     async ({formData, id} : {formData: FormData, id: string}) => {
-        const response: UpdatePostResponse = await updatePostApi(formData, id);
+        const response = await updatePostApi(formData, id);
+        
+        console.log(response)
+
         return {
             post: response.data.updatedPost,
             status: response.status
@@ -211,7 +214,7 @@ const postsSlice = createSlice({
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchToCreatePost.fulfilled, (state, action: PayloadAction<{ status: number, post: ServerPost }>) => {
+        builder.addCase(fetchToCreatePost.fulfilled, (state, action) => {
             state.loadingStatus = IDLE;
             state.error = null;
 
@@ -219,7 +222,7 @@ const postsSlice = createSlice({
                 state.items.push({
                     id: action.payload.post.id,
                     date: new Date(action.payload.post.created_at),
-                    imagesSrc: action.payload.post.imagesSrc.map(img => img.src),
+                    imagesSrc: action.payload.post.imagesSrc,
                     text: action.payload.post.text,
                     title:action.payload.post.title
                 });
@@ -248,7 +251,7 @@ const postsSlice = createSlice({
                     return {
                         id: action.payload.post.id,
                         date: new Date(action.payload.post.created_at),
-                        imagesSrc: action.payload.post.imagesSrc.map(img => img.src),
+                        imagesSrc: action.payload.post.imagesSrc,
                         text: action.payload.post.text,
                         title:action.payload.post.title
                     }

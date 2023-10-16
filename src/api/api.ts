@@ -1,4 +1,6 @@
+import { API_URL } from "constants/constants";
 import HttpQuery from "./fetch.setup/fetch.setup";
+import axios from 'axios';
 
 export const getProducts = () => HttpQuery.get('products');
    
@@ -42,3 +44,16 @@ export const createPost = (body: any) => HttpQuery.post("posts/create", body);
 
 export const updatePost = (body: any, id: string) => HttpQuery.put(`posts/update/${id}`, body);
 
+
+
+
+
+const instance = axios.create(
+    {
+        baseURL: "http://localhost:8000/api/v1/",
+        withCredentials: true
+    }
+);
+
+
+export const getProductCategories = () => instance.get("/products/categories")

@@ -11,6 +11,7 @@ import commentsReducer from "./reducers/comment/commentSlice";
 import formReducer from "./reducers/forms/formsSlice";
 import searchReducer from "./reducers/search/searchSlice";
 import cartReducer from './reducers/cart/cartSlice';
+import categoriesReducer from "./reducers/categories/categories.slice";
 
 
 const rootReducer = combineReducers({
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     comments: commentsReducer,
     forms: formReducer,
     search: searchReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    categoris: categoriesReducer
 });
 
 
