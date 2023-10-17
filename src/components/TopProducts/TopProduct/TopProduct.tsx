@@ -8,6 +8,7 @@ import {
 } from "./TopProductStyles";
 
 import { NavLink } from "react-router-dom";
+import { API_URL } from "constants/constants";
 
 interface ITopProductProps {
     id: string, 
@@ -34,7 +35,7 @@ const TopProduct: React.FC<ITopProductProps> = (props) => {
                 <NavLink to={`/catalog/${props.id}`}>
                     <ImageWrapper>
                         <TopProductName hovered={hovered}>{props.name}</TopProductName>
-                        <TopProductImage src={props.imagesSrc[0]} alt="top-product"/>
+                        <TopProductImage src={`${API_URL}${props.imagesSrc[0]}`} alt="top-product"/>
                     </ImageWrapper>
                 </NavLink>
             </TopProductWrapper>

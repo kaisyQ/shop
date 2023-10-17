@@ -26,7 +26,7 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
 
     const { 
         fetchToCreateProduct, setConfirmModalData, setCurrent, 
-        fetchProductById, product, fetchToUpdateProduct
+        fetchProductById, product, fetchToUpdateProduct, fetchCategories, categories
     } = props;
 
     const navigate = useNavigate();
@@ -34,6 +34,16 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
     const { id } = useParams();
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
+
+    React.useEffect(() => {
+        
+        fetchCategories();
+
+        if (props.categories.length) {
+            dispatch(actions.setCategorySlug(props.categories[0].slug))
+        }
+
+    }, [fetchCategories])
 
     React.useEffect(() => {
         if (!id) {
@@ -85,7 +95,8 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
                     price: parseInt(state.price),
                     discount_price: parseInt(state.discountPrice),
                     bestseller: state.topOfTheWeek,
-                    count: parseInt(state.count)
+                    count: parseInt(state.count),
+                    categorySlug: state.categorySlug
                 });
                 
                 formData.append("data", bodyData);
@@ -114,7 +125,8 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
                     price: parseInt(state.price),
                     discount_price: parseInt(state.discountPrice),
                     bestseller: state.topOfTheWeek,
-                    count: parseInt(state.count)
+                    count: parseInt(state.count),
+                    categorySlug: state.categorySlug
                 });
 
                 formData.append("data", bodyData);
@@ -138,21 +150,25 @@ const ProductEdit: React.FC<IProductEditProps> = (props) => {
         <>
             <ProductEditWrapper>
                 <EditForm onSubmit={(ev) => ev.preventDefault()}>
+                    
                     <BlockWrapper>
-                        <Inputs dispatch={dispatch} state={inputState} />
+                        <Inputs categories={props.categories} dispatch={dispatch} state={inputState} />
                     </BlockWrapper>
-                        <BlockWrapper>
-                        {
-                            !id || !product ? <>
-                                <Images dispatch={dispatch} imagesSrc={state.imagesSrc} />
-                            </> : null
-                        }
-                            <BtnWrapper>
-                                <Button onClick={onSubmitClick} isReverse={true}>
-                                    { !id || !product ? "Save" : "Update" }
-                                </Button>
-                            </BtnWrapper>
-                        </BlockWrapper>
+                    
+                    <BlockWrapper>
+                    {
+                        !id || !product ? <>
+                            <Images dispatch={dispatch} imagesSrc={state.imagesSrc} />
+                        </> : null
+                    }
+                        <BtnWrapper>
+                            <Button onClick={onSubmitClick} isReverse={true}>
+                                { !id || !product ? "Save" : "Update" }
+                            </Button>
+                        </BtnWrapper>
+                    
+                    </BlockWrapper>
+                
                 </EditForm>
             </ProductEditWrapper>
         </>

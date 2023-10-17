@@ -47,7 +47,7 @@ const Admin: React.FC<AdminConnectedProps> = ({ login, role, fetchToLogout, setC
                                 <Button isReverse={true}>create post</Button>
                             </NavLink>
                         
-                            <NavLink to={"/admin/category"}>
+                            <NavLink to={"/admin/category/create"}>
                                 <Button isReverse={true}>create category</Button>
                             </NavLink>
                         

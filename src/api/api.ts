@@ -3,8 +3,6 @@ import HttpQuery from "./fetch.setup/fetch.setup";
 import axios from 'axios';
 
 export const getProducts = () => HttpQuery.get('products');
-   
-export const getTopProducts = () => HttpQuery.get("bestProducts");
 
 export const getProduct = (id: string) => HttpQuery.get(`products/${id}`);
 
@@ -68,3 +66,5 @@ export const createCategory = (name: string) => instance.post("/products/categor
 export const updateCategory = (name: string, slug: string) => instance.put(`products/categories/update/${slug}`, {name});
 
 export const deleteCategory = (slug: string) => instance.delete(`products/categories/delete/${slug}`);
+
+export const getTopProducts = () => instance.get("products/?bestseller=true");

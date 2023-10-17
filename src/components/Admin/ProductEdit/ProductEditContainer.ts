@@ -13,18 +13,20 @@ import {
 import { getIsAuth } from "redux/reducers/auth/selector";
 
 import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
-
+import { fetchCategories } from "redux/reducers/categories/categories.slice";
 
 import withAuthRedirect from "components/Hoc/Redirect";
+import { selectProductCategories } from "redux/reducers/categories/categories.selector";
 
 const mapStateToProps = (state: RootState) => ({
     product: getCurrentProduct(state),
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state),
+    categories: selectProductCategories(state)
 })
 
 const mapDispatchToProps = {
     fetchToCreateProduct, setConfirmModalData, setCurrent,
-    fetchProductById, fetchToUpdateProduct
+    fetchProductById, fetchToUpdateProduct, fetchCategories
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

@@ -6,7 +6,7 @@ interface ISpanProps {
 }
 
 export const FooterWrapper = styled.footer`
-    margin-top: 2rem;
+    margin-top: 4rem;
     text-align: left;
     
     background-color: #000;

@@ -8,6 +8,7 @@ import {
 import type { TopProduct } from "types/types";
 
 import { NavLink } from "react-router-dom";
+import { API_URL } from "constants/constants";
 
 interface ITopProductsSliderProps {
     width: number,
@@ -72,7 +73,7 @@ const TopProductsSlider: React.FC<ITopProductsSliderProps> = (props) => {
                                 (topProduct, index) => <TopProductsSliderItem key={index} width={props.width} current={current}>
                                         <NavLink to={`catalog/${topProduct.id}`}>
                                             <ImageWrapper>
-                                                <TopProductsSliderItemImage src={topProduct.image} alt="top-product"/>
+                                                <TopProductsSliderItemImage src={`${API_URL}${topProduct.image}`} alt="top-product"/>
                                                 <TopProductSliderName>{topProduct.name}</TopProductSliderName>
                                             </ImageWrapper>
                                         </NavLink>

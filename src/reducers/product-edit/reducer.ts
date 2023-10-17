@@ -13,6 +13,7 @@ const SET_IMAGES_FILES = "PRODUCT-EDIT/SET_IMAGES_FILES";
 const ADD_IMAGE = "PRODUCT-EDIT/ADD_IMAGE";
 const SET_TOP_OF_THE_WEEK = "PRODUCT-EDIT/SET_TOP_OF_THE_WEEK";
 const SET_COUNT = "PRODUCT-EDIT/SET_COUNT";
+const SET_CATEGORY_SLUG = "PRODUCT-EDIT/SET_CATEGORY_SLUG";
 
 export type InitialStateType = {
     name: string,
@@ -26,7 +27,8 @@ export type InitialStateType = {
     imagesSrc: string[] | null,
     imagesFiles: File[] | null,
     topOfTheWeek: boolean,
-    count: string
+    count: string,
+    categorySlug: string
 };
 
 export const initialState: InitialStateType= {
@@ -41,7 +43,8 @@ export const initialState: InitialStateType= {
     imagesSrc: null,
     imagesFiles: null,
     topOfTheWeek: false,
-    count: '1'
+    count: '1',
+    categorySlug: ""
 };
 
 
@@ -113,6 +116,11 @@ const setCount = (payload: string) => ({
     payload: payload
 });
 
+const setCategorySlug = (payload: string) => ({
+    type: SET_CATEGORY_SLUG as typeof SET_CATEGORY_SLUG,
+    payload: payload
+})
+
 type SetNameType = ReturnType<typeof setName>;
 type SetAboutDeliveryType = ReturnType<typeof setAboutDelivery>;
 type SetAboutProductType = ReturnType<typeof setAboutProduct>;
@@ -126,12 +134,13 @@ type SetImagesFilesType = ReturnType<typeof setImagesFiles>;
 type AddImageWithFileType = ReturnType<typeof addImagesWithFile>;
 type SetTopOfTheWeek = ReturnType<typeof setTopOfTheWeek>;
 type SetCountType = ReturnType<typeof setCount>;
+type SetCategorySlug = ReturnType<typeof setCategorySlug>;
 
 
 export type ActionType = SetNameType | SetAboutDeliveryType | SetAboutProductType |
     SetPriceType | SetPriceType | SetDiscountPriceType | SetWidthType | SetHeightType |
     SetDepthType | SetImagesSrcType | SetImagesFilesType | AddImageWithFileType |
-    SetTopOfTheWeek | SetCountType;
+    SetTopOfTheWeek | SetCountType | SetCategorySlug;
 
 
 export type ProductsDispatchType = React.Dispatch<ActionType>;
@@ -140,7 +149,7 @@ export const actions = {
     setName, setAboutDelivery, setAboutProduct, 
     setPrice, setDiscountPrice, setWidth, setHeight, 
     setDepth, setImagesSrc, setImagesFiles, addImagesWithFile,
-    setTopOfTheWeek, setCount
+    setTopOfTheWeek, setCount, setCategorySlug
 };
 
 
@@ -219,6 +228,13 @@ const reducer = (state: InitialStateType, action: ActionType) => {
                 ...state,
                 count: action.payload
             }
+        case SET_CATEGORY_SLUG: {
+            console.log(action.payload)
+            return {
+                ...state,
+                categorySlug: action.payload
+            }
+        }
         default: 
             throw new Error("BAD ACTION TYPE!");
     }

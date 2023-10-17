@@ -6,10 +6,12 @@ import { actions } from "reducers/product-edit/reducer";
 import type { ProductsDispatchType } from "reducers/product-edit/reducer";
 
 import { InputsWrapper, InputWrapper, Label, Checkbox } from "./InputStyles";
+import { ICategory } from "redux/reducers/categories/categories.slice";
 
 
 interface IInputsProps {
     dispatch: ProductsDispatchType,
+    categories: Array<ICategory>,
     state: { 
         name: string,
         aboutProduct: string,
@@ -20,11 +22,12 @@ interface IInputsProps {
         height: string,
         depth: string,
         topOfTheWeek: boolean,
-        count: string
+        count: string,
+        categorySlug: string
     }
 }
 
-const Inputs: React.FC<IInputsProps> = ({ dispatch, state }) => {
+const Inputs: React.FC<IInputsProps> = ({ dispatch, state, categories }) => {
     return (
         <>
             <InputWrapper>
@@ -42,6 +45,29 @@ const Inputs: React.FC<IInputsProps> = ({ dispatch, state }) => {
                 <Input placeholder="Count" id="product-edit-count" type="input" 
                     onChange={(ev) => dispatch(actions.setCount(ev.target.value))} value={state.count}
                 />
+            </InputsWrapper>
+
+            <InputsWrapper>
+                Select Category : 
+                <select value={state.categorySlug} onChange={(ev) => {
+                    dispatch(actions.setCategorySlug(ev.target.value));
+                }}>
+                    <option value={state.categorySlug} selected>{state.categorySlug}</option>
+                    {
+                        categories.map(category => {
+                                if (category.slug !== state.categorySlug) {
+                                    return (
+                                        <React.Fragment key={category.slug}>
+                                    
+                                            <option value={category.slug}>{category.name}</option>
+                                    
+                                        </React.Fragment>
+                                    );
+                                }
+                            }
+                        )
+                    }
+                </select>
             </InputsWrapper>
 
             <InputWrapper>
