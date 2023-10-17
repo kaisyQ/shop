@@ -28,7 +28,7 @@ export const fetchSearch = createAsyncThunk(
     "searchSlice/fetchSearch",
     async (searchData: string) => {
         try {
-            const response = await fetch(`http://localhost:8000/api/v1/search/${searchData}`,{
+            const response = await fetch(`https://bmfurniture.ca/api/v1/search/${searchData}`,{
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"

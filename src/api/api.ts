@@ -47,7 +47,7 @@ export const updatePost = (body: any, id: string) => HttpQuery.put(`posts/update
 
 const instance = axios.create(
     {
-        baseURL: "http://localhost:8000/api/v1/",
+        baseURL: "https://bmfurniture.ca/api/v1/",
         withCredentials: true
     }
 );

@@ -22,7 +22,7 @@ export const fetchSellMessage = createAsyncThunk(
     "formsSlice/fetchSellMessage",
     async ({ name, email, phoneNumber, comment, brand } : { name: string, email: string, brand: string, phoneNumber: string, comment: string }) => {
         
-        const response = await fetch(`https://bmfurniture.ca/api/sendSofaContacts`, {
+        const response = await fetch(`https://bmfurniture.ca/api/v1/sendSofaContacts`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
