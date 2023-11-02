@@ -23,6 +23,7 @@ interface IProductProps {
     count: number,
     name: string,
     imageSrc: string, 
+    slug: string
 }
 
 const Product: React.FC<IProductProps> = (props) => {
@@ -34,7 +35,7 @@ const Product: React.FC<IProductProps> = (props) => {
                 <CardSaleTitle>
                     { count === 0 ? 'Sold out' : 'Sale' }
                 </CardSaleTitle>
-                <NavLink to={`/catalog/${id}`}>
+                <NavLink to={`/catalog/${props.slug}`}>
                     <CardImageWrapper>
                         <CardImage 
                             src={`${API_URL}${imageSrc}`}
@@ -43,13 +44,13 @@ const Product: React.FC<IProductProps> = (props) => {
                     </CardImageWrapper>
                 </NavLink>
                 <CardInfoWrapper>
-                    <NavLink to={`/catalog/${id}`}>
+                    <NavLink to={`/catalog/${props.slug}`}>
                         <CardInfoItem>
                             <CardTitle>{ name }</CardTitle>
                         </CardInfoItem>
                     </NavLink>
                     <CardInfoItem>
-                        <NavLink to={`/catalog/${id}`}>
+                        <NavLink to={`/catalog/${props.slug}`}>
                             <Button isReverse={true}>Show More</Button>
                         </NavLink>
                     </CardInfoItem>

@@ -16,6 +16,8 @@ import { useFormik } from "formik";
 import sellSofaValidationSchema from './../../yup/sellsofa.validation.schema';
 
 import OkMessage from "components/Ui/OkMessage/OkMessage";
+import Preloader from "components/Ui/Preloader/Preloader";
+import { LOADING } from "constants/constants";
 
 
 
@@ -60,6 +62,9 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
         }
     });
 
+    if (props.loading === LOADING) {
+        return <Preloader />
+    }
 
     return (
         <> 

@@ -43,6 +43,7 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
                             count={item.count} 
                             name={item.name} 
                             imageSrc={item.imagesSrc[0]} 
+                            slug={item.slug}
                         />
                     )
                 }

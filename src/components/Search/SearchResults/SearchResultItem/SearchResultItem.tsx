@@ -13,7 +13,8 @@ import { API_URL } from "constants/constants";
 interface ISearchResultItemProps {
     name: string,
     id: string,
-    imageSrc: string,
+    image: string,
+    slug: string,
     index: number,
     type: "POST" | "PRODUCT"
 }
@@ -22,11 +23,11 @@ const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
     console.log(props)
     return (
         <>
-            <NavLink to={`/${props.type === "POST" ? "posts" : "catalog"}/${props.id}`}>
+            <NavLink to={`/${props.type === "POST" ? "posts" : "catalog"}/${props.slug}`}>
                 <SearchResultItemWrapper>
                     <NumberBlock>{ props.index }</NumberBlock>
                     <ImageWrapper>
-                        <Image src={`${API_URL}${props.imageSrc}`} />
+                        <Image src={`${API_URL}${props.image}`} />
                     </ImageWrapper>
                     <NameBlock>{ props.name }</NameBlock>
                     <RightArrrow>
