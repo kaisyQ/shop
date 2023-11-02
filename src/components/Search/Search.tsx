@@ -15,7 +15,7 @@ import { SearchConnectedProps } from "./SearchContainer";
 interface ISearchProps extends SearchConnectedProps {
 }
 
-const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchPosts, setSearchProducts }) => {
+const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchProducts }) => {
 
     const [searchVl, setSearchVl] = React.useState('');
 
@@ -31,10 +31,9 @@ const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchPosts, setSearch
         fetchSearch(searchQuery);
 
         return () => {
-            setSearchPosts([]);
             setSearchProducts([]);
         }
-    }, [searchQuery, fetchSearch, setSearchPosts, setSearchProducts]);
+    }, [searchQuery, fetchSearch, setSearchProducts]);
 
     const onSearchChange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchVl(ev.target.value);

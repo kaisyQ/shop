@@ -3,18 +3,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 import {
-    getProduct, getProducts, deleteProduct, createProduct, getTopProducts, updateProduct as updateProductApi
+    getProduct, getTopProducts
 } from "api/api";
 
-import type { IProduct, LoadingType, SelectType, ServerCreatedProduct, ServerProduct, TopProduct } from "types/types";
+import type { IProduct, LoadingType, SelectType, TopProduct } from "types/types";
 
 import { IDLE, LOADING, FAILED } from "constants/constants";
 
 import { SELECT_NEWEST } from "constants/constants";
 
-import type {
-    GetProductsResponse, GetProductResponse, DeleteProductResponse, CreateProductResponse, UpdateProductResponse
-} from "./response.types";
 
 import { getProductsWithCategoryParams } from "api/api";
 
@@ -43,57 +40,20 @@ const initialState: IProductsInitialState = {
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts", async (category: string | null | undefined) => {
         const response = await getProductsWithCategoryParams(category ? category : null);
+        return {
+            products: response.data.items,
+            status: response.status
+        };
+    }
+);
+
+export const fetchProductBySlug = createAsyncThunk(
+    "products/fetchProductBySlug",
+    async (slug: string) => {
+        const response = await getProduct(slug);
         console.log(response.data);
         return {
-            products: response.data.products.items ? response.data.products.items : response.data.products,
-            status: response.status
-        };
-    }
-);
-
-export const fetchProductById = createAsyncThunk(
-    "products/fetchProductById",
-    async (id: string) => {
-        const response = await getProduct(id);
-        return {
-            product: response.data.product.items[0],
-            status: response.status
-        };
-    }
-);
-
-export const fetchToDeleteProduct = createAsyncThunk(
-    "products/fetchToDeleteProduct",
-    async (id: string) => {
-        const response = await deleteProduct(id);
-        console.log(response.data)
-        return {
-            id: response.data.deletedProduct.id,
-            status: response.status
-        };
-    }
-);
-
-
-export const fetchToCreateProduct = createAsyncThunk(
-    "products/fetchToCreateProduct",
-    async (formData: FormData) => {
-        const response = await createProduct(formData);
-        return {
-            product: response.data.items[0],
-            status: response.status
-        };
-    }
-);
-
-export const fetchToUpdateProduct = createAsyncThunk(
-    "products/fetchToUpdateProduct",
-    async ({ formData, id }: { formData: FormData, id: string }) => {
-        const response = await updateProductApi(formData, id);
-
-        console.log(response);
-        return {
-            product: response.data.items[0],
+            product: response.data,
             status: response.status
         };
     }
@@ -154,9 +114,11 @@ const productSlice = createSlice({
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.loadingStatus = IDLE;
             state.error = null;
+            console.log(action.payload);
             state.items = action.payload.products.map((product: any) => {
                 return {
                     id: product.id,
+                    slug: product.slug,
                     name: product.name,
                     delivery: product.aboutDelivery,
                     description: product.aboutProduct,
@@ -179,11 +141,11 @@ const productSlice = createSlice({
         })
 
 
-        builder.addCase(fetchProductById.pending, (state) => {
+        builder.addCase(fetchProductBySlug.pending, (state) => {
             state.loadingStatus = LOADING;
             state.error = null;
         })
-        builder.addCase(fetchProductById.fulfilled,
+        builder.addCase(fetchProductBySlug.fulfilled,
             (state, action) => {
                 state.loadingStatus = IDLE;
                 state.error = null;
@@ -192,8 +154,9 @@ const productSlice = createSlice({
                     state.current = {
                         id: product.id,
                         name: product.name,
-                        delivery: product.aboutDelivery,
-                        description: product.aboutProduct,
+                        slug: product.slug,
+                        delivery: product.delivery,
+                        description: product.description,
                         count: product.count,
                         price: product.price,
                         discountPrice: product.discountPrice,
@@ -208,66 +171,9 @@ const productSlice = createSlice({
                     };
                 }
             })
-        builder.addCase(fetchProductById.rejected, (state, action) => {
+        builder.addCase(fetchProductBySlug.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
-
-
-        builder.addCase(fetchToDeleteProduct.pending, (state) => {
-            state.loadingStatus = LOADING;
-            state.error = null;
-        })
-        builder.addCase(fetchToDeleteProduct.fulfilled,
-            (state, action: PayloadAction<{ status: number, id: string }>) => {
-                state.loadingStatus = IDLE;
-                state.error = null;
-                if (action.payload.status === 200) {
-                    state.items = state.items.filter(product => product.id !== action.payload.id);
-                }
-            }
-        )
-        builder.addCase(fetchToDeleteProduct.rejected, (state, action) => {
-            state.loadingStatus = FAILED;
-        })
-
-
-
-        builder.addCase(fetchToCreateProduct.pending, (state) => {
-            state.loadingStatus = LOADING;
-            state.error = null;
-        })
-        builder.addCase(fetchToCreateProduct.fulfilled,
-            (state, action) => {
-                state.loadingStatus = IDLE;
-                state.error = null;
-
-
-                if (action.payload.status === 200) {
-                    state.items.push({
-                        id: action.payload.product.id,
-                        name: action.payload.product.name,
-                        delivery: action.payload.product.aboutDelivery,
-                        description: action.payload.product.aboutProduct,
-                        count: action.payload.product.count,
-                        price: action.payload.product.price,
-                        discountPrice: action.payload.product.discountPrice,
-                        createdAt: new Date(action.payload.product.createdAt),
-                        params: {
-                            Width: action.payload.product.width,
-                            Height: action.payload.product.height,
-                            Depth: action.payload.product.depth
-                        },
-                        imagesSrc: action.payload.product.images,
-                        topOfTheWeek: action.payload.product.bestseller
-                    })
-                }
-            }
-        )
-        builder.addCase(fetchToCreateProduct.rejected, (state, action) => {
-            state.loadingStatus = FAILED;
-        })
-
-
 
         builder.addCase(fetchTopProducts.pending, (state, action) => {
             state.loadingStatus = LOADING;
@@ -286,45 +192,6 @@ const productSlice = createSlice({
             }
         })
         builder.addCase(fetchTopProducts.rejected, (state, action) => {
-            state.loadingStatus = FAILED;
-        })
-
-
-
-        builder.addCase(fetchToUpdateProduct.pending, (state, action) => {
-            state.loadingStatus = LOADING;
-            state.error = null;
-        })
-        builder.addCase(fetchToUpdateProduct.fulfilled, (state, action) => {
-            state.loadingStatus = IDLE;
-            state.error = null;
-
-            if (action.payload.status === 200) {
-                state.items = state.items.filter((product => {
-                    if (product.id !== action.payload.product.id) {
-                        return product;
-                    }
-                    return {
-                        id: action.payload.product.id,
-                        name: action.payload.product.name,
-                        delivery: action.payload.product.aboutDelivery,
-                        description: action.payload.product.aboutProduct,
-                        count: action.payload.product.count,
-                        price: action.payload.product.price,
-                        discountPrice: action.payload.product.discountPrice,
-                        createdAt: new Date(action.payload.product.createdAt),
-                        params: {
-                            Width: action.payload.product.width,
-                            Height: action.payload.product.height,
-                            Depth: action.payload.product.depth
-                        },
-                        imagesSrc: action.payload.product.images,
-                        topOfTheWeek: action.payload.product.bestseller
-                    };
-                }));
-            }
-        })
-        builder.addCase(fetchToUpdateProduct.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
     }

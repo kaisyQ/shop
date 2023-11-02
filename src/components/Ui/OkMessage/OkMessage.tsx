@@ -16,13 +16,13 @@ const OkMessage: React.FC<IOkMessageProps> = ({ status }) => {
             <OkMessageWrapper>
                 <OkMessageText>
                 {
-                    status === 202 ? "Your request has been sent !"
-                        :"Bad response..."
+                    status === 200 ? "Your request has been sent !"
+                        : "Bad response..."
                 }
                 </OkMessageText>
                 <OkMessageLogo>
                 {
-                    status === 202 ? <>
+                    status === 200 ? <>
                         <Icons.CheckCircle size={"15rem"} />
                     </> : <>
                         <Icons.ExclamationCircle size={"15rem"} />

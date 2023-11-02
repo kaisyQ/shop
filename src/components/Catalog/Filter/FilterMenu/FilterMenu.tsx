@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 import styles from "./FilterMenuItems";
 
-import { ICategory } from "redux/reducers/categories/categories.slice";
+import { ICategory } from "redux/reducers/category/category.slice";
 
 interface Props {
     categories: Array<ICategory>

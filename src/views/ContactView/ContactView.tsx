@@ -16,6 +16,8 @@ import { useFormik } from "formik";
 import OkMessage from "components/Ui/OkMessage/OkMessage";
 
 import ContactValidationSchema from './../../yup/contact.validation.schema';
+import Preloader from "components/Ui/Preloader/Preloader";
+import { LOADING } from "constants/constants";
 
 interface IContactView extends ContactViewConnectedProps {
 
@@ -29,7 +31,7 @@ const ContactView: React.FC<IContactView> = (props) => {
         return () => {
             setStatus(null);
         }
-    }, [setStatus]);
+    }, []);
 
 
     const formik = useFormik({
@@ -56,6 +58,10 @@ const ContactView: React.FC<IContactView> = (props) => {
             });
         }
     })
+
+    if (props.loading === LOADING) {
+        return <Preloader />
+    }
 
     return (
         <>

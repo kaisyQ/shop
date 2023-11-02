@@ -16,20 +16,19 @@ import { LOADING } from "constants/constants";
 interface ISearchResultProps extends SearchResultConnectedProps{
 }
 
-const SearchResult: React.FC<ISearchResultProps> = ({ products, posts, loading }) => {
+const SearchResult: React.FC<ISearchResultProps> = ({ products, loading }) => {
     
-    console.log(products, posts);
     
     const [showItemType, setShowItemType] = React.useState<"POST" | "PRODUCT" | null>(null);
 
     React.useEffect(() => {
-        if (!products.length && !posts.length) {
+        if (!products.length) {
             setShowItemType(null);
             return;
         }
         products.length ? setShowItemType("PRODUCT") : setShowItemType("POST");
 
-    }, [products, posts])
+    }, [products])
 
     if (loading === LOADING) {
         return <Preloader />;
@@ -38,27 +37,13 @@ const SearchResult: React.FC<ISearchResultProps> = ({ products, posts, loading }
     return (
         <>
             <SearchResultWrapper>
-                {
-                    posts.length && products.length ? <>
-                        <SearchResultController>
-                            <Button isReverse={true} onClick={(ev) => setShowItemType("POST")}>
-                                Posts
-                            </Button>
-                            <Button isReverse={true} onClick={(ev) => setShowItemType("PRODUCT")}>
-                                Products
-                            </Button>
-                        </SearchResultController>
-                    </> : null
-                }
                 <ResultItemsWrapper>
                 {
-                    !showItemType ? null : showItemType === "POST" ? 
-                        posts.map((post, index) => <SearchResultItem 
-                            type={"POST"} 
-                            key={post.id} {...post} index={index+1} 
-                        />) : 
-                    products.map((post, index) => <SearchResultItem 
-                    type={"PRODUCT"} key={post.id} {...post} index={index+1} />)
+                    !showItemType ? null : 
+                        products.map((post, index) => <SearchResultItem 
+                        type={"PRODUCT"} key={post.id} {...post} index={index+1} 
+                        />
+                    )
                 }
                 </ResultItemsWrapper>
             </SearchResultWrapper>

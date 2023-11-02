@@ -47,13 +47,6 @@ const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
                             <span>Contact</span>
                         </Item>
                     </NavLink>
-                    <NavLink to={'/posts'}>
-                        <Item onClick={hideSidebar}>
-                            <Icon.Newspaper size={'2.2rem'}/>
-                            <span>Posts</span>
-                        </Item>
-                    </NavLink>
-
                     <NavLink to={'/sell'}>
                         <Item onClick={hideSidebar}>
                             <SellingIcon width="2.2rem" height="2.2rem" />

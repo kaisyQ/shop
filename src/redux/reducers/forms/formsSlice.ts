@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { contactUs, sellCouch } from "api/api";
 
 import { IDLE, LOADING, FAILED } from "constants/constants";
 
@@ -20,42 +21,15 @@ const initialState: InitialStateType = {
 
 export const fetchSellMessage = createAsyncThunk(
     "formsSlice/fetchSellMessage",
-    async ({ name, email, phoneNumber, comment, brand } : { name: string, email: string, brand: string, phoneNumber: string, comment: string }) => {
-        
-        const response = await fetch(`https://bmfurniture.ca/api/v1/sendSofaContacts`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({ name, email, phoneNumber, comment, brand })
-        })
-
-        const data = response.json();
-
-        return {
-            data,
-            status: response.status
-        }
+    async ({ name, email, phoneNumber, comment, brand }: { name: string, email: string, brand: string, phoneNumber: string, comment: string }) => {
+        const response = await sellCouch(name, email, phoneNumber, comment, brand);
     }
 );
 
 export const fetchContactMessage = createAsyncThunk(
     "formsSlice/fetchContactMessage",
-    async ({ name, email, phoneNumber, comment } : { name: string, email: string, phoneNumber: string, comment: string }) => {
-        const response = await fetch(`https://bmfurniture.ca/api/sendContacts`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({ name, email, phoneNumber, comment })
-        })
-
-        const data = response.json();
-
-        return {
-            data,
-            status: response.status
-        }
+    async ({ name, email, phoneNumber, comment }: { name: string, email: string, phoneNumber: string, comment: string }) => {
+        const response = await contactUs(name, email, phoneNumber, comment)
     }
 );
 
@@ -77,9 +51,11 @@ const formsSlice = createSlice({
         builder.addCase(fetchContactMessage.fulfilled, (state, action) => {
             state.loadingStatus = IDLE;
             state.error = null;
+            state.responseStatus = 200;
         })
         builder.addCase(fetchContactMessage.rejected, (state, action) => {
             state.loadingStatus = FAILED;
+            state.responseStatus = 500;
         })
 
 
@@ -90,9 +66,11 @@ const formsSlice = createSlice({
         builder.addCase(fetchSellMessage.fulfilled, (state, action) => {
             state.loadingStatus = IDLE;
             state.error = null;
+            state.responseStatus = 200;
         })
         builder.addCase(fetchSellMessage.rejected, (state, action) => {
             state.loadingStatus = FAILED;
+            state.responseStatus = 500;
         })
 
     }

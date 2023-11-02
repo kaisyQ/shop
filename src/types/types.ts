@@ -65,6 +65,7 @@ export type TopProduct = {
 export interface IProduct extends IShortProduct {
     discountPrice: number,
     description: string,
+    slug: string,
     params: {
         Width: string, 
         Height: string,
