@@ -27,17 +27,17 @@ export const contactUs = (name: string, email: string, phone: string, message: s
 
 export const search = (query: string) => instance.get(`/search/${query}`)
 
-export const getCategories = () => instance.get("/categories");
+export const getCategories = () => instance.get("/categories/");
 
 export const getProduct = (slug: string) => instance.get(`/products/${slug}`)
 
 export const getProductsWithCategoryParams = (categorySlug: string | null) => instance.get(
-    categorySlug ? `products?category=${categorySlug}` : 'products'
+    categorySlug ? `products?category=${categorySlug}` : 'products/'
 );
 
 export const getTopProducts = () => instance.get("products/?bestseller=true");
 
-export const getComments = () => instance.get("comments")
+export const getComments = () => instance.get("comments/")
 
 export const createComment = (username: string, text: string, stars: number) => instance.post("comments/create", {
     username,

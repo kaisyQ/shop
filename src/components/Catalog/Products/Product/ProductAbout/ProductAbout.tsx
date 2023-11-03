@@ -59,7 +59,7 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
             <Path 
                 subPath={{
                     name: product.name,
-                    url: `/catalog/${product.id}`
+                    url: `/catalog/${product.slug}`
                 }}
                 mainPath={{
                     name: "Catalog",
