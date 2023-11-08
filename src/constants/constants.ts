@@ -24,4 +24,4 @@ export const DELIVERY_TEXT = `
 `;
 
 
-export const API_URL = "https://bmfurniture.ca/uploads/images/";
+export const API_URL =  'http://localhost:8000/uploads/images/' //"https://bmfurniture.ca/uploads/images/"; //'http://localhost:8000/uploads/images/'

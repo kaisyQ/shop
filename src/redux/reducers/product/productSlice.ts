@@ -6,24 +6,21 @@ import {
     getProduct, getTopProducts
 } from "api/api";
 
-import type { IProduct, LoadingType, SelectType, TopProduct } from "types/types";
+import type { IProduct, LoadingType, ProductLink } from "types/types";
 
 import { IDLE, LOADING, FAILED } from "constants/constants";
-
-import { SELECT_NEWEST } from "constants/constants";
 
 
 import { getProductsWithCategoryParams } from "api/api";
 
 interface IProductsInitialState {
     items: IProduct[],
-    topProducts: TopProduct[]
+    topProducts: ProductLink[]
     current: IProduct | null,
     loadingStatus: LoadingType,
     error: Error | null,
-    selectorType: SelectType,
-    searchValue: string,
-    filterByTop: boolean
+    total: number | null    
+
 }
 
 const initialState: IProductsInitialState = {
@@ -32,9 +29,7 @@ const initialState: IProductsInitialState = {
     loadingStatus: IDLE,
     error: null,
     current: null,
-    selectorType: SELECT_NEWEST,
-    searchValue: "",
-    filterByTop: false
+    total: null
 }
 
 export const fetchProducts = createAsyncThunk(
@@ -42,6 +37,7 @@ export const fetchProducts = createAsyncThunk(
         const response = await getProductsWithCategoryParams(category ? category : null);
         return {
             products: response.data.items,
+            total: response.data.total,
             status: response.status
         };
     }
@@ -51,7 +47,6 @@ export const fetchProductBySlug = createAsyncThunk(
     "products/fetchProductBySlug",
     async (slug: string) => {
         const response = await getProduct(slug);
-        console.log(response.data);
         return {
             product: response.data,
             status: response.status
@@ -63,7 +58,6 @@ export const fetchTopProducts = createAsyncThunk(
     "products/fetchTopProducts",
     async () => {
         const response = await getTopProducts();
-        console.log(response)
         return {
             products: response.data.items,
             status: response.status
@@ -96,15 +90,6 @@ const productSlice = createSlice({
         removeProduct: (state, action: PayloadAction<string>) => {
             state.items = state.items.filter(product => product.id !== action.payload);
         },
-        setSelectorType: (state, action: PayloadAction<SelectType>) => {
-            state.selectorType = action.payload;
-        },
-        setSearchValue: (state, action: PayloadAction<string>) => {
-            state.searchValue = action.payload;
-        },
-        setFilteredByTop: (state, action: PayloadAction<boolean>) => {
-            state.filterByTop = action.payload;
-        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProducts.pending, (state) => {
@@ -114,7 +99,7 @@ const productSlice = createSlice({
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            console.log(action.payload);
+            state.total = action.payload.total;
             state.items = action.payload.products.map((product: any) => {
                 return {
                     id: product.id,
@@ -187,6 +172,7 @@ const productSlice = createSlice({
                 state.topProducts = action.payload.products.map((product: any) => ({
                     id: product.id,
                     name: product.name,
+                    slug: product.slug,
                     imagesSrc: product.images,
                 }))
             }
@@ -201,8 +187,7 @@ const { actions, reducer } = productSlice;
 
 export const {
     setCurrent, addProduct, removeProduct,
-    updateProduct, setSelectorType, setSearchValue,
-    setFilteredByTop
+    updateProduct,
 } = actions;
 
 export default reducer;

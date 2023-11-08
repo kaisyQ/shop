@@ -6,12 +6,16 @@ import CommentsContainer from "components/Comments/CommentsContainer";
 import TopProductsContainer from "components/TopProducts/TopProductsContainer";
 
 import { Wrapper, PreviewImage, Slogan } from "./HomeViewStyles";
+import { useLocation } from "react-router-dom";
 
 interface IHomeViewProps {
 
 }
 
 const HomeView: React.FC<IHomeViewProps> = () => {
+    const location = useLocation();
+
+    console.log(location.state)
     return (
         <>
             <Wrapper>

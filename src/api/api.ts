@@ -1,12 +1,11 @@
 import { API_URL } from "constants/constants";
-import HttpQuery from "./fetch.setup/fetch.setup";
 import axios from 'axios';
 
 
 const instance = axios.create(
     {
-        baseURL: "https://bmfurniture.ca/api/v1/",
-        //baseURL: 'http://localhost:8000/api/v1/',
+        //baseURL: "https://bmfurniture.ca/api/v1/",
+        baseURL: 'http://localhost:8000/api/v1/',
     }
 );
 
@@ -35,7 +34,7 @@ export const getProductsWithCategoryParams = (categorySlug: string | null) => in
     categorySlug ? `products?category=${categorySlug}` : 'products/'
 );
 
-export const getTopProducts = () => instance.get("products/?bestseller=true");
+export const getTopProducts = () => instance.get("/bestsellers/");
 
 export const getComments = () => instance.get("comments/")
 

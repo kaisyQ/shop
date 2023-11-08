@@ -10,6 +10,7 @@ import { CardsConnectedPropsType } from "./ProductsContainer";
 
 import { LOADING } from "constants/constants";
 import { useLocation } from "react-router-dom";
+import Paginator from "components/Paginator/Paginator";
 
 
 const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, loading }) => {
@@ -18,12 +19,17 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
 
     React.useEffect(() => {
         
-        const category = new URLSearchParams(location.search).get("category");
+        const urlSearchParams = new URLSearchParams(location.search);
 
-        fetchProducts(category)
-        
-        console.log(category)
-    
+        const category = urlSearchParams.get("category");
+        const page = urlSearchParams.get("page")
+        const limit = urlSearchParams.get("limit")
+
+
+        console.log(page, limit, category)
+
+        fetchProducts(category);
+
     }, [location, fetchProducts])
 
     if (loading === LOADING) {
@@ -36,18 +42,19 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
         {
             products.length ? <>
                 <Wrapper>
-                {
-                    products.map(item => <Product 
-                            key={item.id} 
-                            id={item.id} 
-                            count={item.count} 
-                            name={item.name} 
-                            imageSrc={item.imagesSrc[0]} 
-                            slug={item.slug}
-                        />
-                    )
-                }
+                    {
+                        products.map(item => <Product 
+                                key={item.id} 
+                                id={item.id} 
+                                count={item.count} 
+                                name={item.name} 
+                                imageSrc={item.imagesSrc[0]} 
+                                slug={item.slug}
+                            />
+                        )
+                    }
                 </Wrapper>
+                <Paginator />
             </> : <Message message="There's nothing here yet..." />
         }
         </>

@@ -2,6 +2,8 @@ import thunk from 'redux-thunk';
 
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+
 import stylesReducer from './reducers/styles/stylesSlice';
 import productReducer from './reducers/product/productSlice';
 import commentsReducer from "./reducers/comment/commentSlice";
@@ -33,6 +35,11 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 
-export type RootDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;
+
+
+export const useAppDispatch: () => AppDispatch = useDispatch
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export default store;

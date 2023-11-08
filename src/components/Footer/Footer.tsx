@@ -34,13 +34,14 @@ const Footer: React.FC = () => {
                                 <a href="tel:+16475615320">+16475615320</a>
                             </Span>
                         </Information>
-
-                        <Information>
-                            <ContactTitle weight={500}>Our Address:</ContactTitle>
-                            <Span underline={false}>
-                                21 Raleigh avenue
-                            </Span>
-                        </Information>
+                        {
+                            //<Information>
+                            //    <ContactTitle weight={500}>Our Address:</ContactTitle>
+                            //    <Span underline={false}>
+                            //        21 Raleigh avenue
+                            //    </Span>
+                            //</Information>
+                        }
                     </OurContacts>
 
                     <AboutSiteAndCompanyLinkList>

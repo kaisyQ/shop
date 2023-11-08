@@ -55,8 +55,9 @@ export interface IShortProduct {
     createdAt: Date
 }
 
-export type TopProduct = {
+export type ProductLink = {
     imagesSrc: string[],
+    slug: string,
     name: string,
     id: string
 }
