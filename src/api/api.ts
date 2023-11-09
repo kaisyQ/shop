@@ -30,9 +30,22 @@ export const getCategories = () => instance.get("/categories/");
 
 export const getProduct = (slug: string) => instance.get(`/products/${slug}`)
 
-export const getProductsWithCategoryParams = (categorySlug: string | null) => instance.get(
-    categorySlug ? `products?category=${categorySlug}` : 'products/'
-);
+export const getProductsWithParams = (limit: number, categorySlug?: string, page?: string) => {
+
+    const params: Record<string, string> = {
+        limit: limit.toString()
+    }
+
+    if (categorySlug) {
+        params.category = categorySlug;
+    }
+
+    if (page) {
+        params.page = page;
+    }
+
+    return instance.get(`products/?${(new URLSearchParams(params)).toString()}`)
+}
 
 export const getTopProducts = () => instance.get("/bestsellers/");
 

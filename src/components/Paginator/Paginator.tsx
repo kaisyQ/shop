@@ -1,75 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 import PageButton from 'components/Ui/PageButton/PageButton';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'redux/store';
-import { getTotal } from 'redux/reducers/product/selector';
+import { usePaginator } from 'hooks/usePaginator';
+import { renderPageButtons } from './RenderPageButton';
 
 const PaginatorWrapper = styled.div`
     display: flex;
     justify-content: center;
     gap: 7px;
+    @media only screen and (max-width: 400px) {
+        gap: 3px; 
+    }
 `;
 
 const Paginator = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const total = useAppSelector(state => getTotal(state));
-    const [page, setPage] = React.useState(1);
 
-    React.useEffect(() => {
-        const pageParam = new URLSearchParams(location.search).get('page');
-        if (pageParam) {
-            setPage(parseInt(pageParam));
-        }
-    }, [location]);
-
+    const { page, total, limit, handlePageClick } = usePaginator();
+    
     if (!total) return null;
 
-    const handlePageClick = (newPage: string) => {
+    if (Math.ceil(total / limit) === 1) return null;
 
-        setPage(parseInt(newPage));
-
-        const searchParams = new URLSearchParams(location.search);
-
-        searchParams.set('page', newPage);
-
-        navigate(`${location.pathname}?${searchParams.toString()}`);
-    };
-
-    const renderPageButtons = () => {
-
-        const buttons = [];
-
-        for (let i = 1; i <= Math.ceil(total / 2); i++) {
-            buttons.push(
-                <PageButton key={i} onClick={() => handlePageClick(i.toString())}>
-                    {i}
-                </PageButton>
-            );
-        }
-
-        return buttons;
-    };
-
-    if (!total) {
-        return null;
-    }
 
     return (
         <PaginatorWrapper>
             {page !== 1 && (
-                <NavLink to={''}>
-                    <PageButton onClick={() => handlePageClick((page - 1).toString())}> {'<'} </PageButton>
-                </NavLink>
+                <PageButton onClick={() => handlePageClick((page - 1).toString())}> {'<'} </PageButton>
             )}
 
-            {renderPageButtons()}
+            {renderPageButtons(page, total, limit, handlePageClick)}
 
-            {Math.ceil(total / 2) !== 1 && Math.ceil(total / 2) !== page && (
-                <NavLink to={''}>
-                    <PageButton onClick={() => handlePageClick((page + 1).toString())}> {'>'} </PageButton>
-                </NavLink>
+            {Math.ceil(total / limit) !== 1 && Math.ceil(total / limit) !== page && (
+                <PageButton onClick={() => handlePageClick((page + 1).toString())}> {'>'} </PageButton>
             )}
         </PaginatorWrapper>
     );

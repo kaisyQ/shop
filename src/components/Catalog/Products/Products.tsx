@@ -11,6 +11,7 @@ import { CardsConnectedPropsType } from "./ProductsContainer";
 import { LOADING } from "constants/constants";
 import { useLocation } from "react-router-dom";
 import Paginator from "components/Paginator/Paginator";
+import { useAppSelector } from "redux/store";
 
 
 const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, loading }) => {
@@ -18,17 +19,23 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
     const location = useLocation();
 
     React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]); 
+    
+    const limit = useAppSelector(state => state.product.limit);
+
+    React.useEffect(() => {
         
         const urlSearchParams = new URLSearchParams(location.search);
 
         const category = urlSearchParams.get("category");
-        const page = urlSearchParams.get("page")
-        const limit = urlSearchParams.get("limit")
+        const page = urlSearchParams.get("page");
 
-
-        console.log(page, limit, category)
-
-        fetchProducts(category);
+        fetchProducts({
+            category: category, 
+            page: page, 
+            limit: limit
+        });
 
     }, [location, fetchProducts])
 

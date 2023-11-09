@@ -3,15 +3,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 import {
-    getProduct, getTopProducts
+    getProduct, getProductsWithParams, getTopProducts
 } from "api/api";
 
-import type { IProduct, LoadingType, ProductLink } from "types/types";
+import type { IProduct, LoadingType, ProductLink, ProductsLimit } from "types/types";
 
 import { IDLE, LOADING, FAILED } from "constants/constants";
 
-
-import { getProductsWithCategoryParams } from "api/api";
 
 interface IProductsInitialState {
     items: IProduct[],
@@ -19,8 +17,8 @@ interface IProductsInitialState {
     current: IProduct | null,
     loadingStatus: LoadingType,
     error: Error | null,
-    total: number | null    
-
+    total: number | null,
+    limit: ProductsLimit,
 }
 
 const initialState: IProductsInitialState = {
@@ -29,18 +27,30 @@ const initialState: IProductsInitialState = {
     loadingStatus: IDLE,
     error: null,
     current: null,
-    total: null
+    total: null,
+    limit: 9
 }
 
 export const fetchProducts = createAsyncThunk(
-    "products/fetchProducts", async (category: string | null | undefined) => {
-        const response = await getProductsWithCategoryParams(category ? category : null);
-        return {
-            products: response.data.items,
-            total: response.data.total,
-            status: response.status
-        };
-    }
+    "products/fetchProducts", async (
+        { category, page, limit }:
+            {
+                category: string | null,
+                page: string | null
+                limit: number
+            }) => {
+    
+    const response = await getProductsWithParams(
+        limit,
+        category ? category : undefined, 
+        page ? page :  undefined,
+    );
+    return {
+        products: response.data.items,
+        total: response.data.total,
+        status: response.status
+    };
+}
 );
 
 export const fetchProductBySlug = createAsyncThunk(
@@ -89,6 +99,9 @@ const productSlice = createSlice({
         },
         removeProduct: (state, action: PayloadAction<string>) => {
             state.items = state.items.filter(product => product.id !== action.payload);
+        },
+        setLimit: (state, action: PayloadAction<ProductsLimit>) => {
+            state.limit = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -187,7 +200,7 @@ const { actions, reducer } = productSlice;
 
 export const {
     setCurrent, addProduct, removeProduct,
-    updateProduct,
+    updateProduct, setLimit,
 } = actions;
 
 export default reducer;

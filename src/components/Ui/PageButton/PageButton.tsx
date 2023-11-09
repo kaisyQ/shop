@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface IPageButtonProps {
-    onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void
+
+
+interface IButton {
+    current?: boolean
 }
 
-const Button = styled.button`
-    background-color: #fff;
-    color: #000;
+interface IPageButtonProps extends IButton {
+    onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void,
+}
+
+
+const Button = styled.button<IButton>`
+    background-color: ${props => props.current ? '#000' : "#fff"};
+    color: ${props => props.current ? '#fff' : "#000"};;
     padding: 10px 20px;
     margin: 0 8px;
     border: 2px solid #000;
@@ -19,21 +26,19 @@ const Button = styled.button`
         color: white;
     }
 
-    &:disabled {
-        background-color: #ccc;
-        color: #666;
-        cursor: not-allowed;
-        border-color: #ccc;
+    @media only screen and (max-width: 400px) {
+        padding: 8px 12px;
+        
     }
 `;
 
 const PageButton: React.FC<React.PropsWithChildren<IPageButtonProps>> = (props) => {
     return (
         <>
-            <Button onClick={props.onClick}>
-            
+            <Button onClick={props.onClick} current={props.current} disabled={props.current}>
+
                 {
-                    props.children  
+                    props.children
                 }
 
             </Button>
@@ -42,4 +47,4 @@ const PageButton: React.FC<React.PropsWithChildren<IPageButtonProps>> = (props) 
 }
 
 
-export default PageButton;
+export default React.memo(PageButton);
