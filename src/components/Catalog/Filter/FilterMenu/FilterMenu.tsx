@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 import styles from "./FilterMenuItems";
 
-import { ICategory } from "redux/reducers/categories/categories.slice";
+import { ICategory } from "redux/reducers/category/category.slice";
 
 interface Props {
     categories: Array<ICategory>
@@ -22,7 +22,7 @@ const FilterMenu: React.FC<Props> = ({categories}) => {
   return (
     <styles.comp.MenuWrapper>
         
-        <UnderlineBtn onClick={toggleMenu}>Shop our catalog 	&#9660;</UnderlineBtn>
+        <UnderlineBtn onClick={toggleMenu}>Shop our catalog &#9660;</UnderlineBtn>
       
         {isOpen && (
             <styles.comp.MenuContent>

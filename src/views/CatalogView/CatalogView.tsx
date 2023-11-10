@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Filter from "components/Catalog/Filter/Filter"
 import ProductsContainer from "components/Catalog/Products/ProductsContainer"
 import Title from "components/Custom/Title/Title"
+import { animateScroll } from "react-scroll"
 
 
 const Wrapper = styled.div`
@@ -16,6 +17,11 @@ const TitleWrapper = styled.div`
 `
 
 export default () => {
+    
+    React.useEffect(() => {
+        animateScroll.scrollToTop();
+    }, []);
+    
     return (
         <>
             <Wrapper>

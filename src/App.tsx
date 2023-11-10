@@ -7,7 +7,6 @@ import Navbar from './components/Navbar/Navbar';
 import ShadingBlock from './components/Custom/ShadingBlock/ShadingBlock';
 import MainRouter from 'components/MainRouter/MainRouter';
 import ConfirmModalContainer from 'components/ConfirmModal/ConfirmModalContainer';
-import HintContainer from 'components/Hint/HintContainer';
 import LiveChat from 'components/LiveChat/LiveChat';
 
 import { AppWrapper, MainContainer } from 'AppStyles';
@@ -16,18 +15,17 @@ import { AppConnectedProps } from 'AppContainer';
 
 import useWindowWidth from 'hooks/useWindowWidth';
 
+import { useProductsLimitSetter } from 'hooks/useProductLimitSetter';
+
 const App: React.FC<AppConnectedProps> = (props) => {
-  
-  const { isDark, isAuth, setIsDark, fetchToCheckMe, confirmModalVisibility } = props;
+
+  const { isDark, setIsDark, confirmModalVisibility } = props;
 
   const [isOpenSidebar, setIsOpenSidebar] = React.useState(false);
 
   const width = useWindowWidth();
 
-  React.useEffect(() => {
-    fetchToCheckMe();
-  }, []);
-  
+  useProductsLimitSetter();
 
   const darkOpacityClick = (ev: React.MouseEvent<HTMLDivElement>) => {
     setIsDark(false);
@@ -35,26 +33,24 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
   return (
     <AppWrapper>
-      { isOpenSidebar ? <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> : null }
+      {isOpenSidebar ? <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> : null}
 
       <HeaderContainer isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
-      
-      { isDark ? <ShadingBlock onClick={darkOpacityClick} /> : null } 
 
-      { confirmModalVisibility ? <ConfirmModalContainer /> : null }
+      {isDark ? <ShadingBlock onClick={darkOpacityClick} /> : null}
 
-      { /*width >= 768 && !isAuth ? <HintContainer /> : null*/ } 
+      {confirmModalVisibility ? <ConfirmModalContainer /> : null}
 
       <LiveChat />
-      
-      { width >= 768 ? <Navbar /> : null }
+
+      {width >= 768 ? <Navbar /> : null}
 
       <MainContainer>
-      
+
         <MainRouter />
-      
+
       </MainContainer>
-      
+
       <Footer />
     </AppWrapper>
   );

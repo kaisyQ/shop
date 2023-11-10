@@ -1,10 +1,13 @@
-import { SELECT_OLDEST, SELECT_NEWEST } from "constants/constants";
+import { MIN_PRODUCT_LIMIT } from './../constants/constants';
+import { SELECT_OLDEST, SELECT_NEWEST, MAX_PRODUCT_LIMIT, MEDIUM_PRODUCT_LIMIT } from "constants/constants";
 
 import { LOADING, IDLE, FAILED } from "constants/constants";
 
 import { ADMIN, EMPLOYEE } from "constants/constants";
 
 export type LoadingType = typeof LOADING | typeof IDLE | typeof FAILED;
+
+export type ProductsLimit = typeof MAX_PRODUCT_LIMIT | typeof MEDIUM_PRODUCT_LIMIT | typeof MIN_PRODUCT_LIMIT;
 
 export type Images = {
     src: string,
@@ -55,8 +58,9 @@ export interface IShortProduct {
     createdAt: Date
 }
 
-export type TopProduct = {
+export type ProductLink = {
     imagesSrc: string[],
+    slug: string,
     name: string,
     id: string
 }
@@ -65,6 +69,7 @@ export type TopProduct = {
 export interface IProduct extends IShortProduct {
     discountPrice: number,
     description: string,
+    slug: string,
     params: {
         Width: string, 
         Height: string,

@@ -7,11 +7,12 @@ import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
 import { fetchContactMessage } from "redux/reducers/forms/formsSlice";
 
 import { RootState } from "redux/store";
-import { getFormStatus } from "redux/reducers/forms/selector";
+import { getFormLoading, getFormStatus } from "redux/reducers/forms/selector";
 import { setStatus } from "redux/reducers/forms/formsSlice";
 
 const mapStateToProps = (state: RootState) => ({
-    status: getFormStatus(state)
+    status: getFormStatus(state),
+    loading: getFormLoading(state),
 })
 
 const mapDipatchToProps = {

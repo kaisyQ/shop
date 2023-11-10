@@ -18,7 +18,7 @@ interface ISectionsProps {
     delivery: string
 }
 
-const Sections: React.FC<ISectionsProps> = ({ description, params, delivery}) => {
+const Sections: React.FC<ISectionsProps> = ({ description, params, delivery }) => {
     return (
         <>
             <SectionsWrapper>

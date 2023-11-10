@@ -11,6 +11,10 @@ export const ADMIN = "TYPES/ADMIN";
 export const EMPLOYEE = "TYPES/EMPLOYEE";
 
 
+export const MAX_PRODUCT_LIMIT = 9;
+export const MEDIUM_PRODUCT_LIMIT = 6;
+export const MIN_PRODUCT_LIMIT = 4;
+
 
 export const DELIVERY_TEXT = `
     Hello valued customer, \n
@@ -24,4 +28,4 @@ export const DELIVERY_TEXT = `
 `;
 
 
-export const API_URL = "http://localhost:8000/api/v1/uploads";
+export const API_URL =  'http://localhost:8000/uploads/images/' //"https://bmfurniture.ca/uploads/images/"; //'http://localhost:8000/uploads/images/'
