@@ -9,31 +9,39 @@ import * as Icon from "react-bootstrap-icons";
 
 import { NavLink } from "react-router-dom";
 import { API_URL } from "constants/constants";
+import { SearchedProduct } from "models/SearchedProduct";
 
 interface ISearchResultItemProps {
-    name: string,
-    id: string,
-    image: string,
-    slug: string,
     index: number,
-    type: "POST" | "PRODUCT"
+    searchedProduct: SearchedProduct
 }
 
 const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
     console.log(props)
     return (
         <>
-            <NavLink to={`/${props.type === "POST" ? "posts" : "catalog"}/${props.slug}`}>
+            <NavLink to={`/catalog/${props.searchedProduct.slug}`}>
+                
                 <SearchResultItemWrapper>
+                
                     <NumberBlock>{ props.index }</NumberBlock>
+                
                     <ImageWrapper>
-                        <Image src={`${API_URL}${props.image}`} />
+                    
+                        <Image src={`${API_URL}${props.searchedProduct.image}`} />
+                    
                     </ImageWrapper>
-                    <NameBlock>{ props.name }</NameBlock>
+                
+                    <NameBlock>{ props.searchedProduct.name }</NameBlock>
+                
                     <RightArrrow>
+                    
                         <Icon.ArrowRight size={"3rem"} />
+                    
                     </RightArrrow>
+                
                 </SearchResultItemWrapper>
+            
             </NavLink>
         </>
     );

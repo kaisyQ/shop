@@ -6,7 +6,7 @@ import {
     getProduct, getProductsWithParams, getTopProducts
 } from "api/api";
 
-import type { IProduct, LoadingType, ProductLink, ProductsLimit } from "types/types";
+import type { LoadingType, ProductsLimit } from "types/types";
 
 import { IDLE, LOADING, FAILED } from "constants/constants";
 import { plainToClass, plainToInstance } from "class-transformer";
@@ -16,8 +16,6 @@ import { Product } from "./../../../models/Product";
 interface IProductsInitialState {
     
     items: Product[],
-    
-    topProducts: ProductLink[]
     
     current: Product | null,
     
@@ -32,7 +30,6 @@ interface IProductsInitialState {
 
 const initialState: IProductsInitialState = {
     items: [],
-    topProducts: [],
     loadingStatus: IDLE,
     error: null,
     current: null,
@@ -72,18 +69,6 @@ export const fetchProductBySlug = createAsyncThunk(
         };
     }
 );
-
-export const fetchTopProducts = createAsyncThunk(
-    "products/fetchTopProducts",
-    async () => {
-        const response = await getTopProducts();
-        return {
-            products: response.data.items,
-            status: response.status
-        };
-    }
-);
-
 
 const productSlice = createSlice({
     name: 'productSlice',
@@ -143,27 +128,6 @@ const productSlice = createSlice({
                 }
             })
         builder.addCase(fetchProductBySlug.rejected, (state, action) => {
-            state.loadingStatus = FAILED;
-        })
-
-        builder.addCase(fetchTopProducts.pending, (state, action) => {
-            state.loadingStatus = LOADING;
-            state.error = null;
-        })
-        builder.addCase(fetchTopProducts.fulfilled, (state, action) => {
-            state.loadingStatus = IDLE;
-            state.error = null;
-
-            if (action.payload.status === 200) {
-                state.topProducts = action.payload.products.map((product: any) => ({
-                    id: product.id,
-                    name: product.name,
-                    slug: product.slug,
-                    imagesSrc: product.images,
-                }))
-            }
-        })
-        builder.addCase(fetchTopProducts.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
     }

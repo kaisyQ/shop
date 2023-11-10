@@ -4,18 +4,16 @@ import type { LoadingType } from "types/types";
 
 import { IDLE, LOADING, FAILED } from "constants/constants";
 import { search } from "api/api";
+import { plainToClass, plainToInstance } from "class-transformer";
+import { SearchedProduct } from "models/SearchedProduct";
 
-
-type SearchItem = {
-    id: string,
-    name: string,
-    slug: string,
-    image: string,
-}
 
 type InitialStateType = {
-    products: SearchItem[],
+    
+    products: Array<SearchedProduct>,
+    
     loadingStatus: LoadingType,
+    
     error: null | Error
 }
 
@@ -28,9 +26,10 @@ const initialState: InitialStateType = {
 export const fetchSearch = createAsyncThunk(
     "searchSlice/fetchSearch",
     async (query: string) => {
+        
         const response = await search(query);
-        console.log(response)
-        return response.data.items;
+        
+        return response.data.items as Array<any>;
     }
 )
 
@@ -39,7 +38,7 @@ const searchSlice = createSlice({
     name: "searchSlice",
     initialState,
     reducers: {
-        setSearchProducts: (state, action: PayloadAction<SearchItem[]>) => {
+        setSearchProducts: (state, action: PayloadAction<SearchedProduct[]>) => {
             state.products = action.payload;
         },
     },
@@ -47,19 +46,10 @@ const searchSlice = createSlice({
         builder.addCase(fetchSearch.pending, (state) => {
             state.loadingStatus = LOADING;
         })
-        builder.addCase(fetchSearch.fulfilled, (state, action: PayloadAction<any>) => {
+        builder.addCase(fetchSearch.fulfilled, (state, action) => {
             state.loadingStatus = IDLE;
             state.error = null;
-            console.log(action.payload)
-
-            state.products = action.payload.map((product: any) => {
-                return {
-                    id: product.id,
-                    name: product.name,
-                    slug: product.slug,
-                    image: product.image
-                }
-            });
+            state.products = plainToInstance(SearchedProduct, action.payload);
         })
         builder.addCase(fetchSearch.rejected, (state) => {
             state.loadingStatus = FAILED;

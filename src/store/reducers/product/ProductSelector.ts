@@ -23,7 +23,5 @@ export const getShortProductItems = (state: RootState): IShortProduct[] => {
 
 export const getCurrentProduct = (state: RootState) => state.product.current;
 
-export const getTopProducts = (state: RootState) => state.product.topProducts;
-
 export const selectProductsLimit = (state: RootState) => state.product.limit;
 

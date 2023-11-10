@@ -2,23 +2,24 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import stylesReducer from './reducers/style/StyleSlice';
+import styleReducer from './reducers/style/StyleSlice';
 import productReducer from './reducers/product/ProductSlice';
-import commentsReducer from "./reducers/comment/CommentSlice";
+import commentReducer from "./reducers/comment/CommentSlice";
 import formReducer from "./reducers/form/FormSlice";
 import searchReducer from "./reducers/search/SearchSlice";
 import cartReducer from './reducers/cart/CartSlice';
-import categoriesReducer from "./reducers/category/CategorySlice";
-
+import categoryReducer from "./reducers/category/CategorySlice";
+import bestsellerReducer from './reducers/bestseller/BestsellerSlice';
 
 const rootReducer = combineReducers({
-    styles: stylesReducer,
+    bestseller: bestsellerReducer,
+    styles: styleReducer,
     product: productReducer,
-    comments: commentsReducer,
+    comments: commentReducer,
     forms: formReducer,
     search: searchReducer,
     cart: cartReducer,
-    categories: categoriesReducer
+    categories: categoryReducer
 });
 
 
