@@ -1,5 +1,3 @@
-import thunk from 'redux-thunk';
-
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';

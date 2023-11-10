@@ -18,11 +18,13 @@ import {
 import useWindowWidth from "hooks/useWindowWidth";
 
 import { useParams } from "react-router-dom";
+import { LOADING } from "constants/constants";
+import Preloader from "components/Ui/Preloader/Preloader";
 
 interface ProductViewProps extends ProductViewConnectedProps {
 }
 
-const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProductBySlug, addToCart, setCurrent }) => {
+const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProductBySlug, addToCart, setCurrent, loading }) => {
 
     const { id } = useParams();
 
@@ -43,9 +45,14 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
 
     
     const addToCartBtnClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        if (product) {
-            addToCart(product);
-        }
+        // if (product) {
+        //     addToCart(product);
+        // }
+    }
+
+
+    if (loading === LOADING) {
+        return <Preloader />;
     }
 
 
@@ -105,7 +112,7 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
                     <Sections 
                         delivery={product.delivery} 
                         description={product.description}
-                        params={product.params}
+                        params={{Width: product.width, Height: product.height, Depth: product.depth}}
                     />
                 </InfoWrapper>
             </Wrapper>
