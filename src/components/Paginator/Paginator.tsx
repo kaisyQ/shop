@@ -24,6 +24,11 @@ const Paginator = () => {
 
     return (
         <PaginatorWrapper>
+
+            {page !== 1 && page !== 2 && (
+                <PageButton onClick={() => handlePageClick((1).toString())}> {'<<'} </PageButton>
+            )}
+
             {page !== 1 && (
                 <PageButton onClick={() => handlePageClick((page - 1).toString())}> {'<'} </PageButton>
             )}
@@ -33,6 +38,12 @@ const Paginator = () => {
             {Math.ceil(total / limit) !== 1 && Math.ceil(total / limit) !== page && (
                 <PageButton onClick={() => handlePageClick((page + 1).toString())}> {'>'} </PageButton>
             )}
+
+
+            {page !== Math.ceil(total / limit) && page !== (Math.ceil(total / limit) - 1) && (
+                <PageButton onClick={() => handlePageClick((Math.ceil(total / limit)).toString())}> {'>>'} </PageButton>
+            )}
+
         </PaginatorWrapper>
     );
 };

@@ -16,13 +16,13 @@ export const renderPageButtons = (page: number, total: number, limit: number, ha
         end = Math.ceil(total / limit);
     }
 
-    if (page === Math.ceil(total / limit) && page - 1 !== 1) {
-        buttons.push(
-            <PageButton key={'1'} onClick={() => handlePageClick('1')}>
-                1
-            </PageButton>
-        )
-    }
+    //if (page === Math.ceil(total / limit) && page - 1 !== 1) {
+    //    buttons.push(
+    //        <PageButton key={'1'} onClick={() => handlePageClick('1')}>
+    //            1
+    //        </PageButton>
+    //    )
+    //}
 
     for (let i = start; i <= end; ++i) {
         buttons.push(
