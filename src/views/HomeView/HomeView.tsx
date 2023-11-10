@@ -6,7 +6,6 @@ import CommentsContainer from "components/Comments/CommentsContainer";
 import TopProductsContainer from "components/TopProducts/TopProductsContainer";
 
 import { Wrapper, PreviewImage, Slogan } from "./HomeViewStyles";
-import { useLocation } from "react-router-dom";
 
 interface IHomeViewProps {
 
