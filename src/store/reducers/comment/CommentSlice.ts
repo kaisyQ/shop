@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
-import type { ServerComment, RatingScore, Comment } from "types/types";
+import type { RatingScore } from "types/types";
 
 import type { LoadingType, SelectType } from "types/types";
 
@@ -9,9 +9,11 @@ import { IDLE, FAILED, LOADING } from "constants/constants";
 import { SELECT_NEWEST } from "constants/constants";
 
 import { getComments, createComment } from "api/api";
+import { plainToClass, plainToInstance } from "class-transformer";
+import { Comment } from "models/Comment";
 
 interface InitialStateType {
-    comments: Comment[],
+    comments: Array<Comment>,
     filerScore: RatingScore | 0,
     loadingStatus: LoadingType,
     error: Error | null,
@@ -19,10 +21,15 @@ interface InitialStateType {
 }
 
 const initialState: InitialStateType = {
+    
     comments: [],
+    
     filerScore: 0,
+    
     loadingStatus: IDLE,
+    
     error: null,
+    
     selectorType: SELECT_NEWEST,
 }
 
@@ -30,10 +37,9 @@ export const fetchComments = createAsyncThunk(
     "comments/fetchComments",
     async () => {
         const response = await getComments();
-        console.log(response);
         return {
             status: response.status,
-            items: response.data.items
+            items: response.data.items as Array<any>
         };
     }
 );
@@ -45,7 +51,7 @@ export const fetchToCreateComment = createAsyncThunk(
         const response = await createComment(username, text, stars);
         return {
             status: response.status,
-            comment: response.data
+            comment: response.data as any
         };
     }
 );
@@ -72,27 +78,15 @@ const commentSlice = createSlice({
         })
         builder.addCase(fetchComments.fulfilled,
             (state, action) => {
-
                 state.loadingStatus = IDLE;
                 state.error = null;
-
-
                 if (action.payload.status === 200) {
-                    state.comments = action.payload.items.map((comment: any) => ({
-                        id: comment.id,
-                        author: comment.username,
-                        date: (new Date(comment.createdAt)),
-                        text: comment.text,
-                        rating: comment.stars as RatingScore
-                    }));
+                    state.comments = plainToInstance(Comment, action.payload.items);
                 }
             })
         builder.addCase(fetchComments.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
-
-
-
 
         builder.addCase(fetchToCreateComment.pending, (state) => {
             state.error = null;
@@ -101,13 +95,7 @@ const commentSlice = createSlice({
             (state, action) => {
                 state.error = null;
                 if (action.payload.status === 200) {
-                    state.comments.push({
-                        id: action.payload.comment.id,
-                        author: action.payload.comment.username,
-                        date: new Date(action.payload.comment.createdAt),
-                        text: action.payload.comment.text,
-                        rating: action.payload.comment.stars as RatingScore
-                    })
+                    state.comments.push(plainToClass(Comment, action.payload.comment));
                 }
             })
         builder.addCase(fetchToCreateComment.rejected, (state, action) => {

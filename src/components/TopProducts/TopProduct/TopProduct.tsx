@@ -1,20 +1,16 @@
 import React from "react";
 
-import { 
-    TopProductWrapper, 
-    TopProductImage, 
-    TopProductName, 
-    ImageWrapper 
-} from "./TopProductStyles";
-
+import { TopProductWrapper, TopProductImage, TopProductName, ImageWrapper } from "./TopProductStyles";
 import { NavLink } from "react-router-dom";
 import { API_URL } from "constants/constants";
-import { ProductLink } from "types/types";
+import { Bestseller } from "models/Bestseller";
 
-interface ITopProductProps extends ProductLink {
+interface ITopProductProps {
+    bestseller: Bestseller
 }
 
 const TopProduct: React.FC<ITopProductProps> = (props) => {
+    
     const [hovered, setHovered] = React.useState(false);
     
     const wrapperMouseOver = (ev: React.MouseEvent<HTMLDivElement>) => {
@@ -29,10 +25,10 @@ const TopProduct: React.FC<ITopProductProps> = (props) => {
     return (
         <>
             <TopProductWrapper onMouseOver={wrapperMouseOver} onMouseOut={wrapperMouseOut}> 
-                <NavLink to={`/catalog/${props.slug}`}>
+                <NavLink to={`/catalog/${props.bestseller.slug}`}>
                     <ImageWrapper>
-                        <TopProductName hovered={hovered}>{props.name}</TopProductName>
-                        <TopProductImage src={`${API_URL}${props.imagesSrc[0]}`} alt="top-product"/>
+                        <TopProductName hovered={hovered}>{props.bestseller.name}</TopProductName>
+                        <TopProductImage src={`${API_URL}${props.bestseller.imagesSrc[0]}`} alt="top-product" />
                     </ImageWrapper>
                 </NavLink>
             </TopProductWrapper>

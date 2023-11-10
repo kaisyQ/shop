@@ -6,24 +6,30 @@ import {
     getProduct, getProductsWithParams, getTopProducts
 } from "api/api";
 
-import type { IProduct, LoadingType, ProductLink, ProductsLimit } from "types/types";
+import type { LoadingType, ProductsLimit } from "types/types";
 
 import { IDLE, LOADING, FAILED } from "constants/constants";
+import { plainToClass, plainToInstance } from "class-transformer";
+import { Product } from "./../../../models/Product";
 
 
 interface IProductsInitialState {
-    items: IProduct[],
-    topProducts: ProductLink[]
-    current: IProduct | null,
+    
+    items: Product[],
+    
+    current: Product | null,
+    
     loadingStatus: LoadingType,
+    
     error: Error | null,
+    
     total: number | null,
+    
     limit: ProductsLimit,
 }
 
 const initialState: IProductsInitialState = {
     items: [],
-    topProducts: [],
     loadingStatus: IDLE,
     error: null,
     current: null,
@@ -46,7 +52,7 @@ export const fetchProducts = createAsyncThunk(
         page ? page :  undefined,
     );
     return {
-        products: response.data.items,
+        products: response.data.items as Array<any>,
         total: response.data.total,
         status: response.status
     };
@@ -64,29 +70,17 @@ export const fetchProductBySlug = createAsyncThunk(
     }
 );
 
-export const fetchTopProducts = createAsyncThunk(
-    "products/fetchTopProducts",
-    async () => {
-        const response = await getTopProducts();
-        return {
-            products: response.data.items,
-            status: response.status
-        };
-    }
-);
-
-
 const productSlice = createSlice({
     name: 'productSlice',
     initialState,
     reducers: {
-        setCurrent: (state, action: PayloadAction<IProduct | null>) => {
+        setCurrent: (state, action: PayloadAction<Product | null>) => {
             state.current = action.payload;
         },
-        addProduct: (state, action: PayloadAction<IProduct>) => {
+        addProduct: (state, action: PayloadAction<Product>) => {
             state.items.push(action.payload);
         },
-        updateProduct: (state, action: PayloadAction<IProduct>) => {
+        updateProduct: (state, action: PayloadAction<Product>) => {
             state.items = state.items.filter(product => {
                 if (product.id !== action.payload.id) {
                     return product;
@@ -96,9 +90,6 @@ const productSlice = createSlice({
                     ...action.payload
                 }
             })
-        },
-        removeProduct: (state, action: PayloadAction<string>) => {
-            state.items = state.items.filter(product => product.id !== action.payload);
         },
         setLimit: (state, action: PayloadAction<ProductsLimit>) => {
             state.limit = action.payload;
@@ -113,26 +104,7 @@ const productSlice = createSlice({
             state.loadingStatus = IDLE;
             state.error = null;
             state.total = action.payload.total;
-            state.items = action.payload.products.map((product: any) => {
-                return {
-                    id: product.id,
-                    slug: product.slug,
-                    name: product.name,
-                    delivery: product.aboutDelivery,
-                    description: product.aboutProduct,
-                    count: product.count,
-                    price: product.price,
-                    discountPrice: product.discountPrice,
-                    params: {
-                        Width: product.width,
-                        Height: product.height,
-                        Depth: product.depth
-                    },
-                    createdAt: new Date(product.created_at),
-                    imagesSrc: product.images,
-                    topOfTheWeek: product.bestseller
-                };
-            })
+            state.items = plainToInstance(Product, action.payload.products);
         })
         builder.addCase(fetchProducts.rejected, (state, action) => {
             state.loadingStatus = FAILED;
@@ -149,48 +121,10 @@ const productSlice = createSlice({
                 state.error = null;
                 if (action.payload.status === 200) {
                     const product = action.payload.product;
-                    state.current = {
-                        id: product.id,
-                        name: product.name,
-                        slug: product.slug,
-                        delivery: product.delivery,
-                        description: product.description,
-                        count: product.count,
-                        price: product.price,
-                        discountPrice: product.discountPrice,
-                        createdAt: new Date(product.createdAt),
-                        params: {
-                            Width: product.width,
-                            Height: product.height,
-                            Depth: product.depth
-                        },
-                        imagesSrc: product.images,
-                        topOfTheWeek: product.bestseller
-                    };
+                    state.current = plainToClass(Product, product);
                 }
             })
         builder.addCase(fetchProductBySlug.rejected, (state, action) => {
-            state.loadingStatus = FAILED;
-        })
-
-        builder.addCase(fetchTopProducts.pending, (state, action) => {
-            state.loadingStatus = LOADING;
-            state.error = null;
-        })
-        builder.addCase(fetchTopProducts.fulfilled, (state, action) => {
-            state.loadingStatus = IDLE;
-            state.error = null;
-
-            if (action.payload.status === 200) {
-                state.topProducts = action.payload.products.map((product: any) => ({
-                    id: product.id,
-                    name: product.name,
-                    slug: product.slug,
-                    imagesSrc: product.images,
-                }))
-            }
-        })
-        builder.addCase(fetchTopProducts.rejected, (state, action) => {
             state.loadingStatus = FAILED;
         })
     }
@@ -199,7 +133,7 @@ const productSlice = createSlice({
 const { actions, reducer } = productSlice;
 
 export const {
-    setCurrent, addProduct, removeProduct,
+    setCurrent, addProduct,
     updateProduct, setLimit,
 } = actions;
 

@@ -1,6 +1,6 @@
 
 
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
 import type { IShortProduct } from "types/types";
 
@@ -11,7 +11,7 @@ export const getProductsLoading = (state: RootState) => state.product.loadingSta
 export const getTotal = (state: RootState) => state.product.total;
 
 export const getShortProductItems = (state: RootState): IShortProduct[] => {
-    return state.product.items.map(product => ({
+    return state.product.items.map((product: any) => ({
         id: product.id,
         name: product.name,
         price: product.price,
@@ -22,8 +22,6 @@ export const getShortProductItems = (state: RootState): IShortProduct[] => {
 }
 
 export const getCurrentProduct = (state: RootState) => state.product.current;
-
-export const getTopProducts = (state: RootState) => state.product.topProducts;
 
 export const selectProductsLimit = (state: RootState) => state.product.limit;
 

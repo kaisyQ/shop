@@ -27,7 +27,7 @@ const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchProducts }) => {
         if (!searchQuery) {
             return;
         }
-        
+        setSearchVl(searchQuery);
         fetchSearch(searchQuery);
 
         return () => {
@@ -42,7 +42,9 @@ const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchProducts }) => {
     return (
         <>
             <SearchWrapper>
+                
                 <SearchContainer>
+                    
                     <Input 
                         fontSize={'2.4rem'} 
                         padding={'3rem 7rem 3rem 2rem'} 
@@ -51,16 +53,24 @@ const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchProducts }) => {
                         value={searchVl} 
                         onChange={onSearchChange}
                     />
+                
                     <IconWrapper>
+                    
                         <NavLink to={`/search/?query=${searchVl}`}>
+                    
                             <Icon.Search color="#000" size={'3.5rem'} cursor='pointer' />
+                    
                         </NavLink>
+                    
                     </IconWrapper>
+                
                 </SearchContainer>
                 {
                     searchQuery ? <SearchResultContainer /> : null
                 }
+            
             </SearchWrapper>
+        
         </>
     );
 }

@@ -13,9 +13,6 @@ interface IHomeViewProps {
 }
 
 const HomeView: React.FC<IHomeViewProps> = () => {
-    const location = useLocation();
-
-    console.log(location.state)
     return (
         <>
             <Wrapper>

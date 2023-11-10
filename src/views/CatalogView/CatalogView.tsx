@@ -18,10 +18,6 @@ const TitleWrapper = styled.div`
 
 export default () => {
     
-    React.useEffect(() => {
-        animateScroll.scrollToTop();
-    }, []);
-    
     return (
         <>
             <Wrapper>

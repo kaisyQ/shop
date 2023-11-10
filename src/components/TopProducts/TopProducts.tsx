@@ -18,11 +18,11 @@ interface ITopProductsProps extends TopProductsConnectedProps{
 
 
 
-const TopProducts: React.FC<ITopProductsProps> = ({ fetchTopProducts, topProducts }) => {
+const TopProducts: React.FC<ITopProductsProps> = ({ fetchBestsellers, bestsellers }) => {
     
     React.useEffect(() => {
-        fetchTopProducts();
-    }, [fetchTopProducts]);
+        fetchBestsellers();
+    }, [fetchBestsellers]);
     
     const width = useWindowWidth();
 
@@ -34,10 +34,10 @@ const TopProducts: React.FC<ITopProductsProps> = ({ fetchTopProducts, topProduct
                 </TopProductsHeader>
                 {
                     width <= 500 ? 
-                        <TopProductsSlider topProducts={topProducts} width={width}/> : <>
+                        <TopProductsSlider topProducts={bestsellers} width={width}/> : <>
                             <TopProductsMain>
                             {
-                                topProducts.map(product => <TopProduct {...product} key={product.id}/>)
+                                bestsellers.map(bestseller => <TopProduct  bestseller={bestseller} key={bestseller.id}/>)
                             }
                             </TopProductsMain> 
                         </>
