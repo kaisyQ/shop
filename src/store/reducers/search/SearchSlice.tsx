@@ -43,14 +43,17 @@ const searchSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
+        
         builder.addCase(fetchSearch.pending, (state) => {
             state.loadingStatus = LOADING;
         })
+
         builder.addCase(fetchSearch.fulfilled, (state, action) => {
             state.loadingStatus = IDLE;
             state.error = null;
             state.products = plainToInstance(SearchedProduct, action.payload);
         })
+
         builder.addCase(fetchSearch.rejected, (state) => {
             state.loadingStatus = FAILED;
         })

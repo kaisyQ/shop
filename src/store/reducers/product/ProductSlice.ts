@@ -91,9 +91,6 @@ const productSlice = createSlice({
                 }
             })
         },
-        removeProduct: (state, action: PayloadAction<string>) => {
-            //state.items = state.items.filter(product => product.id !== action.payload);
-        },
         setLimit: (state, action: PayloadAction<ProductsLimit>) => {
             state.limit = action.payload;
         },
@@ -136,7 +133,7 @@ const productSlice = createSlice({
 const { actions, reducer } = productSlice;
 
 export const {
-    setCurrent, addProduct, removeProduct,
+    setCurrent, addProduct,
     updateProduct, setLimit,
 } = actions;
 

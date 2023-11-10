@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
 
 export class Product {
 
@@ -18,7 +18,7 @@ export class Product {
     
     @Expose({ name: 'discountPrice' }) private _discountPrice: number = 0;
     
-    @Expose({ name: 'createdAt' }) private _createdAt: Date = new Date();
+    @Type(() => Date) @Expose({ name: 'createdAt' }) private _createdAt: Date = new Date();
     
     @Expose({ name: 'images' }) private _imagesSrc: Array<string> = [];
     
