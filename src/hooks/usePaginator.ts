@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getTotal } from 'redux/reducers/product/selector';
-import { useAppSelector } from 'redux/store';
-import { selectProductsLimit } from "redux/reducers/product/selector";
+import { getTotal } from 'store/reducers/product/ProductSelector';
+import { useAppSelector } from 'store/store';
+import { selectProductsLimit } from "store/reducers/product/ProductSelector";
 
 export const usePaginator = () => {
     const location = useLocation();

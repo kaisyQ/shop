@@ -2,11 +2,11 @@ import Products from "./Products";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { getProductItems as getProducts, getProductsLoading } from "../../../redux/reducers/product/selector";
+import { getProductItems as getProducts, getProductsLoading } from "../../../store/reducers/product/ProductSelector";
 
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
-import { fetchProducts } from "redux/reducers/product/productSlice";
+import { fetchProducts } from "store/reducers/product/ProductSlice";
 
 const mapStateToProps = (state: RootState) => ({
     products: getProducts(state),

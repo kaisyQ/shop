@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ProductAboutContainer from 'components/Catalog/Products/Product/ProductAbout/ProductAboutContainer';
 import CartContainer from 'components/Cart/CartContainer';
 
 
@@ -15,6 +14,7 @@ import WebsiteTermsView from 'views/WebsiteTermsView/WebsiteTermsView';
 
 const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
 const HomeView = React.lazy(() => import ('views/HomeView/HomeView'));
+const ProductView = React.lazy(() => import('views/ProductView/ProductViewContainer'));
 
 
 const MainRouter: React.FC = () => {
@@ -40,7 +40,7 @@ const MainRouter: React.FC = () => {
                             path='' 
                             element={ <CatalogView /> }
                         />
-                        <Route path=':id' element={ <ProductAboutContainer /> }/>
+                        <Route path=':id' element={ <ProductView /> }/>
                     </Route>
 
                     <Route path='/contact' element={ <ContactViewContainer /> }/>

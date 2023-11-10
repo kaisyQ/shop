@@ -11,7 +11,7 @@ import { CardsConnectedPropsType } from "./ProductsContainer";
 import { LOADING } from "constants/constants";
 import { useLocation } from "react-router-dom";
 import Paginator from "components/Paginator/Paginator";
-import { useAppSelector } from "redux/store";
+import { useAppSelector } from "store/store";
 
 
 const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, loading }) => {
@@ -50,7 +50,7 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
             products.length ? <>
                 <Wrapper>
                     {
-                        products.map(item => <Product 
+                        products.map((item: any) => <Product 
                                 key={item.id} 
                                 id={item.id} 
                                 count={item.count} 

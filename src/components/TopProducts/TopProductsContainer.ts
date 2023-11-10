@@ -2,11 +2,11 @@ import TopProducts from "./TopProducts";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { getTopProducts } from "redux/reducers/product/selector";
+import { getTopProducts } from "store/reducers/product/ProductSelector";
 
-import { fetchTopProducts } from "redux/reducers/product/productSlice";
+import { fetchTopProducts } from "store/reducers/product/ProductSlice";
 
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
 
 const mapStateToProps = (state: RootState) => ({

@@ -2,7 +2,7 @@ import Sidebar from "./Sidebar"
 import { ConnectedProps, connect } from "react-redux"
 
 
-import { setIsDark } from "../../redux/reducers/styles/stylesSlice"
+import { setIsDark } from "../../store/reducers/style/StyleSlice"
 
 const mapDispatchToProps = {
     setIsDark

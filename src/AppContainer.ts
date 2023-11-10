@@ -2,10 +2,10 @@ import App from "./App";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { getConfirmModalVisibility, getIsDark, getIsHint } from "./redux/reducers/styles/selector";
-import { setIsDark, setIsHint } from "./redux/reducers/styles/stylesSlice";
+import { getConfirmModalVisibility, getIsDark, getIsHint } from "./store/reducers/style/StyleSelector";
+import { setIsDark, setIsHint } from "./store/reducers/style/StyleSlice";
 
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
 
 const mapStateToProps = (state: RootState) => ({

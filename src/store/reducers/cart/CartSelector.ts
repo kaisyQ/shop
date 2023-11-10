@@ -1,4 +1,4 @@
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
 import { createSelector } from "@reduxjs/toolkit";
 

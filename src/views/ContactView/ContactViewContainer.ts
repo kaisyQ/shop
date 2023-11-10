@@ -2,13 +2,13 @@ import ContactView from "./ContactView";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
+import { setConfirmModalData } from "store/reducers/style/StyleSlice";
 
-import { fetchContactMessage } from "redux/reducers/forms/formsSlice";
+import { fetchContactMessage } from "store/reducers/form/FormSlice";
 
-import { RootState } from "redux/store";
-import { getFormLoading, getFormStatus } from "redux/reducers/forms/selector";
-import { setStatus } from "redux/reducers/forms/formsSlice";
+import { RootState } from "store/store";
+import { getFormLoading, getFormStatus } from "store/reducers/form/FormSelector";
+import { setStatus } from "store/reducers/form/FormSlice";
 
 const mapStateToProps = (state: RootState) => ({
     status: getFormStatus(state),

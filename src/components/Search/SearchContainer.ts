@@ -1,7 +1,7 @@
 import Search from "./Search";
 import { ConnectedProps, connect } from "react-redux";
 
-import { fetchSearch, setSearchProducts } from "redux/reducers/search/searchSlice";
+import { fetchSearch, setSearchProducts } from "store/reducers/search/SearchSlice";
 
 const mapDispatchToProps = {
     fetchSearch, setSearchProducts

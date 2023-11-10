@@ -3,10 +3,10 @@ import FilterMenuApiContainer from "./FilterMenuApiContainer";
 import { connect } from 'react-redux';
 
 import { ConnectedProps } from "react-redux";
-import { selectProductCategories } from "redux/reducers/category/category.selector";
+import { selectProductCategories } from "store/reducers/category/CategorySelector";
 
-import { fetchCategories } from "redux/reducers/category/category.slice";
-import type { RootState } from "redux/store";
+import { fetchCategories } from "store/reducers/category/CategorySlice";
+import type { RootState } from "store/store";
 
 
 const mapStateToProps = (state: RootState) => ({

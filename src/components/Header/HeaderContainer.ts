@@ -1,10 +1,10 @@
 import Header from "./Header";
 import { ConnectedProps, connect } from "react-redux";
 
-import { getIsDark } from "../../redux/reducers/styles/selector";
-import { setIsDark } from "../../redux/reducers/styles/stylesSlice";
+import { getIsDark } from "../../store/reducers/style/StyleSelector";
+import { setIsDark } from "../../store/reducers/style/StyleSlice";
 
-import { RootState } from "redux/store";
+import { RootState } from "store/store";
 
 const mapStateToProps = (state: RootState) => ({
     isDark: getIsDark(state),

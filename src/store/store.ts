@@ -4,13 +4,13 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import stylesReducer from './reducers/styles/stylesSlice';
-import productReducer from './reducers/product/productSlice';
-import commentsReducer from "./reducers/comment/commentSlice";
-import formReducer from "./reducers/forms/formsSlice";
-import searchReducer from "./reducers/search/searchSlice";
-import cartReducer from './reducers/cart/cartSlice';
-import categoriesReducer from "./reducers/category/category.slice";
+import stylesReducer from './reducers/style/StyleSlice';
+import productReducer from './reducers/product/ProductSlice';
+import commentsReducer from "./reducers/comment/CommentSlice";
+import formReducer from "./reducers/form/FormSlice";
+import searchReducer from "./reducers/search/SearchSlice";
+import cartReducer from './reducers/cart/CartSlice';
+import categoriesReducer from "./reducers/category/CategorySlice";
 
 
 const rootReducer = combineReducers({

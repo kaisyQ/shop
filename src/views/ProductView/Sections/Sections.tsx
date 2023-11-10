@@ -3,10 +3,10 @@ import React from "react";
 import { SectionsWrapper } from "./SectionsStyles";
 
 import Section from "./Section/Section";
-import DimIcon from './../../../../../Custom/Icons/DimIcon';
-import SofaIcon from './../../../../../Custom/Icons/SofaIcon';
-import TruckIcon from './../../../../../Custom/Icons/DeliveryIcon';
 
+import DimIcon from './../../../components/Ui/Icons/DimIcon';
+import SofaIcon from './../../../components/Ui/Icons/SofaIcon';
+import TruckIcon from './../../../components/Ui/Icons/DeliveryIcon';
 
 interface ISectionsProps {
     description: string,

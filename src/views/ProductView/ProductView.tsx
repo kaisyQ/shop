@@ -1,29 +1,28 @@
 import React from "react";
 
-import Slider from "components/Catalog/Products/Product/ProductAbout/Slider/Slider";
-
+import Slider from "./Slider/Slider";
 import Button from "components/Custom/Button/Button";
 
 import Images from "./Images/Images";
 import Sections from "./Sections/Sections";
 import Path from "components/Custom/Path/Path";
-import Component404 from "components/Error/404";
+import Component404 from "components/Ui/Error/404";
 
-import { ProductAboutConnectedProps } from "./ProductAboutContainer";
+import { ProductViewConnectedProps } from "./ProductViewContainer";
 
 import { 
     Wrapper, SliderWrapper, InfoWrapper, Title, PriseWrapper,
     Prise, DiscountPrice, ZeroCountMessage, InfoHeader
-} from "./ProductAboutStyles"
+} from "./ProductViewStyles"
 
 import useWindowWidth from "hooks/useWindowWidth";
 
 import { useParams } from "react-router-dom";
 
-interface ProductAboutProps extends ProductAboutConnectedProps {
+interface ProductViewProps extends ProductViewConnectedProps {
 }
 
-const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProductBySlug, addToCart, setCurrent }) => {
+const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProductBySlug, addToCart, setCurrent }) => {
 
     const { id } = useParams();
 
@@ -114,4 +113,4 @@ const ProductAbout: React.FC<ProductAboutConnectedProps> = ({ product, fetchProd
     );
 }
 
-export default React.memo(ProductAbout);
+export default React.memo(ProductView);

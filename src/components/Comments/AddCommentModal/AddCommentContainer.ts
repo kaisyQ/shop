@@ -2,7 +2,7 @@ import AddCommentModal from "./AddCommentModal";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { addComment, fetchToCreateComment } from "redux/reducers/comment/commentSlice";
+import { addComment, fetchToCreateComment } from "store/reducers/comment/CommentSlice";
 
 
 const mapDispatchToProps = {

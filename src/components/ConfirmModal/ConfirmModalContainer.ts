@@ -2,12 +2,12 @@ import ConfirmModal from "./ConfirmModal";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
-import { getConfirmModalMessage as getMessage } from "redux/reducers/styles/selector";
-import { getConfirmModalCallback as getCallback } from "redux/reducers/styles/selector";
+import { getConfirmModalMessage as getMessage } from "store/reducers/style/StyleSelector";
+import { getConfirmModalCallback as getCallback } from "store/reducers/style/StyleSelector";
 
-import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
+import { setConfirmModalData } from "store/reducers/style/StyleSlice";
 
 const mapStateToProps = (state: RootState) => ({
     message: getMessage(state),

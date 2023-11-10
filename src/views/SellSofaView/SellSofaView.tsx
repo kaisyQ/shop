@@ -2,7 +2,7 @@ import React from "react";
 
 import Input from "components/Custom/Input/Input";
 import Button from "components/Custom/Button/Button";
-import SellingIcon from './../../components/Custom/Icons/SellingIcon';
+import SellingIcon from '../../components/Ui/Icons/SellingIcon';
 
 import { 
     Wrapper, Subtitle, FormWrapper, 

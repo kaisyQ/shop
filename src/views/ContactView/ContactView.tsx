@@ -2,7 +2,7 @@ import React from "react";
 
 import Input from "components/Custom/Input/Input";
 import Button from "components/Custom/Button/Button";
-import MailICon from './../../components/Custom/Icons/MailICon';
+import MailICon from '../../components/Ui/Icons/MailICon';
 
 import { 
     Wrapper, Subtitle, FormWrapper, 

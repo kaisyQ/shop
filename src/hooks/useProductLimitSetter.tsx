@@ -1,7 +1,7 @@
 import React from 'react';
 import useWindowWidth from './useWindowWidth';
-import { useAppDispatch } from 'redux/store';
-import { setLimit } from 'redux/reducers/product/productSlice';
+import { useAppDispatch } from 'store/store';
+import { setLimit } from 'store/reducers/product/ProductSlice';
 import { MAX_PRODUCT_LIMIT, MEDIUM_PRODUCT_LIMIT, MIN_PRODUCT_LIMIT } from 'constants/constants';
 
 

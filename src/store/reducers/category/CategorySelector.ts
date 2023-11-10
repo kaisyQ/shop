@@ -1,4 +1,4 @@
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
 export const selectProductCategories = (state: RootState) => state.categories.items;
 
