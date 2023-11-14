@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-
+interface WrapperProps {
+    width?: number
+}
 
 const arrowStyles = `
     border-bottom: 6px solid;
@@ -26,4 +28,9 @@ export const NextArrow = styled.div<any>`
     
     transform: translateY(-50%) rotate(-135deg);
     right: 10px !important;
+`;
+
+export const Wrapper = styled.div<WrapperProps>`
+    max-width: ${props=> props.width ? `${props.width}px` : '330px'};
+    margin: 0 auto;
 `;

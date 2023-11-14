@@ -59,14 +59,6 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
         return <Component404 />;
     }
     
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      };
-
     return (
         <>
             <Path 
@@ -83,7 +75,21 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
                 {
                     width <= 768? <>
                     
-                        <Slider images={product.imagesSrc}/>
+                        <Slider>
+
+                            {
+                                product.imagesSrc.map((image, index) => <React.Fragment>
+                                
+                                    <div key={index}>
+                                
+                                        <img src={image} alt="" />
+                                    
+                                    </div>
+                                
+                                </React.Fragment>)
+                            }
+
+                        </Slider>
                     
                     </> : <>
                         

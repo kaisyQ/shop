@@ -1,4 +1,5 @@
 import { Expose, Type } from 'class-transformer';
+import { API_URL } from 'constants/constants';
 
 export class Product {
 
@@ -112,7 +113,7 @@ export class Product {
     }
 
     public get imagesSrc(): Array<string> {
-        return this._imagesSrc;
+        return this._imagesSrc.map(image => `${API_URL}${image}`);
     }
 
     public set imagesSrc(value: Array<string>) {
