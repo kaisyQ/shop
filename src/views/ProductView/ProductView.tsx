@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "./Slider/Slider";
 import Button from "components/Custom/Button/Button";
 
 import Images from "./Images/Images";
@@ -9,7 +8,7 @@ import Component404 from "components/Ui/Error/404";
 import { ProductViewConnectedProps } from "./ProductViewContainer";
 
 import { 
-    Wrapper, SliderWrapper, InfoWrapper, Title, PriseWrapper,
+    Wrapper, InfoWrapper, Title, PriseWrapper,
     Prise, DiscountPrice, ZeroCountMessage, InfoHeader
 } from "./ProductViewStyles"
 
@@ -19,7 +18,7 @@ import { useParams } from "react-router-dom";
 import { LOADING } from "constants/constants";
 import Preloader from "components/Ui/Preloader/Preloader";
 
-import SliderComp from "components/Slider/Slider";
+import Slider from "components/Slider/Slider";
 
 interface ProductViewProps extends ProductViewConnectedProps {
 }
@@ -83,13 +82,14 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
             <Wrapper>
                 {
                     width <= 768? <>
-                        {
-                            /*<SliderWrapper>
-                            <Slider images={product.imagesSrc} />
-                            </SliderWrapper>*/
-                            <SliderComp images={product.imagesSrc}/>
-                        }
-                    </> : <Images images={product.imagesSrc} />
+                    
+                        <Slider images={product.imagesSrc}/>
+                    
+                    </> : <>
+                        
+                        <Images images={product.imagesSrc} />
+                    
+                    </>
                 }
                 
                 <InfoWrapper>

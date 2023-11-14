@@ -7,11 +7,11 @@ import {
 
 import TopProduct from "./TopProduct/TopProduct";
 
-import TopProductsSlider from "./TopProductsSlider/TopProductsSlider";
-
 import useWindowWidth from "hooks/useWindowWidth";
 
 import type { TopProductsConnectedProps } from "./TopProductsContainer";
+
+import Slider from "components/Slider/Slider";
 
 interface ITopProductsProps extends TopProductsConnectedProps{
 }
@@ -33,8 +33,12 @@ const TopProducts: React.FC<ITopProductsProps> = ({ fetchBestsellers, bestseller
                     <TopProductsTitle>Top of the week</TopProductsTitle>
                 </TopProductsHeader>
                 {
-                    width <= 500 ? 
-                        <TopProductsSlider topProducts={bestsellers} width={width}/> : <>
+                    width <= 768 ? <>
+                    
+                        <Slider images={bestsellers.map(bestseller => bestseller.imagesSrc[0])}/>
+                    
+                    </>
+                        : <>
                             <TopProductsMain>
                             {
                                 bestsellers.map(bestseller => <TopProduct  bestseller={bestseller} key={bestseller.id}/>)
