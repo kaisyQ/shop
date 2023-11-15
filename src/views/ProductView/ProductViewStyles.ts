@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
     text-align: left;
     gap: 3rem;
     z-index: 1;
+    max-width: 1200px;
 
     @media only screen and (max-width: 1200px) {
         flex-direction: row;
@@ -27,7 +28,10 @@ export const InfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    width: 100%;
+    width: 48%;
+    @media only screen and (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 export const InfoHeader = styled.header`

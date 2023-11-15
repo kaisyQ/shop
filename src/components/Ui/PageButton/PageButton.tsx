@@ -14,9 +14,13 @@ interface IPageButtonProps extends IButton {
 
 const Button = styled.button<IButton>`
     background-color: ${props => props.current ? '#000' : "#fff"};
-    color: ${props => props.current ? '#fff' : "#000"};;
-    padding: 10px 20px;
+    color: ${props => props.current ? '#fff' : "#000"};
+    width: 50px;
+    height: 50px;
     border: 2px solid #000;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
@@ -25,12 +29,16 @@ const Button = styled.button<IButton>`
         color: white;
     }
 
-    @media only screen and (max-width: 400px) {
-        padding: 8px 12px;
+    @media only screen and (max-width: 500px) {
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
     }
 
     @media only screen and (max-width: 400px) {
-        padding: 6px 10px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
     }
 `;
 

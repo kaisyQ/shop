@@ -2,14 +2,13 @@ import React from "react";
 
 import { 
     SearchResultItemWrapper, NumberBlock, NameBlock, 
-    RightArrrow, ImageWrapper, Image
+    RightBlock, ImageWrapper, Image
 } from "./SearchResultItemStyles";
-
-import * as Icon from "react-bootstrap-icons";
 
 import { NavLink } from "react-router-dom";
 import { API_URL } from "constants/constants";
 import { SearchedProduct } from "models/SearchedProduct";
+import Button from "components/Custom/Button/Button";
 
 interface ISearchResultItemProps {
     index: number,
@@ -17,7 +16,6 @@ interface ISearchResultItemProps {
 }
 
 const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
-    console.log(props)
     return (
         <>
             <NavLink to={`/catalog/${props.searchedProduct.slug}`}>
@@ -31,14 +29,14 @@ const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
                         <Image src={`${API_URL}${props.searchedProduct.image}`} />
                     
                     </ImageWrapper>
+
+                    <RightBlock>
                 
-                    <NameBlock>{ props.searchedProduct.name }</NameBlock>
-                
-                    <RightArrrow>
+                        <NameBlock>{ props.searchedProduct.name }</NameBlock>
                     
-                        <Icon.ArrowRight size={"3rem"} />
+                        <Button isReverse={true}>Show</Button>
                     
-                    </RightArrrow>
+                    </RightBlock>
                 
                 </SearchResultItemWrapper>
             

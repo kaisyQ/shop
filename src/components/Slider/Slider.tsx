@@ -7,7 +7,8 @@ import { NextArrow, PrevArrow, Wrapper } from './SliderElements';
 
 
 interface Props {
-    autoplay?: boolean
+    autoplay?: boolean,
+    slidesCount?: number
 }
 
 const SimpleSlider: React.FC<PropsWithChildren<Props>> = (props) => {
@@ -22,7 +23,8 @@ const SimpleSlider: React.FC<PropsWithChildren<Props>> = (props) => {
         slidesToScroll: 1,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
-        autoplay: props.autoplay
+        autoplay: props.autoplay,
+        adaptiveHeight: true
     };
 
     return (

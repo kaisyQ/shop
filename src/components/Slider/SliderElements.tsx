@@ -33,4 +33,5 @@ export const NextArrow = styled.div<any>`
 export const Wrapper = styled.div<WrapperProps>`
     max-width: ${props=> props.width ? `${props.width}px` : '330px'};
     margin: 0 auto;
+    width: 100%;
 `;

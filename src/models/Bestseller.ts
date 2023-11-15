@@ -62,4 +62,8 @@ export class Bestseller {
     public set id(value: number) {
         this._id = value;
     }
+
+    public getCurrentPriceWithVal (): string {
+        return this._discountPrice ? `$${this.discountPrice}(CAD)` : `$${this._price}(CAD)`
+    }
 }

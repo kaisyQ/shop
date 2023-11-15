@@ -8,7 +8,7 @@ export const ImagesWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
-    max-width: 48%;
+    width: 48%;
     
     @media only screen and (max-width: 1200px) {
         display: flex;
@@ -26,7 +26,7 @@ export const ImagesWrapper = styled.div`
 export const ImageRow = styled.div`
     display: flex;
     justify-content: space-between;
-    column-gap: 2rem;   
+    column-gap: 2rem;
 `
 
 export const ImageWrapper = styled.div<IImage>`

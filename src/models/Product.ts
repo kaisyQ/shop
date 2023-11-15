@@ -144,4 +144,7 @@ export class Product {
         this._count = value;
     }
 
+    public getCurrentPriceWithVal (): string {
+        return this._discountPrice ? `$${this.discountPrice}(CAD)` : `$${this._price}(CAD)`
+    }
 }

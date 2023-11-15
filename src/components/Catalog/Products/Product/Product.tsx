@@ -4,8 +4,6 @@ import Button from "../../../Custom/Button/Button";
 
 import { NavLink } from "react-router-dom";
 
-import { API_URL } from "constants/constants";
-
 import { 
     Wrapper, 
     CardTitle,
@@ -14,46 +12,70 @@ import {
     CardImage, 
     CardInfoWrapper, 
     CardInfoItem,
+    CardPrice,
 
 } from "./ProductStyles";
 
+import { Product as ProductModel } from "models/Product";
+
 
 interface IProductProps {
-    id: string,
-    count: number,
-    name: string,
-    imageSrc: string, 
-    slug: string
+    product: ProductModel
 }
 
 const Product: React.FC<IProductProps> = (props) => {
-    const { count, name, imageSrc, id } = props;
-    
     return (
         <>
             <Wrapper>
+                
                 <CardSaleTitle>
-                    { count === 0 ? 'Sold out' : 'Sale' }
+                
+                    { props.product.count === 0 ? 'Sold out' : 'Sale' }
+                
                 </CardSaleTitle>
-                <NavLink to={`/catalog/${props.slug}`}>
+                
+                <NavLink to={`/catalog/${props.product.slug}`}>
+                    
                     <CardImageWrapper>
+                        
                         <CardImage 
-                            src={`${API_URL}${imageSrc}`}
+                        
+                            src={props.product.imagesSrc[0]}
                             alt="Card image" 
+                
                         />
+                        <CardPrice>
+
+                            { props.product.getCurrentPriceWithVal() }
+
+                        </CardPrice>
+                
                     </CardImageWrapper>
+                
                 </NavLink>
+                
                 <CardInfoWrapper>
-                    <NavLink to={`/catalog/${props.slug}`}>
+                
+                    <NavLink to={`/catalog/${props.product.slug}`}>
+                
                         <CardInfoItem>
-                            <CardTitle>{ name }</CardTitle>
+                
+                            <CardTitle>{ props.product.name }</CardTitle>
+                
                         </CardInfoItem>
+                
                     </NavLink>
+                
                     <CardInfoItem>
-                        <NavLink to={`/catalog/${props.slug}`}>
+                
+                        <NavLink to={`/catalog/${props.product.slug}`}>
+                
                             <Button isReverse={true}>Show More</Button>
+                
                         </NavLink>
+                
                     </CardInfoItem>
+                
                 </CardInfoWrapper>
             </Wrapper>
         </>
