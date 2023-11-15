@@ -1,4 +1,5 @@
 import { Expose } from "class-transformer";
+import { API_URL } from "constants/constants";
 
 export class Bestseller {
 
@@ -47,7 +48,7 @@ export class Bestseller {
     }
 
     public get imagesSrc(): string[] {
-        return this._imagesSrc;
+        return this._imagesSrc.map(image => `${API_URL}${image}`);
     }
 
     public set imagesSrc(value: string[]) {
@@ -60,5 +61,9 @@ export class Bestseller {
 
     public set id(value: number) {
         this._id = value;
+    }
+
+    public getCurrentPriceWithVal (): string {
+        return this._discountPrice ? `$${this.discountPrice}(CAD)` : `$${this._price}(CAD)`
     }
 }

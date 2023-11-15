@@ -37,6 +37,7 @@ export const CardImageWrapper = styled.div`
     width: 100%;
     overflow: hidden;
     z-index: 1;
+    position: relative;
 `;
 
 export const CardImage = styled.img`
@@ -100,5 +101,17 @@ export const CardSaleTitle = styled.h3<ITitleProps>`
     background: #fff;
     border-radius: .5rem;
     color: #000;
+    z-index: 5;
+`;
+
+export const CardPrice = styled.div`
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    background: #000;
+    border-radius: .5rem;
+    color: orange;
     z-index: 5;
 `;

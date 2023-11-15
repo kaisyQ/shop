@@ -50,15 +50,7 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
             products.length ? <>
                 <Wrapper>
                     {
-                        products.map((item: any) => <Product 
-                                key={item.id} 
-                                id={item.id} 
-                                count={item.count} 
-                                name={item.name} 
-                                imageSrc={item.imagesSrc[0]} 
-                                slug={item.slug}
-                            />
-                        )
+                        products.map((item) => <Product product={item} key={item.slug} />)
                     }
                 </Wrapper>
                 <Paginator />

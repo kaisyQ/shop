@@ -5,6 +5,7 @@ import { ImagesWrapper, ImageRow, ImageWrapper } from "./ImagesStyles"
 import { Image } from "components/Custom/Image/Image";
 
 import { API_URL } from "constants/constants";
+import Slider from "components/Slider/Slider";
 
 interface CardAboutImages {
     images: string[]
@@ -18,12 +19,15 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
 
                     (() => {
                         const result: React.JSX.Element[] = [];
-                        for(let i=0; i<images.length; ++i) {
+                        
+                        const length = images.length >= 6 ? 4 : images.length;
+                        
+                        for(let i = 0; i < length; ++i) {
                             if (i % 3 === 0)  {
                                 result.push(
                                     <ImageRow key={i}>
                                         <ImageWrapper width={'100%'}>
-                                            <Image src={`${API_URL}${images[i]}`}/>
+                                            <Image src={images[i]}/>
                                         </ImageWrapper>
                                     </ImageRow>
                                 )
@@ -33,10 +37,10 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                                 result.push(
                                     <ImageRow key={i}>
                                         <ImageWrapper>
-                                            <Image src={`${API_URL}${images[i]}`} />
+                                            <Image src={images[i]} />
                                         </ImageWrapper>
                                         <ImageWrapper>
-                                            <Image src={`${API_URL}${images[i + 1]}`} />
+                                            <Image src={images[i + 1]} />
                                         </ImageWrapper>
                                     </ImageRow>
                                 )
@@ -46,13 +50,29 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                             result.push(
                                 <ImageRow key={i}>
                                     <ImageWrapper width="100%">
-                                        <Image src={`${API_URL}${images[i]}`}/>
+                                        <Image src={images[i]} />
                                     </ImageWrapper>
                                 </ImageRow>
-                            )
+                            );
                         }
                         return result;
                     })()
+                }
+                {
+                    images.length >= 6 ? <>
+                    
+                        <Slider slidesCount={images.length - 4 < 3 ? 1 : 2}>
+                    
+                            {
+                                images.slice(4).map((image, index) => <div key={index}>
+                                    <img src={image} alt="" 
+                                    />
+                                </div>)
+                            }
+                    
+                        </Slider>
+                    
+                    </> : null
                 }
             </ImagesWrapper>
         </>

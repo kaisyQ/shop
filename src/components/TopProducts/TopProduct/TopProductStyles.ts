@@ -43,7 +43,7 @@ export const TopProductImage = styled.img`
 
 
 
-export const TopProductName = styled.div<ITopProductName>`
+export const TopProductInfo = styled.div<ITopProductName>`
     position: absolute;
     bottom: 2rem;
     left: 50%;
@@ -56,4 +56,14 @@ export const TopProductName = styled.div<ITopProductName>`
     transition: all .4s ease-in-out;
     color: ${props => props.hovered ? "#fff" : "inherit"};
     opacity: ${props => props.hovered ? "1" :  "0"};
+`;
+
+export const TopProductName = styled.div`
+    font-size: 2.2rem;
+`;
+
+export const TopProductPrice = styled.div`
+    font-size: 2rem;
+    color: orange;
+    margin-left: 5px;
 `;
