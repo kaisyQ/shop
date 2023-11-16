@@ -47,3 +47,21 @@ export const FormControl = styled.button`
 
 export const IconWrapper = styled.div`
 `
+
+export const UploadBlockWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+export const UploadBlock = styled.label`
+    border: 1px solid #000;
+    padding: 10px;
+    max-width: 100px;
+
+    cursor: pointer;
+
+    &:hover {
+        outline: 1px solid #000;
+    }
+`;
+
