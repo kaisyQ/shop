@@ -4,7 +4,6 @@ import { ImagesWrapper, ImageRow, ImageWrapper } from "./ImagesStyles"
 
 import { Image } from "components/Custom/Image/Image";
 
-import { API_URL } from "constants/constants";
 import Slider from "components/Slider/Slider";
 
 interface CardAboutImages {

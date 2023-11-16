@@ -21,8 +21,12 @@ const initialState: InitialStateType = {
 
 export const fetchSellMessage = createAsyncThunk(
     "formsSlice/fetchSellMessage",
-    async ({ name, email, phoneNumber, comment, brand }: { name: string, email: string, brand: string, phoneNumber: string, comment: string }) => {
-        const response = await sellCouch(name, email, phoneNumber, comment, brand);
+    async (
+        { name, email, phoneNumber, comment, brand, files }: 
+        { name: string, email: string, brand: string, phoneNumber: string, comment: string, files: FileList | null }) => {
+        const response = await sellCouch(name, email, phoneNumber, comment, brand, files);
+        console.log(response);
+        debugger;
     }
 );
 
