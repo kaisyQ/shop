@@ -8,3 +8,9 @@ export const UploadedImagesWrapper = styled.div`
     flex-wrap: wrap;
 `;
 
+
+export const UploadedImagesTitle = styled.h3`
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+`;

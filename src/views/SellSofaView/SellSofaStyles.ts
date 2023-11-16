@@ -50,7 +50,16 @@ export const IconWrapper = styled.div`
 
 export const UploadBlockWrapper = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 15px;
+`;
+
+export const UploadBlockTitle = styled.h3`
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
 `;
 
 export const UploadBlock = styled.label`

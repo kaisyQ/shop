@@ -1,5 +1,5 @@
 import React from 'react';
-import { UploadedImagesWrapper } from './UploadedImagesElements';
+import { UploadedImagesTitle, UploadedImagesWrapper } from './UploadedImagesElements';
 import UploadedImage from './UplodedImage/UploadedImage';
 
 
@@ -14,19 +14,23 @@ const UploadedImages: React.FC<UploadedImagesProps> = (props) => {
 
     return (
         <>
+            <div>
+                
+                <UploadedImagesTitle>Pictures that will be sent</UploadedImagesTitle>
+                
+                <UploadedImagesWrapper>
 
-            <UploadedImagesWrapper>
+                    {
+                        Array.from(props.files).map((file, index) => <React.Fragment key={index}>
+                            
+                            <UploadedImage src={URL.createObjectURL(file)} name={file.name}/>
 
-                {
-                    Array.from(props.files).map((file, index) => <React.Fragment key={index}>
-                        
-                        <UploadedImage src={URL.createObjectURL(file)} name={file.name}/>
+                        </React.Fragment>)
+                    }
 
-                    </React.Fragment>)
-                }
-
-            </UploadedImagesWrapper>
-
+                </UploadedImagesWrapper>
+            
+            </div>
         </>
     );
 }

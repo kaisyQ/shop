@@ -6,7 +6,7 @@ import SellingIcon from '../../components/Ui/Icons/SellingIcon';
 
 import { 
     Wrapper, Subtitle, FormWrapper, 
-    InputsWrapper, ButtonWrapper, IconWrapper, UploadBlock, UploadBlockWrapper 
+    InputsWrapper, ButtonWrapper, IconWrapper, UploadBlock, UploadBlockWrapper, UploadBlockTitle 
 } from "./SellSofaStyles";
 
 import { SellSofaViewConnectedProps } from "./SellSofaViewContainer";
@@ -21,7 +21,7 @@ import { LOADING } from "constants/constants";
 
 import uploadImage from 'images/upload.png';
 import UploadedImages from "components/UploadedImages/UploadedImages";
-
+import axios from 'axios';
 
 
 interface ISellSofaViewProps extends SellSofaViewConnectedProps {
@@ -53,12 +53,14 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
             setConfirmModalData({
                 callback: () => {
                     setStatus(500);
+
                     fetchSellMessage({
-                        email: values.sellSofaEmail,
-                        comment: values.sellSofaMessage,
-                        brand: values.sellSofaBrand,
-                        phoneNumber: values.sellSofaPhoneNumber,
-                        name: values.sellSofaName
+                       email: values.sellSofaEmail,
+                       comment: values.sellSofaMessage,
+                       brand: values.sellSofaBrand,
+                       phoneNumber: values.sellSofaPhoneNumber,
+                       name: values.sellSofaName,
+                       files: files
                     })
                 },
                 isVisible: true,
@@ -70,7 +72,6 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
     const onUploadFiles = (ev: React.ChangeEvent<HTMLInputElement>) => {
         ev.preventDefault();
         setFiles(ev.target.files);
-        //setFiles(ev.target.valu)
     }
 
 
@@ -152,11 +153,21 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
 
                         <UploadBlockWrapper>
 
+                            <UploadBlockTitle>{'Picture(optional)'}</UploadBlockTitle>
+
                             <UploadBlock>
                                 
                                 <img src={uploadImage} alt="the image of upload button" />
 
-                                <input type="file" multiple style={{display: 'none'}} onChange={onUploadFiles} />
+                                <input 
+                                
+                                    type="file" 
+                                    accept="image/*" 
+                                    multiple 
+                                    style={{display: 'none'}} 
+                                    onChange={onUploadFiles}
+                                
+                                />
 
                             </UploadBlock>
                             
@@ -165,9 +176,11 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
                         <UploadedImages files={files} />
 
                         <ButtonWrapper>
+                        
                             <Button padding={'1.6rem 5.5rem'} isReverse={true}>
                                 Send
                             </Button>
+                        
                         </ButtonWrapper>
                     </FormWrapper>
                 </Wrapper>
