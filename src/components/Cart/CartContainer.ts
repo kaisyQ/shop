@@ -4,9 +4,9 @@ import { connect, ConnectedProps } from "react-redux";
 
 
 
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
-import { getCartItems, getSubtotalPrice } from "redux/reducers/cart/cartSelector";
+import { getCartItems, getSubtotalPrice } from "store/reducers/cart/CartSelector";
 
 const mapStateToProps = (state: RootState) => ({
     cartItems: getCartItems(state),

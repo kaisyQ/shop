@@ -2,13 +2,13 @@ import SellSofaView from "./SellSofaView";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { setConfirmModalData } from "redux/reducers/styles/stylesSlice";
+import { setConfirmModalData } from "store/reducers/style/StyleSlice";
 
-import { fetchSellMessage } from "redux/reducers/forms/formsSlice";
+import { fetchSellMessage } from "store/reducers/form/FormSlice";
 
-import { setStatus } from "redux/reducers/forms/formsSlice";
-import { getFormLoading, getFormStatus } from "redux/reducers/forms/selector";
-import { RootState } from "redux/store";
+import { setStatus } from "store/reducers/form/FormSlice";
+import { getFormLoading, getFormStatus } from "store/reducers/form/FormSelector";
+import { RootState } from "store/store";
 
 const mapStateToProps = (state: RootState) => ({
     status: getFormStatus(state),

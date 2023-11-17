@@ -1,8 +1,8 @@
 import SearchResult from "./SearchResult";
 import { ConnectedProps, connect } from "react-redux";
-import { getSearchLoading, getSearchProducts } from "redux/reducers/search/selector";
+import { getSearchLoading, getSearchProducts } from "store/reducers/search/SearchSelector";
 
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
 const mapStateToProps = (state: RootState) => ({
     products: getSearchProducts(state),

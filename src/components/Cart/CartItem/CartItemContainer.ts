@@ -2,7 +2,7 @@ import CartItem from "./CartItem";
 
 import { connect, ConnectedProps } from "react-redux";
 
-import { removeFromCart } from "redux/reducers/cart/cartSlice";
+import { removeFromCart } from "store/reducers/cart/CartSlice";
 
 const MapDispatchToProps = {
     removeFromCart

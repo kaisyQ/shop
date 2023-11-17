@@ -2,20 +2,20 @@ import TopProducts from "./TopProducts";
 
 import { ConnectedProps, connect } from "react-redux";
 
-import { getTopProducts } from "redux/reducers/product/selector";
+import { selectBestsellers } from "store/reducers/bestseller/BestsellerSelector";
 
-import { fetchTopProducts } from "redux/reducers/product/productSlice";
+import { fetchBestsellers  } from "store/reducers/bestseller/BestsellerSlice";
 
-import type { RootState } from "redux/store";
+import type { RootState } from "store/store";
 
 
 const mapStateToProps = (state: RootState) => ({
-    topProducts: getTopProducts(state)
+    bestsellers: selectBestsellers(state)
 });
 
 
 const mapDispatchToProps = {
-    fetchTopProducts
+    fetchBestsellers
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

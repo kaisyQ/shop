@@ -1,15 +1,12 @@
 import React from "react";
 
-
 import CommentsContainer from "components/Comments/CommentsContainer";
 
 import TopProductsContainer from "components/TopProducts/TopProductsContainer";
 
 import { Wrapper, PreviewImage, Slogan } from "./HomeViewStyles";
 
-interface IHomeViewProps {
-
-}
+interface IHomeViewProps {}
 
 const HomeView: React.FC<IHomeViewProps> = () => {
     return (

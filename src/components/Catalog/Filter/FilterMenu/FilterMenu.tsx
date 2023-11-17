@@ -22,7 +22,7 @@ const FilterMenu: React.FC<Props> = ({categories}) => {
   return (
     <styles.comp.MenuWrapper>
         
-        <UnderlineBtn onClick={toggleMenu}>Shop our catalog 	&#9660;</UnderlineBtn>
+        <UnderlineBtn onClick={toggleMenu}>Shop our catalog &#9660;</UnderlineBtn>
       
         {isOpen && (
             <styles.comp.MenuContent>

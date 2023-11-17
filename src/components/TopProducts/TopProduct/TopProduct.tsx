@@ -1,23 +1,15 @@
 import React from "react";
 
-import { 
-    TopProductWrapper, 
-    TopProductImage, 
-    TopProductName, 
-    ImageWrapper 
-} from "./TopProductStyles";
-
+import { TopProductWrapper, TopProductImage, TopProductInfo, TopProductName, TopProductPrice, ImageWrapper } from "./TopProductStyles";
 import { NavLink } from "react-router-dom";
-import { API_URL } from "constants/constants";
+import { Bestseller } from "models/Bestseller";
 
 interface ITopProductProps {
-    id: string, 
-    name: string,
-    imagesSrc: string[]
+    bestseller: Bestseller
 }
 
 const TopProduct: React.FC<ITopProductProps> = (props) => {
-
+    
     const [hovered, setHovered] = React.useState(false);
     
     const wrapperMouseOver = (ev: React.MouseEvent<HTMLDivElement>) => {
@@ -31,13 +23,35 @@ const TopProduct: React.FC<ITopProductProps> = (props) => {
 
     return (
         <>
+            
             <TopProductWrapper onMouseOver={wrapperMouseOver} onMouseOut={wrapperMouseOut}> 
-                <NavLink to={`/catalog/${props.id}`}>
+            
+                <NavLink to={`/catalog/${props.bestseller.slug}`}>
+            
                     <ImageWrapper>
-                        <TopProductName hovered={hovered}>{props.name}</TopProductName>
-                        <TopProductImage src={`${API_URL}${props.imagesSrc[0]}`} alt="top-product"/>
+            
+                        <TopProductInfo hovered={hovered}>
+                        
+                            <TopProductName>
+                        
+                                { props.bestseller.name }
+                        
+                            </TopProductName>
+                        
+                            <TopProductPrice>
+                        
+                                { props.bestseller.getCurrentPriceWithVal() }
+                        
+                            </TopProductPrice>
+                        
+                        </TopProductInfo>
+            
+                        <TopProductImage src={props.bestseller.imagesSrc[0]} alt="top-product" />
+            
                     </ImageWrapper>
+            
                 </NavLink>
+            
             </TopProductWrapper>
         </>
     );

@@ -10,7 +10,7 @@ import {
 
 import { SidebarConnectedProps } from "./SidebarContainer"
 
-import SellingIcon from "./../Custom/Icons/SellingIcon";
+import SellingIcon from "../Ui/Icons/SellingIcon";
 
 interface ISidebarProps extends SidebarConnectedProps{
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,

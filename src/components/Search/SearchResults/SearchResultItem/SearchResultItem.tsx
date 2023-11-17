@@ -2,38 +2,44 @@ import React from "react";
 
 import { 
     SearchResultItemWrapper, NumberBlock, NameBlock, 
-    RightArrrow, ImageWrapper, Image
+    RightBlock, ImageWrapper, Image
 } from "./SearchResultItemStyles";
-
-import * as Icon from "react-bootstrap-icons";
 
 import { NavLink } from "react-router-dom";
 import { API_URL } from "constants/constants";
+import { SearchedProduct } from "models/SearchedProduct";
+import Button from "components/Custom/Button/Button";
 
 interface ISearchResultItemProps {
-    name: string,
-    id: string,
-    image: string,
-    slug: string,
     index: number,
-    type: "POST" | "PRODUCT"
+    searchedProduct: SearchedProduct
 }
 
 const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
-    console.log(props)
     return (
         <>
-            <NavLink to={`/${props.type === "POST" ? "posts" : "catalog"}/${props.slug}`}>
+            <NavLink to={`/catalog/${props.searchedProduct.slug}`}>
+                
                 <SearchResultItemWrapper>
+                
                     <NumberBlock>{ props.index }</NumberBlock>
+                
                     <ImageWrapper>
-                        <Image src={`${API_URL}${props.image}`} />
+                    
+                        <Image src={`${API_URL}${props.searchedProduct.image}`} />
+                    
                     </ImageWrapper>
-                    <NameBlock>{ props.name }</NameBlock>
-                    <RightArrrow>
-                        <Icon.ArrowRight size={"3rem"} />
-                    </RightArrrow>
+
+                    <RightBlock>
+                
+                        <NameBlock>{ props.searchedProduct.name }</NameBlock>
+                    
+                        <Button isReverse={true}>Show</Button>
+                    
+                    </RightBlock>
+                
                 </SearchResultItemWrapper>
+            
             </NavLink>
         </>
     );

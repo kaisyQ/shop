@@ -1,11 +1,11 @@
 {
-    "compilerOptions": {
+  "compilerOptions": {
     "baseUrl": "src/",
     "target": "es5",
     "lib": [
-        "dom",
-        "dom.iterable",
-        "esnext"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -19,13 +19,17 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    },
-    "include": [
-      "src"
-    ],
-    "exclude": [
-      "**/*.test.ts",
-      "**/*.test.tsx"
-    ],
-    "files": ["custom.d.ts"]
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ],
+  "files": [
+    "custom.d.ts"
+  ]
 }

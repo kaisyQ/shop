@@ -7,22 +7,23 @@ import {
 
 import TopProduct from "./TopProduct/TopProduct";
 
-import TopProductsSlider from "./TopProductsSlider/TopProductsSlider";
-
 import useWindowWidth from "hooks/useWindowWidth";
 
 import type { TopProductsConnectedProps } from "./TopProductsContainer";
+
+import Slider from "components/Slider/Slider";
+import TopProductSliderItem from "./TopProductSliderItem/TopProductSliderItem";
 
 interface ITopProductsProps extends TopProductsConnectedProps{
 }
 
 
 
-const TopProducts: React.FC<ITopProductsProps> = ({ fetchTopProducts, topProducts }) => {
+const TopProducts: React.FC<ITopProductsProps> = ({ fetchBestsellers, bestsellers }) => {
     
     React.useEffect(() => {
-        fetchTopProducts();
-    }, [fetchTopProducts]);
+        fetchBestsellers();
+    }, [fetchBestsellers]);
     
     const width = useWindowWidth();
 
@@ -33,14 +34,29 @@ const TopProducts: React.FC<ITopProductsProps> = ({ fetchTopProducts, topProduct
                     <TopProductsTitle>Top of the week</TopProductsTitle>
                 </TopProductsHeader>
                 {
-                    width <= 500 ? 
-                        <TopProductsSlider topProducts={topProducts} width={width}/> : <>
-                            <TopProductsMain>
+                    width <= 768 ? <>
+                    
+                        <Slider 
+                            autoplay={true}
+                        >
                             {
-                                topProducts.map(product => <TopProduct {...product} key={product.id}/>)
+                                bestsellers.map(bestseller => <TopProductSliderItem 
+                                    image={bestseller.imagesSrc[0]} 
+                                    name={bestseller.name}
+                                    price={bestseller.price}
+                                    key={bestseller.slug}
+                                />)
                             }
-                            </TopProductsMain> 
-                        </>
+                            
+                        </Slider>
+                    
+                    </> : <>
+                        <TopProductsMain>
+                        {
+                            bestsellers.map(bestseller => <TopProduct  bestseller={bestseller} key={bestseller.id}/>)
+                        }
+                        </TopProductsMain> 
+                    </>
                 }
             </TopProductsWrapper>
         </>

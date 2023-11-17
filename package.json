@@ -13,6 +13,7 @@
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "axios": "^1.5.1",
+    "class-transformer": "^0.5.1",
     "formik": "^2.4.4",
     "framer-motion": "^10.16.4",
     "gh-pages": "^5.0.0",
@@ -21,12 +22,14 @@
     "react-click-outside-hook": "^1.1.1",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
-    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.9",
+    "react-slick": "^0.29.0",
     "redux-thunk": "^2.4.2",
+    "reflect-metadata": "^0.1.13",
     "serve": "^14.2.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "typescript": "^5.0.4",
     "web-vitals": "^2.1.0",
@@ -63,6 +66,7 @@
   },
   "devDependencies": {
     "@types/react-scroll": "^1.8.7",
+    "@types/react-slick": "^0.23.12",
     "@types/styled-components": "^5.1.26"
   }
 }

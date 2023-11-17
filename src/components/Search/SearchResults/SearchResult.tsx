@@ -17,18 +17,6 @@ interface ISearchResultProps extends SearchResultConnectedProps{
 }
 
 const SearchResult: React.FC<ISearchResultProps> = ({ products, loading }) => {
-    
-    
-    const [showItemType, setShowItemType] = React.useState<"POST" | "PRODUCT" | null>(null);
-
-    React.useEffect(() => {
-        if (!products.length) {
-            setShowItemType(null);
-            return;
-        }
-        products.length ? setShowItemType("PRODUCT") : setShowItemType("POST");
-
-    }, [products])
 
     if (loading === LOADING) {
         return <Preloader />;
@@ -37,15 +25,18 @@ const SearchResult: React.FC<ISearchResultProps> = ({ products, loading }) => {
     return (
         <>
             <SearchResultWrapper>
+                
                 <ResultItemsWrapper>
                 {
-                    !showItemType ? null : 
-                        products.map((post, index) => <SearchResultItem 
-                        type={"PRODUCT"} key={post.id} {...post} index={index+1} 
-                        />
+                    products.map((product, index) => <React.Fragment key={product.id}>
+                            
+                            <SearchResultItem searchedProduct={product} index={index+1} />
+                        
+                        </React.Fragment>
                     )
                 }
                 </ResultItemsWrapper>
+            
             </SearchResultWrapper>
         </>
     );
