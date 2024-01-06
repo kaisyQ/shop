@@ -11,7 +11,7 @@ const FilterMenuApiContainer: React.FC<FilterMenuApiContainerProps> = (props) =>
 
     React.useEffect(() => {
         fetchCategories();
-    }, [])
+    }, [fetchCategories])
 
     return (
         

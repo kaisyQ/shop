@@ -31,25 +31,25 @@ const Sidebar: React.FC<ISidebarProps> = ({ isOpen, setIsOpen, setIsDark }) => {
                 <ListWrapper>
                     <NavLink to={'/'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.House size={'2.2rem'}/>
+                            <Icon.House size={'22px'}/>
                             <span>Home</span>
                         </Item>
                     </NavLink>
                     <NavLink to={'/catalog'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.Cart size={'2.2rem'}/>
+                            <Icon.Cart size={'22px'}/>
                             <span>Catalog</span>
                         </Item>
                     </NavLink>
                     <NavLink to={'/contact'}>
                         <Item onClick={hideSidebar}>
-                            <Icon.Envelope size={'2.2rem'}/>
+                            <Icon.Envelope size={'22px'}/>
                             <span>Contact</span>
                         </Item>
                     </NavLink>
-                    <NavLink to={'/sell'}>
+                    <NavLink to={'/sell-your-sofa'}>
                         <Item onClick={hideSidebar}>
-                            <SellingIcon width="2.2rem" height="2.2rem" />
+                            <SellingIcon width="22px" height="22px" />
                             <span>Sell your sofa</span>
                         </Item>
                     </NavLink>

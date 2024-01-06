@@ -3,7 +3,7 @@ import React from "react";
 import { 
     CommentsWrapper, CommentsHeader, CommentConroller, 
     CommentsTitle, CommentsSubtitle, CommentsBlock,
-    CreateButton, Filter, TotalStarRating
+    TotalStarRating
 } from "./CommentsStyles";
 
 import Comment from "./Comment/Comment";
@@ -17,6 +17,7 @@ import { CommentsConnectedProps } from "./CommentsContainer";
 import { LOADING } from "constants/constants";
 
 import Preloader from "components/Ui/Preloader/Preloader";
+import {Button, useDisclosure} from "@nextui-org/react";
 
 interface ICommentsProps extends CommentsConnectedProps{
 }
@@ -24,6 +25,8 @@ interface ICommentsProps extends CommentsConnectedProps{
 const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }) => {
     
     const [showModal, setShowModal] = React.useState(false);
+
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     React.useEffect(() => {
         fetchComments()
@@ -41,17 +44,22 @@ const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }
                     <CommentsSubtitle>Read what our customers have to say</CommentsSubtitle>
                 </CommentsHeader>
                 <CommentConroller>
-                    <CreateButton onClick={(ev) => setShowModal(true)}>
-                        <Icon.Plus size={"3rem"} />
-                        <span>Write a review</span>
-                    </CreateButton>
+                    <Button 
+                        onPress={onOpen}
+                        className="dark"
+                        radius="sm"
+                        size="lg" 
+                        onClick={(ev) => setShowModal(true)}
+                    >
+                        Write a review
+                    </Button>
                     
                     <TotalStarRating>
-                        <Icon.StarFill size={"3rem"} />
-                        <Icon.StarFill size={"3rem"} />
-                        <Icon.StarFill size={"3rem"} />
-                        <Icon.StarFill size={"3rem"} />
-                        <Icon.StarHalf size={"3rem"} />
+                        <Icon.StarFill size={"30px"} />
+                        <Icon.StarFill size={"30px"} />
+                        <Icon.StarFill size={"30px"} />
+                        <Icon.StarFill size={"30px"} />
+                        <Icon.StarHalf size={"30px"} />
                     </TotalStarRating>
                 
                 </CommentConroller>
@@ -60,7 +68,14 @@ const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }
                     comments.map((comment) => <Comment key={comment.id} comment={comment} />)
                 }
                 </CommentsBlock>
-                { showModal ? <AddCommentContainer close={() => setShowModal(false)} /> : null }
+                {
+                    showModal ? <AddCommentContainer 
+                        isOpen={isOpen}
+                        onOpen={onOpen}
+                        onOpenChange={onOpenChange}
+                    /> 
+                    : null 
+                }
             </CommentsWrapper>
         </>
     );

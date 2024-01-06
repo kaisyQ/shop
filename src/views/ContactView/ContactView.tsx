@@ -1,23 +1,18 @@
 import React from "react";
-
-import Input from "components/Custom/Input/Input";
-import Button from "components/Custom/Button/Button";
 import MailICon from '../../components/Ui/Icons/MailICon';
-
 import { 
     Wrapper, Subtitle, FormWrapper, 
     InputsWrapper, ButtonWrapper, IconWrapper 
 } from "./ContactViewStyles";
-
 import { ContactViewConnectedProps } from "./ContactViewContainer";
-
 import { useFormik } from "formik";
-
 import OkMessage from "components/Ui/OkMessage/OkMessage";
-
 import ContactValidationSchema from './../../yup/contact.validation.schema';
 import Preloader from "components/Ui/Preloader/Preloader";
 import { LOADING } from "constants/constants";
+import {Input, Textarea, Button, useDisclosure} from "@nextui-org/react";
+import ConfirmModal from "components/ConfirmModal/ConfirmModal";
+import { CONTACT_CONFIRM_MESSAGE } from "constants/constants";
 
 interface IContactView extends ContactViewConnectedProps {
 
@@ -25,13 +20,16 @@ interface IContactView extends ContactViewConnectedProps {
 
 const ContactView: React.FC<IContactView> = (props) => {
 
-    const { status, setConfirmModalData, fetchContactMessage, setStatus } = props;
+    const { status, fetchContactMessage, setStatus } = props;
+
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
 
     React.useEffect(() => {
         return () => {
             setStatus(null);
         }
-    }, []);
+    }, [setStatus]);
 
 
     const formik = useFormik({
@@ -43,19 +41,7 @@ const ContactView: React.FC<IContactView> = (props) => {
         },
         validationSchema: ContactValidationSchema,
         onSubmit: (values) => {
-            setConfirmModalData({
-                callback: () => { 
-                    setStatus(202);
-                    fetchContactMessage({
-                        name: values.contactName,
-                        email: values.contactEmail,
-                        comment: values.contactMessage,
-                        phoneNumber: values.contactPhoneNumber
-                    })
-                },
-                isVisible: true,
-                message: "Confirm your action..."
-            });
+            onOpen();
         }
     })
 
@@ -64,7 +50,22 @@ const ContactView: React.FC<IContactView> = (props) => {
     }
 
     return (
+        
         <>
+            <ConfirmModal
+                onOpenChange={onOpenChange}
+                isOpen={isOpen}
+                callback={() => { 
+                    setStatus(202);
+                    fetchContactMessage({
+                        name: formik.values.contactName,
+                        email: formik.values.contactEmail,
+                        comment: formik.values.contactMessage,
+                        phoneNumber: formik.values.contactPhoneNumber
+                    })
+                }}
+                message={CONTACT_CONFIRM_MESSAGE}
+            />
             {
                 status ? <>
                     <OkMessage status={status} />
@@ -80,50 +81,55 @@ const ContactView: React.FC<IContactView> = (props) => {
                         </Subtitle>
                         <FormWrapper onSubmit={formik.handleSubmit}>
                             <InputsWrapper>
-                                <Input 
-                                    padding={'2.4rem 3rem'} 
-                                    id='contactName' 
-                                    placeholder='Name *'
-                                    error={
+                                <Input
+                                    size="lg" 
+                                    variant="bordered" height={100} className="light" label="Name *" errorMessage={
                                         formik.touched.contactName && formik.errors.contactName 
-                                            ? formik.errors.contactName : undefined
+                                        ? formik.errors.contactName : undefined
+                                    }
+                                    isInvalid={
+                                        formik.touched.contactName && formik.errors.contactName ? true: false
                                     }
                                     {...formik.getFieldProps('contactName')}
                                 />
+
                                 <Input
-                                    padding={'2.4rem 3rem'} 
-                                    id='contactEmail' 
-                                    placeholder='Email *' 
-                                    error={
+                                    variant="bordered"
+                                    size="lg" 
+                                    className="light" label="Email *" errorMessage={
                                         formik.touched.contactEmail && formik.errors.contactEmail 
-                                            ? formik.errors.contactEmail : undefined
+                                        ? formik.errors.contactEmail : undefined
+                                    }
+                                    isInvalid={
+                                        formik.touched.contactEmail && formik.errors.contactEmail ? true: false
                                     }
                                     {...formik.getFieldProps('contactEmail')}
                                 />
                             </InputsWrapper>   
-
-                            <Input 
-                                padding={'2.4rem 3rem'} 
-                                id='contactPhoneNumber' 
-                                placeholder='Phone number *' 
-                                error={
+                            <Input
+                                variant="bordered"
+                                size="lg" 
+                                label="Phone number *"
+                                errorMessage={
                                     formik.touched.contactPhoneNumber && formik.errors.contactPhoneNumber 
                                         ? formik.errors.contactPhoneNumber : undefined
                                 }
+                                isInvalid={
+                                    formik.touched.contactPhoneNumber && formik.errors.contactPhoneNumber ? true: false
+                                }
                                 {...formik.getFieldProps('contactPhoneNumber')}
                             />
-                            <Input 
-                                padding={'4rem 3rem'} 
-                                id='contactMessage' placeholder='Message *' 
-                                type='textarea'
-                                error={
-                                    formik.touched.contactMessage && formik.errors.contactMessage 
-                                        ? formik.errors.contactMessage : undefined
+                            <Textarea 
+                                variant="bordered"
+                                label="Message *"
+                                placeholder="Enter your message"
+                                isInvalid={
+                                    formik.touched.contactMessage && formik.errors.contactMessage ? true: false
                                 }
                                 {...formik.getFieldProps('contactMessage')}
                             />
                             <ButtonWrapper>
-                                <Button padding={'1.6rem 5.5rem'} isReverse={true}>
+                                <Button  type='submit' size="lg" color="primary" variant="faded" className="dark">
                                     Send
                                 </Button>
                             </ButtonWrapper>

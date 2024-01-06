@@ -4,7 +4,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import styleReducer from './reducers/style/StyleSlice';
 import productReducer from './reducers/product/ProductSlice';
-import commentReducer from "./reducers/comment/CommentSlice";
+import commentReducer from "./reducers/comment/comment.slice";
 import formReducer from "./reducers/form/FormSlice";
 import searchReducer from "./reducers/search/SearchSlice";
 import cartReducer from './reducers/cart/CartSlice';

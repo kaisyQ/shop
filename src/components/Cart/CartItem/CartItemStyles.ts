@@ -5,11 +5,11 @@ interface IInfoFooterBtnProps {
 }
 
 const Container = styled.div`
-    padding: 1rem;
-    min-height: 8rem;
+    padding: 10px;
+    min-height: 80px;
     display: flex;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 20px;
     position: relative;
 
 
@@ -48,45 +48,38 @@ const Wrapper = styled.div`
 
 const ImageWrapper = styled.div`
     width: 100%;
-    max-width: 20rem;
-    min-width: 10rem;
-`;
-
-
-const Image = styled.img`
-    display: block;
-    margin: 0;
-    padding: 0;
+    max-width: 200px;
+    min-width: 100px;
 `;
 
 const Info = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 10px;
 `;
 
 const InfoHeader = styled.header`
     width: 100%;
-    font-size: 1.8rem;
+    font-size: 18px;
     text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-grow: 1;
-    gap: 1rem;
+    gap: 10px;
 
     @media only screen and (max-width: 625px) {
-        font-size: 1.6rem;
-        gap: .5rem;
+        font-size: 16px;
+        gap: 5px;
     }
 `;
 
 const InfoMain = styled.main`
     text-align: left;
     text-overflow: ellipsis; 
-    max-height: 5rem;
-    line-height: 2.2rem;
+    max-height: 50px;
+    line-height: 22px;
     overflow: hidden;
 `;
 
@@ -102,7 +95,7 @@ const Name = styled.div`
 const InfoFooter = styled.footer`
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 10px;
 
     @media only screen and (max-width: 600px) {
         flex-direction: column;
@@ -125,12 +118,12 @@ const Price = styled.div`
 `;
 
 const ItemControll = styled.div`
-    padding-left: 1rem;
-    padding-top: .2rem;
+    padding-left: 10px;
+    padding-top: 2px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: .5rem;
+    gap: 5px;
 `;
 
 const Text = styled.p`
@@ -142,19 +135,8 @@ const BtnNavLinkFlexWrapper = styled.div<IInfoFooterBtnProps>`
     }
 `;
 
-const InfoFooterButton = styled.button`
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    font: inherit;
-
-    :hover {
-        text-decoration: underline;
-    }
-`;
-
 export default {
     Container, Wrapper, ImageWrapper, Image, Info,  Name, Price, 
-    ItemControll, InfoHeader, InfoMain, Text, InfoFooter, InfoFooterButton,
+    ItemControll, InfoHeader, InfoMain, Text, InfoFooter,
     BtnNavLinkFlexWrapper
 };

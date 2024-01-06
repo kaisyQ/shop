@@ -5,21 +5,21 @@ export const TopProductsWrapper = styled.div`
 `;
 
 export const TopProductsHeader = styled.header`
-    margin: 2rem 0;
+    margin: 20px 0;
 `;
 
 export const TopProductsTitle = styled.h2`
-    padding-left: 1rem;
-    font-size: 4rem;
+    padding-left: 10px;
+    font-size: 40px;
     text-align: center;
     font-weight: 500;
     
     @media only screen and (max-width: 768px) {
-        font-size: 3.5rem;
+        font-size: 35px;
     }
 
     @media only screen and (max-width: 330px) {
-        font-size: 2rem;
+        font-size: 20px;
     }
 `;
 
@@ -29,9 +29,9 @@ export const TopProductsMain = styled.main`
         display: none;
     }
 
-    margin-top: 2rem;
+    margin-top: 20px;
     display: flex;
-    gap: 1.5rem;
+    gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;

@@ -5,13 +5,13 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 30px;
 `;
 
 export const CartContainer = styled.main`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 20px;
 `;
 
 export const Subtotal = styled.p`
@@ -20,33 +20,33 @@ export const Subtotal = styled.p`
 
 export const CartFooter = styled.footer`
     text-align: right;
-    margin-right: 2rem;
-    font-size: 2.5rem;
+    margin-right: 20px;
+    font-size: 25px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 20px;
 
     @media only screen and (max-width: 330px) {
         align-items: center;
-        margin-right: 0rem;
+        margin-right: 0;
     }
 `;
 
 const Message = styled.h1`
-    font-size: 4.3rem;
+    font-size: 43px;
     font-weight: 500;
-    margin: 0 1rem;
+    margin: 0 10px;
 
     @media only screen and (max-width: 400px) {
-        font-size: 4rem;
+        font-size: 40px;
     }
 
     @media only screen and (max-width: 330px) {
-        font-size: 3rem;
+        font-size: 30px;
     }
 
     @media only screen and (max-width: 280px) {
-        font-size: 2.5rem;
+        font-size: 25px;
     }
 `;
 

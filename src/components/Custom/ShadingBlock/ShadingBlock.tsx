@@ -8,5 +8,5 @@ export default styled.div`
     width: 100%;
     background: #000;
     opacity: 20%;
-    z-index: 6;
+    z-index: 200;
 `;

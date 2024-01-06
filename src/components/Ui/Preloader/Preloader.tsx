@@ -1,6 +1,8 @@
 import React from "react";
 
 import styled from "styled-components";
+import {Spinner} from "@nextui-org/react";
+
 
 const PreloaderWrapper = styled.div`
     text-align: center;
@@ -10,7 +12,11 @@ const Preloader = () => {
     return (
         <>
             <PreloaderWrapper>
-                <h2>Loading...</h2>
+                <Spinner 
+                    size="lg"
+                    color="warning"
+                    label="Loading..."
+                />
             </PreloaderWrapper>
         </>
     );

@@ -21,8 +21,8 @@ export const AppWrapper = styled.div`
 `
 
 export const MainContainer = styled.main`
-  z-index: 3;
-  padding: 0 1rem;
+  padding: 0 10px;
   flex-grow: 1;
   position: relative;
+  z-index: 10;
 `;

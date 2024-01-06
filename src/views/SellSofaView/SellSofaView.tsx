@@ -1,28 +1,20 @@
 import React from "react";
-
-import Input from "components/Custom/Input/Input";
-import Button from "components/Custom/Button/Button";
 import SellingIcon from '../../components/Ui/Icons/SellingIcon';
-
 import { 
     Wrapper, Subtitle, FormWrapper, 
     InputsWrapper, ButtonWrapper, IconWrapper, UploadBlock, UploadBlockWrapper, UploadBlockTitle 
 } from "./SellSofaStyles";
-
 import { SellSofaViewConnectedProps } from "./SellSofaViewContainer";
-
 import { useFormik } from "formik";
-
 import sellSofaValidationSchema from './../../yup/sellsofa.validation.schema';
-
 import OkMessage from "components/Ui/OkMessage/OkMessage";
 import Preloader from "components/Ui/Preloader/Preloader";
 import { LOADING } from "constants/constants";
-
 import uploadImage from 'images/upload.png';
 import UploadedImages from "components/UploadedImages/UploadedImages";
-import axios from 'axios';
-
+import { Input, Textarea, Button, useDisclosure } from "@nextui-org/react";
+import ConfirmModal from "components/ConfirmModal/ConfirmModal";
+import { CONTACT_CONFIRM_MESSAGE } from "constants/constants";
 
 interface ISellSofaViewProps extends SellSofaViewConnectedProps {
 
@@ -32,13 +24,15 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
 
     const { status, setStatus, setConfirmModalData, fetchSellMessage } = props;
 
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
     const [files, setFiles] = React.useState<FileList | null>(null);
 
     React.useEffect(() => {
         return () => {
             setStatus(null);
         }
-    }, []);
+    }, [setStatus]);
 
     const formik = useFormik({
         initialValues: {
@@ -50,22 +44,7 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
         },
         validationSchema: sellSofaValidationSchema,
         onSubmit: (values) => {
-            setConfirmModalData({
-                callback: () => {
-                    setStatus(500);
-
-                    fetchSellMessage({
-                       email: values.sellSofaEmail,
-                       comment: values.sellSofaMessage,
-                       brand: values.sellSofaBrand,
-                       phoneNumber: values.sellSofaPhoneNumber,
-                       name: values.sellSofaName,
-                       files: files
-                    })
-                },
-                isVisible: true,
-                message: "Confirm your action..."
-            });
+            onOpen();
         }
     });
 
@@ -81,6 +60,22 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
 
     return (
         <> 
+            <ConfirmModal
+                onOpenChange={onOpenChange}
+                isOpen={isOpen}
+                callback={() => { 
+                    setStatus(202);
+                    fetchSellMessage({
+                        name: formik.values.sellSofaName,
+                        email: formik.values.sellSofaEmail,
+                        brand: formik.values.sellSofaBrand,
+                        comment: formik.values.sellSofaMessage,
+                        phoneNumber: formik.values.sellSofaPhoneNumber,
+                        files: files
+                    })
+                    }}
+                message={CONTACT_CONFIRM_MESSAGE}  
+            />
         {
             status ? <OkMessage status={status} /> :
             <>
@@ -93,59 +88,64 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
                     </Subtitle>
                     <FormWrapper onSubmit={formik.handleSubmit}>
                         <InputsWrapper>
+
                             <Input 
-                                padding={'2.4rem 3rem'} 
-                                id='sellSofaName' 
-                                placeholder='Name *' 
-                                error={
+                                size="lg" 
+                                variant="bordered" className="light" label="Name *" errorMessage={
                                     formik.touched.sellSofaName && formik.errors.sellSofaName 
-                                        ? formik.errors.sellSofaName : undefined
+                                    ? formik.errors.sellSofaName : undefined
+                                }
+                                isInvalid={
+                                    formik.touched.sellSofaName && formik.errors.sellSofaName ? true: false
                                 }
                                 {...formik.getFieldProps('sellSofaName')}
                             />
 
                             <Input 
-                                padding={'2.4rem 3rem'} 
-                                id='sellSofaEmail' 
-                                placeholder='Email *' 
-                                error={
+                                size="lg" 
+                                variant="bordered" className="light" label="Email *" errorMessage={
                                     formik.touched.sellSofaEmail && formik.errors.sellSofaEmail 
-                                        ? formik.errors.sellSofaEmail : undefined
+                                    ? formik.errors.sellSofaEmail : undefined
+                                }
+                                isInvalid={
+                                    formik.touched.sellSofaEmail && formik.errors.sellSofaEmail ? true: false
                                 }
                                 {...formik.getFieldProps('sellSofaEmail')}
                             />
                         </InputsWrapper>   
 
                         <Input 
-                            padding={'2.4rem 3rem'} 
-                            id='sellSofaPhoneNumber' 
-                            placeholder='Phone number *' 
-                            error={
+                            size="lg" 
+                            variant="bordered" className="light" label="Phone *" errorMessage={
                                 formik.touched.sellSofaPhoneNumber && formik.errors.sellSofaPhoneNumber 
-                                    ? formik.errors.sellSofaPhoneNumber : undefined
+                                ? formik.errors.sellSofaPhoneNumber : undefined
+                            }
+                            isInvalid={
+                                formik.touched.sellSofaPhoneNumber && formik.errors.sellSofaPhoneNumber ? true: false
                             }
                             {...formik.getFieldProps('sellSofaPhoneNumber')}
                         />
 
                         <Input 
-                            padding={'2.4rem 3rem'} 
-                            id='sellSofaBrand' 
-                            placeholder='Brand of sofa *' 
-                            error={
+                            size="lg" 
+                            variant="bordered" className="light" label="Brand *" errorMessage={
                                 formik.touched.sellSofaBrand && formik.errors.sellSofaBrand 
-                                    ? formik.errors.sellSofaBrand : undefined
+                                ? formik.errors.sellSofaBrand : undefined
+                            }
+                            isInvalid={
+                                formik.touched.sellSofaBrand && formik.errors.sellSofaBrand ? true: false
                             }
                             {...formik.getFieldProps('sellSofaBrand')}
                         />
 
-                        <Input 
-                            padding={'4rem 3rem'} 
-                            id='sellSofaMessage' 
-                            placeholder='Message *' 
-                            type='textarea'
-                            error={
+                        <Textarea 
+                            size="lg" 
+                            variant="bordered" className="light" label="Message *" errorMessage={
                                 formik.touched.sellSofaMessage && formik.errors.sellSofaMessage 
-                                    ? formik.errors.sellSofaMessage : undefined
+                                ? formik.errors.sellSofaMessage : undefined
+                            }
+                            isInvalid={
+                                formik.touched.sellSofaMessage && formik.errors.sellSofaMessage ? true: false
                             }
                             {...formik.getFieldProps('sellSofaMessage')}
                         />
@@ -157,7 +157,7 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
 
                             <UploadBlock>
                                 
-                                <img src={uploadImage} alt="the image of upload button" />
+                                <img src={uploadImage} alt="upload button" />
 
                                 <input 
                                 
@@ -177,7 +177,7 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
 
                         <ButtonWrapper>
                         
-                            <Button padding={'1.6rem 5.5rem'} isReverse={true}>
+                            <Button type="submit" size="lg" className="dark" variant="solid">
                                 Send
                             </Button>
                         

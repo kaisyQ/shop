@@ -6,7 +6,6 @@ import SidebarContainer from './components/Sidebar/SidebarContainer';
 import Navbar from './components/Navbar/Navbar';
 import ShadingBlock from './components/Custom/ShadingBlock/ShadingBlock';
 import MainRouter from 'components/MainRouter/MainRouter';
-import ConfirmModalContainer from 'components/ConfirmModal/ConfirmModalContainer';
 import LiveChat from 'components/LiveChat/LiveChat';
 
 import { AppWrapper, MainContainer } from 'AppStyles';
@@ -38,8 +37,6 @@ const App: React.FC<AppConnectedProps> = (props) => {
       <HeaderContainer isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
 
       {isDark ? <ShadingBlock onClick={darkOpacityClick} /> : null}
-
-      {confirmModalVisibility ? <ConfirmModalContainer /> : null}
 
       <LiveChat />
 

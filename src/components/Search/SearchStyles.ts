@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SearchWrapper = styled.div`
-    margin-top: 2rem;
+    margin-top: 20px;
 `;
 
 export const SearchContainer = styled.div`
@@ -11,7 +11,7 @@ export const SearchContainer = styled.div`
 
 export const IconWrapper = styled.div`
     position: absolute;
-    right: 3rem;
+    right: 30px;
     top: 50%;
     transform: translateY(-50%);
     line-height: 100%;

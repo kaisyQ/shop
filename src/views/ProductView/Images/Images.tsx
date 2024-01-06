@@ -1,10 +1,9 @@
 import React from "react";
 
-import { ImagesWrapper, ImageRow, ImageWrapper } from "./ImagesStyles"
-
-import { Image } from "components/Custom/Image/Image";
+import { ImagesWrapper, ImageRow } from "./ImagesStyles"
 
 import Slider from "components/Slider/Slider";
+import { Image } from "@nextui-org/react";
 
 interface CardAboutImages {
     images: string[]
@@ -25,9 +24,7 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                             if (i % 3 === 0)  {
                                 result.push(
                                     <ImageRow key={i}>
-                                        <ImageWrapper width={'100%'}>
-                                            <Image src={images[i]}/>
-                                        </ImageWrapper>
+                                        <Image isZoomed src={images[i]}/>
                                     </ImageRow>
                                 )
                                 continue;
@@ -35,12 +32,11 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                             if (i + 1 < images.length) {
                                 result.push(
                                     <ImageRow key={i}>
-                                        <ImageWrapper>
-                                            <Image src={images[i]} />
-                                        </ImageWrapper>
-                                        <ImageWrapper>
-                                            <Image src={images[i + 1]} />
-                                        </ImageWrapper>
+                                    
+                                        <Image isZoomed src={images[i]} />
+                                    
+                                        <Image isZoomed src={images[i + 1]} />
+                                    
                                     </ImageRow>
                                 )
                                 i++;
@@ -48,9 +44,7 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                             }
                             result.push(
                                 <ImageRow key={i}>
-                                    <ImageWrapper width="100%">
-                                        <Image src={images[i]} />
-                                    </ImageWrapper>
+                                    <Image isZoomed src={images[i]} />
                                 </ImageRow>
                             );
                         }
@@ -64,7 +58,7 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                     
                             {
                                 images.slice(4).map((image, index) => <div key={index}>
-                                    <img src={image} alt="" 
+                                    <Image isZoomed src={image} alt="" 
                                     />
                                 </div>)
                             }

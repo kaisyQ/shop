@@ -2,9 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import {
-    getProduct, getProductsWithParams, getTopProducts
-} from "api/api";
+import { getProduct, getProductsWithParams } from "api/api";
 
 import type { LoadingType, ProductsLimit } from "types/types";
 

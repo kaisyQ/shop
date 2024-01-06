@@ -7,7 +7,7 @@ interface IImage {
 export const ImagesWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 25px;
     width: 48%;
     
     @media only screen and (max-width: 1200px) {
@@ -26,10 +26,5 @@ export const ImagesWrapper = styled.div`
 export const ImageRow = styled.div`
     display: flex;
     justify-content: space-between;
-    column-gap: 2rem;
+    column-gap: 20px;
 `
-
-export const ImageWrapper = styled.div<IImage>`
-    overflow: hidden;
-    max-width: ${props => props.width || '48%'};
-`;

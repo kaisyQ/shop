@@ -9,9 +9,11 @@ const FilterWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-bottom: 50px;
+    z-index: 9;
 `;
 
-export default () => {
+
+const Filter = () => {
     return (
         <>
             <FilterWrapper>
@@ -22,3 +24,5 @@ export default () => {
         </>
     );
 }
+
+export default Filter;

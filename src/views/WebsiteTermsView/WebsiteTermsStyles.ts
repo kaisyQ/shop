@@ -3,17 +3,17 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 30px;
     text-align: left;
-    font-size: 2rem;
-    margin: 4rem 0;
-    padding: 0 2rem;
+    font-size: 20px;
+    margin: 40px 0;
+    padding: 0 20px;
 `;
 
 const Header = styled.header`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 10px;
     
     @media only screen and (max-width: 330px) {
         text-align: center;
@@ -21,7 +21,7 @@ const Header = styled.header`
 `;
 
 const HeaderTitle = styled.h1`
-    margin-left: 2rem;
+    margin-left: 20px;
     font-weight: 500;
     
     @media only screen and (max-width: 330px) {
@@ -30,7 +30,7 @@ const HeaderTitle = styled.h1`
 `;
 
 const HeaderText = styled.p`
-    margin-left: 4rem;
+    margin-left: 40px;
 
     @media only screen and (max-width: 330px) {
         margin-left: 0;
@@ -63,7 +63,7 @@ const SectionTitle = styled.h2`
 
 
 const SectionText = styled.p`
-    text-indent: 4rem;
+    text-indent: 40px;
 `;
 
 const Bold600Span = styled.span`

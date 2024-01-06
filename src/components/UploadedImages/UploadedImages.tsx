@@ -1,7 +1,6 @@
 import React from 'react';
 import { UploadedImagesTitle, UploadedImagesWrapper } from './UploadedImagesElements';
-import UploadedImage from './UplodedImage/UploadedImage';
-
+import { Card, CardHeader, CardBody, Image } from '@nextui-org/react';
 
 interface UploadedImagesProps {
     files: FileList | null
@@ -22,9 +21,24 @@ const UploadedImages: React.FC<UploadedImagesProps> = (props) => {
 
                     {
                         Array.from(props.files).map((file, index) => <React.Fragment key={index}>
+                            <Card>
                             
-                            <UploadedImage src={URL.createObjectURL(file)} name={file.name}/>
+                                <CardHeader>
+                                    Image #{index + 1}
+                                </CardHeader>
+                                
+                                <CardBody>
 
+                                    <Image
+                                        width={450}
+                                        isZoomed
+                                        src={URL.createObjectURL(file)} 
+                                        alt={file.name} 
+                                    />
+                                
+                                </CardBody>
+                            
+                            </Card>
                         </React.Fragment>)
                     }
 

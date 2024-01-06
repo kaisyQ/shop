@@ -2,14 +2,16 @@ import React from "react";
 
 import { 
     FooterWrapper, OurContacts, Title, Information, 
-    LinksContainer, Links, SignInButton, Copyright,
-    Span, SignInButtonWrapper, ContactTitle, MainLinks,
+    LinksContainer, Links, Copyright,
+    Span, ContactTitle, MainLinks,
     AboutSiteAndCompanyLinkList, AboutSiteAndCompanyLinkListItem
 } from "./FooterStyles";
 
 import { NavLink } from "react-router-dom";
 
 import * as Icon from 'react-bootstrap-icons';
+
+import { Button } from "@nextui-org/react";
 
 
 const Footer: React.FC = () => {
@@ -47,9 +49,11 @@ const Footer: React.FC = () => {
                     <AboutSiteAndCompanyLinkList>
                     
                         <AboutSiteAndCompanyLinkListItem>
-                            <NavLink to={'/terms'}>
-                                Terms of Service
-                            </NavLink>
+                            <Button className="dark" color="primary" variant="faded">
+                                <NavLink to={'/terms'}>
+                                    Terms of Service
+                                </NavLink>
+                            </Button>
                         </AboutSiteAndCompanyLinkListItem>
                     
                     </AboutSiteAndCompanyLinkList>
@@ -59,19 +63,14 @@ const Footer: React.FC = () => {
                     <Links>
                         <NavLink 
                             to={"https://instagram.com/bm_furniture_finds?igshid=MmIzYWVlNDQ5Yg=="}>
-                                <Icon.Instagram size={'2rem'}/>
+                                <Icon.Instagram size={'20px'}/>
                         </NavLink>
-                        <NavLink to={"facebook-path"}><Icon.Facebook size={'2rem'}/></NavLink>
-                        <NavLink to={"whatapp-path"}><Icon.Whatsapp size={'2rem'}/></NavLink>
+                        <NavLink to={"facebook-path"}><Icon.Facebook size={'20px'}/></NavLink>
+                        <NavLink to={"whatapp-path"}><Icon.Whatsapp size={'20px'}/></NavLink>
                     </Links>
                     <Copyright>
                     © { new Date().getFullYear() } BM-furniture-finds. All rights reserved.
                     </Copyright>
-                    <SignInButtonWrapper>
-                        <NavLink to={'/auth'}>
-                            <SignInButton>Sign into your working account</SignInButton>
-                        </NavLink>
-                    </SignInButtonWrapper>
                 </LinksContainer>
             </FooterWrapper>
         </>

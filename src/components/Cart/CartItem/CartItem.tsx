@@ -1,23 +1,16 @@
 import React from 'react';
-
 import CartItemStyles from './CartItemStyles';
-
 import { NavLink } from 'react-router-dom';
-
-import type { IProduct } from 'types/types';
-
+import { Product } from 'models/Product';
 import Counter from 'components/Counter/Counter';
-
 import useWindowWidth from 'hooks/useWindowWidth';
-
 import { Trash3, ArrowBarRight, ArrowRight } from 'react-bootstrap-icons';
-
 import type { CartItemConnectedProps } from './CartItemContainer';
+import { Image, Button } from '@nextui-org/react';
 
-import { API_URL } from 'constants/constants';
 
 interface ICartItemProps extends CartItemConnectedProps{
-    product: IProduct
+    product: Product
 }
 
 const CartItem: React.FC<ICartItemProps> = (props) => {
@@ -34,7 +27,7 @@ const CartItem: React.FC<ICartItemProps> = (props) => {
 
                 <CartItemStyles.ImageWrapper>
                         
-                    <CartItemStyles.Image src={`${API_URL}${props.product.imagesSrc[0]}`}/>
+                    <Image isZoomed src={props.product.imagesSrc[0]}/>
                     
 
                 </CartItemStyles.ImageWrapper>
@@ -58,44 +51,45 @@ const CartItem: React.FC<ICartItemProps> = (props) => {
                             <CartItemStyles.Price>
                                 <span>Price: </span>
                                 {
-                                     "$" + (
-                                        props.product.discountPrice ? 
-                                            props.product.discountPrice :
-                                            props.product.price
-                                    
-                                    ) + " CAD"
+                                    props.product.getCurrentPriceWithVal()
                                 }
                             </CartItemStyles.Price>
                         </CartItemStyles.InfoHeader>
 
                         <CartItemStyles.InfoMain>
-                            <Counter size={width < 330 ? '3rem' : '4rem'} productCount={props.product.count} />  
+                            <Counter size={width < 330 ? '30px' : '40px'} productCount={props.product.count} />  
                         </CartItemStyles.InfoMain>
 
                         <CartItemStyles.InfoFooter>
                             
                             <CartItemStyles.BtnNavLinkFlexWrapper isLeft={true}>
-                                <CartItemStyles.InfoFooterButton onClick={onRemoveBtnClick}>
-                                    <Trash3 size={'1.8rem'} />
+
+                                <Button variant='bordered' onClick={onRemoveBtnClick}>
+                                    <Trash3 size={'18px'} />
                                     Remove
-                                </CartItemStyles.InfoFooterButton>
+                                </Button>
+
                             </CartItemStyles.BtnNavLinkFlexWrapper>
 
                             <CartItemStyles.BtnNavLinkFlexWrapper isLeft={false}>
                                 <NavLink to={`/catalog/${props.product.id}`}>
-                                    <CartItemStyles.InfoFooterButton>
+                                
+                                    <Button variant='bordered'>
                                         Show in catalog
-                                        <ArrowRight size={'1.8rem'} />
-                                    </CartItemStyles.InfoFooterButton>
+                                        <ArrowRight size={'18px'} />
+                                    </Button>
+                                
                                 </NavLink>
                             </CartItemStyles.BtnNavLinkFlexWrapper>
                             
                             <CartItemStyles.BtnNavLinkFlexWrapper isLeft={false}>
                                 <NavLink to={'/catalog'}>
-                                    <CartItemStyles.InfoFooterButton>
+                                
+                                    <Button variant='bordered'>
                                         Continue shopping
-                                        <ArrowBarRight size={'1.8rem'} />
-                                    </CartItemStyles.InfoFooterButton>
+                                        <ArrowBarRight size={'18px'} />
+                                    </Button>
+                                
                                 </NavLink>
                             </CartItemStyles.BtnNavLinkFlexWrapper>
                    

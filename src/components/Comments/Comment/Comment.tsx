@@ -2,15 +2,18 @@ import React from "react";
 
 import { 
     CommentWrapper, CommentInfo, AuthorName, 
-    AuthorCircle, CreatedDate, CommentText, 
+    CreatedDate, CommentText, 
     CommentScore, CommentReview
 } from "./CommentStyles";
 
 import * as Icon from "react-bootstrap-icons";
-import { Comment as IComment } from "types/types";
+import { Comment as CommentModel } from "models/Comment";
+
+import {Avatar, AvatarIcon} from "@nextui-org/react";
+
 
 interface ICommentProps {
-    comment: IComment
+    comment: CommentModel
 }
 
 const Comment: React.FC<ICommentProps> = ({ comment }) => {
@@ -18,8 +21,15 @@ const Comment: React.FC<ICommentProps> = ({ comment }) => {
         <>
             <CommentWrapper>
                 <CommentInfo>
-                    <AuthorCircle>{ comment.author[0].toUpperCase() }</AuthorCircle>
-                    <AuthorName>{ comment.author }</AuthorName>
+                <div className="flex items-center">
+                    <Avatar
+                        icon={<AvatarIcon />}
+                        size="lg"
+                        isBordered={true}
+                        className="dark"
+                    /> 
+                </div>
+                    <AuthorName>{ comment.author[0].toUpperCase() + comment.author.slice(1) }</AuthorName>
                     <CreatedDate>{ comment.date.toLocaleDateString() }</CreatedDate>
                 </CommentInfo>
                 <CommentReview>
@@ -29,7 +39,7 @@ const Comment: React.FC<ICommentProps> = ({ comment }) => {
                             const arr: React.JSX.Element[] = [];
 
                             for(let i=1; i<=comment.rating; ++i) {
-                                arr.push(<Icon.StarFill key={i} size={"2rem"} />);
+                                arr.push(<Icon.StarFill key={i} size={"20px"} />);
                             }
                             
                             return arr;
@@ -39,7 +49,7 @@ const Comment: React.FC<ICommentProps> = ({ comment }) => {
                         (() => {
                             const arr: React.JSX.Element[] = [];
                             for(let i=comment.rating; i<5; ++i) {
-                                arr.push(<Icon.Star key={i} size={"2rem"} />);
+                                arr.push(<Icon.Star key={i} size={"20px"} />);
                             }
                             return arr
                         })()
