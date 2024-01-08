@@ -1,15 +1,8 @@
 import React from "react";
-
 import SearchResultItem from "./SearchResultItem/SearchResultItem";
-
 import Preloader from "components/Ui/Preloader/Preloader";
-
-import Button from "components/Custom/Button/Button";
-
-import { SearchResultWrapper, ResultItemsWrapper, SearchResultController } from "./SearchResultStyles";
-
+import { SearchResultWrapper, ResultItemsWrapper } from "./SearchResultStyles";
 import type { SearchResultConnectedProps } from "./SearchResultContainer";
-
 import { LOADING } from "constants/constants";
 
 

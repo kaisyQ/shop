@@ -25,3 +25,10 @@ export const getCurrentProduct = (state: RootState) => state.product.current;
 
 export const selectProductsLimit = (state: RootState) => state.product.limit;
 
+export const selectPriceFrom = (state: RootState) => state.product.priceFrom;
+
+export const selectPriceTo = (state: RootState) => state.product.priceTo;
+
+export const selectIsSortByAlphabetAtoZ = (state: RootState) => state.product.isSortByAlphabetAtoZ;
+
+export const selectIsOldest = (state: RootState) => state.product.isOldest;

@@ -1,3 +1,4 @@
+import { API_URL } from "constants/constants";
 import { Expose } from "class-transformer";
 
 export class SearchedProduct {
@@ -11,7 +12,7 @@ export class SearchedProduct {
     @Expose({ name: 'image' }) private _image: string = '';
     
     public get image(): string {
-        return this._image;
+        return `${API_URL}${this._image}`;
     }
 
     public set image(value: string) {

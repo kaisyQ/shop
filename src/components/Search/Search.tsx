@@ -1,6 +1,6 @@
 import React from "react";
 
-import Input from "../Custom/Input/Input";
+import { Input } from "@nextui-org/react";
 
 import SearchResultContainer from "./SearchResults/SearchResultContainer";
 
@@ -46,10 +46,9 @@ const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchProducts }) => {
                 <SearchContainer>
                     
                     <Input 
-                        fontSize={'2.4rem'} 
-                        padding={'3rem 7rem 3rem 2rem'} 
-                        id='header-search' 
-                        placeholder='Search' 
+                        className="dark"
+                        size="lg"
+                        label='Search' 
                         value={searchVl} 
                         onChange={onSearchChange}
                     />
@@ -58,7 +57,7 @@ const Search: React.FC<ISearchProps> = ({ fetchSearch, setSearchProducts }) => {
                     
                         <NavLink to={`/search/?query=${searchVl}`}>
                     
-                            <Icon.Search color="#000" size={'3.5rem'} cursor='pointer' />
+                            <Icon.Search color="#fff" size={'35px'} cursor='pointer' />
                     
                         </NavLink>
                     

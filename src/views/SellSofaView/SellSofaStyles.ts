@@ -9,25 +9,24 @@ export const Wrapper = styled.div`
 `;
 
 export const Subtitle =  styled.h3`
-    margin-left: 3rem;
-    margin-top: 3rem;
-    font-size: 2.5rem;
-    letter-spacing: 0.1rem;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-size: 25px;
     display: flex;
     align-items: center;
-    column-gap: 2rem;
+    column-gap: 20px;
 `;
 
 export const FormWrapper = styled.form`
-    margin-top: 3.5rem;
+    margin-top: 35px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 20px;
 `;
 
 export const InputsWrapper = styled.div`
     display: flex;
-    gap: 2rem;
+    gap: 20px;
     flex-direction: row;
     
     @media only screen and (max-width: 500px){
@@ -58,7 +57,7 @@ export const UploadBlockWrapper = styled.div`
 
 export const UploadBlockTitle = styled.h3`
     text-align: center;
-    font-size: 2rem;
+    font-size: 20px;
     font-weight: 500;
 `;
 

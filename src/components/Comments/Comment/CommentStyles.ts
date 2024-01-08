@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const CommentWrapper = styled.div`
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-top: .1rem solid #000;
-    min-height: 200px;
+    gap: 10px;
+    border-top: 1px solid #000;
+    padding: 10px;
+    min-height: 240px;
 
     @media only screen and (max-width: 768px){
         flex-direction: column;
@@ -17,70 +17,54 @@ export const CommentInfo = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .5rem;
+    gap: 5px;
     max-width: 200px;
     width: 100%;
 `;
 
 export const AuthorName = styled.span`
-    font-size: 2rem;
+    font-size: 20px;
     font-weight: 400;
-    width: 100%;
     word-wrap: break-word;
 
     @media only screen and (max-width: 768px) {
-        font-size: 2rem;
+        font-size: 20px;
     }
 
     @media only screen and (max-width: 330px) {
-        font-size: 1.6rem;
+        font-size: 16px;
     }
 `;
 
 export const CreatedDate = styled.span`
-    font-size: 1.4rem;
+    font-size: 14px;
     font-weight: 500;
 
     @media only screen and (max-width: 768px) {
-        font-size: 1.4rem;
+        font-size: 14px;
     }
 
     @media only screen and (max-width: 330px) {
-        font-size: 1.2rem;
+        font-size: 12px;
     }
 `;
 
-export const AuthorCircle = styled.div`
-    width: 7rem;
-    height: 7rem;
-    line-height: 7rem;
-    color: #fff;
-    background-color: #000;
-    border-radius: 50%;
-    font-size: 2rem;
-    @media only screen and (max-width: 768px) {
-        font-size: 2rem;
-    }
-    @media only screen and (max-width: 330px) {
-        font-size: 1.6rem;
-    }
-`;
 
 export const CommentText = styled.p`
     text-align: left;
-    font-size: 2rem;
+    font-size: 20px;
     height: 100%;
     @media only screen and (max-width: 768px) {
-        font-size: 2rem;
+        font-size: 20px;
     }
     @media only screen and (max-width: 330px) {
-        font-size: 1.6rem;
+        font-size: 16px;
     }
 `;
 
 export const CommentScore = styled.div`
     display: flex;
-    gap: 1rem;
+    gap: 10px;
     justify-content: flex-start;
 `;
 
@@ -93,7 +77,7 @@ export const CommentReview = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 1.5rem;
+    gap: 15px;
 
     @media only screen and (max-width: 768px) {
         align-items: center;

@@ -1,10 +1,7 @@
-import FilterMenuApiContainer from "./FilterMenuApiContainer";
-
+import CategoriesApiContainer from "./CategoriesApiContainer";
 import { connect } from 'react-redux';
-
 import { ConnectedProps } from "react-redux";
 import { selectProductCategories } from "store/reducers/category/CategorySelector";
-
 import { fetchCategories } from "store/reducers/category/CategorySlice";
 import type { RootState } from "store/store";
 
@@ -22,4 +19,4 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type FilterMenuProps = ConnectedProps<typeof connector>;
 
-export default connector(FilterMenuApiContainer);
+export default connector(CategoriesApiContainer);

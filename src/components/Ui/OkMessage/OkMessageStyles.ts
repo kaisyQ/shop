@@ -4,12 +4,12 @@ export const OkMessageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
-    gap: 3rem;
+    padding: 20px;
+    gap: 30px;
 `;
 
 export const OkMessageText = styled.p`
-    font-size: 3.5rem;
+    font-size: 35px;
 `;
 
 export const OkMessageLogo = styled.div`
@@ -19,11 +19,11 @@ export const BackHomeButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    padding: 2rem;
+    gap: 10px;
+    padding: 20px;
     background-color: #000;
     color: #fff;
-    border-radius: .5rem;
+    border-radius: 5px;
     font-family: inherit;
     :hover {
         border-radius: 0;

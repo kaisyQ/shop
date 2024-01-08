@@ -10,7 +10,7 @@ export const UploadedImagesWrapper = styled.div`
 
 
 export const UploadedImagesTitle = styled.h3`
-    font-size: 2rem;
+    font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
 `;

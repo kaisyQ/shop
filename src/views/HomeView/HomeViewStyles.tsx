@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    gap: 1rem;
+    gap: 10px;
 `;
 
 
@@ -17,16 +17,16 @@ export const PreviewImage = styled.img`
 `;
 
 export const Slogan = styled.p`
-    padding: 1.5rem;
-    font-size: 3rem;
+    padding: 15px;
+    font-size: 30px;
     text-align: center;
     width: 100%;
 
     @media only screen and (max-width: 768px) {
-        font-size: 2.5rem;
+        font-size: 25px;
     }
     
     @media only screen and (max-width: 330px) {
-        font-size: 2rem;
+        font-size: 20px;
     }
 `;

@@ -8,7 +8,7 @@ import CartItemContainer from './CartItem/CartItemContainer';
 
 import Title from 'components/Custom/Title/Title';
 
-import Button from 'components/Custom/Button/Button';
+import { Button } from '@nextui-org/react';
 
 import { ArrowRight } from 'react-bootstrap-icons';
 
@@ -31,7 +31,7 @@ const Cart: React.FC<CartConnectedProps> = (props) => {
                                 
                                 Continue shopping
                             
-                                <ArrowRight size={'2rem'} />
+                                <ArrowRight size={'20px'} />
                             
                             </CartStyles.NavigateBtn>
                         </NavLink>
@@ -46,6 +46,7 @@ const Cart: React.FC<CartConnectedProps> = (props) => {
         <>
             <CartStyles.Wrapper>
                 <Title>Your cart</Title>
+                
                 <CartStyles.CartContainer>
                 {
                     props.cartItems.map(cartItem => <React.Fragment key={cartItem.id}>
@@ -63,7 +64,7 @@ const Cart: React.FC<CartConnectedProps> = (props) => {
                     </CartStyles.Subtotal>
 
                     <div>
-                        <Button padding='1.5rem 5rem' isReverse={true} disabled={true}>Checkout</Button>
+                        <Button className='dark' size='lg' isDisabled>Checkout</Button>
                     </div>
                 </CartStyles.CartFooter>
             

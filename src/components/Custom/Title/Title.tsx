@@ -8,7 +8,7 @@ interface ITitleProps {
 export default styled.h2<ITitleProps>`
     display: flex;
     justify-content: space-between;
-    font-size: ${props => props.fontSize ? props.fontSize : '4rem'};
+    font-size: ${props => props.fontSize ? props.fontSize : '40px'};
     font-weight: 500;
     color: #000;
 `

@@ -1,82 +1,61 @@
 import React from "react";
 
-import Button from "../../../Custom/Button/Button";
-
+import SaleImage from './../../../../images/sale.png';
+import SoldOutImage from './../../../../images/out-of-stock.png';
 import { NavLink } from "react-router-dom";
+import { Button, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 
 import { 
     Wrapper, 
     CardTitle,
-    CardSaleTitle,
-    CardImageWrapper, 
-    CardImage, 
-    CardInfoWrapper, 
-    CardInfoItem,
+    CardSale,
     CardPrice,
 
 } from "./ProductStyles";
-
 import { Product as ProductModel } from "models/Product";
-
-
 interface IProductProps {
     product: ProductModel
 }
-
 const Product: React.FC<IProductProps> = (props) => {
     return (
         <>
             <Wrapper>
-                
-                <CardSaleTitle>
-                
-                    { props.product.count === 0 ? 'Sold out' : 'Sale' }
-                
-                </CardSaleTitle>
-                
                 <NavLink to={`/catalog/${props.product.slug}`}>
-                    
-                    <CardImageWrapper>
-                        
-                        <CardImage 
-                        
-                            src={props.product.imagesSrc[0]}
-                            alt="Card image" 
-                
-                        />
-                        <CardPrice>
-
-                            { props.product.getCurrentPriceWithVal() }
-
-                        </CardPrice>
-                
-                    </CardImageWrapper>
-                
-                </NavLink>
-                
-                <CardInfoWrapper>
-                
-                    <NavLink to={`/catalog/${props.product.slug}`}>
-                
-                        <CardInfoItem>
-                
+                    <Card className="py-4 shadow-none">
+                        <CardBody className="overflow-visible py-2 relative">
+                            <CardSale>
+                                {
+                                    props.product.count === 0 ? <>
+                                        <Image alt="sold_out_icon" src={SoldOutImage} className="w-10"/>
+                                    </> : <>
+                                        <Image alt="sale_icon" src={SaleImage} className="w-10"/>
+                                    </>
+                                }
+                            </CardSale>
+                            <Image
+                                isZoomed
+                                alt="product image"
+                                className="object-cover rounded-none"
+                                src={props.product.imagesSrc[0]}
+                            />
+                            <CardPrice>
+                                { props.product.getCurrentPriceWithVal() }
+                            </CardPrice>
+                        </CardBody>
+                        <CardFooter className="d-flex flex-col items-start">
                             <CardTitle>{ props.product.name }</CardTitle>
-                
-                        </CardInfoItem>
-                
-                    </NavLink>
-                
-                    <CardInfoItem>
-                
-                        <NavLink to={`/catalog/${props.product.slug}`}>
-                
-                            <Button isReverse={true}>Show More</Button>
-                
-                        </NavLink>
-                
-                    </CardInfoItem>
-                
-                </CardInfoWrapper>
+                            <div>
+                                <Button 
+                                        className="dark"
+                                        variant="solid"
+                                        size="lg"
+                                    >
+                                        Show More
+                                </Button>
+                            </div>
+                        </CardFooter>
+                    </Card>
+                </NavLink>
             </Wrapper>
         </>
     );

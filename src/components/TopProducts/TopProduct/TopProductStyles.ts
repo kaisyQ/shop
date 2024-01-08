@@ -15,6 +15,7 @@ export const ImageWrapper = styled.div`
     width: 100%;
     position: relative;
     background-color: #000;
+    border-radius: 14px;
     
     ::after {
         content: "";
@@ -27,6 +28,8 @@ export const ImageWrapper = styled.div`
         background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,.6), rgba(0,0,0,0));
         opacity: 0;
         transition: all .4s ease-in-out;
+        border-radius: 14px;
+        z-index: 999;
     }
     
     :hover::after { 
@@ -45,12 +48,12 @@ export const TopProductImage = styled.img`
 
 export const TopProductInfo = styled.div<ITopProductName>`
     position: absolute;
-    bottom: 2rem;
+    bottom: 20px;
     left: 50%;
     width: 90%;
     overflow: hidden;
     transform: translateX(-50%);
-    font-size: 2.2rem;
+    font-size: 22px;
     color: #fff;
     z-index: 2222;
     transition: all .4s ease-in-out;
@@ -59,11 +62,11 @@ export const TopProductInfo = styled.div<ITopProductName>`
 `;
 
 export const TopProductName = styled.div`
-    font-size: 2.2rem;
+    font-size: 22px;
 `;
 
 export const TopProductPrice = styled.div`
-    font-size: 2rem;
+    font-size: 20px;
     color: orange;
     margin-left: 5px;
 `;

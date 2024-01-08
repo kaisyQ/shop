@@ -1,62 +1,103 @@
-import React from "react";
-
-import { 
-    AddCommentModalWrapper, AddCommentModalHeader, AddCommentModalTitle,
-    AddCommentModalExit, AddCommentForm, StarsWrapper, Input, Textarea,
-    StarsTitle, 
-} from "./AddCommentModalStyles";
-
-import Button from "components/Custom/Button/Button";
+import React, { ChangeEventHandler } from "react";
+import styled from 'styled-components';
 import StarsSelector from "../Stars/StarsSelector";
-
-import * as Icon from "react-bootstrap-icons";
-import reducer, { initialState, actions } from "reducers/add-comment-modal/reducer";
-
 import { AddCommentConnectedProps } from "./AddCommentContainer";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Textarea } from "@nextui-org/react";
+import { RatingScore } from "types/types";
 
 interface IAddCommentModalProps extends AddCommentConnectedProps {
-    close: () => void
+    isOpen: boolean,
+    onOpenChange: any,
+    onOpen: any
 }
 
-const AddCommentModal: React.FC<IAddCommentModalProps> = ({ addComment, close, fetchToCreateComment }) => {
+const StarsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+`;
 
-    const [state, dispatch] = React.useReducer(reducer, initialState);
+const StarsTitle = styled.h3`
+    font-size: 18px;
+`;
+
+const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOpenChange, addComment, fetchToCreateComment }) => {
+
+    const [name, setName] = React.useState<string>('');
+    const [review, setReview] = React.useState<string>('');
+    const [stars, setStars] = React.useState<RatingScore>(1);
+
 
     const onNameChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(actions.setName(ev.target.value));
+        setName(ev.target.value);
     }
-    const onReviewChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(actions.setReview(ev.target.value));
+    const onReviewChange: ChangeEventHandler<HTMLInputElement> = (ev) => {
+        setReview(ev.target.value);
     }
+
+    const onStarsChange = (count: RatingScore) => {
+        setStars(count);
+    }
+
     const onSubmitClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        fetchToCreateComment({ 
-            username: state.name,
-            text: state.review,
-            stars: state.rating as number
+        fetchToCreateComment({
+            username: name,
+            text: review,
+            stars: stars as number
         });
-        close();
-    }   
+        setName('');
+        setReview('');
+        setStars(1);
+    }
 
     return (
         <>
-            <AddCommentModalWrapper>
-                <AddCommentModalHeader>
-                    <AddCommentModalTitle>Write a review</AddCommentModalTitle>
-                    <AddCommentModalExit onClick={(ev) => close()}>
-                        <Icon.XLg size={"3rem"} />
-                    </AddCommentModalExit>
-                </AddCommentModalHeader>
-                <AddCommentForm onSubmit={(ev) => ev.preventDefault()}>
-                    <StarsWrapper>
-                        <StarsTitle>Select your rating</StarsTitle>
-                        <StarsSelector dispatch={dispatch} starCount={state.rating}/>
-                    </StarsWrapper>
-                    <Input value={state.name} placeholder="Enter your name" onChange={onNameChange}/>
-                    <Textarea value={state.review} 
-                        placeholder="Enter your review here"onChange={onReviewChange} />
-                    <Button onClick={onSubmitClick}>Submit</Button>
-                </AddCommentForm>
-            </AddCommentModalWrapper>
+            <Modal className="dark text-white" isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+                <ModalContent className="">
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className="light flex flex-col gap-1">Write a review</ModalHeader>
+
+                            <ModalBody>
+                                <Input
+                                    autoFocus
+                                    label="Name"
+                                    variant="bordered"
+                                    value={name}
+                                    onChange={onNameChange}
+                                />
+
+                                <Textarea
+                                    label="Review"
+                                    value={review}
+                                    onChange={onReviewChange}
+                                />
+
+                                <StarsWrapper>
+                                    <StarsTitle>Select your rating</StarsTitle>
+                                    <StarsSelector onChange={onStarsChange} count={stars} />
+                                </StarsWrapper>
+
+                            </ModalBody>
+
+                            <ModalFooter className="">
+
+                                <Button color="danger" variant="light" onPress={onClose}>
+                                    Close
+                                </Button>
+
+                                <Button
+                                    onClick={onSubmitClick}
+                                    color="primary" onPress={onClose}>
+                                    Action
+                                </Button>
+
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
         </>
     );
 }

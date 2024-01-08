@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: .5rem;
+    gap: 5px;
     text-align: left;
     cursor: pointer;
     z-index: 1;
@@ -24,11 +24,11 @@ export const Wrapper = styled.div`
     
     margin: 10px;
 
-    @media only screen and (max-width: 568px) {
+    @media only screen and (max-width: 800px) {
         width: calc((100% / 2) - 20px);
     }
 
-    @media only screen and (max-width: 486px) {
+    @media only screen and (max-width: 550px) {
         width: 100%;
     }
 `;
@@ -57,61 +57,34 @@ export const CardInfoWrapper = styled.div`
 
 export const CardInfoItem = styled.div`
     display: flex;
-    column-gap: 1rem;
+    column-gap: 10px;
 `;
 
-export const CardTitle = styled.h3<ITitleProps>`
-    position: relative;
-    display: inline-block;
-    font-size: ${props => props.size};
-    letter-spacing: .1rem;
-    font-size: 1.8rem;
+export const CardTitle = styled.h3`
+    font-size: 18px;
     font-weight: 500;
     color: #000;
-    padding: 1rem;
-
-    ::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        border-bottom: .1rem solid white;
-    }
-
-
-    :hover{
-        transition: .3s ease-in-out;
-        transform: scale(1.1);
-        text-decoration: underline;
-    }
-    :not(:hover){
-        transition: .3s ease-in-out;
-        transform: scale(1);
-    }
+    padding: 10px;
 `;
 
-export const CardSaleTitle = styled.h3<ITitleProps>`
+export const CardSale = styled.h3<ITitleProps>`
     position: absolute;
-    top: 1rem;
-    left: 1rem;
-    font-size: ${props => props.size};
-    padding: .5rem 2rem;
-    font-weight: 500;
-    background: #fff;
-    border-radius: .5rem;
-    color: #000;
-    z-index: 5;
+    left: 20px;
+    top: 10px;
+    z-index: 999;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 50%;
 `;
 
 export const CardPrice = styled.div`
     position: absolute;
-    left: 10px;
+    left: 20px;
     bottom: 10px;
-    padding: 1rem 2rem;
-    font-size: 1.8rem;
+    padding: 7px 15px;
+    font-size: 16px;
     background: #000;
-    border-radius: .5rem;
+    border-radius: 5px;
     color: orange;
-    z-index: 5;
+    z-index: 10;
 `;

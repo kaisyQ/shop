@@ -3,6 +3,7 @@ import React from "react";
 import { TopProductWrapper, TopProductImage, TopProductInfo, TopProductName, TopProductPrice, ImageWrapper } from "./TopProductStyles";
 import { NavLink } from "react-router-dom";
 import { Bestseller } from "models/Bestseller";
+import { Image } from "@nextui-org/react";
 
 interface ITopProductProps {
     bestseller: Bestseller
@@ -45,8 +46,8 @@ const TopProduct: React.FC<ITopProductProps> = (props) => {
                             </TopProductPrice>
                         
                         </TopProductInfo>
-            
-                        <TopProductImage src={props.bestseller.imagesSrc[0]} alt="top-product" />
+                        
+                        <Image src={props.bestseller.imagesSrc[0]} alt="top_product" />
             
                     </ImageWrapper>
             

@@ -1,14 +1,8 @@
 import React from "react";
-
-import { 
-    SearchResultItemWrapper, NumberBlock, NameBlock, 
-    RightBlock, ImageWrapper, Image
-} from "./SearchResultItemStyles";
-
+import { Wrapper, NameBlock } from "./SearchResultItemStyles";
 import { NavLink } from "react-router-dom";
-import { API_URL } from "constants/constants";
 import { SearchedProduct } from "models/SearchedProduct";
-import Button from "components/Custom/Button/Button";
+import { Button, Image, Card, CardHeader, CardBody } from "@nextui-org/react";
 
 interface ISearchResultItemProps {
     index: number,
@@ -17,30 +11,31 @@ interface ISearchResultItemProps {
 
 const SearchResultItem: React.FC<ISearchResultItemProps> = (props) => {
     return (
-        <>
-            <NavLink to={`/catalog/${props.searchedProduct.slug}`}>
-                
-                <SearchResultItemWrapper>
-                
-                    <NumberBlock>{ props.index }</NumberBlock>
-                
-                    <ImageWrapper>
-                    
-                        <Image src={`${API_URL}${props.searchedProduct.image}`} />
-                    
-                    </ImageWrapper>
+        <>      
+            <Wrapper>
 
-                    <RightBlock>
+                <NavLink to={`/catalog/${props.searchedProduct.slug}`}>
                 
-                        <NameBlock>{ props.searchedProduct.name }</NameBlock>
-                    
-                        <Button isReverse={true}>Show</Button>
-                    
-                    </RightBlock>
+                    <Card className="dark">
+
+                        <CardHeader>
+                        
+                            <NameBlock>{ props.searchedProduct.name }</NameBlock>
+                        
+                        </CardHeader>
+                        
+                        <CardBody>
+                        
+                            <Image src={props.searchedProduct.image} />
+
+                            <Button className="dark" size="lg">Show</Button>
+                        
+                        </CardBody>
+                    </Card>
                 
-                </SearchResultItemWrapper>
-            
-            </NavLink>
+                </NavLink>
+
+            </Wrapper>
         </>
     );
 }

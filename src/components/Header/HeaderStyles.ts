@@ -5,14 +5,18 @@ interface IMenuProps {
     isOpen: boolean
 }
 
+interface ICartBagWrapper {
+    count: number
+}
+
 export const HeaderWrapper = styled.header`
-    padding: 2.5rem;
+    padding: 25px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    gap: 2rem;
+    gap: 20px;
 
     @media only screen and (max-width: 768px){
         z-index: 5;
@@ -26,15 +30,15 @@ export const HeaderWrapper = styled.header`
 
 export const Logo = styled.img`
     display: block;
-    max-width: 30rem;
+    max-width: 300px;
     width: 100%;
     object-fit: cover;
 `;
 
 export const Menu = styled.div`
     position: relative;
-    width: 2rem;
-    height: 2rem;
+    width: 20px;
+    height: 20px;
 `;
 
 
@@ -43,8 +47,8 @@ export const MenuLine = styled.div<IMenuProps>`
     position: absolute;
     left: 0;
     top: 40%;
-    height: 0.1rem;
-    width: 2rem;
+    height: 1px;
+    width: 20px;
     background-color: ${props => !props.isOpen ? 'black' : 'inherit'};
     transform: translateY(-50%);
     transition: all .4s;
@@ -55,8 +59,8 @@ export const MenuLine = styled.div<IMenuProps>`
         position: absolute;
         left: 0;
         top: ${props => !props.isOpen ? '0.6rem' : '0'};
-        height: 0.1rem;
-        width: 2rem;
+        height: 1px;
+        width: 20px;
         background-color: black;
         transform: rotate(${props => !props.isOpen ? '0' : '45deg'});
         transition: all .4s;
@@ -68,8 +72,8 @@ export const MenuLine = styled.div<IMenuProps>`
         position: absolute;
         left: 0;
         top: ${props => !props.isOpen ? '-0.6rem' : '0'};
-        height: 0.1rem;
-        width: 2rem;
+        height: 1px;
+        width: 20px;
         background-color: black;
         transform: rotate(${props => !props.isOpen ? '0' : '-45deg'});
         transition: all .4s;
@@ -85,5 +89,23 @@ export const LinkWrapper = styled.div`
 export const LinksWrapper = styled.div`
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 10px;
+`;
+
+export const CartBagWrapper = styled.div<ICartBagWrapper>`
+    position: relative;
+    ::after {
+        display: ${props => props.count > 0 ? 'block' : 'none'};
+        content: "${props => props.count}";
+        position: absolute;
+        right: 50%;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+        border-radius: 50%;
+    }
 `;

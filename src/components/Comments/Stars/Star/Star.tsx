@@ -18,7 +18,13 @@ const Star: React.FC<IStarProps> = ({ id, setStar, starCount }) => {
         <>
             <div onClick={onStarClick}>
             {
-                !(id<=starCount) ? <Icon.Star size={"2.4rem"} /> : <Icon.StarFill size={"2.4rem"} />
+                !(id<=starCount) ? <Icon.Star 
+                    
+                        cursor={'pointer'} size={"24px"} 
+                    
+                    /> : 
+                    
+                    <Icon.StarFill cursor={'pointer'} size={"24px"} />
             }
             </div>
         </>

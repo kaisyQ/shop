@@ -5,9 +5,8 @@ import logo from  './../../images/bigLogo.jpg';
 import { NavLink } from "react-router-dom";
 
 import * as Icon from 'react-bootstrap-icons';
-
 import { 
-    HeaderWrapper, Logo, Menu, MenuLine, LinksWrapper
+    HeaderWrapper, Logo, Menu, MenuLine, LinksWrapper, CartBagWrapper
 } from "./HeaderStyles";
 
 import type { HeaderConnectedProps } from "./HeaderContainer";
@@ -20,13 +19,13 @@ interface IHeaderProps extends HeaderConnectedProps {
 }
 
 
-const Header: React.FC<IHeaderProps> = ({ setIsDark, isDark, setIsOpenSidebar, isOpenSidebar }) => {
-
+const Header: React.FC<IHeaderProps> = ({ cartItemCount, setIsDark, isDark, setIsOpenSidebar, isOpenSidebar }) => {
+    console.log(cartItemCount)
     React.useEffect(() => {
         if(!isDark) {
             setIsOpenSidebar(false);
         }
-    }, [isDark]);
+    }, [setIsOpenSidebar, isDark]);
 
     const windowWidth = useWindowWidth();
 
@@ -39,18 +38,22 @@ const Header: React.FC<IHeaderProps> = ({ setIsDark, isDark, setIsOpenSidebar, i
         <>
             <HeaderWrapper>
                 <NavLink to={'/search'}>
-                    <Icon.Search cursor={'pointer'} display={'block'} size={'2rem'} />
+                    <Icon.Search cursor={'pointer'} display={'block'} size={'20px'} />
                 </NavLink>
                 <NavLink to={'/'}>
                     <Logo src={logo} alt="logo" />
                 </NavLink>
                 <LinksWrapper>
 
-                    <div>
+                    <CartBagWrapper count={cartItemCount}>
+                    
                         <NavLink to={'/cart'}>
-                            <Icon.Bag size={'2rem'} />
+                    
+                            <Icon.Bag size={'20px'} />
+                    
                         </NavLink>                        
-                    </div>
+                    
+                    </CartBagWrapper>
                     {
                         windowWidth <= 768 ? <>
         

@@ -1,85 +1,53 @@
 import React from "react";
 
-import { ConfirmModalWrapper, ModalActions, ModalMessage, ModalTitle, Timer } from "./ConfirmModalStyles";
-
-import Button from "components/Custom/Button/Button";
-
-import type { ConfirmModalConnectedProps } from "./ConfirmModalContainer";
+import { ModalMessage } from "./ConfirmModalStyles";
 
 
-interface IConfirmModalProps extends ConfirmModalConnectedProps{
-    
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+
+interface IConfirmModalProps {
+    message: string,
+    callback: () => void,
+    isOpen: boolean,
+    onOpenChange: () => void,
 }
 
  
-const ConfirmModal: React.FC<IConfirmModalProps> = ({ message, callback, setConfirmModalData }) => {
-    
-    const date = new Date();
-    const seconds = date.getSeconds();
-    const min = date.getMinutes();
-    const hours = date.getHours();
-
-    const [time, setTime] = React.useState(0);
-    const [startTime, setStartTime] = React.useState(hours*60*60+min*60+seconds);
-
-    React.useEffect(() => {
-        const updateTime = () => {
-            const date = new Date();
-            const seconds = date.getSeconds();
-            const min = date.getMinutes();
-            const hours = date.getHours();
-            if (time === 9) {
-                setConfirmModalData({
-                    isVisible: false,
-                    callback: null,
-                    message: null
-                });
-                clearInterval(timer);
-                return;
-            }
-            setTime(() => {
-                return hours*60*60+min*60+seconds-startTime
-            });
-        }
-        
-        const timer = setInterval(updateTime, 1000);
-
-        return () => {
-            clearInterval(timer);
-        }
-    }, [time]);
-
+const ConfirmModal: React.FC<IConfirmModalProps> = ({ message, callback, isOpen, onOpenChange }) => {
 
     const confirmClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        if (callback) {
-            callback();
-            setConfirmModalData({
-                isVisible: false,
-                callback: null,
-                message: null
-            });
-        }
-    }
-
-    const cancelClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        setConfirmModalData({
-            isVisible: false,
-            callback: null,
-            message: null
-        });
+        callback();
     }
 
     return (
         <>
-            <ConfirmModalWrapper>
-                <ModalTitle>Сonfirm</ModalTitle>
-                <ModalMessage>{ message }</ModalMessage>
-                <Timer>{`The window will close in ${ 10 - time }s`}</Timer>
-                <ModalActions>
-                    <Button onClick={cancelClick}>Cancel</Button>
-                    <Button onClick={confirmClick} isReverse={true}>Confirm</Button>
-                </ModalActions>
-            </ConfirmModalWrapper>
+            <Modal className="dark text-white" isOpen={isOpen} onOpenChange={onOpenChange}>
+                <ModalContent>
+                {(onClose) => (
+                    <>
+                        <ModalHeader className="flex flex-col gap-1">Сonfirm action</ModalHeader>
+                        
+                        <ModalBody>
+                        
+                            <ModalMessage>{ message }</ModalMessage>
+                        
+                        </ModalBody>
+                        
+                        <ModalFooter>
+                        
+                            <Button color="danger" variant="solid" onPress={onClose}>
+                                Close
+                            </Button>
+                        
+                            <Button color="primary" onPress={onClose} onClick={confirmClick}>
+                                Action
+                            </Button>
+                        
+                        </ModalFooter>
+                    </>
+                )}
+                </ModalContent>
+            </Modal>
         </>
     );
 }

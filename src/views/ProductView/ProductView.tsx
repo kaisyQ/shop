@@ -1,27 +1,19 @@
 import React from "react";
-import Button from "components/Custom/Button/Button";
-
 import Images from "./Images/Images";
 import Sections from "./Sections/Sections";
-import Path from "components/Custom/Path/Path";
+import Path from "components/Path/Path";
 import Component404 from "components/Ui/Error/404";
 import { ProductViewConnectedProps } from "./ProductViewContainer";
-
 import { 
     Wrapper, InfoWrapper, Title, PriseWrapper,
     Prise, DiscountPrice, ZeroCountMessage, InfoHeader
 } from "./ProductViewStyles"
-
 import useWindowWidth from "hooks/useWindowWidth";
-
 import { useParams } from "react-router-dom";
 import { LOADING } from "constants/constants";
 import Preloader from "components/Ui/Preloader/Preloader";
-
+import { Button } from "@nextui-org/react";
 import Slider from "components/Slider/Slider";
-
-interface ProductViewProps extends ProductViewConnectedProps {
-}
 
 const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProductBySlug, addToCart, setCurrent, loading }) => {
 
@@ -37,16 +29,16 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
             setCurrent(null);
         }
 
-    }, [id, fetchProductBySlug]);
+    }, [id, fetchProductBySlug, setCurrent]);
 
 
     const width = useWindowWidth();
 
     
     const addToCartBtnClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        // if (product) {
-        //     addToCart(product);
-        // }
+        if (product) {
+            addToCart(product);
+        }
     }
 
 
@@ -122,8 +114,8 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
                             }
                         </PriseWrapper>
                     
-                            <Button isReverse={true} onClick={addToCartBtnClick}>Add to cart</Button>
-                    
+                        <Button className="dark" size="lg" onClick={addToCartBtnClick}>Add to cart</Button>
+                     
                     </InfoHeader>
 
                     <Sections 

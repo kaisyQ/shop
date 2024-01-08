@@ -6,7 +6,7 @@ interface ISpanProps {
 }
 
 export const FooterWrapper = styled.footer`
-    margin-top: 4rem;
+    margin-top: 40px;
     text-align: left;
     
     background-color: #000;
@@ -17,9 +17,9 @@ export const FooterWrapper = styled.footer`
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
-    gap: 3rem;
+    gap: 30px;
     
-    padding: 2rem;
+    padding: 20px;
 
 
     @media only screen and (max-width: 768px){
@@ -34,7 +34,7 @@ export const LinksContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 2rem;
+    gap: 20px;
     width: 100%;
 
     @media only screen and (max-width: 768px){
@@ -46,7 +46,7 @@ export const LinksContainer = styled.div`
 export const Links = styled.div`
     display: flex;
     justify-content: flex-end;
-    gap: 5rem;
+    gap: 50px;
     width: 100%;
 
     @media only screen and (max-width: 768px) {
@@ -54,7 +54,7 @@ export const Links = styled.div`
     }
     
     @media only screen and (max-width: 330px) {
-        gap: 3rem;
+        gap: 30px;
     }
 `;
 
@@ -68,48 +68,22 @@ export const Title = styled.h3`
 
 export const Information = styled.p`
     width: 100%;
-    margin-top: .5rem;
+    margin-top: 5px;
     display: flex;
-    gap: 1rem;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
 
     @media only screen and (max-width: 400px) {
         flex-direction: column;
-        margin-top: 1rem;
-    }
-`;
-
-export const SignInButtonWrapper = styled.div`
-    width: 100%;
-`;
-
-export const SignInButton = styled.button`
-    display: block;
-    font-size: .6rem;
-    text-decoration: underline;
-    color: #fff;
-    float: right;
-    font: inherit;
-    
-    transition: .2s ease-in-out;
-    :hover {
-        transform: scale(1.1);
-    }   
-
-    :not(:hover){
-        transform: scale(1);
-    }
-
-    @media only screen and (max-width: 768px){
-        width: 100%;
+        margin-top: 10px;
     }
 `;
 
 export const Copyright = styled.p`
     text-align: right;
     width: 100%;
-    font-size: 1.4rem;
+    font-size: 14px;
     color: inherit;
 
     @media only screen and (max-width: 768px) {
@@ -142,7 +116,7 @@ export const MainLinks = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 30px;
 `;
 
 export const AboutSiteAndCompanyLinkList = styled.ul`

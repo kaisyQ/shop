@@ -1,17 +1,14 @@
 import React from "react";
-
 import Product from "./Product/Product";
 import Message from "components/Custom/Message/Message";
 import Preloader from "components/Ui/Preloader/Preloader";
-import Filter from "../Filter/Filter";
 import { Wrapper } from "./ProductsStyles";
-
 import { CardsConnectedPropsType } from "./ProductsContainer";
-
 import { LOADING } from "constants/constants";
 import { useLocation } from "react-router-dom";
 import Paginator from "components/Paginator/Paginator";
 import { useAppSelector } from "store/store";
+import { selectIsOldest, selectIsSortByAlphabetAtoZ, selectPriceFrom, selectPriceTo } from "store/reducers/product/ProductSelector";
 
 
 const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, loading }) => {
@@ -23,6 +20,10 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
     }, [location]); 
     
     const limit = useAppSelector(state => state.product.limit);
+    const isOldest = useAppSelector(state => selectIsOldest(state));
+    const isSortByAlphabetAtoZ = useAppSelector(state => selectIsSortByAlphabetAtoZ(state));
+    const priceTo = useAppSelector(state => selectPriceTo(state));
+    const priceFrom = useAppSelector(state => selectPriceFrom(state));
 
     React.useEffect(() => {
         
@@ -34,10 +35,14 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
         fetchProducts({
             category: category, 
             page: page, 
-            limit: limit
+            limit: limit,
+            isOldest,
+            isSortByAlphabetAtoZ,
+            priceFrom,
+            priceTo
         });
 
-    }, [location, fetchProducts])
+    }, [location, fetchProducts, limit, isOldest, isSortByAlphabetAtoZ, priceTo, priceFrom]);
 
     if (loading === LOADING) {
         return <Preloader />;
@@ -54,6 +59,7 @@ const Products: React.FC<CardsConnectedPropsType> = ({ products, fetchProducts, 
                     }
                 </Wrapper>
                 <Paginator />
+            
             </> : <Message message="There's nothing here yet..." />
         }
         </>

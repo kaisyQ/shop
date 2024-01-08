@@ -33,13 +33,13 @@ const Show = keyframes`
 
 export const Wrapper = styled.div`
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
 `;
 
 export const Section = styled.section`
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 10px;
     white-space: pre-line;
 `;
 
@@ -49,8 +49,8 @@ export const InfoWrapper = styled.div`
 `;
 
 export const Text = styled.p<IShowProps>`
-    font-size: 1.6rem;
-    text-indent: 2.5rem;    
+    font-size: 16px;
+    text-indent: 25px;    
     text-align: justify;
     transform: translateY(-100%);
     animation: ${props => props.visible ? Show : Hide} .8s ease-in-out forwards;
@@ -62,10 +62,10 @@ export const Title = styled.h3`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 3rem;
+    gap: 30px;
     text-align: left;
-    font-size: 2rem;
-    line-height: 4rem;
+    font-size: 20px;
+    line-height: 40px;
     font-weight: 500;
     cursor: pointer;
     ::after {
@@ -74,14 +74,14 @@ export const Title = styled.h3`
         left: 0;
         bottom: 0;
         width: 100%;
-        border-bottom: .1rem solid #000;
+        border-bottom: 1px solid #000;
     }
 `;
 
 export const Arrow = styled.div<IShowProps>`
-    padding: .5rem;
-    border-left: .1rem solid #000;
-    border-bottom: .1rem solid #000;
+    padding: 5px;
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
     transition: .2s ease-in-out;
     transform: ${props => props.visible ? 
     "rotate(135deg) translate(-50%, 50%)" : 'rotate(-45deg) translate(50%, -50%)'};
@@ -93,13 +93,13 @@ export const Span = styled.span`
 `;
 
 export const ParamsList = styled.ul<IShowProps>`
-    font-size: 1.6rem;
+    font-size: 16px;
     transform: translateY(-100%);
     animation: ${props => props.visible ? Show : Hide} .8s ease-in-out forwards;
 `;
 
 export const ParamsListItem = styled.li`
-    padding: 1rem 1rem .5rem 3rem;
+    padding: 10px 10px 5px 30px;
     display: flex;
     justify-content: space-between;
 `;
@@ -111,9 +111,9 @@ export const ParamName = styled.span`
         position: absolute;
         left: 0;
         top: 50%;
-        width: 1rem;
-        height: 1rem;
-        padding: 1rem;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
         background: #000;
         transform: translate(-130%, -50%);
     }
@@ -124,16 +124,16 @@ export const ParamName = styled.span`
         box-sizing: border-box;
         left: 0;
         top: 50%;
-        width: 1rem;
-        height: 1rem;
+        width: 10px;
+        height: 10px;
         background: #fff;
         transform: translate(-130%, -50%);
     }
 `
 
 export const Block = styled.div`
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 25px;
+    width: 25px;
     background-color: #fc8507;
     position: relative;
 
@@ -143,8 +143,8 @@ export const Block = styled.div`
         position: absolute;
         left: 50%;
         top: 50%;
-        height: 1rem;
-        width: 1rem;
+        height: 10px;
+        width: 10px;
         background-color: #fff;
         transform: translate(-50%, -50%);
     }

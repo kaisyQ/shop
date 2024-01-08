@@ -10,15 +10,17 @@ import store from './store/store';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-
+import { NextUIProvider } from "@nextui-org/react";
 
 const root = ReactDOM.createRoot(document.getElementById('root') as Element)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <AppContainer />
-      </BrowserRouter>
+      <NextUIProvider>
+        <BrowserRouter>
+          <AppContainer />
+        </BrowserRouter>
+      </NextUIProvider>
     </Provider>
   </React.StrictMode>
 );
