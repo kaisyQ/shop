@@ -27,6 +27,10 @@ const TopProducts: React.FC<ITopProductsProps> = ({ fetchBestsellers, bestseller
     
     const width = useWindowWidth();
 
+    if (bestsellers.length === 0) {
+        return null;
+    }
+
     return (
         <>
             <TopProductsWrapper>

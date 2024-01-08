@@ -1,14 +1,14 @@
 import React from "react";
-
 import styled from  'styled-components';
-
-
-import FilterMenuContainer from "./FilterMenu/FilterMenuContainer";
+import CategoriesContainer from "./Categories/CategoriesContainer";
+import PriceFilter from "./PriceFilter/PriceFilter";
+import RadioFilter from "./RadioFilter/RadioFilter";
 
 const FilterWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-bottom: 50px;
+    gap: 20px;
     z-index: 9;
 `;
 
@@ -18,8 +18,12 @@ const Filter = () => {
         <>
             <FilterWrapper>
             
-                <FilterMenuContainer />
+                <CategoriesContainer />
             
+                <PriceFilter />
+
+                <RadioFilter />
+
             </FilterWrapper>
         </>
     );

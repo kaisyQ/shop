@@ -1,13 +1,11 @@
 import React from "react";
-
-import FilterMenu from "./FilterMenu";
-
-import type { FilterMenuProps } from "./FilterMenuContainer";
+import Categories from "./Categories";
+import type { FilterMenuProps } from "./CategoriesContainer";
 
 interface FilterMenuApiContainerProps extends FilterMenuProps {}
 
 const FilterMenuApiContainer: React.FC<FilterMenuApiContainerProps> = (props) => {
-    const {fetchCategories, ...menuProps} = props;
+    const {fetchCategories, ...categoriesProps} = props;
 
     React.useEffect(() => {
         fetchCategories();
@@ -17,7 +15,7 @@ const FilterMenuApiContainer: React.FC<FilterMenuApiContainerProps> = (props) =>
         
         <>
 
-            <FilterMenu {...menuProps} />
+            <Categories {...categoriesProps} />
 
         </>
     );

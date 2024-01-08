@@ -1,29 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import { PayloadAction } from "@reduxjs/toolkit";
-
 import { getProduct, getProductsWithParams } from "api/api";
-
 import type { LoadingType, ProductsLimit } from "types/types";
-
 import { IDLE, LOADING, FAILED } from "constants/constants";
 import { plainToClass, plainToInstance } from "class-transformer";
 import { Product } from "./../../../models/Product";
 
 
 interface IProductsInitialState {
-    
     items: Product[],
-    
     current: Product | null,
-    
     loadingStatus: LoadingType,
-    
     error: Error | null,
-    
     total: number | null,
-    
     limit: ProductsLimit,
+    
+    isOldest: boolean,
+    isSortByAlphabetAtoZ: boolean,
+    priceFrom: number|null,
+    priceTo: number|null,
 }
 
 const initialState: IProductsInitialState = {
@@ -32,22 +27,35 @@ const initialState: IProductsInitialState = {
     error: null,
     current: null,
     total: null,
-    limit: 9
+    limit: 9,
+    isOldest: false,
+    isSortByAlphabetAtoZ: true,
+    priceFrom: null,
+    priceTo: null,
 }
 
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts", async (
-        { category, page, limit }:
+        { category, page, limit, isOldest, isSortByAlphabetAtoZ, priceFrom, priceTo }:
             {
                 category: string | null,
                 page: string | null
-                limit: number
+                limit: number,
+                isOldest: boolean,
+                isSortByAlphabetAtoZ: boolean,
+                priceFrom: number|null,
+                priceTo: number|null
             }) => {
     
     const response = await getProductsWithParams(
         limit,
+        isOldest,
+        isSortByAlphabetAtoZ,
         category ? category : undefined, 
         page ? page :  undefined,
+        priceFrom ? priceFrom : undefined,
+        priceTo ? priceTo : undefined,
+
     );
     return {
         products: response.data.items as Array<any>,
@@ -92,6 +100,18 @@ const productSlice = createSlice({
         setLimit: (state, action: PayloadAction<ProductsLimit>) => {
             state.limit = action.payload;
         },
+        setIsOldest: (state, action: PayloadAction<boolean>) => {
+            state.isOldest = action.payload;
+        },
+        setIsSortByAlphabetAtoZ: (state, action: PayloadAction<boolean>) => {
+            state.isSortByAlphabetAtoZ = action.payload;
+        },
+        setPriceFrom: (state, action: PayloadAction<number>) => {
+            state.priceFrom = action.payload;
+        },
+        setPriceTo: (state, action: PayloadAction<number>) => {
+            state.priceTo = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProducts.pending, (state) => {
@@ -131,8 +151,16 @@ const productSlice = createSlice({
 const { actions, reducer } = productSlice;
 
 export const {
-    setCurrent, addProduct,
-    updateProduct, setLimit,
+    
+    setCurrent, 
+    addProduct,
+    updateProduct, 
+    setLimit,
+    setIsOldest,
+    setIsSortByAlphabetAtoZ,
+    setPriceTo,
+    setPriceFrom
+
 } = actions;
 
 export default reducer;

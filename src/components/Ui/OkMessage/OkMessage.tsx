@@ -23,15 +23,15 @@ const OkMessage: React.FC<IOkMessageProps> = ({ status }) => {
                 <OkMessageLogo>
                 {
                     status === 200 ? <>
-                        <Icons.CheckCircle size={"15rem"} />
+                        <Icons.CheckCircle size={"150px"} />
                     </> : <>
-                        <Icons.ExclamationCircle size={"15rem"} />
+                        <Icons.ExclamationCircle size={"150px"} />
                     </>
                 }
                 </OkMessageLogo>
                 <NavLink to={"/"}>
                     <BackHomeButton>
-                        <Icons.ArrowLeft size={"2rem"} />
+                        <Icons.ArrowLeft size={"20px"} />
                         <span>Back to home</span>
                     </BackHomeButton>
                 </NavLink>

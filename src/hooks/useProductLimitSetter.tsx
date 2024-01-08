@@ -21,6 +21,6 @@ export const useProductsLimitSetter = () => {
         return;
     }
 
-    dispatch(setLimit(MIN_PRODUCT_LIMIT))
+    dispatch(setLimit(MIN_PRODUCT_LIMIT));
     return;
 }
