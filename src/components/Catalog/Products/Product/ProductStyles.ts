@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { motion } from "framer-motion";
 
 interface ITitleProps {
     size?: string
@@ -77,10 +77,10 @@ export const CardSale = styled.h3<ITitleProps>`
     border-radius: 50%;
 `;
 
-export const CardPrice = styled.div`
+export const CardPrice = styled(motion.div)`
     position: absolute;
-    left: 20px;
-    bottom: 10px;
+    left: 30px;
+    bottom: 20px;
     padding: 7px 15px;
     font-size: 16px;
     background: #000;

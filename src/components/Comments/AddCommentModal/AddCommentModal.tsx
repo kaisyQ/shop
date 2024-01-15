@@ -4,6 +4,7 @@ import StarsSelector from "../Stars/StarsSelector";
 import { AddCommentConnectedProps } from "./AddCommentContainer";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Textarea } from "@nextui-org/react";
 import { RatingScore } from "types/types";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface IAddCommentModalProps extends AddCommentConnectedProps {
     isOpen: boolean,
@@ -22,11 +23,12 @@ const StarsTitle = styled.h3`
     font-size: 18px;
 `;
 
-const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOpenChange, addComment, fetchToCreateComment }) => {
+const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOpenChange, fetchToCreateComment }) => {
 
     const [name, setName] = React.useState<string>('');
     const [review, setReview] = React.useState<string>('');
     const [stars, setStars] = React.useState<RatingScore>(1);
+    const captchaRef = React.useRef(null);
 
 
     const onNameChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +61,9 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOp
                         <>
                             <ModalHeader className="light flex flex-col gap-1">Write a review</ModalHeader>
 
-                            <ModalBody>
+                            <ModalBody
+                                className="d-flex flex-col items-center"
+                            >
                                 <Input
                                     autoFocus
                                     label="Name"
@@ -78,22 +82,37 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOp
                                     <StarsTitle>Select your rating</StarsTitle>
                                     <StarsSelector onChange={onStarsChange} count={stars} />
                                 </StarsWrapper>
+                                
+                                <div>
+                                    <ReCAPTCHA
+                                        sitekey="6LcLUVApAAAAANqbWc8hF4PDiafOddXx4MWnnbTV"
+                                        ref={captchaRef}
+                                    />
+                                </div>
 
                             </ModalBody>
 
-                            <ModalFooter className="">
+                            <ModalFooter className="d-flex flex-col items-center">
 
-                                <Button color="danger" variant="light" onPress={onClose}>
+                                <Button 
+                                    color="danger" 
+                                    variant="solid" 
+                                    onPress={onClose}
+                                    fullWidth
+                                >
                                     Close
                                 </Button>
 
                                 <Button
                                     onClick={onSubmitClick}
-                                    color="primary" onPress={onClose}>
-                                    Action
+                                    color="primary" 
+                                    onPress={onClose}
+                                    fullWidth
+                                >
+                                    Submit
                                 </Button>
-
                             </ModalFooter>
+                            
                         </>
                     )}
                 </ModalContent>

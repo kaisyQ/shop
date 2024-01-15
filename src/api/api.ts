@@ -58,7 +58,6 @@ export const getProductsWithParams = (
 
     const params: Record<string, string> = {
         limit: limit.toString(),
-
     }
 
     if (categorySlug) {

@@ -14,6 +14,7 @@ import { LOADING } from "constants/constants";
 import Preloader from "components/Ui/Preloader/Preloader";
 import { Button } from "@nextui-org/react";
 import Slider from "components/Slider/Slider";
+import ResizedSlider from "components/ResizedSlider/ResizedSlider";
 
 const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProductBySlug, addToCart, setCurrent, loading }) => {
 
@@ -53,6 +54,11 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
     
     return (
         <>
+
+            <ResizedSlider
+                images={product.imagesSrc}
+            />
+
             <Path 
                 subPath={{
                     name: product.name,
