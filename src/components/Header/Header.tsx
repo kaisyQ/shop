@@ -20,7 +20,6 @@ interface IHeaderProps extends HeaderConnectedProps {
 
 
 const Header: React.FC<IHeaderProps> = ({ cartItemCount, setIsDark, isDark, setIsOpenSidebar, isOpenSidebar }) => {
-    console.log(cartItemCount)
     React.useEffect(() => {
         if(!isDark) {
             setIsOpenSidebar(false);

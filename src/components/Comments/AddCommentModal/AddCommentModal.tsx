@@ -5,6 +5,7 @@ import { AddCommentConnectedProps } from "./AddCommentContainer";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Textarea } from "@nextui-org/react";
 import { RatingScore } from "types/types";
 import ReCAPTCHA from "react-google-recaptcha";
+import { CreateCommentDto } from "dto/CreateCommentDto";
 
 interface IAddCommentModalProps extends AddCommentConnectedProps {
     isOpen: boolean,
@@ -34,6 +35,7 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOp
     const onNameChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         setName(ev.target.value);
     }
+    
     const onReviewChange: ChangeEventHandler<HTMLInputElement> = (ev) => {
         setReview(ev.target.value);
     }
@@ -43,11 +45,7 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOp
     }
 
     const onSubmitClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        fetchToCreateComment({
-            username: name,
-            text: review,
-            stars: stars as number
-        });
+        fetchToCreateComment(new CreateCommentDto(stars, name, review));
         setName('');
         setReview('');
         setStars(1);
