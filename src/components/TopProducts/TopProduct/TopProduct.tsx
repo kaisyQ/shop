@@ -1,6 +1,5 @@
 import React from "react";
-
-import { TopProductWrapper, TopProductImage, TopProductInfo, TopProductName, TopProductPrice, ImageWrapper } from "./TopProductStyles";
+import { TopProductWrapper, TopProductInfo, TopProductName, TopProductPrice, ImageWrapper } from "./TopProductStyles";
 import { NavLink } from "react-router-dom";
 import { Bestseller } from "models/Bestseller";
 import { Image } from "@nextui-org/react";

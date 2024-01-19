@@ -55,9 +55,9 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
     return (
         <>
 
-            <ResizedSlider
+            {/* <ResizedSlider
                 images={product.imagesSrc}
-            />
+            /> */}
 
             <Path 
                 subPath={{

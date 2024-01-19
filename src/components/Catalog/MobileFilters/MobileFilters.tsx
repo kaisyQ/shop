@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, ModalContent } from '@nextui-org/react';
-import { Select, Input, Button, SelectItem, SelectSection } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 
 import Categories from '../Filter/Categories/CategoriesContainer';
 import PriceFilter from '../Filter/PriceFilter/PriceFilter';

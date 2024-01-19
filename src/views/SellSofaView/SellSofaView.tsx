@@ -22,7 +22,7 @@ interface ISellSofaViewProps extends SellSofaViewConnectedProps {
 
 const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
 
-    const { status, setStatus, setConfirmModalData, fetchSellMessage } = props;
+    const { status, setStatus, fetchSellMessage } = props;
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 

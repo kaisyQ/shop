@@ -1,5 +1,5 @@
 {
-  "name": "shop-app",
+  "name": "bmfurniture",
   "proxy": "http://bmfurniture.ca",
   "version": "0.1.0",
   "private": true,
@@ -10,14 +10,10 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "@types/node": "^20.2.1",
-    "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4",
     "axios": "^1.5.1",
     "class-transformer": "^0.5.1",
     "formik": "^2.4.4",
     "framer-motion": "^10.16.4",
-    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-bootstrap-icons": "^1.10.2",
     "react-click-outside-hook": "^1.1.1",
@@ -45,8 +41,7 @@
     "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --transformIgnorePatterns",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -72,6 +67,9 @@
     "@types/react-scroll": "^1.8.7",
     "@types/react-slick": "^0.23.12",
     "@types/styled-components": "^5.1.26",
-    "tailwindcss": "^3.4.0"
+    "tailwindcss": "^3.4.0",
+    "@types/node": "^20.2.1",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.18"
   }
 }
