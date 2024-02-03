@@ -46,7 +46,10 @@ const TopProduct: React.FC<ITopProductProps> = (props) => {
                         
                         </TopProductInfo>
                         
-                        <Image src={props.bestseller.imagesSrc[0]} alt="top_product" />
+                        <Image 
+                            src={props.bestseller.imagesSrc[0]} 
+                            alt="top_product" 
+                        />
             
                     </ImageWrapper>
             

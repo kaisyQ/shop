@@ -6,12 +6,10 @@ interface ITopProductName {
 }
 
 export const TopProductWrapper = styled.div`
-    width: 40%;
 `;
 
 
 export const ImageWrapper = styled.div`
-    height: 100%;
     width: 100%;
     position: relative;
     background-color: #000;

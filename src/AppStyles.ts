@@ -9,7 +9,7 @@ export const AppWrapper = styled.div`
   color: black;
   min-width: 250px;
   max-width: 1200px;
-  min-height: 100vh;
+  min-height: 100svh;
 
   @media only screen and (max-width: 768px){
     max-width: 768px;
@@ -18,7 +18,7 @@ export const AppWrapper = styled.div`
   @media only screen and (max-width: 330px){
     max-width: 330px;
   }
-`
+`;
 
 export const MainContainer = styled.main`
   padding: 0 10px;

@@ -14,7 +14,7 @@ interface MobileFilterProps {
 const MobileFilter: React.FC<MobileFilterProps> = ({ visible, onClose }) => {
   return (
     
-    <Modal isOpen={visible} onClose={onClose} placement='center' className='dark text-white'>
+    <Modal isOpen={visible} onClose={onClose} placement='top' className='dark text-white'>
         <ModalContent>
         {
             (onClose) => <>
