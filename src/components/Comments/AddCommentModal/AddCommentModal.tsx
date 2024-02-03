@@ -85,6 +85,7 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOp
                                     <ReCAPTCHA
                                         sitekey="6LcLUVApAAAAANqbWc8hF4PDiafOddXx4MWnnbTV"
                                         ref={captchaRef}
+                                        hl="en"
                                     />
                                 </div>
 
