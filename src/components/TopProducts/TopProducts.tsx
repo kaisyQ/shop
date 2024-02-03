@@ -1,7 +1,7 @@
 import React from "react";
 
 import { 
-    TopProductsWrapper, TopProductsMain, TopProductsHeader, 
+    TopProductsWrapper, TopProductsContent, TopProductsHeader, 
     TopProductsTitle 
 } from "./TopProductsStyles";
 
@@ -55,11 +55,11 @@ const TopProducts: React.FC<ITopProductsProps> = ({ fetchBestsellers, bestseller
                         </Slider>
                     
                     </> : <>
-                        <TopProductsMain>
+                        <TopProductsContent>
                         {
                             bestsellers.map(bestseller => <TopProduct  bestseller={bestseller} key={bestseller.id}/>)
                         }
-                        </TopProductsMain> 
+                        </TopProductsContent> 
                     </>
                 }
             </TopProductsWrapper>

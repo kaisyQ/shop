@@ -1,14 +1,11 @@
 import React from "react";
-
 import { ModalMessage } from "./ConfirmModalStyles";
-
-
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button} from "@nextui-org/react";
 
 interface IConfirmModalProps {
     message: string,
-    callback: () => void,
     isOpen: boolean,
+    callback: () => void,
     onOpenChange: () => void,
 }
 

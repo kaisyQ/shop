@@ -14,9 +14,10 @@ import { LOADING } from "constants/constants";
 import Preloader from "components/Ui/Preloader/Preloader";
 import { Button } from "@nextui-org/react";
 import Slider from "components/Slider/Slider";
+import ResizedSlider from "components/ResizedSlider/ResizedSlider";
 
 const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProductBySlug, addToCart, setCurrent, loading }) => {
-
+    const [isSliderShowing, setIsSliderShowing] = React.useState(false);
     const { id } = useParams();
 
     React.useEffect(() => {
@@ -31,9 +32,7 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
 
     }, [id, fetchProductBySlug, setCurrent]);
 
-
     const width = useWindowWidth();
-
     
     const addToCartBtnClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
         if (product) {
@@ -41,11 +40,9 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
         }
     }
 
-
     if (loading === LOADING) {
         return <Preloader />;
     }
-
 
     if (!product) {
         return <Component404 />;
@@ -53,6 +50,17 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
     
     return (
         <>
+
+            {
+                isSliderShowing ? <>
+                    <ResizedSlider
+                        isVisible={isSliderShowing}
+                        onClose={() => setIsSliderShowing(false)}
+                        images={product.imagesSrc}
+                    /> 
+                </> : null
+            }
+
             <Path 
                 subPath={{
                     name: product.name,
@@ -85,7 +93,10 @@ const ProductView: React.FC<ProductViewConnectedProps> = ({ product, fetchProduc
                     
                     </> : <>
                         
-                        <Images images={product.imagesSrc} />
+                        <Images 
+                            onOpenSlider={() => setIsSliderShowing(true)} 
+                            images={product.imagesSrc} 
+                        />
                     
                     </>
                 }

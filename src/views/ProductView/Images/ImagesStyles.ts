@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-interface IImage {
-    width?: string
-}
-
 export const ImagesWrapper = styled.div`
     display: flex;
     flex-direction: column;

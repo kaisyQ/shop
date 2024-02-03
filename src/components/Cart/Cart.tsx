@@ -1,17 +1,10 @@
 import React from 'react';
-
 import CartStyles from './CartStyles';
-
 import { CartConnectedProps } from './CartContainer';
-
 import CartItemContainer from './CartItem/CartItemContainer';
-
 import Title from 'components/Custom/Title/Title';
-
 import { Button } from '@nextui-org/react';
-
 import { ArrowRight } from 'react-bootstrap-icons';
-
 import { NavLink } from 'react-router-dom';
 
 
@@ -27,13 +20,13 @@ const Cart: React.FC<CartConnectedProps> = (props) => {
                 
                     <CartStyles.NavigateBtnWrapper>
                         <NavLink to={'/catalog'}>
-                            <CartStyles.NavigateBtn>
+                            <Button size='lg' className='dark' radius='sm'>
                                 
                                 Continue shopping
                             
                                 <ArrowRight size={'20px'} />
                             
-                            </CartStyles.NavigateBtn>
+                            </Button>
                         </NavLink>
                     </CartStyles.NavigateBtnWrapper>
 

@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
                     <AboutSiteAndCompanyLinkList>
                     
                         <AboutSiteAndCompanyLinkListItem>
-                            <Button className="dark" color="primary" variant="faded">
+                            <Button className="dark" color="primary" variant="solid">
                                 <NavLink to={'/terms'}>
                                     Terms of Service
                                 </NavLink>

@@ -130,23 +130,3 @@ export const ParamName = styled.span`
         transform: translate(-130%, -50%);
     }
 `
-
-export const Block = styled.div`
-    height: 25px;
-    width: 25px;
-    background-color: #fc8507;
-    position: relative;
-
-    z-index: -1;
-    ::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        height: 10px;
-        width: 10px;
-        background-color: #fff;
-        transform: translate(-50%, -50%);
-    }
-
-`;

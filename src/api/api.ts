@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import type { CreateCommentDto } from 'dto/CreateCommentDto';
 
 const instance = axios.create(
     {
@@ -58,7 +58,6 @@ export const getProductsWithParams = (
 
     const params: Record<string, string> = {
         limit: limit.toString(),
-
     }
 
     if (categorySlug) {
@@ -101,8 +100,8 @@ export const getTopProducts = () => instance.get("/bestsellers/");
 
 export const getComments = () => instance.get("comments/")
 
-export const createComment = (username: string, text: string, stars: number) => instance.post("comments/create", {
-    username,
-    text,
-    stars
+export const createComment = (comment: CreateCommentDto) => instance.post("comments/create", {
+    username: comment.username,
+    text: comment.text,
+    stars: comment.stars
 });
