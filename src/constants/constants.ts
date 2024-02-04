@@ -13,3 +13,7 @@ export const CONTACT_CONFIRM_MESSAGE = `
     Please double-check the information you've provided before proceeding. 
     Once the message is sent, it cannot be recalled !
 `;
+
+
+export const OK = 'STATUS/OK';
+export const ERROR = 'STATUS/ERROR';

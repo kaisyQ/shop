@@ -26,7 +26,7 @@ const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }
     
     const [showModal, setShowModal] = React.useState(false);
 
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
 
     React.useEffect(() => {
         fetchComments()
@@ -72,6 +72,7 @@ const Comments: React.FC<ICommentsProps> = ({ comments, loading, fetchComments }
                     showModal ? <AddCommentContainer 
                         isOpen={isOpen}
                         onOpen={onOpen}
+                        onClose={onClose}
                         onOpenChange={onOpenChange}
                     /> 
                     : null 

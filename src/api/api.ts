@@ -3,8 +3,8 @@ import type { CreateCommentDto } from 'dto/CreateCommentDto';
 
 const instance = axios.create(
     {
-        baseURL: "https://bmfurniture.ca/api/v1/",
-        //baseURL: 'http://localhost:8000/api/v1/',
+        //baseURL: "https://bmfurniture.ca/api/v1/",
+        baseURL: 'http://localhost:8000/api/v1/',
     }
 );
 
