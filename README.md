@@ -27,7 +27,7 @@ You can read more in this link: https://redux-toolkit.js.org/
 | constants/  | application constants                                           |
 | router/	    | contains all routes definitions                                 |
 | types/      | application types (try not to use it)                           |
-| yup/        | validators                                                      |
+| validators/        | validators                                                      |
 | hooks/	    | application hooks                                               |  
 | models/	    | models which are used in components level                       |
 | images/	    | images, logos and svgs                                          |
