@@ -6,7 +6,7 @@ import {
 } from "./SellSofaStyles";
 import { SellSofaViewConnectedProps } from "./SellSofaViewContainer";
 import { useFormik } from "formik";
-import sellSofaValidationSchema from './../../yup/sellsofa.validation.schema';
+import sellSofaValidationSchema from '../../validators/sellsofa.validation.schema';
 import OkMessage from "components/Ui/OkMessage/OkMessage";
 import Preloader from "components/Ui/Preloader/Preloader";
 import { LOADING } from "constants/constants";
@@ -73,7 +73,7 @@ const SellSofaView: React.FC<ISellSofaViewProps> = (props) => {
                         phoneNumber: formik.values.sellSofaPhoneNumber,
                         files: files
                     })
-                    }}
+                }}
                 message={CONTACT_CONFIRM_MESSAGE}  
             />
         {

@@ -2,15 +2,20 @@ import React, { ChangeEventHandler } from "react";
 import styled from 'styled-components';
 import StarsSelector from "../Stars/StarsSelector";
 import { AddCommentConnectedProps } from "./AddCommentContainer";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Textarea } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Textarea, useModal } from "@nextui-org/react";
 import { RatingScore } from "types/types";
 import ReCAPTCHA from "react-google-recaptcha";
 import { CreateCommentDto } from "dto/CreateCommentDto";
+import { useFormik } from "formik";
+import CommentValidationSchema from './../../../validators/comment.validation.schema';
+import { ToastContainer, ToastPosition, toast } from 'react-toastify';
+import { OK } from "constants/constants";
 
 interface IAddCommentModalProps extends AddCommentConnectedProps {
     isOpen: boolean,
     onOpenChange: any,
-    onOpen: any
+    onOpen: any,
+    onClose: () => void
 }
 
 const StarsWrapper = styled.div`
@@ -24,36 +29,68 @@ const StarsTitle = styled.h3`
     font-size: 18px;
 `;
 
-const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOpenChange, fetchToCreateComment }) => {
+const AddCommentModal: React.FC<IAddCommentModalProps> = (props) => {
+    
+    const toastParams = {
+        position: "top-right" as ToastPosition,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    };
 
-    const [name, setName] = React.useState<string>('');
-    const [review, setReview] = React.useState<string>('');
     const [stars, setStars] = React.useState<RatingScore>(1);
     const captchaRef = React.useRef(null);
-
-
-    const onNameChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        setName(ev.target.value);
-    }
     
-    const onReviewChange: ChangeEventHandler<HTMLInputElement> = (ev) => {
-        setReview(ev.target.value);
-    }
+    const formik = useFormik({
+        initialValues: {
+            review: '',
+            username: '',
+        },
+        validationSchema: CommentValidationSchema,
+        onSubmit: (values) => {
+            props.fetchToCreateComment(new CreateCommentDto(stars, values.username, values.review));
+            values.review = '';
+            values.username = '';
+            setStars(1);
+        }
+    });
+
+    React.useEffect(() => {
+        
+        if (props.message) {
+            
+            if (props.message.status === OK) {
+                toast.success(props.message.message, toastParams);
+                props.onClose()
+            } else {
+                toast.error(props.message.message, toastParams);
+            }
+        }
+        return () => {
+            props.setCommentMessage(null);
+        }
+    }, [props.message, props.setCommentMessage, props.onClose]);
+
 
     const onStarsChange = (count: RatingScore) => {
         setStars(count);
     }
 
-    const onSubmitClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        fetchToCreateComment(new CreateCommentDto(stars, name, review));
-        setName('');
-        setReview('');
-        setStars(1);
-    }
-
     return (
         <>
-            <Modal className="dark text-white" isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+            <ToastContainer />
+            
+            <Modal 
+                placement='top' 
+                className="dark text-white" 
+                isOpen={props.isOpen} 
+                onOpenChange={props.onOpenChange} 
+                isDismissable={false}
+                onClose={props.onClose}
+            >
                 <ModalContent className="">
                     {(onClose) => (
                         <>
@@ -66,14 +103,26 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOp
                                     autoFocus
                                     label="Name"
                                     variant="bordered"
-                                    value={name}
-                                    onChange={onNameChange}
+                                    {...formik.getFieldProps('username')}
+                                    errorMessage={
+                                        formik.touched.username && formik.errors.username 
+                                        ? formik.errors.username : undefined
+                                    }
+                                    isInvalid={
+                                        formik.touched.username && formik.errors.username ? true : false
+                                    }
                                 />
 
                                 <Textarea
                                     label="Review"
-                                    value={review}
-                                    onChange={onReviewChange}
+                                    errorMessage={
+                                        formik.touched.review && formik.errors.review 
+                                        ? formik.errors.review : undefined
+                                    }
+                                    isInvalid={
+                                        formik.touched.review && formik.errors.review ? true : false
+                                    }
+                                    {...formik.getFieldProps('review')}
                                 />
 
                                 <StarsWrapper>
@@ -103,9 +152,8 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = ({ isOpen, onOpen, onOp
                                 </Button>
 
                                 <Button
-                                    onClick={onSubmitClick}
+                                    onClick={() => formik.handleSubmit()}
                                     color="primary" 
-                                    onPress={onClose}
                                     fullWidth
                                 >
                                     Submit

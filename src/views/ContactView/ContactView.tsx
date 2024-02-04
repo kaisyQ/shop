@@ -7,7 +7,7 @@ import {
 import { ContactViewConnectedProps } from "./ContactViewContainer";
 import { useFormik } from "formik";
 import OkMessage from "components/Ui/OkMessage/OkMessage";
-import ContactValidationSchema from './../../yup/contact.validation.schema';
+import ContactValidationSchema from '../../validators/contact.validation.schema';
 import Preloader from "components/Ui/Preloader/Preloader";
 import { LOADING } from "constants/constants";
 import {Input, Textarea, Button, useDisclosure} from "@nextui-org/react";

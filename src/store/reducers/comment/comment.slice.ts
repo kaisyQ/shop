@@ -1,25 +1,24 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import type { LoadingType } from "types/types";
-import { IDLE, FAILED, LOADING } from "constants/constants";
+import { IDLE, FAILED, LOADING, ERROR, OK } from "constants/constants";
 import { getComments, createComment } from "api/api";
 import { plainToClass, plainToInstance } from "class-transformer";
 import { Comment } from "models/Comment";
 import { CreateCommentDto } from "dto/CreateCommentDto";
+import { MessageDto } from "dto/MessageDto";
 
 interface InitialStateType {
     comments: Array<Comment>,
     loadingStatus: LoadingType,
-    error: Error | null,
+    error: Error|null,
+    message: MessageDto|null
 }
 
-const initialState: InitialStateType = {
-    
+const initialState: InitialStateType = {    
     comments: [],
-    
     loadingStatus: IDLE,
-    
     error: null,
-    
+    message: null
 }
 
 export const fetchComments = createAsyncThunk(
@@ -35,9 +34,16 @@ export const fetchComments = createAsyncThunk(
 
 export const fetchToCreateComment = createAsyncThunk(
     "comments/fetchToCreateComment",
-    async (commentDto: CreateCommentDto) => {
+    async (commentDto: CreateCommentDto, {dispatch}) => {
 
         const response = await createComment(commentDto);
+        
+        if (response.status !== 200) {
+            dispatch(setMessage(new MessageDto(ERROR, 'An error occurred in creating a review!')))
+        } else {
+            dispatch(setMessage(new MessageDto(OK, 'The review was successfully created!')))
+        }
+
         return {
             status: response.status,
             comment: response.data as any
@@ -53,6 +59,9 @@ const commentSlice = createSlice({
         addComment: (state, action: PayloadAction<Comment>) => {
             state.comments.push(action.payload);
         },
+        setMessage: (state, action: PayloadAction<MessageDto|null>) => {
+            state.message = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchComments.pending, (state) => {
@@ -88,6 +97,6 @@ const commentSlice = createSlice({
 
 const { reducer, actions } = commentSlice;
 
-export const {addComment} = actions;
+export const {addComment, setMessage} = actions;
 
 export default reducer;
