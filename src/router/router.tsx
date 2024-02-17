@@ -4,6 +4,7 @@ import ContactViewContainer from 'views/ContactView/ContactViewContainer';
 import SellSofaViewContainer from 'views/SellSofaView/SellSofaViewContainer';
 import SearchContainer from 'components/Search/SearchContainer';
 import WebsiteTermsView from 'views/WebsiteTermsView/WebsiteTermsView';
+import PaymentView from 'views/PaymentView/PaymentView';
 
 const CatalogView = React.lazy(() => import('views/CatalogView/CatalogView'));
 const HomeView = React.lazy(() => import ('views/HomeView/HomeView'));
@@ -76,6 +77,12 @@ const router: Array<IRoute> = [
         title: 'Search',
         key: 'search',
         component: <SearchContainer />
+    },
+    {
+        path: '/payment',
+        title: 'Payment',
+        key: 'payment',
+        component: <PaymentView />
     }
 ];
 
