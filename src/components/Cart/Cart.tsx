@@ -57,7 +57,9 @@ const Cart: React.FC<CartConnectedProps> = (props) => {
                     </CartStyles.Subtotal>
 
                     <div>
-                        <Button className='dark' size='lg' isDisabled>Checkout</Button>
+                        <NavLink to={'/payment'}>
+                            <Button className='dark' size='lg'>Checkout</Button>
+                        </NavLink>
                     </div>
                 </CartStyles.CartFooter>
             

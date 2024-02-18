@@ -2,6 +2,20 @@ import React from 'react';
 import { Input, Button } from '@nextui-org/react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import type { StripeError } from '@stripe/stripe-js';
+import styled from 'styled-components';
+import CheckoutFormItem from './CheckoutFormItem/CheckoutFormItem';
+
+
+const CheckoutFormWrapper = styled.form`
+    display: grid;
+    grid-gap: 30px;
+    padding: 50px 10px;
+
+    -webkit-box-shadow: 4px 4px 63px -3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 4px 4px 63px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 4px 63px -3px rgba(0, 0, 0, 0.2);
+`;
+
 
 const CheckoutForm = () => {
     
@@ -51,11 +65,13 @@ const CheckoutForm = () => {
         setProcessing(false);
 
         
-    if (payload.error) {
-        setError(payload.error);
-      } else {
-        setPaymentMethod(payload.paymentMethod);
-      }
+        if (payload.error) {
+            setError(payload.error);
+        } else {
+            setPaymentMethod(payload.paymentMethod);
+        }
+
+        reset();
     }
 
 
@@ -67,12 +83,38 @@ const CheckoutForm = () => {
     
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <Input label='Name' value={name} onChange={(ev) => setName(ev.target.value)}/>
-                <Input label='Email' value={email} onChange={(ev) => setEmail(ev.target.value)} />
-                <Input label='Phone number' value={phone} onChange={(ev) => setPhone(ev.target.value)} />
-                <Button type='submit'>Pay</Button>
-            </form>
+            <CheckoutFormWrapper onSubmit={handleSubmit}>
+                <h3>Payment Dettails</h3>
+                <CheckoutFormItem onChange={() => {}}/>
+                <Input 
+                    className='dark' 
+                    label='Name' 
+                    value={name} 
+                    onChange={(ev) => setName(ev.target.value)}
+                />
+                <Input 
+                    className='dark' 
+                    label='Email' 
+                    value={email} 
+                    onChange={(ev) => setEmail(ev.target.value)} 
+                />
+                <Input 
+                    className='dark' 
+                    label='Phone number' 
+                    value={phone} onChange={(ev) => setPhone(ev.target.value)} 
+                />
+                <Button 
+                    className='dark ' 
+                    type='submit'
+                    size='lg'
+                    color="success"
+                    
+                >
+                    Pay
+                </Button>
+            </CheckoutFormWrapper>  
         </>
     );
 }
+
+export default CheckoutForm;
