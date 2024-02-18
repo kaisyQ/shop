@@ -1,13 +1,11 @@
 import "reflect-metadata";
+import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import AppContainer from './AppContainer';
-
-import reportWebVitals from './reportWebVitals';
-
 import store from './store/store';
-
+import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { NextUIProvider } from "@nextui-org/react";

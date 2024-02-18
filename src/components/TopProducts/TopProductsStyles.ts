@@ -23,16 +23,14 @@ export const TopProductsTitle = styled.h2`
     }
 `;
 
-export const TopProductsMain = styled.main`
+export const TopProductsContent = styled.div`
 
     @media only screen and (max-width: 450px) {
         display: none;
     }
 
     margin-top: 20px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
 `;

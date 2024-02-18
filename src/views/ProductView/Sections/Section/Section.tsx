@@ -1,7 +1,7 @@
 import React from "react";
 
 import { 
-    Wrapper, Section, Title, Block, Span, 
+    Wrapper, Section, Title, Span, 
     Arrow, ParamsList, ParamsListItem, ParamName, Text, InfoWrapper
 } from "./SectionStyles";
 

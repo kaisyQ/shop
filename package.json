@@ -1,5 +1,5 @@
 {
-  "name": "shop-app",
+  "name": "bmfurniture",
   "proxy": "http://bmfurniture.ca",
   "version": "0.1.0",
   "private": true,
@@ -10,23 +10,21 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "@types/node": "^20.2.1",
-    "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4",
     "axios": "^1.5.1",
     "class-transformer": "^0.5.1",
     "formik": "^2.4.4",
     "framer-motion": "^10.16.4",
-    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-bootstrap-icons": "^1.10.2",
     "react-click-outside-hook": "^1.1.1",
     "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^3.1.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.9",
     "react-slick": "^0.29.0",
+    "react-toastify": "^10.0.4",
     "redux-thunk": "^2.4.2",
     "reflect-metadata": "^0.1.13",
     "serve": "^14.2.0",
@@ -43,9 +41,8 @@
     "dev": "react-scripts start",
     "start": "serve -s build",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "test": "react-scripts test --env=jsdom --transformIgnorePatterns",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +63,11 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.2.1",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.18",
+    "@types/react-google-recaptcha": "^2.1.8",
     "@types/react-scroll": "^1.8.7",
     "@types/react-slick": "^0.23.12",
     "@types/styled-components": "^5.1.26",

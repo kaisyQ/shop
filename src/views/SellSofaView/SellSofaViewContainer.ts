@@ -1,14 +1,9 @@
 import SellSofaView from "./SellSofaView";
-
 import { ConnectedProps, connect } from "react-redux";
-
-import { setConfirmModalData } from "store/reducers/style/StyleSlice";
-
 import { fetchSellMessage } from "store/reducers/form/FormSlice";
-
 import { setStatus } from "store/reducers/form/FormSlice";
 import { getFormLoading, getFormStatus } from "store/reducers/form/FormSelector";
-import { RootState } from "store/store";
+import type { RootState } from "store/store";
 
 const mapStateToProps = (state: RootState) => ({
     status: getFormStatus(state),
@@ -16,7 +11,7 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDipatchToProps = {
-    setConfirmModalData, fetchSellMessage, setStatus
+    fetchSellMessage, setStatus
 }
 
 const connector = connect(mapStateToProps, mapDipatchToProps);

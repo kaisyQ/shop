@@ -18,7 +18,7 @@ import { useProductsLimitSetter } from 'hooks/useProductLimitSetter';
 
 const App: React.FC<AppConnectedProps> = (props) => {
 
-  const { isDark, setIsDark, confirmModalVisibility } = props;
+  const { isDark, setIsDark } = props;
 
   const [isOpenSidebar, setIsOpenSidebar] = React.useState(false);
 

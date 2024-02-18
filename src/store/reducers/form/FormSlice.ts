@@ -24,16 +24,14 @@ export const fetchSellMessage = createAsyncThunk(
     async (
         { name, email, phoneNumber, comment, brand, files }: 
         { name: string, email: string, brand: string, phoneNumber: string, comment: string, files: FileList | null }) => {
-        const response = await sellCouch(name, email, phoneNumber, comment, brand, files);
-        console.log(response);
-        debugger;
+        await sellCouch(name, email, phoneNumber, comment, brand, files);
     }
 );
 
 export const fetchContactMessage = createAsyncThunk(
     "formsSlice/fetchContactMessage",
     async ({ name, email, phoneNumber, comment }: { name: string, email: string, phoneNumber: string, comment: string }) => {
-        const response = await contactUs(name, email, phoneNumber, comment)
+        await contactUs(name, email, phoneNumber, comment)
     }
 );
 

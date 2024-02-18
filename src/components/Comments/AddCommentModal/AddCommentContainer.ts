@@ -1,15 +1,21 @@
 import AddCommentModal from "./AddCommentModal";
-
 import { ConnectedProps, connect } from "react-redux";
-
-import { addComment, fetchToCreateComment } from "store/reducers/comment/comment.slice";
+import { getCommentMessage } from "store/reducers/comment/comment.selector";
+import { fetchToCreateComment } from "store/reducers/comment/comment.slice";
+import { setMessage as setCommentMessage } from "store/reducers/comment/comment.slice";
+import type { RootState } from "store/store";
 
 
 const mapDispatchToProps = {
-    addComment, fetchToCreateComment
+    fetchToCreateComment,
+    setCommentMessage
 };
 
-const connector = connect(null, mapDispatchToProps);
+const mapStateToProps = (state: RootState) => ({
+    message: getCommentMessage(state)
+})
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export type AddCommentConnectedProps = ConnectedProps<typeof connector>;
 

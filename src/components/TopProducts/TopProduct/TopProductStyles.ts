@@ -6,7 +6,6 @@ interface ITopProductName {
 }
 
 export const TopProductWrapper = styled.div`
-    width: 40%;
 `;
 
 
@@ -39,7 +38,6 @@ export const ImageWrapper = styled.div`
 
 export const TopProductImage = styled.img`
     display: block;
-    width: 100%;
 `;
 
 

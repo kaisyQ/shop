@@ -1,15 +1,18 @@
 import React from "react";
-
 import { ImagesWrapper, ImageRow } from "./ImagesStyles"
-
 import Slider from "components/Slider/Slider";
-import { Image } from "@nextui-org/react";
+import ImageWithResize from "components/Ui/Image/Image";
+
 
 interface CardAboutImages {
-    images: string[]
+    images: string[],
+    onOpenSlider: () => void,
 }
 
-const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
+const ProductAboutImages: React.FC<CardAboutImages> = ({ images, onOpenSlider }) => {
+
+    const memoToggleResize = React.useCallback(onOpenSlider, []);
+
     return (
         <>
             <ImagesWrapper>
@@ -24,7 +27,10 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                             if (i % 3 === 0)  {
                                 result.push(
                                     <ImageRow key={i}>
-                                        <Image isZoomed src={images[i]}/>
+                                        <ImageWithResize 
+                                            toggleRisize={memoToggleResize} 
+                                            src={images[i]}
+                                        />
                                     </ImageRow>
                                 )
                                 continue;
@@ -33,9 +39,15 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                                 result.push(
                                     <ImageRow key={i}>
                                     
-                                        <Image isZoomed src={images[i]} />
+                                        <ImageWithResize 
+                                            toggleRisize={memoToggleResize} 
+                                            src={images[i]}
+                                        />
                                     
-                                        <Image isZoomed src={images[i + 1]} />
+                                        <ImageWithResize
+                                            toggleRisize={memoToggleResize} 
+                                            src={images[i + 1]}
+                                        />
                                     
                                     </ImageRow>
                                 )
@@ -44,7 +56,10 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                             }
                             result.push(
                                 <ImageRow key={i}>
-                                    <Image isZoomed src={images[i]} />
+                                    <ImageWithResize
+                                        toggleRisize={memoToggleResize}
+                                        src={images[i]} 
+                                    />
                                 </ImageRow>
                             );
                         }
@@ -58,7 +73,9 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
                     
                             {
                                 images.slice(4).map((image, index) => <div key={index}>
-                                    <Image isZoomed src={image} alt="" 
+                                     <ImageWithResize
+                                        toggleRisize={memoToggleResize}
+                                        src={image}
                                     />
                                 </div>)
                             }
@@ -72,4 +89,4 @@ const ProductAboutImages: React.FC<CardAboutImages> = ({ images }) => {
     );
 }
 
-export default ProductAboutImages;
+export default React.memo(ProductAboutImages);
