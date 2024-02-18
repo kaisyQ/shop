@@ -11,7 +11,6 @@ export const TopProductWrapper = styled.div`
 
 
 export const ImageWrapper = styled.div`
-    height: 100%;
     width: 100%;
     position: relative;
     background-color: #000;
@@ -41,7 +40,6 @@ export const ImageWrapper = styled.div`
 export const TopProductImage = styled.img`
     display: block;
     width: 100%;
-    height: 100%;
 `;
 
 

@@ -7,6 +7,7 @@ export const CommentWrapper = styled.div`
     border-top: 1px solid #000;
     padding: 10px;
     min-height: 240px;
+    height: auto;
 
     @media only screen and (max-width: 768px){
         flex-direction: column;
@@ -14,12 +15,11 @@ export const CommentWrapper = styled.div`
 `;
 
 export const CommentInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
     max-width: 200px;
     width: 100%;
+    display: grid;
+    grid-row-gap: 5px;
+    justify-items: center;
 `;
 
 export const AuthorName = styled.span`
@@ -54,9 +54,8 @@ export const CommentText = styled.p`
     text-align: left;
     font-size: 20px;
     height: 100%;
-    @media only screen and (max-width: 768px) {
-        font-size: 20px;
-    }
+    text-justify: auto;
+
     @media only screen and (max-width: 330px) {
         font-size: 16px;
     }
