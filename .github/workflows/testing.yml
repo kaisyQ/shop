@@ -19,7 +19,7 @@ jobs:
 
       - run: npm ci
       - run: npm run build -- --no-parallel
-        run: |
+      - run: |
           ssh ${{ secrets.SSH_DOMAIN }}
           ${{ secrets.SSH_PASSWORD }}
           sudo touch test.php
