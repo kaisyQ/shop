@@ -36,6 +36,11 @@ export const ImageWrapper = styled.div`
     }
 `;
 
+export const TopProductImage = styled.img`
+    display: block;
+`;
+
+
 
 export const TopProductInfo = styled.div<ITopProductName>`
     position: absolute;

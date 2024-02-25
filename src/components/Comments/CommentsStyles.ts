@@ -73,8 +73,6 @@ export const Star = styled.div`
 `;
 
 export const CommentsBlock = styled.main`
-    overflow-y: scroll;
-    max-height: 1000px;
     display: flex;
     flex-direction: column;
 `;
