@@ -1,8 +1,8 @@
-import React, { ChangeEventHandler } from "react";
+import React from "react";
 import styled from 'styled-components';
 import StarsSelector from "../Stars/StarsSelector";
 import { AddCommentConnectedProps } from "./AddCommentContainer";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Textarea, useModal } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Textarea } from "@nextui-org/react";
 import { RatingScore } from "types/types";
 import ReCAPTCHA from "react-google-recaptcha";
 import { CreateCommentDto } from "dto/CreateCommentDto";
@@ -31,17 +31,12 @@ const StarsTitle = styled.h3`
 
 const AddCommentModal: React.FC<IAddCommentModalProps> = (props) => {
     
-    const toastParams = {
-        position: "top-right" as ToastPosition,
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    };
+    const {
+        message, setCommentMessage, onClose
+    } = props;
 
     const [stars, setStars] = React.useState<RatingScore>(1);
+    
     const captchaRef = React.useRef(null);
     
     const formik = useFormik({
@@ -59,20 +54,30 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = (props) => {
     });
 
     React.useEffect(() => {
-        
-        if (props.message) {
+
             
-            if (props.message.status === OK) {
-                toast.success(props.message.message, toastParams);
+        const toastParams = {
+            position: "top-right" as ToastPosition,
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        };
+            
+        if (message) {
+            if (message.status === OK) {
+                toast.success(message.message, toastParams);
                 props.onClose()
             } else {
-                toast.error(props.message.message, toastParams);
+                toast.error(message.message, toastParams);
             }
         }
         return () => {
             props.setCommentMessage(null);
         }
-    }, [props.message, props.setCommentMessage, props.onClose]);
+    }, [message, setCommentMessage, onClose]);
 
 
     const onStarsChange = (count: RatingScore) => {

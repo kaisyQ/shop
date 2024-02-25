@@ -70,6 +70,8 @@ const Bold600Span = styled.span`
     font-weight: 600;
 `;
 
-export default {
+const styles = {
     Wrapper, Header, HeaderTitle, HeaderText, Section, SectionTitle, SectionText, Main, Footer, Bold600Span
 };
+
+export default styles;

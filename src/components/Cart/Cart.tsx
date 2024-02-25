@@ -5,7 +5,7 @@ import CartItemContainer from './CartItem/CartItemContainer';
 import Title from 'components/Custom/Title/Title';
 import { Button } from '@nextui-org/react';
 import { ArrowRight } from 'react-bootstrap-icons';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Cart: React.FC<CartConnectedProps> = (props) => {
     const navigate = useNavigate();
