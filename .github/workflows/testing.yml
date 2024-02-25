@@ -24,7 +24,7 @@ jobs:
       - name: Setup SSH key
         uses: webfactory/ssh-agent@v0.5.0
         with:
-        ssh-private-key: ${{secrets.SSH_DOMAIN}}
+          ssh-private-key: ${{secrets.SSH_DOMAIN}}
       - name: Application DEPLOY
         uses: appleboy/ssh-action@master
         with: 
