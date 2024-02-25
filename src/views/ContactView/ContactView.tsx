@@ -129,7 +129,7 @@ const ContactView: React.FC<IContactView> = (props) => {
                                 {...formik.getFieldProps('contactMessage')}
                             />
                             <ButtonWrapper>
-                                <Button  type='submit' size="lg" color="primary" variant="faded" className="dark">
+                                <Button type="submit" size="lg" className="dark" variant="solid">
                                     Send
                                 </Button>
                             </ButtonWrapper>

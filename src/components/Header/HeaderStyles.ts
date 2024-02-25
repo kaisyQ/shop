@@ -10,7 +10,9 @@ interface ICartBagWrapper {
 }
 
 export const HeaderWrapper = styled.header`
-    padding: 25px;
+    padding: 0 25px 0 25px;
+    max-width: 1200px;
+    margin: 0 auto;
     width: 100%;
     display: flex;
     justify-content: space-between;

@@ -8,7 +8,6 @@ export const AppWrapper = styled.div`
   flex-wrap: wrap;
   color: black;
   min-width: 250px;
-  max-width: 1200px;
   min-height: 100svh;
 
   @media only screen and (max-width: 768px){
@@ -25,4 +24,7 @@ export const MainContainer = styled.main`
   flex-grow: 1;
   position: relative;
   z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 `;

@@ -6,7 +6,14 @@ interface ISpanProps {
 }
 
 export const FooterWrapper = styled.footer`
+    background-color: #000;
     margin-top: 40px;
+
+`;
+
+export const ContentWrapper = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: left;
     
     background-color: #000;
@@ -18,6 +25,8 @@ export const FooterWrapper = styled.footer`
     align-items: center;
     flex-shrink: 0;
     gap: 30px;
+
+    width: 100%;
     
     padding: 20px;
 
@@ -27,7 +36,6 @@ export const FooterWrapper = styled.footer`
         align-items: center;
         justify-content: space-around;
     }
-
 `;
 
 export const LinksContainer = styled.div`
