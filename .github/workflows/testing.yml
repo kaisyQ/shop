@@ -8,12 +8,10 @@ on:
 
 jobs:
   deploy:
-    env: 
-      CI: false
     runs-on: ubuntu-latest
     steps:
-        uses: actions/checkout@v4
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Installing NPM
@@ -26,9 +24,9 @@ jobs:
           ssh-private-key: ${{secrets.SSH_DOMAIN}}
       - name: Application DEPLOY
         uses: appleboy/ssh-action@master
-        with: 
+        with:
           host: ${{secrets.SSH_DOMAIN}}
-        username: ubuntu
-        key: ${{secrets.SSH_PASSWORD}}
-        script: |
-          sudo touch test.php
+          username: ubuntu
+          key: ${{secrets.SSH_PASSWORD}}
+          script: |
+            sudo touch test.php
