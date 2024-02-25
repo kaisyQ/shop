@@ -56,16 +56,16 @@ const AddCommentModal: React.FC<IAddCommentModalProps> = (props) => {
     React.useEffect(() => {
 
             
-        const toastParams = {
-            position: "top-right" as ToastPosition,
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        };
-            
+    const toastParams = {
+        position: "top-right" as ToastPosition,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    };
+        
         if (message) {
             if (message.status === OK) {
                 toast.success(message.message, toastParams);

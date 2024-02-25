@@ -20,15 +20,3 @@ jobs:
         run: npm ci
       - name: Application BUILD 
         run: npm run build -- --no-parallel
-      - name: Setup SSH key
-        uses: webfactory/ssh-agent@v0.5.0
-        with:
-          ssh-private-key: ${{secrets.SSH_DOMAIN}}
-      - name: Application DEPLOY
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{secrets.SSH_DOMAIN}}
-          username: ubuntu
-          key: ${{secrets.SSH_PASSWORD}}
-          script: |
-            sudo touch test.php

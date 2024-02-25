@@ -19,8 +19,12 @@ const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 const PaymentViewWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: 30px;
+  grid-gap: 30px;
   margin-top: 30px;
+
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PaymentView = () => {
@@ -28,8 +32,6 @@ const PaymentView = () => {
     <PaymentViewWrapper>
 
         <CheckoutProducts />
-
-
         <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
             <CheckoutForm />
         </Elements>

@@ -32,19 +32,15 @@ const ProductInfo = styled.div`
     font-weight: 500;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 2px;
 `;
 
 
 
 const CheckoutProducts = () => {
-    
-    
-
     const cartProducts = useAppSelector(state => getCartItems(state));
-
     return (
         <>
             <CheckoutProductsWrapper>
