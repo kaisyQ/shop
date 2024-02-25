@@ -1,7 +1,7 @@
 import React from "react";
 import SaleImage from './../../../../images/sale.png';
 import SoldOutImage from './../../../../images/out-of-stock.png';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 
 import { 
@@ -20,6 +20,7 @@ interface IProductProps {
 const Product: React.FC<IProductProps> = (props) => {
 
     const [isHovered, setIsHoveted] = React.useState(false);
+    const navigate = useNavigate();
 
     let variants = {
         open: { 
@@ -70,6 +71,10 @@ const Product: React.FC<IProductProps> = (props) => {
                                             className="dark"
                                             variant="solid"
                                             size="lg"
+                                            onClick={(ev) => {
+                                                ev.preventDefault();
+                                                navigate(`/catalog/${props.product.slug}`);
+                                            }}
                                         >
                                             Show More
                                     </Button>

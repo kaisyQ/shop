@@ -5,11 +5,10 @@ import CartItemContainer from './CartItem/CartItemContainer';
 import Title from 'components/Custom/Title/Title';
 import { Button } from '@nextui-org/react';
 import { ArrowRight } from 'react-bootstrap-icons';
-import { NavLink } from 'react-router-dom';
-
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Cart: React.FC<CartConnectedProps> = (props) => {
-
+    const navigate = useNavigate();
     if (props.cartItems.length === 0) {
         return (
             <>
@@ -19,15 +18,13 @@ const Cart: React.FC<CartConnectedProps> = (props) => {
                     <CartStyles.Message>Your cart is empty !</CartStyles.Message>
                 
                     <CartStyles.NavigateBtnWrapper>
-                        <NavLink to={'/catalog'}>
-                            <Button size='lg' className='dark' radius='sm'>
-                                
-                                Continue shopping
+                        <Button size='lg' className='dark' radius='sm' onClick={(ev) =>{navigate('/catalog')}}>
                             
-                                <ArrowRight size={'20px'} />
-                            
-                            </Button>
-                        </NavLink>
+                            Continue shopping
+                        
+                            <ArrowRight size={'20px'} />
+                        
+                        </Button>
                     </CartStyles.NavigateBtnWrapper>
 
                 </CartStyles.Wrapper>
@@ -57,10 +54,15 @@ const Cart: React.FC<CartConnectedProps> = (props) => {
                     </CartStyles.Subtotal>
 
                     <div>
-                        <NavLink to={'/payment'}>
-                            <Button className='dark' size='lg'>Checkout</Button>
-                        </NavLink>
+                        <Button 
+                            className='dark' 
+                            size='lg'
+                            onClick={(ev) => navigate('/payment')}
+                        >
+                            Checkout
+                        </Button>
                     </div>
+
                 </CartStyles.CartFooter>
             
             </CartStyles.Wrapper>

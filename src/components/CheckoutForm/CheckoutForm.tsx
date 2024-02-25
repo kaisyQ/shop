@@ -84,7 +84,7 @@ const CheckoutForm = () => {
     return (
         <>
             <CheckoutFormWrapper onSubmit={handleSubmit}>
-                <h3>Payment Dettails</h3>
+                <h3>Payment Details</h3>
                 <CheckoutFormItem onChange={() => {}}/>
                 <Input 
                     className='dark' 

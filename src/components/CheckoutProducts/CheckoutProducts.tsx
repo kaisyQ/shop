@@ -7,10 +7,6 @@ import { Image } from '@nextui-org/react';
 
 
 const CheckoutProductsWrapper = styled.div`
-
-    display: grid;
-    grid-row-gap: 20px;
-
     -webkit-box-shadow: 4px 4px 63px -3px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 4px 4px 63px -3px rgba(0, 0, 0, 0.2);
     box-shadow: 4px 4px 63px -3px rgba(0, 0, 0, 0.2);
@@ -18,10 +14,29 @@ const CheckoutProductsWrapper = styled.div`
 
 
 const CheckoutProduct = styled.div`
+    margin: 10px;
     display: grid;
-    grid-template-columns: 50px 1fr;
-
+    grid-template-columns: 0.5fr 1fr;
+    grid-column-gap: 20px;
+    justify-self: center;
 `;
+
+const ProductInfoWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+`;
+
+const ProductInfo = styled.div`
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+`;
+
 
 
 const CheckoutProducts = () => {
@@ -30,8 +45,6 @@ const CheckoutProducts = () => {
 
     const cartProducts = useAppSelector(state => getCartItems(state));
 
-    console.log(cartProducts);
-
     return (
         <>
             <CheckoutProductsWrapper>
@@ -39,11 +52,12 @@ const CheckoutProducts = () => {
                     cartProducts.map((product) => <>
                         <CheckoutProduct>
                             <Image src={product.imagesSrc[0]} />
-                            <div>
-
-                                <h4>{product.name}</h4>
-
-                            </div>
+                            <ProductInfoWrapper>
+                                <ProductInfo>
+                                    <h4>{product.name}</h4>
+                                    <h5>{product.getCurrentPriceWithVal()}</h5>
+                                </ProductInfo>
+                            </ProductInfoWrapper>
                         </CheckoutProduct>
                     </>)
                 }   
