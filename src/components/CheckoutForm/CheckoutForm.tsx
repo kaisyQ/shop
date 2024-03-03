@@ -1,15 +1,15 @@
 import React from 'react';
 import { Input, Button } from '@nextui-org/react';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-import type { StripeError } from '@stripe/stripe-js';
 import styled from 'styled-components';
-import CheckoutFormItem from './CheckoutFormItem/CheckoutFormItem';
-
+import Cards from 'react-credit-cards-2';
+import { type Focused } from 'react-credit-cards-2';
+import 'react-credit-cards-2/dist/es/styles-compiled.css';
 
 const CheckoutFormWrapper = styled.form`
     display: grid;
     grid-gap: 30px;
     padding: 50px 10px;
+    background-color: #000;
 
     -webkit-box-shadow: 4px 4px 63px -3px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 4px 4px 63px -3px rgba(0, 0, 0, 0.2);
@@ -19,87 +19,87 @@ const CheckoutFormWrapper = styled.form`
 
 const CheckoutForm = () => {
     
-    const stripe = useStripe();
-    const elements = useElements();
-    const [error, setError] = React.useState<StripeError|undefined>();
-    const [cardComplete, setCardComplete] = React.useState(false);
-    const [processing, setProcessing] = React.useState(false);
-    const [paymentMethod, setPaymentMethod] = React.useState<any>(null);
     const [phone, setPhone] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [name, setName] = React.useState('');
+    const [state, setState] = React.useState({
+        number: '',
+        expiry: '',
+        cvc: '',
+        name: '',
+        focus: '' as Focused|undefined,
+      });
 
 
     
     const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
-
-        // the stripe was not loaded yet
-        if (!stripe || !elements) {
-            return;
-        }
-    
-        var card = elements.getElement(CardElement);
-
-        // the card data is empty
-        if (!card) {
-            return;
-        }
-
-        if (error) {
-            card.focus();
-            return;
-        }
-
-        if (cardComplete) {
-            setProcessing(true);
-        }
-
-        var payload = await stripe.createPaymentMethod({
-            type: 'card',
-            card,
-            billing_details: {name, email, phone}
-        });
-
-
-        setProcessing(false);
-
-        
-        if (payload.error) {
-            setError(payload.error);
-        } else {
-            setPaymentMethod(payload.paymentMethod);
-        }
-
-        reset();
     }
 
-
-    const reset = () => {
-        setError(void(0));
-        setProcessing(false);
-        setPaymentMethod(null);
-    };
+    const handleInputChange = (evt: any) => {
+        const { name, value } = evt.target;
+        
+        setState((prev) => ({ ...prev, [name]: value }));
+      }
     
+      const handleInputFocus = (evt: any) => {
+        setState((prev) => ({ ...prev, focus: evt.target.name }));
+      }
     return (
         <>
             <CheckoutFormWrapper onSubmit={handleSubmit}>
-                <h3>Payment Details</h3>
-                <CheckoutFormItem onChange={() => {}}/>
-                <Input 
-                    className='dark' 
-                    label='Name' 
-                    value={name} 
-                    onChange={(ev) => setName(ev.target.value)}
+                <h3>Payment details</h3>
+                <Cards
+                    number={state.number}
+                    expiry={state.expiry}
+                    cvc={state.cvc}
+                    name={state.name}
+                    focused={state.focus}
+                />
+                <Input
+                    className='white' 
+                    type="number"
+                    name="number"
+                    label="Card Number"
+                    value={state.number}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                />
+                <Input
+                    className='white' 
+                    type="number"
+                    name="expiry"
+                    label="Card expiry"
+                    value={state.expiry}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                />
+                <Input
+                    className='white' 
+                    type="number"
+                    name="cvc"
+                    label='CVC'
+                    value={state.cvc}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
                 />
                 <Input 
-                    className='dark' 
+                    type="string"
+                    name="name"
+                    value={state.name}
+                    className='white'
+                    label='Name' 
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                />
+                <Input 
+                    className='white' 
                     label='Email' 
                     value={email} 
                     onChange={(ev) => setEmail(ev.target.value)} 
                 />
                 <Input 
-                    className='dark' 
+                    className='white' 
                     label='Phone number' 
                     value={phone} onChange={(ev) => setPhone(ev.target.value)} 
                 />

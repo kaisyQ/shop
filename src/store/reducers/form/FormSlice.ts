@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { contactUs, sellCouch } from "api/api";
+import { contactUs, sellCouch } from "api/mails/index";
 
 import { IDLE, LOADING, FAILED } from "constants/constants";
 

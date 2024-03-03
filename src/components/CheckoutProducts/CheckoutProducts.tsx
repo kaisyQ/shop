@@ -15,15 +15,17 @@ const CheckoutProductsWrapper = styled.div`
 
 const CheckoutProduct = styled.div`
     margin: 10px;
-    display: grid;
-    grid-template-columns: 0.5fr 1fr;
-    grid-column-gap: 20px;
-    justify-self: center;
+    position: relative;
 `;
 
 const ProductInfoWrapper = styled.div`
     width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: #000;
+    color: orange;
 `;
 
 const ProductInfo = styled.div`
@@ -32,9 +34,14 @@ const ProductInfo = styled.div`
     font-weight: 500;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 18px;
+    padding: 10px;
+   
+    h4, h5 {
+        margin-left: 15px;
+    }
 `;
 
 

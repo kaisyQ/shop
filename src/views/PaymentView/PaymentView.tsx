@@ -1,20 +1,8 @@
 import React from 'react';
-import {loadStripe} from '@stripe/stripe-js';
-import {Elements} from '@stripe/react-stripe-js';
 import CheckoutForm from 'components/CheckoutForm/CheckoutForm';
 import CheckoutProducts from 'components/CheckoutProducts/CheckoutProducts';
 import styled from 'styled-components';
 
-
-const ELEMENTS_OPTIONS = {
-    fonts: [
-        {
-            cssSrc: 'https://fonts.googleapis.com/css?family=Roboto',
-        },
-    ],
-};
-
-const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 
 const PaymentViewWrapper = styled.div`
   display: grid;
@@ -32,9 +20,7 @@ const PaymentView = () => {
     <PaymentViewWrapper>
 
         <CheckoutProducts />
-        <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-            <CheckoutForm />
-        </Elements>
+        <CheckoutForm />
     
     </PaymentViewWrapper>
   );
