@@ -18,5 +18,7 @@ jobs:
           node-version: 20
       - name: Installing NPM
         run: npm ci
+      - name: Application TESTING
+        run: npm run test
       - name: Application BUILD 
         run: npm run build -- --no-parallel
