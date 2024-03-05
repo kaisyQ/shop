@@ -1,5 +1,5 @@
 import React from 'react';
-import PageButton from "components/Ui/PageButton/PageButton";
+import PageButton from "shared/PageButton/PageButton";
 
 export const renderPageButtons = (page: number, total: number, limit: number, handlePageClick: (page: string) => void) => {
 

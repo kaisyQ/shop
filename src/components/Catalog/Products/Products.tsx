@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./Product/Product";
 import Message from "components/Custom/Message/Message";
-import Preloader from "components/Ui/Preloader/Preloader";
+import Preloader from "shared/Preloader/Preloader";
 import { Wrapper } from "./ProductsStyles";
 import { CardsConnectedPropsType } from "./ProductsContainer";
 import { LOADING } from "constants/constants";

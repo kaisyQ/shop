@@ -16,7 +16,7 @@ import { CommentsConnectedProps } from "./CommentsContainer";
 
 import { LOADING } from "constants/constants";
 
-import Preloader from "components/Ui/Preloader/Preloader";
+import Preloader from "shared/Preloader/Preloader";
 import {Button, useDisclosure} from "@nextui-org/react";
 
 interface ICommentsProps extends CommentsConnectedProps{

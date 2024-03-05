@@ -1,7 +1,7 @@
 import React from 'react';
 import router from 'router/router';
 import { Routes, Route } from 'react-router-dom';
-import Preloader from 'components/Ui/Preloader/Preloader';
+import Preloader from 'shared/Preloader/Preloader';
 
 const MainRouter: React.FC = () => {
     return (

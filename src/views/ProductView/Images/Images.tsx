@@ -1,7 +1,7 @@
 import React from "react";
 import { ImagesWrapper, ImageRow } from "./ImagesStyles"
 import Slider from "components/Slider/Slider";
-import ImageWithResize from "components/Ui/Image/Image";
+import ImageWithResize from "shared/Image/Image";
 
 
 interface CardAboutImages {

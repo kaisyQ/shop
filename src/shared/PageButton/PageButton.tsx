@@ -45,12 +45,12 @@ const Button = styled.button<IButton>`
 const PageButton: React.FC<React.PropsWithChildren<IPageButtonProps>> = (props) => {
     return (
         <>
-            <Button onClick={props.onClick} current={props.current} disabled={props.current}>
-
-                {
-                    props.children
-                }
-
+            <Button
+                onClick={props.onClick}
+                current={props.current}
+                disabled={props.current}
+            >
+                {props.children}
             </Button>
         </>
     );

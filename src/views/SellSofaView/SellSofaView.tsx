@@ -1,5 +1,5 @@
 import React from "react";
-import SellingIcon from '../../components/Ui/Icons/SellingIcon';
+import SellingIcon from '../../shared/Icons/SellingIcon';
 import { 
     Wrapper, Subtitle, FormWrapper, 
     InputsWrapper, ButtonWrapper, IconWrapper, UploadBlock, UploadBlockWrapper, UploadBlockTitle 
@@ -7,8 +7,8 @@ import {
 import { SellSofaViewConnectedProps } from "./SellSofaViewContainer";
 import { useFormik } from "formik";
 import sellSofaValidationSchema from '../../validators/sellsofa.validation.schema';
-import OkMessage from "components/Ui/OkMessage/OkMessage";
-import Preloader from "components/Ui/Preloader/Preloader";
+import OkMessage from "shared/OkMessage/OkMessage";
+import Preloader from "shared/Preloader/Preloader";
 import { LOADING } from "constants/constants";
 import uploadImage from 'images/upload.png';
 import UploadedImages from "components/UploadedImages/UploadedImages";

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PageButton from 'components/Ui/PageButton/PageButton';
+import PageButton from 'shared/PageButton/PageButton';
 import { usePaginator } from 'hooks/usePaginator';
 import { renderPageButtons } from './RenderPageButton';
 
