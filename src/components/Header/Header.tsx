@@ -1,9 +1,6 @@
 import React from "react";
-
 import logo from  './../../images/bigLogo.jpg';
-
 import { NavLink } from "react-router-dom";
-
 import * as Icon from 'react-bootstrap-icons';
 import { 
     HeaderWrapper, Logo, Menu, MenuLine, LinksWrapper, CartBagWrapper
@@ -53,6 +50,8 @@ const Header: React.FC<IHeaderProps> = ({ cartItemCount, setIsDark, isDark, setI
                         </NavLink>                        
                     
                     </CartBagWrapper>
+
+                    <NavLink to={'/auth'}><button>Log in</button></NavLink>
                     {
                         windowWidth <= 768 ? <>
         
