@@ -51,7 +51,7 @@ const Header: React.FC<IHeaderProps> = ({ cartItemCount, setIsDark, isDark, setI
                     
                     </CartBagWrapper>
 
-                    <NavLink to={'/auth'}><button>Log in</button></NavLink>
+                    {/* <NavLink to={'/auth'}><button>Log in</button></NavLink>
                     {
                         windowWidth <= 768 ? <>
         
@@ -62,7 +62,7 @@ const Header: React.FC<IHeaderProps> = ({ cartItemCount, setIsDark, isDark, setI
                             </Menu> 
 
                         </> : null
-                    }
+                    } */}
                 </LinksWrapper>
             </HeaderWrapper>
         </>

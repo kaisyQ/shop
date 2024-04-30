@@ -25,9 +25,10 @@ export const fetchComments = createAsyncThunk(
     "comments/fetchComments",
     async () => {
         const response = await getComments();
+        
         return {
             status: response.status,
-            items: response.data.items as Array<any>
+            items: response.data as Array<any>
         };
     }
 );
