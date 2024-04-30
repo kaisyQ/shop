@@ -135,8 +135,10 @@ const BtnNavLinkFlexWrapper = styled.div<IInfoFooterBtnProps>`
     }
 `;
 
-export default {
+const styles = {
     Container, Wrapper, ImageWrapper, Image, Info,  Name, Price, 
     ItemControll, InfoHeader, InfoMain, Text, InfoFooter,
     BtnNavLinkFlexWrapper
 };
+
+export default styles;

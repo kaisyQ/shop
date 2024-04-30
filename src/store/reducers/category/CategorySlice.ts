@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCategories } from "api/api";
+import { getCategories } from "api/categories/index";
 
 export interface ICategory {
     id: string, 
@@ -24,7 +24,6 @@ export const fetchCategories = createAsyncThunk(
     "categories/fetchCategories",
     async () => {
         const response = await getCategories();
-        console.log(response)
         if (response.status === 200) {
             return response.data.items
         }

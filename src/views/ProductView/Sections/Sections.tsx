@@ -4,9 +4,9 @@ import { SectionsWrapper } from "./SectionsStyles";
 
 import Section from "./Section/Section";
 
-import DimIcon from './../../../components/Ui/Icons/DimIcon';
-import SofaIcon from './../../../components/Ui/Icons/SofaIcon';
-import TruckIcon from './../../../components/Ui/Icons/DeliveryIcon';
+import DimIcon from '../../../shared/Icons/DimIcon';
+import SofaIcon from '../../../shared/Icons/SofaIcon';
+import TruckIcon from '../../../shared/Icons/DeliveryIcon';
 
 interface ISectionsProps {
     description: string,

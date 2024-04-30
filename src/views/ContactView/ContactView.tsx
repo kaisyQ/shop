@@ -1,14 +1,14 @@
 import React from "react";
-import MailICon from '../../components/Ui/Icons/MailICon';
+import MailICon from '../../shared/Icons/MailICon';
 import { 
     Wrapper, Subtitle, FormWrapper, 
     InputsWrapper, ButtonWrapper, IconWrapper 
 } from "./ContactViewStyles";
 import { ContactViewConnectedProps } from "./ContactViewContainer";
 import { useFormik } from "formik";
-import OkMessage from "components/Ui/OkMessage/OkMessage";
+import OkMessage from "shared/OkMessage/OkMessage";
 import ContactValidationSchema from '../../validators/contact.validation.schema';
-import Preloader from "components/Ui/Preloader/Preloader";
+import Preloader from "shared/Preloader/Preloader";
 import { LOADING } from "constants/constants";
 import {Input, Textarea, Button, useDisclosure} from "@nextui-org/react";
 import ConfirmModal from "components/ConfirmModal/ConfirmModal";

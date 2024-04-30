@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { getProduct, getProductsWithParams } from "api/api";
+import { getProduct, getProductsWithParams } from "api/products/index";
 import type { LoadingType, ProductsLimit } from "types/types";
 import { IDLE, LOADING, FAILED } from "constants/constants";
 import { plainToClass, plainToInstance } from "class-transformer";

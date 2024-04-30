@@ -1,6 +1,6 @@
 import { LoadingType } from './../../../types/types';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getTopProducts } from "api/api";
+import { getTopProducts } from "api/bestsellers/index";
 import { plainToInstance } from "class-transformer";
 import { FAILED, IDLE, LOADING } from 'constants/constants';
 import { Bestseller } from "models/Bestseller";

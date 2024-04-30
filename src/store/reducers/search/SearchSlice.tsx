@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { LoadingType } from "types/types";
 import { IDLE, LOADING, FAILED } from "constants/constants";
-import { search } from "api/api";
+import { search } from "api/searches/index";
 import { plainToInstance } from "class-transformer";
 import { SearchedProduct } from "models/SearchedProduct";
 

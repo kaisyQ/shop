@@ -84,8 +84,9 @@ const NavigateBtn = styled.button`
     }    
 `;
 
-export default {
-
+const styles = {
     Wrapper, CartContainer, CartFooter, Subtotal, Message, NavigateBtn, NavigateBtnWrapper
 };
+
+export default styles;
 

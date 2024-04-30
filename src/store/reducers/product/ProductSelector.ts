@@ -1,8 +1,4 @@
-
-
 import type { RootState } from "store/store";
-
-import type { IShortProduct } from "types/types";
 
 export const getProductItems = (state: RootState) => state.product.items;
 
@@ -10,7 +6,7 @@ export const getProductsLoading = (state: RootState) => state.product.loadingSta
 
 export const getTotal = (state: RootState) => state.product.total;
 
-export const getShortProductItems = (state: RootState): IShortProduct[] => {
+export const getShortProductItems = (state: RootState): any[] => {
     return state.product.items.map((product: any) => ({
         id: product.id,
         name: product.name,

@@ -1,6 +1,6 @@
 import React from "react";
 import SearchResultItem from "./SearchResultItem/SearchResultItem";
-import Preloader from "components/Ui/Preloader/Preloader";
+import Preloader from "shared/Preloader/Preloader";
 import { SearchResultWrapper, ResultItemsWrapper } from "./SearchResultStyles";
 import type { SearchResultConnectedProps } from "./SearchResultContainer";
 import { LOADING } from "constants/constants";

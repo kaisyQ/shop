@@ -7,16 +7,18 @@ on:
     branches: [main, develop]
 
 jobs:
-  build:
+  deploy:
+    env: 
+        CI: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - run: npm ci
-      - run: npm run build
-      - run: ssh ${{ deploy.SSH_DOMAIN }}
-      - run: ${{ deploy.SSH_PASSWORD }}
-      - run: sudo touch test.php
+      - name: Installing NPM
+        run: npm ci
+      - name: Application TESTING
+        run: npm run test
+      - name: Application BUILD 
+        run: npm run build -- --no-parallel

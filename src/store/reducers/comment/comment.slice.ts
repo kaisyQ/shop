@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import type { LoadingType } from "types/types";
 import { IDLE, FAILED, LOADING, ERROR, OK } from "constants/constants";
-import { getComments, createComment } from "api/api";
+import { getComments, createComment } from "api/comments/index";
 import { plainToClass, plainToInstance } from "class-transformer";
 import { Comment } from "models/Comment";
 import { CreateCommentDto } from "dto/CreateCommentDto";
@@ -25,9 +25,10 @@ export const fetchComments = createAsyncThunk(
     "comments/fetchComments",
     async () => {
         const response = await getComments();
+        
         return {
             status: response.status,
-            items: response.data.items as Array<any>
+            items: response.data as Array<any>
         };
     }
 );

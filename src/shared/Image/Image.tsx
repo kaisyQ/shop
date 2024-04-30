@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@nextui-org/react";
-import ResizeImage from './../../../images/resize.png';
+import ResizeImage from '../../images/resize.png';
 import styled from "styled-components";
 
 
@@ -28,13 +28,10 @@ interface IImageWithResizeProps {
 const ImageWithResize: React.FC<IImageWithResizeProps> = (props) => {
     return (
         <Wrapper>
-        
             <ResizeIcon src={ResizeImage} alt="resize" onClick={() => props.toggleRisize()}/>
-        
-            <Image 
+            <Image
                 isZoomed src={props.src}
             />
-        
         </Wrapper>
     );
 }

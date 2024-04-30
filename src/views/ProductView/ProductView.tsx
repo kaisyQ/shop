@@ -2,7 +2,7 @@ import React from "react";
 import Images from "./Images/Images";
 import Sections from "./Sections/Sections";
 import Path from "components/Path/Path";
-import Component404 from "components/Ui/Error/404";
+import Component404 from "shared/Error/404";
 import { ProductViewConnectedProps } from "./ProductViewContainer";
 import { 
     Wrapper, InfoWrapper, Title, PriseWrapper,
@@ -11,7 +11,7 @@ import {
 import useWindowWidth from "hooks/useWindowWidth";
 import { useParams } from "react-router-dom";
 import { LOADING } from "constants/constants";
-import Preloader from "components/Ui/Preloader/Preloader";
+import Preloader from "shared/Preloader/Preloader";
 import { Button } from "@nextui-org/react";
 import Slider from "components/Slider/Slider";
 import ResizedSlider from "components/ResizedSlider/ResizedSlider";

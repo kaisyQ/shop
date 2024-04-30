@@ -43,9 +43,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
       {width >= 768 ? <Navbar /> : null}
 
       <MainContainer>
-
         <MainRouter />
-
       </MainContainer>
 
       <Footer />
