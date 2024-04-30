@@ -41,7 +41,8 @@
     "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --transformIgnorePatterns",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "serve -s build"
   },
   "eslintConfig": {
     "extends": [
