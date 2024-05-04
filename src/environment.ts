@@ -9,8 +9,8 @@ Object.keys(process.env).map((key: string) => {
 
 
 const environment = {
-    restUrl: result['REACT_APP_PUBLIC_REST_API'],
-    imagesUrl: result['REACT_APP_PUBLIC_IMAGES_URL']
+    restUrl: result['REACT_APP_PUBLIC_REST_API'] || '',
+    imagesUrl: result['REACT_APP_PUBLIC_IMAGES_URL'] || ''
 };
 
 export default environment;

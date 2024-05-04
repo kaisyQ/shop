@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 
 import * as Icon from 'react-bootstrap-icons';
 
-import { Button } from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
 
 
 const Footer: React.FC = () => {
@@ -51,11 +51,11 @@ const Footer: React.FC = () => {
                         <AboutSiteAndCompanyLinkList>
                         
                             <AboutSiteAndCompanyLinkListItem>
-                                <Button className="dark" color="primary" variant="solid">
+                                <Link className="dark" color="primary">
                                     <NavLink to={'/terms'}>
                                         Terms of Service
                                     </NavLink>
-                                </Button>
+                                </Link>
                             </AboutSiteAndCompanyLinkListItem>
                         
                         </AboutSiteAndCompanyLinkList>
