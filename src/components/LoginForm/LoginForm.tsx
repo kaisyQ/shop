@@ -16,7 +16,6 @@ interface ILoginFormProps {
 
 const LoginForm: React.FC<ILoginFormProps> = (props) => {
     
-    const usernameRef = React.useRef(null);
     const passwordRef = React.useRef(null);
     const emailRef = React.useRef(null);
 
@@ -30,9 +29,23 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
         <>
             <Form onSubmit={onSubmit}>
             
-                <Input type='text' label='Username' ref={usernameRef} className='dark' size='lg'/>
+                <Input 
+                    type='text' 
+                    label='Email' 
+                    ref={emailRef} 
+                    className='dark' 
+                    size='lg'
+                    isRequired
+                />
             
-                <Input type='password' label='Password' ref={passwordRef} className='dark' size='lg'/>
+                <Input 
+                    type='password' 
+                    label='Password' 
+                    ref={passwordRef} 
+                    className='dark' 
+                    size='lg'
+                    isRequired    
+                />
             
                 <Button type='submit' className='dark' size='lg'>Log in</Button>
             

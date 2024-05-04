@@ -9,12 +9,12 @@ const Form = styled.form`
     row-gap: 20px;
 `;
 
-interface ILoginFormProps {
+interface IRegisterFormProps {
     onSubmit: () => void;
 
 }
 
-const RegisterForm: React.FC<ILoginFormProps> = (props) => {
+const RegisterForm: React.FC<IRegisterFormProps> = (props) => {
     
     const usernameRef = React.useRef(null);
     const passwordRef = React.useRef(null);

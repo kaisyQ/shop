@@ -2,20 +2,18 @@ import React from 'react';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import styled from 'styled-components';
-
+import { Tabs, Tab, Link } from '@nextui-org/react';
+import BackToHomeButton from 'shared/BackToHomeButton/BackToHomeButton';
 
 const AuthViewWrapper = styled.div`
     margin: 60px 0;
 `;
 
-const AlreadyHaveBlock = styled.header`
-    margin-bottom: 30px;
-`;
 
 
 const AuthView = () => {
 
-    const [isLogin, setIsLogin] = React.useState(false);
+    const [selected, setSelected] = React.useState("login");
 
     const onSubmitL = () => {
         alert('submit login data')
@@ -27,16 +25,29 @@ const AuthView = () => {
 
     return (
         <AuthViewWrapper>
-            <AlreadyHaveBlock>
-                
-                <button onClick={() => setIsLogin(true)}>Log in</button> | <button onClick={() => setIsLogin(false)}>Register</button>
-
-            </AlreadyHaveBlock>
-            {
-                isLogin ? <LoginForm onSubmit={onSubmitL} /> 
-                
-                : <RegisterForm onSubmit={onSubmitR} />
-            }
+            <BackToHomeButton />
+            <div>
+                <Tabs
+                    size="lg"
+                    aria-label="Tabs form"
+                    selectedKey={selected}
+                    onSelectionChange={(key) => setSelected(key.toString())}
+                    className='dark'
+                >
+                    <Tab key="login" title="Login">
+                        <LoginForm onSubmit={onSubmitL} /> 
+                    </Tab>
+                    <Tab key="sign-up" title="Sign up">
+                        <RegisterForm onSubmit={onSubmitR} />
+                    </Tab>
+                </Tabs>
+                <p className="text-center">
+                  Already have an account?{" "}
+                  <Link size="md" onPress={() => setSelected("login")}>
+                    Login
+                  </Link>
+                </p> 
+            </div>
         </AuthViewWrapper>
     );
 }
