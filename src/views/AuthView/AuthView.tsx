@@ -4,23 +4,29 @@ import RegisterForm from 'components/RegisterForm/RegisterForm';
 import styled from 'styled-components';
 import { Tabs, Tab, Link } from '@nextui-org/react';
 import BackToHomeButton from 'shared/BackToHomeButton/BackToHomeButton';
+import { useAppDispatch } from 'store/store';
+import { toast } from 'sonner';
 
 const AuthViewWrapper = styled.div`
     margin: 60px 0;
 `;
 
-
-
 const AuthView = () => {
 
-    const [selected, setSelected] = React.useState("login");
+    const [selected, setSelected] = React.useState<string>("login");
+
+    const dispatch = useAppDispatch();
 
     const onSubmitL = () => {
         alert('submit login data')
     }
 
     const onSubmitR = () => {
-        alert('submit reg data')
+
+        toast.error('submit reg data', {
+            position: 'top-right',
+            duration: 5000
+        })
     }
 
     return (
@@ -38,7 +44,7 @@ const AuthView = () => {
                         <LoginForm onSubmit={onSubmitL} /> 
                     </Tab>
                     <Tab key="sign-up" title="Sign up">
-                        <RegisterForm onSubmit={onSubmitR} />
+                        <RegisterForm />
                     </Tab>
                 </Tabs>
                 <p className="text-center">

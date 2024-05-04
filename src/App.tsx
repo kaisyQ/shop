@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import ShadingBlock from './components/Custom/ShadingBlock/ShadingBlock';
 import MainRouter from 'components/MainRouter/MainRouter';
 import LiveChat from 'components/LiveChat/LiveChat';
+import { Toaster } from 'sonner';
 
 import { AppWrapper, MainContainer } from 'AppStyles';
 
@@ -32,6 +33,8 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
   return (
     <AppWrapper>
+      <Toaster richColors />
+      
       {isOpenSidebar ? <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> : null}
 
       <HeaderContainer isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />

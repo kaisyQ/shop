@@ -10,6 +10,7 @@ import searchReducer from "./reducers/search/SearchSlice";
 import cartReducer from './reducers/cart/CartSlice';
 import categoryReducer from "./reducers/category/CategorySlice";
 import bestsellerReducer from './reducers/bestseller/BestsellerSlice';
+import AuthReducer from './reducers/auth/AuthSlice';
 
 const rootReducer = combineReducers({
     bestseller: bestsellerReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     forms: formReducer,
     search: searchReducer,
     cart: cartReducer,
-    categories: categoryReducer
+    categories: categoryReducer,
+    auth: AuthReducer
 });
 
 

@@ -28,6 +28,7 @@
     "reflect-metadata": "^0.1.13",
     "serve": "^14.2.0",
     "slick-carousel": "^1.8.1",
+    "sonner": "^1.4.41",
     "styled-components": "^5.3.6",
     "typescript": "^5.0.4",
     "web-vitals": "^2.1.0",
