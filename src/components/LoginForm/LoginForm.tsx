@@ -31,7 +31,6 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
             <Form onSubmit={onSubmit}>
             
                 <Input type='text' label='Username' ref={usernameRef} className='dark' size='lg'/>
-
             
                 <Input type='password' label='Password' ref={passwordRef} className='dark' size='lg'/>
             
