@@ -33,7 +33,7 @@ const App: React.FC<AppConnectedProps> = (props) => {
 
   return (
     <AppWrapper>
-      <Toaster richColors />
+      <Toaster />
       
       {isOpenSidebar ? <SidebarContainer setIsOpen={setIsOpenSidebar} isOpen={isOpenSidebar} /> : null}
 

@@ -37,7 +37,8 @@ const authSlice = createSlice({
     initialState: {
         loading: IDLE as LoadingType,
         error: null,
-        toastMessage: null as string|null
+        toastMessage: null as string|null,
+        isCodeStep: false
     },
     reducers: {
         setLoading(state, action) {
@@ -55,6 +56,7 @@ const authSlice = createSlice({
             state.loading = IDLE;
             if (action.payload) {
                 state.toastMessage = action.payload.message;
+                state.isCodeStep = true;
             }
         })
         builder.addCase(fetchToRegister.rejected, (state, action) => {
