@@ -13,3 +13,11 @@ export const register = (data: RegisterDto) => instance.post('/auth/register', {
     password: data.password,
     username: data.username
 });
+
+
+export const finishRegistration = (data: RegisterDto) => instance.post('auth/register/confirm', {
+    email: data.email,
+    password: data.password,
+    username: data.username,
+    code: data.code
+});

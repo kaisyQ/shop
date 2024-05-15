@@ -4,18 +4,17 @@ import RegisterForm from 'components/RegisterForm/RegisterForm';
 import styled from 'styled-components';
 import { Tabs, Tab, Link } from '@nextui-org/react';
 import BackToHomeButton from 'shared/BackToHomeButton/BackToHomeButton';
-import { useAppDispatch } from 'store/store';
 import { toast } from 'sonner';
+import WithRedirect from 'shared/Hoc/WithRedirect';
 
 const AuthViewWrapper = styled.div`
     margin: 60px 0;
 `;
 
-const AuthView = () => {
+const AuthView: React.FC = () => {
 
     const [selected, setSelected] = React.useState<string>("login");
 
-    const dispatch = useAppDispatch();
 
     const onSubmitL = () => {
         alert('submit login data')
@@ -58,4 +57,4 @@ const AuthView = () => {
     );
 }
 
-export default AuthView;
+export default WithRedirect(AuthView);

@@ -3,10 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Input, Button, CircularProgress } from '@nextui-org/react';
 import { useAppDispatch, useAppSelector } from 'store/store';
-import { getLoading } from 'store/reducers/auth/AuthSelector';
+import { getCode, getEmail, getLoading, getPassword, getUsername } from 'store/reducers/auth/AuthSelector';
 import { LOADING } from 'constants/constants';
-
-
+import { fetchToFinishRegistration, setCode } from 'store/reducers/auth/AuthSlice';
+import { RegisterDto } from 'dto/RegisterDto';
 
 const Wrapper = styled.div`
     display: grid;
@@ -20,18 +20,38 @@ const CodeStep = () => {
     const dispatch = useAppDispatch();
 
     const loading = useAppSelector(state => getLoading(state));
-
-    const codeRef = React.useRef<HTMLInputElement>(null);
+    const email = useAppSelector(state => getEmail(state));
+    const password = useAppSelector(state => getPassword(state));
+    const username = useAppSelector(state => getUsername(state));
+    const code = useAppSelector(state => getCode(state));
 
     const submit = (ev: React.MouseEvent<HTMLButtonElement>) => {
+        ev.preventDefault();
 
+        if (email && password && username && code) {
+            dispatch(fetchToFinishRegistration(
+                new RegisterDto(
+                    username,
+                    password,
+                    email,
+                    code
+                )
+            ));
+        }
     }
 
     return (
         <>
             <Wrapper>
             
-            <Input type='text' label='Registration Code' ref={codeRef} className='dark' size='lg'/>
+            <Input 
+                value={code}
+                onChange={(ev) => dispatch(setCode(ev.target.value))}
+                type='text' 
+                label='Registration Code' 
+                className='dark' 
+                size='lg'
+            />
 
                 <Button 
                     type='submit' 
